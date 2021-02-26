@@ -1,9 +1,20 @@
 {
-  "name": "wp-apollo-test",
+  "name": "next-wordpress-with-apollo",
+  "description": "Next.js + WordPress with Apollo Client",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregrickaby/nextjs-wordpress-with-apollo.git"
+  },
+  "author": "Greg Rickaby <gregrickaby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gregrickaby/nextjs-wordpress-with-apollo/issues"
+  },
+  "homepage": "https://github.com/gregrickaby/nextjs-wordpress-with-apollo#readme",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start"
   },
