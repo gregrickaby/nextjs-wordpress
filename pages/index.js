@@ -1,5 +1,5 @@
 import displayBlock from '@/lib/displayBlock'
-import {client} from '@/lib/wordpress/connector'
+import {client} from '@/lib/wordpress/client'
 import styles from '@/styles/Home.module.css'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
