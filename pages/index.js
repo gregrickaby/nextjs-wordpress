@@ -1,7 +1,8 @@
+import displayBlock from '@/lib/displayBlock'
+import {client} from '@/lib/wordpress/connector'
+import styles from '@/styles/Home.module.css'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
-import {client} from '@/lib/wordpress/connector'
-import styles from '../styles/Home.module.css'
 
 /**
  * The homepage.
@@ -12,6 +13,8 @@ import styles from '../styles/Home.module.css'
  * @return {Element}     The homepage component.
  */
 export default function Homepage({page}) {
+  const blocks = JSON.parse(page?.blocksJSON)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +23,10 @@ export default function Homepage({page}) {
       </Head>
       <main className={styles.main}>
         <h1>{page?.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: page?.content}} />
+        {!!blocks?.length &&
+          blocks.map((block, index) => {
+            return displayBlock(block, index)
+          })}
       </main>
     </div>
   )
@@ -30,8 +36,18 @@ export async function getStaticProps() {
   const GET_HOMEPAGE = gql`
     query HomePageQuery {
       page(id: "homepage", idType: URI) {
-        title
-        content(format: RAW)
+        title(format: RAW)
+        blocksJSON
+        featuredImage {
+          node {
+            altText
+            sourceUrl(size: LARGE)
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
       }
     }
   `
