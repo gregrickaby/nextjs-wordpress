@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
-import Head from "next/head";
-import { client } from "../api/wordpress/connector";
-import styles from "../styles/Home.module.css";
+import {gql} from '@apollo/client'
+import Head from 'next/head'
+import {client} from '../lib/wordpress/connector'
+import styles from '../styles/Home.module.css'
 
 /**
  * Any WordPress Page.
@@ -12,7 +12,7 @@ import styles from "../styles/Home.module.css";
  * @param {object} page  The page data.
  * @return {Element}     The page component.
  */
-export default function Page({ page }) {
+export default function Page({page}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,10 +21,10 @@ export default function Page({ page }) {
       </Head>
       <main className={styles.main}>
         <h1>{page?.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: page?.content }} />
+        <div dangerouslySetInnerHTML={{__html: page?.content}} />
       </main>
     </div>
-  );
+  )
 }
 
 export async function getStaticPaths() {
@@ -36,23 +36,23 @@ export async function getStaticPaths() {
         }
       }
     }
-  `;
+  `
 
-  const { data } = await client.query({
-    query: GET_ALL_PAGES,
-  });
+  const {data} = await client.query({
+    query: GET_ALL_PAGES
+  })
 
   const paths = data?.pages?.nodes?.map((page) => ({
-    params: { slug: page.slug },
-  }));
+    params: {slug: page.slug}
+  }))
 
   return {
     paths,
-    fallback: true,
-  };
+    fallback: true
+  }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
   const GET_PAGE_BY_SLUG = gql`
     query PageQuery($slug: ID!) {
       page(id: $slug, idType: URI) {
@@ -60,17 +60,17 @@ export async function getStaticProps({ params }) {
         content(format: RAW)
       }
     }
-  `;
+  `
 
-  const { data } = await client.query({
+  const {data} = await client.query({
     query: GET_PAGE_BY_SLUG,
-    variables: { slug: params.slug },
-  });
+    variables: {slug: params.slug}
+  })
 
   return {
     props: {
-      page: data?.page,
+      page: data?.page
     },
-    revalidate: 300,
-  };
+    revalidate: 300
+  }
 }

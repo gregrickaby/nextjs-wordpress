@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
-import Head from "next/head";
-import { client } from "../api/wordpress/connector";
-import styles from "../styles/Home.module.css";
+import {gql} from '@apollo/client'
+import Head from 'next/head'
+import {client} from '@/lib/wordpress/connector'
+import styles from '../styles/Home.module.css'
 
 /**
  * The homepage.
@@ -11,7 +11,7 @@ import styles from "../styles/Home.module.css";
  * @param {object} page  The homepage data.
  * @return {Element}     The homepage component.
  */
-export default function Homepage({ page }) {
+export default function Homepage({page}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,10 +20,10 @@ export default function Homepage({ page }) {
       </Head>
       <main className={styles.main}>
         <h1>{page?.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: page?.content }} />
+        <div dangerouslySetInnerHTML={{__html: page?.content}} />
       </main>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -34,15 +34,15 @@ export async function getStaticProps() {
         content(format: RAW)
       }
     }
-  `;
+  `
 
-  const { data } = await client.query({
-    query: GET_HOMEPAGE,
-  });
+  const {data} = await client.query({
+    query: GET_HOMEPAGE
+  })
 
   return {
     props: {
-      page: data?.page,
-    },
-  };
+      page: data?.page
+    }
+  }
 }
