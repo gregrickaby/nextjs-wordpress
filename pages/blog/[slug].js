@@ -1,11 +1,11 @@
-import {gql} from '@apollo/client'
-import Head from 'next/head'
+import displayBlock from '@/lib/displayBlock'
 import {client} from '@/lib/wordpress/connector'
 import styles from '@/styles/Home.module.css'
-import displayBlock from '@/lib/displayBlock'
+import {gql} from '@apollo/client'
+import Head from 'next/head'
 
 /**
- * Any WordPress Posts.
+ * Display single post.
  *
  * @author Greg Rickaby
  *
@@ -64,6 +64,16 @@ export async function getStaticProps({params}) {
       post(id: $slug, idType: URI) {
         title(format: RAW)
         blocksJSON
+        featuredImage {
+          node {
+            altText
+            sourceUrl(size: LARGE)
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
       }
     }
   `
