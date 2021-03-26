@@ -3,6 +3,7 @@
 Use [Apollo Client](https://www.apollographql.com/docs/react/) along with Next.js [data fetching](https://nextjs.org/docs/basic-features/data-fetching) via `getStaticProps()` and `getStaticPaths()`, to create pages sourced from [WP GraphQL](https://www.wpgraphql.com/).
 
 ## Table of Contents <!-- omit in toc -->
+
 - [Requirements](#requirements)
 - [Next.js Install & Setup](#nextjs-install--setup)
   - [ENV Variables](#env-variables)
@@ -15,7 +16,6 @@ Use [Apollo Client](https://www.apollographql.com/docs/react/) along with Next.j
 
 - A WordPress website with the [WP GraphQL](https://www.wpgraphql.com/) plugin installed and activated.
 - A WordPress [application username and password](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/).
-
 
 ## Next.js Install & Setup
 
@@ -51,11 +51,14 @@ If you're working locally, the following will tell Node to ignore self-signed ce
 ```
 NODE_TLS_REJECT_UNAUTHORIZED="0"
 ```
+
 ---
 
 ## WordPress Setup
 
-1. Install and activate the [WP GraphQL plugin](https://www.wpgraphql.com/)
+1. Install and activate the following plugins:
+   1. [WP GraphQL](https://www.wpgraphql.com/)
+   2. [WP GraphQL Gutenberg](https://github.com/pristas-peter/wp-graphql-gutenberg)
 2. Create a page named "Homepage" with the slug of `homepage`
 3. Create other pages
 
@@ -72,6 +75,7 @@ npm run dev
 ```
 
 ## Get Ready for Production
+
 Build the site and test pages on http://localhost:3000
 
 ```bash
