@@ -36,7 +36,7 @@ export async function getStaticProps() {
   const GET_HOMEPAGE = gql`
     query HomePageQuery {
       page(id: "homepage", idType: URI) {
-        title(format: RAW)
+        title(format: RENDERED)
         blocksJSON
         featuredImage {
           node {
