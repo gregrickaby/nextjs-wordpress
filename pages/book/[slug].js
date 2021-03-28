@@ -69,7 +69,7 @@ export async function getStaticProps({params}) {
   const GET_BOOK_BY_SLUG = gql`
     query BookQuery($slug: ID!) {
       book(id: $slug, idType: URI) {
-        title(format: RAW)
+        title(format: RENDERED)
         featuredImage {
           node {
             altText

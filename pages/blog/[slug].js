@@ -62,7 +62,7 @@ export async function getStaticProps({params}) {
   const GET_POST_BY_SLUG = gql`
     query PostQuery($slug: ID!) {
       post(id: $slug, idType: URI) {
-        title(format: RAW)
+        title(format: RENDERED)
         blocksJSON
         featuredImage {
           node {

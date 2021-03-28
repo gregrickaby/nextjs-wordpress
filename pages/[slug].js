@@ -62,7 +62,7 @@ export async function getStaticProps({params}) {
   const GET_PAGE_BY_SLUG = gql`
     query PageQuery($slug: ID!) {
       page(id: $slug, idType: URI) {
-        title(format: RAW)
+        title(format: RENDERED)
         blocksJSON
         featuredImage {
           node {
