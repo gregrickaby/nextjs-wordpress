@@ -6,6 +6,10 @@
  * @returns {Element}         The Heading Block.
  */
 export default function HeadingBlock(attributes) {
+  if (!attributes) {
+    return null
+  }
+
   switch (attributes?.level) {
     case 1:
       return <h1 dangerouslySetInnerHTML={{__html: attributes?.content}} />

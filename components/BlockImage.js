@@ -6,5 +6,11 @@
  * @returns {Element}         The Image Block.
  */
 export default function ImageBlock(attributes) {
-  return <img alt={attributes?.alt} loading="lazy" src={attributes?.url} />
+  return (
+    <>
+      {!!attributes && (
+        <img alt={attributes?.alt} loading="lazy" src={attributes?.url} />
+      )}
+    </>
+  )
 }
