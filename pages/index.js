@@ -1,3 +1,4 @@
+import MenuPrimary from '@/components/Menus/MenuPrimary'
 import displayBlock from '@/lib/displayBlock'
 import {client} from '@/lib/wordpress/client'
 import styles from '@/styles/Home.module.css'
@@ -21,6 +22,7 @@ export default function Homepage({page}) {
         <title>{page?.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <MenuPrimary />
       <main className={styles.main}>
         <h1>{page?.title}</h1>
         {!!blocks?.length &&
