@@ -1,5 +1,3 @@
-import cn from 'classnames'
-
 /**
  * The core paragraph block.
  *
@@ -12,7 +10,7 @@ export default function BlockParagraph(attributes) {
     <>
       {!!attributes && (
         <p
-          className={cn(attributes?.className)}
+          className={attributes?.className}
           dangerouslySetInnerHTML={{__html: attributes?.content}}
         />
       )}

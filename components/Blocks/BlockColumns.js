@@ -1,4 +1,4 @@
-import BlockInner from '@/components/BlockInner'
+import BlockInner from '@/components/Blocks/BlockInner'
 import cn from 'classnames'
 
 /**
