@@ -8,9 +8,9 @@ import Head from 'next/head'
  *
  * @author Greg Rickaby
  *
- * @param {object} props The component data as props.
- * @param {object} [page]  The page data.
- * @return {Element}     The book component.
+ * @param {object} props  The component data as props.
+ * @param {object} [page] The page data.
+ * @return {Element}      The book component.
  */
 export default function Book({page}) {
   return (
