@@ -1,6 +1,5 @@
-import displayBlock from '@/lib/displayBlock'
 import {client} from '@/lib/wordpress/client'
-import styles from '@/styles/Home.module.css'
+import MenuPrimary from '@/components/Menus/Primary'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
 
@@ -14,22 +13,18 @@ import Head from 'next/head'
  * @return {Element}     The page component.
  */
 export default function Page({page}) {
-  const blocks = JSON.parse(page?.blocksJSON)
-
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>{page?.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <MenuPrimary />
+      <main>
         <h1>{page?.title}</h1>
-        {!!blocks?.length &&
-          blocks.map((block, index) => {
-            return displayBlock(block, index)
-          })}
+        <div dangerouslySetInnerHTML={{__html: page?.content}} />
       </main>
-    </div>
+    </>
   )
 }
 
@@ -63,7 +58,6 @@ export async function getStaticProps({params}) {
     query PageQuery($slug: ID!) {
       page(id: $slug, idType: URI) {
         title(format: RENDERED)
-        blocksJSON
         featuredImage {
           node {
             altText
@@ -74,6 +68,7 @@ export async function getStaticProps({params}) {
             }
           }
         }
+        content(format: RENDERED)
       }
     }
   `

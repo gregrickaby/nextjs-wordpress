@@ -1,7 +1,5 @@
-import MenuPrimary from '@/components/Menus/MenuPrimary'
-import displayBlock from '@/lib/displayBlock'
+import MenuPrimary from '@/components/Menus/Primary'
 import {client} from '@/lib/wordpress/client'
-import styles from '@/styles/Home.module.css'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
 
@@ -14,32 +12,26 @@ import Head from 'next/head'
  * @return {Element}     The homepage component.
  */
 export default function Homepage({page}) {
-  const blocks = JSON.parse(page?.blocksJSON)
-
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>{page?.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuPrimary />
-      <main className={styles.main}>
+      <main>
         <h1>{page?.title}</h1>
-        {!!blocks?.length &&
-          blocks.map((block, index) => {
-            return displayBlock(block, index)
-          })}
+        <div dangerouslySetInnerHTML={{__html: page?.content}} />
       </main>
-    </div>
+    </>
   )
 }
 
 export async function getStaticProps() {
   const GET_HOMEPAGE = gql`
     query HomePageQuery {
-      page(id: "homepage", idType: URI) {
+      page(id: "/", idType: URI) {
         title(format: RENDERED)
-        blocksJSON
         featuredImage {
           node {
             altText
@@ -50,6 +42,7 @@ export async function getStaticProps() {
             }
           }
         }
+        content(format: RENDERED)
       }
     }
   `

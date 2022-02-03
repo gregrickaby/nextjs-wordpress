@@ -1,8 +1,7 @@
 import {client} from '@/lib/wordpress/client'
-import styles from '@/styles/Home.module.css'
+import MenuPrimary from '@/components/Menus/Primary'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
-import Image from 'next/image'
 
 /**
  * Display single book.
@@ -10,33 +9,22 @@ import Image from 'next/image'
  * @author Greg Rickaby
  *
  * @param {object} props The component data as props.
- * @param {object} book  The book data.
+ * @param {object} [page]  The page data.
  * @return {Element}     The book component.
  */
-export default function Book({book}) {
+export default function Book({page}) {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>{book?.title}</title>
+        <title>{page?.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1>{book?.title}</h1>
-        <Image
-          alt={book?.featuredImage?.node?.altText}
-          src={book?.featuredImage?.node?.sourceUrl}
-          height={book?.featuredImage?.node?.mediaDetails?.height}
-          width={book?.featuredImage?.node?.mediaDetails?.width}
-        />
-        <span>{book?.bookFields?.author}</span>
-        <span>{book?.bookFields?.releaseDate}</span>
-        <a href={book?.bookFields?.url}>Buy now</a>
-        <h2>{book?.bookFields?.excerpt}</h2>
-        <div
-          dangerouslySetInnerHTML={{__html: book?.bookFields?.description}}
-        />
+      <MenuPrimary />
+      <main>
+        <h1>{page?.bookTitle}</h1>
+        <div dangerouslySetInnerHTML={{__html: page?.description}} />
       </main>
-    </div>
+    </>
   )
 }
 
@@ -69,23 +57,18 @@ export async function getStaticProps({params}) {
   const GET_BOOK_BY_SLUG = gql`
     query BookQuery($slug: ID!) {
       book(id: $slug, idType: URI) {
-        title(format: RENDERED)
+        affiliateLink
+        bookTitle
+        description
         featuredImage {
           node {
             altText
-            sourceUrl(size: LARGE)
+            mediaItemUrl
             mediaDetails {
               height
               width
             }
           }
-        }
-        bookFields {
-          author
-          description
-          excerpt
-          releaseDate
-          url
         }
       }
     }
@@ -98,7 +81,7 @@ export async function getStaticProps({params}) {
 
   return {
     props: {
-      book: data?.book
+      page: data?.book
     },
     revalidate: 300
   }
