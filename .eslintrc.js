@@ -1,11 +1,4 @@
 module.exports = {
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2021,
-    sourceType: 'module'
-  },
   env: {
     browser: true,
     node: true,
@@ -13,26 +6,16 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
+    'next',
+    'next/core-web-vitals',
     'prettier'
   ],
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  },
-  plugins: ['react', 'react-hooks', 'jsx-a11y', 'prettier'],
+  plugins: ['prettier'],
   rules: {
+    'func-style': ['error', 'declaration'],
     'jsx-a11y/anchor-is-valid': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': [
-      1,
-      {
-        extensions: ['.js', '.jsx']
-      }
-    ],
+    'no-console': ['error', {allow: ['warn', 'error']}],
     'prettier/prettier': 'error'
   }
 }
