@@ -1,4 +1,4 @@
-# Next.js + WordPress with Apollo Client <!-- omit in toc -->
+# Next.js + WordPress <!-- omit in toc -->
 
 Use [Apollo Client](https://www.apollographql.com/docs/react/) along with Next.js [data fetching](https://nextjs.org/docs/basic-features/data-fetching) via `getStaticProps()` and `getStaticPaths()`, to create pages sourced from [WP GraphQL](https://www.wpgraphql.com/).
 
