@@ -1,7 +1,7 @@
-import {client} from '@/lib/wordpress/client'
-import MenuPrimary from '@/components/Menus/Primary'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
+import MenuPrimary from '~/components/Menu'
+import {client} from '~/lib/wordpressClient'
 
 /**
  * Any WordPress Page.

@@ -1,17 +1,8 @@
-import {client} from '@/lib/wordpress/client'
-import MenuPrimary from '@/components/Menus/Primary'
 import {gql} from '@apollo/client'
 import Head from 'next/head'
+import MenuPrimary from '~/components/Menu'
+import {client} from '~/lib/wordpressClient'
 
-/**
- * Display single book.
- *
- * @author Greg Rickaby
- *
- * @param {object} props  The component data as props.
- * @param {object} [page] The page data.
- * @return {Element}      The book component.
- */
 export default function Book({page}) {
   return (
     <>
