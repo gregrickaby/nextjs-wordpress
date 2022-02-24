@@ -1,12 +1,6 @@
 import {gql, useQuery} from '@apollo/client'
 
-/**
- * The primary menu.
- *
- * @author Greg Rickaby
- * @returns {Element} The Primary Menu.
- */
-export default function MenuPrimary() {
+export default function PrimaryMenu() {
   const {loading, error, data} = useQuery(PRIMARY_MENU)
 
   if (loading) return <></>
