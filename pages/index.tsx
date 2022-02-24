@@ -1,33 +1,40 @@
-import MenuPrimary from '@/components/Menus/Primary'
-import {client} from '@/lib/wordpress/client'
 import {gql} from '@apollo/client'
+import {GetStaticProps} from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import MenuPrimary from '~/components/Menu'
+import {client} from '~/lib/wordpressClient'
 
-/**
- * The homepage.
- *
- * @author Greg Rickaby
- * @param {object} props The component data as props.
- * @param {object} page  The homepage data.
- * @return {Element}     The homepage component.
- */
-export default function Homepage({page}) {
+export default function Homepage({page}: PageProps) {
+  const {
+    title,
+    content,
+    featuredImage: {
+      node: {
+        altText,
+        mediaDetails: {height, width},
+        sourceUrl
+      }
+    }
+  } = page
+
   return (
     <>
       <Head>
-        <title>{page?.title}</title>
+        <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuPrimary />
       <main>
-        <h1>{page?.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: page?.content}} />
+        <h1>{title}</h1>
+        <Image alt={altText} src={sourceUrl} height={height} width={width} />
+        <div dangerouslySetInnerHTML={{__html: content}} />
       </main>
     </>
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const GET_HOMEPAGE = gql`
     query HomePageQuery {
       page(id: "/", idType: URI) {
@@ -54,6 +61,23 @@ export async function getStaticProps() {
   return {
     props: {
       page: data?.page
+    }
+  }
+}
+
+interface PageProps {
+  page: {
+    title: string
+    content: string
+    featuredImage: {
+      node: {
+        altText: string
+        sourceUrl: string
+        mediaDetails: {
+          height: number
+          width: number
+        }
+      }
     }
   }
 }
