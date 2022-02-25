@@ -115,7 +115,7 @@ WORDPRESS_CONFIG_EXTRA: |
    define('HEADLESS_FRONTEND_URL', 'http://localhost:3000');
 ```
 
-> If you change the default values, run  `docker-compose -f docker-compose.yml up -d` to recreate the containers.
+> If you change the default values, run  `docker-compose -f docker-compose.yml up -d` to restart the containers.
 
 ### WP CLI
 
@@ -161,7 +161,7 @@ See the full list of WP-CLI commands at: <https://developer.wordpress.org/cli/co
 
 [Composer](https://getcomposer.org/) is a dependency manager for PHP. It makes it easy to manage your project's dependencies.
 
-First, tunnel into the `wpcli` container:
+First, tunnel into the `composer` container:
 
 ```bash
 docker exec -it composer /bin/sh
