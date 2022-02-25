@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   mysql:
@@ -55,9 +55,17 @@ services:
       /bin/sh -c '
       sleep 60;
       wp core install --url="http://localhost:8000" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email;
-      wp theme delete twentytwenty twentytwentyone;
+      wp theme activate twentytwentyone;
+      wp theme delete twentytwenty twentytwentytwo;
       wp plugin delete akismet hello;
       wp plugin activate --all;
+      wp post create --post_type="page" --post_title="Homepage" --post_content="<!-- wp:paragraph --><p>Welcome to the homepage</p><!-- /wp:paragraph -->" --post_status="publish";
+      wp option update show_on_front page;
+      wp option update page_on_front 4;
+      wp menu create "Primary";
+      wp menu item add-post primary 4;
+      wp menu location assign primary primary;
+      wp rewrite structure "/%year%/%monthnum%/%postname%";
       tail -f /dev/null;
       '
     environment:
