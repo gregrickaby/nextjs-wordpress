@@ -1,3 +1,3 @@
 module.exports = {
-  schema: 'https://gregrickaby.test/graphql'
+  schema: `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/graphql`
 }

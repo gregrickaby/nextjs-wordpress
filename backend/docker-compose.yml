@@ -1,0 +1,116 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mariadb:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    networks:
+      - wp_network
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress:latest
+    depends_on:
+      - mysql
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - 8000:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_CACHE', false);
+        define('WP_DEBUG_DISPLAY', false);
+        define('WP_DEBUG_LOG', false);
+        define('WP_MEMORY_LIMIT', '256M');
+        define('WP_ENVIRONMENT_TYPE', 'development');
+        define('HEADLESS_FRONTEND_URL', 'http://localhost:3000');
+    networks:
+      - wp_network
+
+  wpcli:
+    container_name: wpcli
+    image: wordpress:cli
+    depends_on:
+      - wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    user: xfs
+    command: >
+      /bin/sh -c '
+      sleep 60;
+      wp core install --url="http://localhost:8000" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email;
+      wp theme activate twentytwentyone;
+      wp theme delete twentytwenty twentytwentytwo;
+      wp plugin delete akismet hello;
+      wp plugin activate --all;
+      wp post create --post_type="page" --post_title="Homepage" --post_content="<!-- wp:paragraph --><p>Welcome to the homepage. Feel free to edit this page.</p><!-- /wp:paragraph -->" --post_status="publish";
+      wp post create --post_type="page" --post_title="Blog" --post_status="publish";
+      wp option update show_on_front page;
+      wp option update page_on_front 4;
+      wp option update page_for_posts 5;
+      wp menu create "Primary";
+      wp menu item add-post primary 4;
+      wp menu item add-post primary 5;
+      wp menu location assign primary primary;
+      wp rewrite structure "/%year%/%monthnum%/%postname%";
+      tail -f /dev/null;
+      '
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    networks:
+      - wp_network
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      PMA_HOST: ${WORDPRESS_DB_HOST}
+      PMA_USER: ${WORDPRESS_DB_USER}
+      PMA_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    networks:
+      - wp_network
+
+  composer:
+    container_name: composer
+    image: composer:latest
+    command: >
+      /bin/sh -c '
+      sleep 20;
+      composer upgrade;
+      tail -f /dev/null;
+      '
+    volumes:
+      - ./:/app
+    networks:
+      - wp_network
+
+networks:
+  wp_network: {}
+
+volumes:
+  mysql: {}
+  wordpress: {}

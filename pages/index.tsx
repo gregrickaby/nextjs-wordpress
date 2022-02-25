@@ -6,17 +6,7 @@ import MenuPrimary from '~/components/Menu'
 import {client} from '~/lib/wordpressClient'
 
 export default function Homepage({page}: PageProps) {
-  const {
-    title,
-    content,
-    featuredImage: {
-      node: {
-        altText,
-        mediaDetails: {height, width},
-        sourceUrl
-      }
-    }
-  } = page
+  const {title, content} = page
 
   return (
     <>
@@ -27,7 +17,14 @@ export default function Homepage({page}: PageProps) {
       <MenuPrimary />
       <main>
         <h1>{title}</h1>
-        <Image alt={altText} src={sourceUrl} height={height} width={width} />
+        {!!page?.featuredImage && (
+          <Image
+            alt={page?.featuredImage?.altText}
+            src={page?.featuredImage?.sourceUrl}
+            height={page?.featuredImage?.height}
+            width={page?.featuredImage?.width}
+          />
+        )}
         <div dangerouslySetInnerHTML={{__html: content}} />
       </main>
     </>
