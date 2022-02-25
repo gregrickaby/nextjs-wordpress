@@ -33,7 +33,7 @@ cp .env.sample .env.local
 
 #### ENV Variables Explained
 
-A WordPress URL (without trailing slash):
+The WordPress URL (without trailing slash):
 
 ```bash
 NEXT_PUBLIC_WORDPRESS_URL="http://localhost:8000"
@@ -43,7 +43,7 @@ NEXT_PUBLIC_WORDPRESS_URL="http://localhost:8000"
 
 ## WordPress Setup
 
-See [backend/README.md](backend/README.md#install) for instructions on setting up WordPress.
+See [backend/README.md](backend/README.md) for instructions on setting up WordPress.
 
 ---
 
