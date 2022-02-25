@@ -222,7 +222,7 @@ docker-compose -f docker-compose.yml down
 
 ### Destroy Docker
 
-Need a fresh start? To destroy the containers _and_ the persistant data, then run the following command:
+Need a fresh start? To destroy the containers _and_ the persistant data, run the following command:
 
 ```bash
 docker-compose -f docker-compose.yml down --remove-orphans && rm -rf mysql wordpress
