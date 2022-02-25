@@ -14,9 +14,8 @@ Use [Apollo Client](https://www.apollographql.com/docs/react/) along with Next.j
 
 ## Requirements
 
-- A WordPress website with the [WP GraphQL](https://www.wpgraphql.com/) plugin installed and activated.
-- Use [Atlas Content Modeler (ACM)](https://wordpress.org/plugins/atlas-content-modeler/) to create CPTs and fields.
-- A WordPress [application username and password](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- Node / NPM
 
 ## Next.js Install & Setup
 
