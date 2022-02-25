@@ -13,7 +13,6 @@ The following instructions will help you get started with setting up the WordPre
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
   - [3) Start Docker](#3-start-docker)
   - [4) Log into WordPress](#4-log-into-wordpress)
-  - [5) Create Block Registry](#5-create-block-registry)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
@@ -88,10 +87,6 @@ View the WordPress dashboard at: <http://localhost:8000/wp-admin/>
 - password `wordpress`
 
 > Use the credentials above, unless you've customized the `WORDPRESS_USERNAME` and `WORDPRESS_PASSWORD` variables in the `.env` file.
-
-### 5) Create Block Registry
-
-Visit <http://localhost:8000/wp-admin/admin.php?page=wp-graphql-gutenberg-admin> and click the blue "Update" button.
 
 That's it!
 
