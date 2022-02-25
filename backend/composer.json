@@ -1,0 +1,46 @@
+{
+  "name": "gregrickaby/nextjs-wordpress",
+  "description": "A Next.js app that uses WordPress as a backend",
+  "type": "project",
+  "license": "MIT",
+    "authors": [
+    {
+      "name": "Greg Rickaby",
+      "email": "greg@gregrickaby.com"
+    }
+  ],
+  "repositories": {
+    "wppackagist": {
+      "type": "composer",
+      "url": "https://wpackagist.org/"
+    }
+  },
+	"config": {
+		"vendor-dir": "wordpress/wp-content/vendor",
+    "allow-plugins": {
+      "composer/installers": true
+    }
+	},
+  "extra": {
+    "installer-paths": {
+      "wordpress/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "wordpress/wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "wordpress/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "require": {
+    "pristas-peter/wp-graphql-gutenberg": "^0.3",
+    "pristas-peter/wp-graphql-gutenberg-acf": "^0.3",
+    "wp-graphql/wp-graphql-acf": "^0.3",
+    "wpackagist-plugin/add-wpgraphql-seo": "^4.16",
+    "wpackagist-plugin/advanced-custom-fields": "^5.12",
+    "wpackagist-plugin/wordpress-seo": "^18.2",
+    "wpackagist-plugin/wp-graphql": "^1.6"
+  }
+}
