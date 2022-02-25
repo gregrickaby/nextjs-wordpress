@@ -13,7 +13,8 @@ The following instructions will help you get started with setting up the WordPre
   - [4) Log into WordPress](#4-log-into-wordpress)
   - [5) Create Block Registry](#5-create-block-registry)
 - [Managing The Environment](#managing-the-environment)
-  - [WP GraphQL](#wp-graphql)
+  - [GraphQL](#graphql)
+  - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
@@ -92,11 +93,29 @@ That's it!
 
 ## Managing The Environment
 
-### WP GraphQL
+### GraphQL
 
-The GraphQL endpoint is: `http://localhost:8000/wpgraphql`
+GraphQL endpoint: `http://localhost:8000/graphql`
 
-View GraphiQL IDE at: <http://localhost:8000/wp-admin/admin.php?page=graphiql-ide>
+GraphiQL IDE: <http://localhost:8000/wp-admin/admin.php?page=graphiql-ide>
+
+### WordPress Constants
+
+Inside `docker-compose.yml` there are several developer friendly constants you can enable to help with debugging. Feel free to add, remove, or change these values as needed.
+
+```yml
+# docker-compose.yml
+WORDPRESS_DEBUG: 1 # Set to 0 to disable `WP_DEBUG`
+WORDPRESS_CONFIG_EXTRA: |
+   define('WP_CACHE', false);
+   define('WP_DEBUG_DISPLAY', false);
+   define('WP_DEBUG_LOG', false);
+   define('WP_MEMORY_LIMIT', '256M');
+   define('WP_ENVIRONMENT_TYPE', 'development');
+   define('HEADLESS_FRONTEND_URL', 'http://localhost:3000');
+```
+
+> If you change the default values, run  `docker-compose -f docker-compose.yml up -d` to recreate the containers.
 
 ### WP CLI
 
@@ -161,7 +180,6 @@ Will return:
 ```bash
 ./composer.json is valid
 ```
-
 
 ### phpMyAdmin
 
