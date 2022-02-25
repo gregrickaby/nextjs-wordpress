@@ -36,6 +36,8 @@ From inside the `/backend` directory, run the following command:
 cp .env.sample .env
 ```
 
+---
+
 ### 2) Customize ENV Variables (optional)
 
 If you'd like, open the `.env` file in your editor, and customize the following values:
@@ -59,6 +61,8 @@ WORDPRESS_EMAIL="foo@bar.com"
 
 Save the the `.env` file.
 
+---
+
 ### 3) Start Docker
 
 The following command will start the Docker containers:
@@ -78,6 +82,8 @@ The following services will be installed:
 - WP-CLI
 
 > During the first run, this process can take several minutes to complete! Please be patient.
+
+---
 
 ### 4) Log into WordPress
 
