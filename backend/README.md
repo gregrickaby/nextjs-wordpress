@@ -9,7 +9,7 @@ The following instructions will help you get started with setting up the WordPre
 ## Table of Contents <!-- omit in toc -->
 
 - [Install](#install)
-  - [1) Copy ENV variables](#1-copy-env-variables)
+  - [1) Copy ENV Variables](#1-copy-env-variables)
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
   - [3) Start Docker](#3-start-docker)
   - [4) Log into WordPress](#4-log-into-wordpress)
@@ -28,7 +28,7 @@ The following instructions will help you get started with setting up the WordPre
 
 ## Install
 
-### 1) Copy ENV variables
+### 1) Copy ENV Variables
 
 From inside the `/backend` directory, run the following command:
 
