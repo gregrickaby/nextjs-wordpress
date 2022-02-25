@@ -71,9 +71,7 @@ The following command will start the Docker containers:
 docker-compose -f docker-compose.yml up -d
 ```
 
-This runs Docker in detached mode, pulls down the required images, and starts each container. Finally, both Composer and WP-CLI will set up WordPress for you.
-
-The following services will be installed:
+This runs Docker in detached mode, pulls down the required images, and starts each container. Both Composer and WP-CLI will setup WordPress. The following services will be installed:
 
 - Composer
 - MariaDB (MySQL)
