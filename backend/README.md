@@ -2,6 +2,8 @@
 
 The following instructions will help you get started with setting up the WordPress backend.
 
+> Note: All CLI commands must be run from inside the `/backend` directory.
+
 ---
 
 ## Table of Contents <!-- omit in toc -->
@@ -37,7 +39,7 @@ cp .env.sample .env
 
 ### 2) Customize ENV Variables (optional)
 
-If you'd like, open the `.env` file and customize the following values:
+If you'd like, open the `.env` file in your editor, and customize the following values:
 
 ```text
 # MySQL Creds
@@ -56,6 +58,8 @@ WORDPRESS_PASSWORD="wordpress"
 WORDPRESS_EMAIL="foo@bar.com"
 ```
 
+Save the the `.env` file.
+
 ### 3) Start Docker
 
 The following command will start the Docker containers:
@@ -64,7 +68,7 @@ The following command will start the Docker containers:
 docker-compose -f docker-compose.yml up -d
 ```
 
-This runs Docker in detached mode, pulls down the required Docker images, and starts each container. Finally, both Composer and WP-CLI will set up WordPress for you. _This process can take several minutes to complete!_
+This runs Docker in detached mode, pulls down the required images, and starts each container. Finally, both Composer and WP-CLI will set up WordPress for you.
 
 The following services will be installed:
 
@@ -73,6 +77,8 @@ The following services will be installed:
 - phpMyAdmin
 - WordPress
 - WP-CLI
+
+> During the first run, this process can take several minutes to complete! Please be patient.
 
 ### 4) Log into WordPress
 
@@ -99,6 +105,8 @@ GraphQL endpoint: `http://localhost:8000/graphql`
 
 GraphiQL IDE: <http://localhost:8000/wp-admin/admin.php?page=graphiql-ide>
 
+---
+
 ### WordPress Constants
 
 Inside `docker-compose.yml` there are several developer friendly constants you can enable to help with debugging. Feel free to add, remove, or change these values as needed.
@@ -116,6 +124,8 @@ WORDPRESS_CONFIG_EXTRA: |
 ```
 
 > If you change the default values, run  `docker-compose -f docker-compose.yml up -d` to restart the containers.
+
+---
 
 ### WP CLI
 
@@ -157,6 +167,8 @@ WP-CLI version: 2.6.0
 
 See the full list of WP-CLI commands at: <https://developer.wordpress.org/cli/commands/>
 
+---
+
 ### Composer
 
 [Composer](https://getcomposer.org/) is a dependency manager for PHP. It makes it easy to manage your project's dependencies.
@@ -181,9 +193,13 @@ Will return:
 ./composer.json is valid
 ```
 
+---
+
 ### phpMyAdmin
 
 View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are required.
+
+---
 
 ### Start Docker
 
@@ -195,6 +211,8 @@ docker-compose -f docker-compose.yml up -d
 
 > If you make changes to `docker-compose.yml` you will need to re-run this command to "restart" the containers.
 
+---
+
 ### Stop Docker
 
 Run the following command to stop the containers:
@@ -205,6 +223,8 @@ docker-compose -f docker-compose.yml down
 
 > Both MySQL and WordPress data _will persist_ when you stop the containers.
 
+---
+
 ### Destroy Docker
 
 Need a fresh start? To destroy the containers _and_ the persistant data, then run the following command:
@@ -214,6 +234,8 @@ docker-compose -f docker-compose.yml down --remove-orphans && rm -rf mysql wordp
 ```
 
 > Warning: This is a destructive operation! All WordPress data will be lost!
+
+---
 
 ### Tunnel Into Containers
 
