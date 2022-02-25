@@ -11,9 +11,14 @@ export default function PrimaryMenu() {
   return (
     <nav>
       <ul>
-        {menus.map((menu, index) => (
+        {menus?.map((menu, index) => (
           <li key={index}>
-            <a href={menu.node.url.replace('https://gregrickaby.test', '')}>
+            <a
+              href={menu.node.url.replace(
+                process.env.NEXT_PUBLIC_WORDPRESS_URL,
+                ''
+              )}
+            >
               {menu.node.label}
             </a>
           </li>
