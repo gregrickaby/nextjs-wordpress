@@ -2,7 +2,7 @@
 
 The following instructions will help you get started with setting up the WordPress backend.
 
-> Note: All CLI commands must be run from inside the `/backend` directory.
+> Note: All CLI commands must be run from inside the `/backend` directory. Docker Desktop needs to be running as well.
 
 ---
 
