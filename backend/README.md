@@ -11,7 +11,7 @@ The following instructions will help you get started with setting up the WordPre
 - [Install](#install)
   - [1) Copy ENV Variables](#1-copy-env-variables)
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
-  - [3) Start Docker](#3-start-docker)
+  - [3) Create Containers](#3-create-containers)
   - [4) Log into WordPress](#4-log-into-wordpress)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
@@ -19,9 +19,10 @@ The following instructions will help you get started with setting up the WordPre
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
-  - [Start Docker](#start-docker)
-  - [Stop Docker](#stop-docker)
-  - [Destroy Docker](#destroy-docker)
+  - [Stop Containers](#stop-containers)
+  - [Start Containers](#start-containers)
+  - [Recreate Containers](#recreate-containers)
+  - [Destroy Containers](#destroy-containers)
   - [Tunnel Into Containers](#tunnel-into-containers)
 
 ---
@@ -63,15 +64,17 @@ Save the the `.env` file.
 
 ---
 
-### 3) Start Docker
+### 3) Create Containers
 
-The following command will start the Docker containers:
+The following command will create the containers for the first time:
 
 ```bash
 docker-compose -f docker-compose.yml up -d
 ```
 
-This runs Docker in detached mode, pulls down the required images, and starts each container. Both Composer and WP-CLI will setup WordPress. The following services will be installed:
+This pulls down the required images, creates each container in detached mode (in the background), then starts each container. Finally, Composer and WP-CLI will then set up WordPress.
+
+The following containers will be created:
 
 - Composer
 - MariaDB (MySQL)
@@ -200,19 +203,7 @@ View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are re
 
 ---
 
-### Start Docker
-
-Run the following command to start the containers:
-
-```bash
-docker-compose -f docker-compose.yml up -d
-```
-
-> If you make changes to `docker-compose.yml` you will need to re-run this command to "restart" the containers.
-
----
-
-### Stop Docker
+### Stop Containers
 
 Run the following command to stop the containers:
 
@@ -224,7 +215,27 @@ docker-compose -f docker-compose.yml down
 
 ---
 
-### Destroy Docker
+### Start Containers
+
+Run the following command to start the containers back up:
+
+```bash
+docker-compose -f docker-compose.yml up -d --no-recreate
+```
+
+---
+
+### Recreate Containers
+
+If you've made changes to `docker-comper.yml` and you want to recreate the containers, run the following command:
+
+```bash
+docker-compose -f docker-compose.yml up -d
+```
+
+---
+
+### Destroy Containers
 
 Need a fresh start? To destroy the containers _and_ the persistant data, run the following command:
 
