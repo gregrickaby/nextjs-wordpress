@@ -139,7 +139,7 @@ WORDPRESS_CONFIG_EXTRA: |
   define('HEADLESS_FRONTEND_URL', 'http://localhost:3000');
 ```
 
-> If you change the default values, run `docker-compose -f docker-compose.yml up -d --no-recreate` to restart the containers.
+> If you change the default values, run `docker-compose up -d --no-recreate` to restart the containers.
 
 ---
 
