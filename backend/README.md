@@ -2,7 +2,7 @@
 
 The following instructions will help you get started with setting up the WordPress backend.
 
-> Note: All CLI commands must be run from inside the `/backend` directory. Docker Desktop needs to be running as well.
+> Note: All CLI commands must be run from inside the `/backend` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
 
 ---
 
@@ -12,13 +12,15 @@ The following instructions will help you get started with setting up the WordPre
   - [1) Copy ENV Variables](#1-copy-env-variables)
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
   - [3) Create Containers](#3-create-containers)
-  - [4) Log into WordPress](#4-log-into-wordpress)
+  - [4) Run Setup Script](#4-run-setup-script)
+  - [5) Log into WordPress](#5-log-into-wordpress)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
+  - [Pause Containers](#pause-containers)
   - [Stop Containers](#stop-containers)
   - [Start Containers](#start-containers)
   - [Recreate Containers](#recreate-containers)
@@ -69,10 +71,10 @@ Save the the `.env` file.
 The following command will create the containers for the first time:
 
 ```bash
-docker-compose -f docker-compose.yml up -d
+docker-compose up -d
 ```
 
-This pulls down the required images, creates each container in detached mode (in the background), then starts each container. Finally, Composer and WP-CLI will then set up WordPress.
+This pulls down the required images, creates each container in detached mode (in the background), then starts each container. Composer will also pull in the required plugins automatically.
 
 The following containers will be created:
 
@@ -86,7 +88,19 @@ The following containers will be created:
 
 ---
 
-### 4) Log into WordPress
+### 4) Run Setup Script
+
+The setup script will configure WordPress for you. Run the following command:
+
+```bash
+docker exec -it wpcli bash -c "chmod +x setup.sh && ./setup.sh && exit"
+```
+
+> You only need to run this command once. If you destroy and recreate the containers at a later time, you can run this command again.
+
+---
+
+### 5) Log into WordPress
 
 View the WordPress dashboard at: <http://localhost:8000/wp-admin/>
 
@@ -203,12 +217,22 @@ View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are re
 
 ---
 
+### Pause Containers
+
+Run the following command to pause the containers:
+
+```bash
+docker-compose pause
+```
+
+---
+
 ### Stop Containers
 
 Run the following command to stop the containers:
 
 ```bash
-docker-compose -f docker-compose.yml down
+docker-compose down
 ```
 
 > Both MySQL and WordPress data _will persist_ when you stop the containers.
@@ -220,7 +244,7 @@ docker-compose -f docker-compose.yml down
 Run the following command to start the containers back up:
 
 ```bash
-docker-compose -f docker-compose.yml up -d --no-recreate
+docker-compose up -d --no-recreate
 ```
 
 ---
@@ -230,7 +254,7 @@ docker-compose -f docker-compose.yml up -d --no-recreate
 If you've made changes to `docker-comper.yml` and you want to recreate the containers, run the following command:
 
 ```bash
-docker-compose -f docker-compose.yml up -d
+docker-compose up -d
 ```
 
 ---
@@ -240,7 +264,7 @@ docker-compose -f docker-compose.yml up -d
 Need a fresh start? To destroy the containers _and_ the persistant data, run the following command:
 
 ```bash
-docker-compose -f docker-compose.yml down --remove-orphans && rm -rf mysql wordpress
+docker-compose down --remove-orphans && rm -rf mysql wordpress
 ```
 
 > Warning: This is a destructive operation! All WordPress data will be lost!
