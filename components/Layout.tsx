@@ -16,7 +16,6 @@ export default function Layout({children}) {
       <Header />
       <main>{children}</main>
       <Footer />
-      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   )
 }
