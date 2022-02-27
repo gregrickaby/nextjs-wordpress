@@ -7,7 +7,7 @@ const WordPressContext = createContext(null)
 // Create useWordPressContext hook.
 export const useWordPressContext = () => useContext(WordPressContext)
 
-export default function WeatherProvider({children}) {
+export default function WordPressProvider({children}) {
   const data = useQuery(GLOBAL_SETTINGS)
 
   return (

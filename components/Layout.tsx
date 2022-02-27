@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {useWordPressContext} from '~/components/WordpressProvider'
+import {useWordPressContext} from '~/components/WordPressProvider'
 import Footer from './Footer'
 import Header from './Header'
 

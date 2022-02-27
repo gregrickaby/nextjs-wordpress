@@ -1,5 +1,5 @@
 import Menu from './Menu'
-import {useWordPressContext} from './WordpressProvider'
+import {useWordPressContext} from './WordPressProvider'
 
 export default function Header() {
   const {data} = useWordPressContext()
