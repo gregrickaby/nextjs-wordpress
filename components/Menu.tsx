@@ -8,7 +8,7 @@ export default function Menu() {
       <ul className="flex space-x-8">
         {data?.menuItems?.edges?.map((menu, index) => (
           <li key={index}>
-            <a href={menu.node.path}>{menu.node.label}</a>
+            <a href={menu?.node?.path}>{menu?.node?.label}</a>
           </li>
         ))}
       </ul>
