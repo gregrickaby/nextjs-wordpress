@@ -1,21 +1,19 @@
 import {gql} from '@apollo/client'
 import Head from 'next/head'
-import MenuPrimary from '~/components/Menu'
+import Layout from '~/components/Layout'
 import {client} from '~/lib/wordpressClient'
 
 export default function Book({page}) {
   return (
-    <>
+    <Layout>
       <Head>
         <title>{page?.title}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MenuPrimary />
-      <main>
-        <h1>{page?.bookTitle}</h1>
+      <article>
+        <h1 className="mb-4 text-3xl">{page?.bookTitle}</h1>
         <div dangerouslySetInnerHTML={{__html: page?.description}} />
-      </main>
-    </>
+      </article>
+    </Layout>
   )
 }
 

@@ -1,40 +1,34 @@
 import {gql} from '@apollo/client'
 import {GetStaticProps} from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
-import MenuPrimary from '~/components/Menu'
+import Layout from '~/components/Layout'
 import {client} from '~/lib/wordpressClient'
 
 export default function Homepage({page}: PageProps) {
   const {title, content} = page
 
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MenuPrimary />
-      <main>
-        <h1>{title}</h1>
+    <Layout>
+      <article>
+        <h1 className="mb-4 text-3xl">{title}</h1>
         {!!page?.featuredImage && (
           <Image
-            alt={page?.featuredImage?.altText}
-            src={page?.featuredImage?.sourceUrl}
-            height={page?.featuredImage?.height}
-            width={page?.featuredImage?.width}
+            alt={page?.featuredImage?.node?.altText}
+            src={page?.featuredImage?.node?.sourceUrl}
+            height={page?.featuredImage?.node?.mediaDetails?.height}
+            width={page?.featuredImage?.node?.mediaDetails?.width}
           />
         )}
         <div dangerouslySetInnerHTML={{__html: content}} />
-      </main>
-    </>
+      </article>
+    </Layout>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const GET_HOMEPAGE = gql`
-    query HomePageQuery {
-      page(id: "/", idType: URI) {
+    query HomePageQuery($slug: ID!) {
+      page(id: $slug, idType: URI) {
         title(format: RENDERED)
         featuredImage {
           node {
@@ -52,7 +46,8 @@ export const getStaticProps: GetStaticProps = async () => {
   `
 
   const {data} = await client.query({
-    query: GET_HOMEPAGE
+    query: GET_HOMEPAGE,
+    variables: {slug: 'homepage'}
   })
 
   return {

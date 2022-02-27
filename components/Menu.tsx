@@ -1,16 +1,18 @@
 import {gql, useQuery} from '@apollo/client'
 
-export default function PrimaryMenu() {
-  const {loading, error, data} = useQuery(PRIMARY_MENU)
+export default function Menu() {
+  const {loading, error, data} = useQuery(PRIMARY_MENU, {
+    variables: {menuName: 'primary'}
+  })
 
   if (loading) return <></>
-  if (error) return <p>Error :(</p>
+  if (error) return <p>There was an issue loading the menu.</p>
 
   const menus = data?.menu?.menuItems?.edges
 
   return (
     <nav>
-      <ul>
+      <ul className="flex space-x-8">
         {menus?.map((menu, index) => (
           <li key={index}>
             <a
@@ -29,8 +31,8 @@ export default function PrimaryMenu() {
 }
 
 const PRIMARY_MENU = gql`
-  query GetPrimaryMenu {
-    menu(id: "Primary", idType: NAME) {
+  query GetPrimaryMenu($menuName: ID!) {
+    menu(id: $menuName, idType: NAME) {
       menuItems {
         edges {
           node {
