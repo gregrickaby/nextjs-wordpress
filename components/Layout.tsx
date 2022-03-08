@@ -1,7 +1,7 @@
 import Head from 'next/head'
+import Footer from '~/components/Footer'
+import Header from '~/components/Header'
 import {useWordPressContext} from '~/components/WordPressProvider'
-import Footer from './Footer'
-import Header from './Header'
 
 export default function Layout({children}) {
   const {data} = useWordPressContext()

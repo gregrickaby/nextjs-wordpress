@@ -1,4 +1,4 @@
-import Menu from './Menu'
+import Menu from '~/components/Menu'
 import {useWordPressContext} from './WordPressProvider'
 
 export default function Header() {

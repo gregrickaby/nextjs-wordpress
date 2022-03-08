@@ -1,4 +1,4 @@
-import {useWordPressContext} from './WordPressProvider'
+import {useWordPressContext} from '~/components/WordPressProvider'
 
 export default function Menu() {
   const {data} = useWordPressContext()
