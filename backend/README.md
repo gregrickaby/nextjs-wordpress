@@ -225,7 +225,7 @@ View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are re
 Run the following command to start the containers back up:
 
 ```bash
-docker-compose up start
+docker-compose start
 ```
 
 ---
