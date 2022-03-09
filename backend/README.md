@@ -260,7 +260,7 @@ If you've made changes to `docker-comper.yml` and you want to recreate the conta
 docker-compose up -d
 ```
 
-> Both MySQL and WordPress data _will_ persist when you stop the containers.
+> Both MySQL and WordPress data _will_ persist when you recreate the containers.
 
 ---
 
