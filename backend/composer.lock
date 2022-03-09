@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "110752522f42b8692e86d1c0b7969f90",
+    "content-hash": "547e353803fad989c3718cf68ce8e59d",
     "packages": [
         {
             "name": "composer/installers",
@@ -148,6 +148,44 @@
                 }
             ],
             "time": "2021-09-13T08:21:20+00:00"
+        },
+        {
+            "name": "webdevstudios/wds-headless-core",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WebDevStudios/wds-headless-core.git",
+                "reference": "39f12497a43ff25de0fc4fd6f98928632fb6c105"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/39f12497a43ff25de0fc4fd6f98928632fb6c105",
+                "reference": "39f12497a43ff25de0fc4fd6f98928632fb6c105",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+                "phpcompatibility/phpcompatibility-wp": "^2.1",
+                "wp-cli/wp-cli-bundle": "^2.5",
+                "wp-coding-standards/wpcs": "^2.3"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "WebDevStudios",
+                    "email": "contact@webdevstudios.com"
+                }
+            ],
+            "description": "The core WordPress plugin for the Next.js WordPress Starter.",
+            "homepage": "https://github.com/WebDevStudios/nextjs-wordpress-starter",
+            "support": {
+                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.1"
+            },
+            "time": "2022-01-17T16:53:21+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",

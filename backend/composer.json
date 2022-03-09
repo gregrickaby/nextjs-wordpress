@@ -35,6 +35,7 @@
     }
   },
   "require": {
+    "webdevstudios/wds-headless-core": "^2.1",
     "wp-graphql/wp-graphql-acf": "^0.3",
     "wpackagist-plugin/add-wpgraphql-seo": "^4.16",
     "wpackagist-plugin/advanced-custom-fields": "^5.12",
