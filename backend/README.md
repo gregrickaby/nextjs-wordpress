@@ -20,9 +20,9 @@ The following instructions will help you get started with setting up the WordPre
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
+  - [Start Containers](#start-containers)
   - [Pause Containers](#pause-containers)
   - [Stop Containers](#stop-containers)
-  - [Start Containers](#start-containers)
   - [Recreate Containers](#recreate-containers)
   - [Destroy Containers](#destroy-containers)
   - [Tunnel Into Containers](#tunnel-into-containers)
@@ -142,7 +142,7 @@ WORDPRESS_CONFIG_EXTRA: |
   define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
 ```
 
-> If you change the default values, run `docker-compose up -d --no-recreate` to restart the containers.
+> If you change the default values, run `docker-compose up -d` to rebuild the containers.
 
 ---
 
@@ -220,6 +220,16 @@ View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are re
 
 ---
 
+### Start Containers
+
+Run the following command to start the containers back up:
+
+```bash
+docker-compose up start
+```
+
+---
+
 ### Pause Containers
 
 Run the following command to pause the containers:
@@ -235,20 +245,10 @@ docker-compose pause
 Run the following command to stop the containers:
 
 ```bash
-docker-compose down
+docker-compose stop
 ```
 
-> Both MySQL and WordPress data _will persist_ when you stop the containers.
-
----
-
-### Start Containers
-
-Run the following command to start the containers back up:
-
-```bash
-docker-compose up -d --no-recreate
-```
+> Both MySQL and WordPress data _will_ persist when you stop the containers.
 
 ---
 
@@ -259,6 +259,8 @@ If you've made changes to `docker-comper.yml` and you want to recreate the conta
 ```bash
 docker-compose up -d
 ```
+
+> Both MySQL and WordPress data _will_ persist when you stop the containers.
 
 ---
 
