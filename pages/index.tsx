@@ -1,7 +1,8 @@
-import {gql} from '@apollo/client'
 import {GetStaticProps} from 'next'
 import Image from 'next/image'
 import Layout from '~/components/Layout'
+import {SINGLE_PAGE_QUERY} from '~/lib/queries'
+import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
 export default function Homepage({page}: PageProps) {
@@ -26,50 +27,14 @@ export default function Homepage({page}: PageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const GET_HOMEPAGE = gql`
-    query HomePageQuery($slug: ID!) {
-      page(id: $slug, idType: URI) {
-        title(format: RENDERED)
-        featuredImage {
-          node {
-            altText
-            sourceUrl(size: LARGE)
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        content(format: RENDERED)
-      }
-    }
-  `
-
   const {data} = await client.query({
-    query: GET_HOMEPAGE,
+    query: SINGLE_PAGE_QUERY,
     variables: {slug: 'homepage'}
   })
 
   return {
     props: {
       page: data?.page
-    }
-  }
-}
-
-interface PageProps {
-  page: {
-    title: string
-    content: string
-    featuredImage: {
-      node: {
-        altText: string
-        sourceUrl: string
-        mediaDetails: {
-          height: number
-          width: number
-        }
-      }
     }
   }
 }

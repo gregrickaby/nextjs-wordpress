@@ -1,42 +1,36 @@
-import {gql} from '@apollo/client'
+import {GetStaticProps} from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import Layout from '~/components/Layout'
+import {GET_ALL_PAGES, SINGLE_PAGE_QUERY} from '~/lib/queries'
+import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-/**
- * Any WordPress Page.
- *
- * @author Greg Rickaby
- *
- * @param {object} props The component data as props.
- * @param {object} page  The page data.
- * @return {Element}     The page component.
- */
-export default function Page({page}) {
+export default function Page({page}: PageProps) {
+  const {title, content} = page
+
   return (
     <Layout>
       <Head>
-        <title>{page?.title}</title>
+        <title>{title}</title>
       </Head>
       <article>
-        <h1 className="mb-4 text-3xl">{page?.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: page?.content}} />
+        <h1 className="mb-4 text-3xl">{title}</h1>
+        {!!page?.featuredImage && (
+          <Image
+            alt={page?.featuredImage?.node?.altText}
+            src={page?.featuredImage?.node?.sourceUrl}
+            height={page?.featuredImage?.node?.mediaDetails?.height}
+            width={page?.featuredImage?.node?.mediaDetails?.width}
+          />
+        )}
+        <div dangerouslySetInnerHTML={{__html: content}} />
       </article>
     </Layout>
   )
 }
 
 export async function getStaticPaths() {
-  const GET_ALL_PAGES = gql`
-    query AllPagesQuery {
-      pages {
-        nodes {
-          slug
-        }
-      }
-    }
-  `
-
   const {data} = await client.query({
     query: GET_ALL_PAGES
   })
@@ -51,28 +45,9 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params}) {
-  const GET_PAGE_BY_SLUG = gql`
-    query PageQuery($slug: ID!) {
-      page(id: $slug, idType: URI) {
-        title(format: RENDERED)
-        featuredImage {
-          node {
-            altText
-            sourceUrl(size: LARGE)
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        content(format: RENDERED)
-      }
-    }
-  `
-
+export const getStaticProps: GetStaticProps = async ({params}) => {
   const {data} = await client.query({
-    query: GET_PAGE_BY_SLUG,
+    query: SINGLE_PAGE_QUERY,
     variables: {slug: params.slug}
   })
 
