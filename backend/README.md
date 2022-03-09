@@ -60,6 +60,9 @@ WORDPRESS_TITLE="Next.js WordPress"
 WORDPRESS_USERNAME="wordpress"
 WORDPRESS_PASSWORD="wordpress"
 WORDPRESS_EMAIL="foo@bar.com"
+
+# Headless Creds
+HEADLESS_FRONTEND_URL="http://localhost:3000/"
 ```
 
 Save the the `.env` file.
