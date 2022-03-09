@@ -38,7 +38,11 @@ The WordPress URL (without trailing slash):
 ```bash
 NEXT_PUBLIC_WORDPRESS_URL="http://localhost:8000"
 ```
+Domains for Next/Image component:
 
+```bash
+NEXT_PUBLIC_IMAGE_DOMAINS="localhost"
+```
 ---
 
 ## WordPress Setup
