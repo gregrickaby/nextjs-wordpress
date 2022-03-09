@@ -20,13 +20,13 @@ The following instructions will help you get started with setting up the WordPre
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
+- [Docker Compose](#docker-compose)
   - [Start Containers](#start-containers)
   - [Pause Containers](#pause-containers)
   - [Stop Containers](#stop-containers)
   - [Recreate Containers](#recreate-containers)
   - [Destroy Containers](#destroy-containers)
   - [Tunnel Into Containers](#tunnel-into-containers)
-  - [Docker Compose](#docker-compose)
 
 ---
 
@@ -221,6 +221,10 @@ View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are re
 
 ---
 
+## Docker Compose
+
+The backbone of the backend is Docker Compose. Learn more at <https://docs.docker.com/engine/reference/commandline/compose/>
+
 ### Start Containers
 
 Run the following command to start the containers back up:
@@ -294,11 +298,5 @@ Where `<container-name>` is the name of the container you want to tunnel into. H
 - `wpcli`
 
 To exit a tunnel, type `exit` and press enter.
-
----
-
-### Docker Compose
-
-Learn more about using Docker Compose to manage containers: <https://docs.docker.com/engine/reference/commandline/compose/>
 
 ---
