@@ -139,7 +139,7 @@ WORDPRESS_CONFIG_EXTRA: |
   define('WP_DEBUG_LOG', false);
   define('WP_MEMORY_LIMIT', '256M');
   define('WP_ENVIRONMENT_TYPE', 'development');
-  define('HEADLESS_FRONTEND_URL', 'http://localhost:3000');
+  define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
 ```
 
 > If you change the default values, run `docker-compose up -d --no-recreate` to restart the containers.
