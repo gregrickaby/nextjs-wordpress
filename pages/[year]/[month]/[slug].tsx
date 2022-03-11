@@ -2,11 +2,11 @@ import {GetStaticProps} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '~/components/Layout'
-import {GET_ALL_PAGES, SINGLE_PAGE_QUERY} from '~/lib/queries'
+import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Page({page}: PageProps) {
+export default function Post({page}: PageProps) {
   const {title, content} = page
 
   return (
@@ -32,12 +32,20 @@ export default function Page({page}: PageProps) {
 
 export async function getStaticPaths() {
   const {data} = await client.query({
-    query: GET_ALL_PAGES
+    query: GET_ALL_POSTS
   })
 
-  const paths = data?.pages?.nodes?.map((page) => ({
-    params: {slug: page.slug}
-  }))
+  const paths = data?.posts?.nodes?.map((post) => {
+    const slug = post?.uri.replace(/^\/|\/$/g, '').split('/')
+
+    return {
+      params: {
+        year: slug[0] || '',
+        month: slug[1] || '',
+        slug: slug[2] || ''
+      }
+    }
+  })
 
   return {
     paths,
@@ -47,13 +55,13 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
   const {data} = await client.query({
-    query: SINGLE_PAGE_QUERY,
+    query: SINGLE_POST_QUERY,
     variables: {slug: params.slug}
   })
 
   return {
     props: {
-      page: data?.page
+      page: data?.post
     },
     revalidate: 300
   }

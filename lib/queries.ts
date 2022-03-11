@@ -47,3 +47,35 @@ export const SINGLE_BOOK_QUERY = gql`
     }
   }
 `
+
+export const GET_ALL_POSTS = gql`
+  query AllPostsQuery {
+    posts {
+      nodes {
+        uri
+      }
+    }
+  }
+`
+export const SINGLE_POST_QUERY = gql`
+  ${FEATURED_IMAGE}
+  query PostQuery($slug: ID!) {
+    post(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      featuredImage {
+        ...FeaturedImageFields
+      }
+    }
+  }
+`
+
+export const INCREMENT_HEART = gql`
+  mutation HeartArticle($id: ID!) {
+    post(id: $slug, idType: SLUG) {
+      hearts {
+        hearts
+      }
+    }
+  }
+`
