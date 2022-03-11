@@ -7,14 +7,13 @@ import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
 export default function Book({page}: PageProps) {
-  const {title, description} = page
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
+        <title>{page?.title}</title>
       </Head>
       <article>
-        <h1 className="mb-4 text-3xl">{title}</h1>
+        <h1 className="mb-4 text-3xl">{page?.title}</h1>
         {!!page?.featuredImage && (
           <Image
             alt={page?.featuredImage?.node?.altText}
@@ -23,7 +22,7 @@ export default function Book({page}: PageProps) {
             width={page?.featuredImage?.node?.mediaDetails?.width}
           />
         )}
-        <div dangerouslySetInnerHTML={{__html: description}} />
+        <div dangerouslySetInnerHTML={{__html: page?.description}} />
       </article>
     </Layout>
   )
@@ -34,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: GET_ALL_BOOKS
   })
 
-  const paths = data?.books?.nodes?.map((book) => ({
+  const paths = data.books.nodes.map((book) => ({
     params: {slug: book.slug}
   }))
 
@@ -52,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   return {
     props: {
-      page: data?.book
+      page: data.book
     },
     revalidate: 300
   }

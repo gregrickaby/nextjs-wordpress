@@ -7,15 +7,13 @@ import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
 export default function Post({page}: PageProps) {
-  const {title, content} = page
-
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
+        <title>{page?.title}</title>
       </Head>
       <article>
-        <h1 className="mb-4 text-3xl">{title}</h1>
+        <h1 className="mb-4 text-3xl">{page?.title}</h1>
         {!!page?.featuredImage && (
           <Image
             alt={page?.featuredImage?.node?.altText}
@@ -24,7 +22,7 @@ export default function Post({page}: PageProps) {
             width={page?.featuredImage?.node?.mediaDetails?.width}
           />
         )}
-        <div dangerouslySetInnerHTML={{__html: content}} />
+        <div dangerouslySetInnerHTML={{__html: page?.content}} />
       </article>
     </Layout>
   )
@@ -35,8 +33,8 @@ export async function getStaticPaths() {
     query: GET_ALL_POSTS
   })
 
-  const paths = data?.posts?.nodes?.map((post) => {
-    const slug = post?.uri.replace(/^\/|\/$/g, '').split('/')
+  const paths = data.posts.nodes.map((post) => {
+    const slug = post.uri.replace(/^\/|\/$/g, '').split('/')
 
     return {
       params: {
@@ -61,7 +59,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   return {
     props: {
-      page: data?.post
+      page: data.post
     },
     revalidate: 300
   }
