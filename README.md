@@ -1,6 +1,6 @@
 # Next.js + WordPress <!-- omit in toc -->
 
-It's headless WordPress! 🥳
+💀 It's headless WordPress!
 
 ## Features <!-- omit in toc -->
 
