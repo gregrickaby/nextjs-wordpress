@@ -1,6 +1,15 @@
 # Next.js + WordPress <!-- omit in toc -->
 
-Use [Apollo Client](https://www.apollographql.com/docs/react/) along with Next.js [data fetching](https://nextjs.org/docs/basic-features/data-fetching) via `getStaticProps()` and `getStaticPaths()`, to create pages sourced from [WP GraphQL](https://www.wpgraphql.com/).
+It's headless WordPress! 🥳
+
+## Features <!-- omit in toc -->
+
+- Next.js w/ TypeScript
+- WordPress in a Docker container
+- Apollo Client w/ WP GraphQL
+- Year/Month based blog post routing
+- Custom Post Type support via Atlas Content Modeler
+- ESLint, Stylelint, Prettier, and more!
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -38,11 +47,13 @@ The WordPress URL (without trailing slash):
 ```bash
 NEXT_PUBLIC_WORDPRESS_URL="http://localhost:8000"
 ```
+
 Domains for Next/Image component:
 
 ```bash
 NEXT_PUBLIC_IMAGE_DOMAINS="localhost"
 ```
+
 ---
 
 ## WordPress Setup
