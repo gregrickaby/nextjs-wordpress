@@ -1,5 +1,9 @@
 import {gql} from '@apollo/client'
-import {FEATURED_IMAGE} from '~/lib/fragments'
+import {
+  FEATURED_IMAGE_FRAGMENT,
+  GENERAL_FRAGMENT,
+  MENU_FRAGMENT
+} from '~/lib/fragments'
 
 export const GET_ALL_PAGES = gql`
   query AllPagesQuery {
@@ -11,14 +15,11 @@ export const GET_ALL_PAGES = gql`
   }
 `
 
-export const SINGLE_PAGE_QUERY = gql`
-  ${FEATURED_IMAGE}
-  query PageQuery($slug: ID!) {
-    page(id: $slug, idType: URI) {
-      title(format: RENDERED)
-      content(format: RENDERED)
-      featuredImage {
-        ...FeaturedImageFields
+export const GET_ALL_POSTS = gql`
+  query AllPostsQuery {
+    posts {
+      nodes {
+        uri
       }
     }
   }
@@ -34,9 +35,65 @@ export const GET_ALL_BOOKS = gql`
   }
 `
 
+export const SINGLE_PAGE_QUERY = gql`
+  ${FEATURED_IMAGE_FRAGMENT}
+  ${GENERAL_FRAGMENT}
+  ${MENU_FRAGMENT}
+  query SinglePageQuery($slug: ID!) {
+    generalSettings {
+      ...Settings
+    }
+    menu(id: "PRIMARY", idType: NAME) {
+      ...MenuItems
+    }
+    page(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      featuredImage {
+        ...FeaturedImageFields
+      }
+      seo {
+        fullHead
+      }
+    }
+  }
+`
+
+export const SINGLE_POST_QUERY = gql`
+  ${FEATURED_IMAGE_FRAGMENT}
+  ${GENERAL_FRAGMENT}
+  ${MENU_FRAGMENT}
+  query SinglePageQuery($slug: ID!) {
+    generalSettings {
+      ...Settings
+    }
+    menu(id: "PRIMARY", idType: NAME) {
+      ...MenuItems
+    }
+    post(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      featuredImage {
+        ...FeaturedImageFields
+      }
+      seo {
+        fullHead
+      }
+    }
+  }
+`
+
 export const SINGLE_BOOK_QUERY = gql`
-  ${FEATURED_IMAGE}
+  ${FEATURED_IMAGE_FRAGMENT}
+  ${GENERAL_FRAGMENT}
+  ${MENU_FRAGMENT}
   query BookQuery($slug: ID!) {
+    generalSettings {
+      ...Settings
+    }
+    menu(id: "PRIMARY", idType: NAME) {
+      ...MenuItems
+    }
     book(id: $slug, idType: URI) {
       affiliateLink
       title
@@ -44,37 +101,8 @@ export const SINGLE_BOOK_QUERY = gql`
       featuredImage {
         ...FeaturedImageFields
       }
-    }
-  }
-`
-
-export const GET_ALL_POSTS = gql`
-  query AllPostsQuery {
-    posts {
-      nodes {
-        uri
-      }
-    }
-  }
-`
-export const SINGLE_POST_QUERY = gql`
-  ${FEATURED_IMAGE}
-  query PostQuery($slug: ID!) {
-    post(id: $slug, idType: URI) {
-      title(format: RENDERED)
-      content(format: RENDERED)
-      featuredImage {
-        ...FeaturedImageFields
-      }
-    }
-  }
-`
-
-export const INCREMENT_HEART = gql`
-  mutation HeartArticle($id: ID!) {
-    post(id: $slug, idType: SLUG) {
-      hearts {
-        hearts
+      seo {
+        fullHead
       }
     }
   }

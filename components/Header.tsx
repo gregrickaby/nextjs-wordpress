@@ -1,16 +1,19 @@
-import Menu from '~/components/Menu'
-import {useWordPressContext} from './WordPressProvider'
-
-export default function Header() {
-  const {data} = useWordPressContext()
-
+export default function Header({settings, menu}) {
   return (
     <header className="flex justify-between">
       <div className="flex space-x-8">
-        <h1>{data?.generalSettings?.title}</h1>
-        <aside>{data?.generalSettings?.description}</aside>
+        <h1>{settings?.title}</h1>
+        <aside>{settings?.description}</aside>
       </div>
-      <Menu />
+      <nav>
+        <ul className="flex space-x-8">
+          {menu?.menuItems?.nodes?.map((menu, index) => (
+            <li key={index}>
+              <a href={menu?.path}>{menu?.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   )
 }

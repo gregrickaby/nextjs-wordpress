@@ -1,27 +1,18 @@
 import {GetStaticProps} from 'next'
-import Image from 'next/image'
+import Article from '~/components/Article'
 import Layout from '~/components/Layout'
 import {SINGLE_PAGE_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Homepage({page}: PageProps) {
-  const {title, content} = page
-
+export default function Homepage({data}: PageProps) {
   return (
-    <Layout>
-      <article>
-        <h1 className="mb-4 text-3xl">{title}</h1>
-        {!!page?.featuredImage && (
-          <Image
-            alt={page?.featuredImage?.node?.altText}
-            src={page?.featuredImage?.node?.sourceUrl}
-            height={page?.featuredImage?.node?.mediaDetails?.height}
-            width={page?.featuredImage?.node?.mediaDetails?.width}
-          />
-        )}
-        <div dangerouslySetInnerHTML={{__html: content}} />
-      </article>
+    <Layout
+      settings={data?.generalSettings}
+      menu={data?.menu}
+      seo={data?.page?.seo}
+    >
+      <Article content={data?.page} />
     </Layout>
   )
 }
@@ -34,7 +25,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      page: data?.page
-    }
+      data
+    },
+    revalidate: 300
   }
 }

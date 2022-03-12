@@ -1,29 +1,18 @@
 import {GetStaticProps} from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import Article from '~/components/Article'
 import Layout from '~/components/Layout'
 import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Post({page}: PageProps) {
+export default function Post({data}: PageProps) {
   return (
-    <Layout>
-      <Head>
-        <title>{page?.title}</title>
-      </Head>
-      <article>
-        <h1 className="mb-4 text-3xl">{page?.title}</h1>
-        {!!page?.featuredImage && (
-          <Image
-            alt={page?.featuredImage?.node?.altText}
-            src={page?.featuredImage?.node?.sourceUrl}
-            height={page?.featuredImage?.node?.mediaDetails?.height}
-            width={page?.featuredImage?.node?.mediaDetails?.width}
-          />
-        )}
-        <div dangerouslySetInnerHTML={{__html: page?.content}} />
-      </article>
+    <Layout
+      settings={data?.generalSettings}
+      menu={data?.menu}
+      seo={data?.post?.seo}
+    >
+      <Article content={data?.post} />
     </Layout>
   )
 }
@@ -59,7 +48,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   return {
     props: {
-      page: data.post
+      data
     },
     revalidate: 300
   }

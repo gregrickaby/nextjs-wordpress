@@ -1,28 +1,28 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '~/components/Layout'
 import {GET_ALL_BOOKS, SINGLE_BOOK_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Book({page}: PageProps) {
+export default function Book({data}: PageProps) {
   return (
-    <Layout>
-      <Head>
-        <title>{page?.title}</title>
-      </Head>
+    <Layout
+      settings={data?.generalSettings}
+      menu={data?.menu}
+      seo={data?.book?.seo}
+    >
       <article>
-        <h1 className="mb-4 text-3xl">{page?.title}</h1>
-        {!!page?.featuredImage && (
+        <h1 className="mb-4 text-3xl">{data?.book?.title}</h1>
+        {!!data?.book?.featuredImage && (
           <Image
-            alt={page?.featuredImage?.node?.altText}
-            src={page?.featuredImage?.node?.sourceUrl}
-            height={page?.featuredImage?.node?.mediaDetails?.height}
-            width={page?.featuredImage?.node?.mediaDetails?.width}
+            alt={data?.book?.featuredImage?.node?.altText}
+            src={data?.book?.featuredImage?.node?.sourceUrl}
+            height={data?.book?.featuredImage?.node?.mediaDetails?.height}
+            width={data?.book?.featuredImage?.node?.mediaDetails?.width}
           />
         )}
-        <div dangerouslySetInnerHTML={{__html: page?.description}} />
+        <div dangerouslySetInnerHTML={{__html: data?.book?.description}} />
       </article>
     </Layout>
   )
@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   return {
     props: {
-      page: data.book
+      data
     },
     revalidate: 300
   }
