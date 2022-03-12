@@ -2,6 +2,7 @@
 *.min.js
 .*cache/
 .next/
+backend/
 build/
 dist/
 node_modules/
