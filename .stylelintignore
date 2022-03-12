@@ -2,7 +2,8 @@
 *.min.js
 .*cache/
 .next/
-backend/
+backend/mysql/
+backend/wordpress/
 build/
 dist/
 node_modules/
