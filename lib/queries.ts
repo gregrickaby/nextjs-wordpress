@@ -107,3 +107,33 @@ export const SINGLE_BOOK_QUERY = gql`
     }
   }
 `
+
+export const POSTS_ARCHIVE_QUERY = gql`
+  ${FEATURED_IMAGE_FRAGMENT}
+  ${GENERAL_FRAGMENT}
+  ${MENU_FRAGMENT}
+  query PostArchiveQuery($slug: ID!) {
+    generalSettings {
+      ...Settings
+    }
+    menu(id: "PRIMARY", idType: NAME) {
+      ...MenuItems
+    }
+    page(id: $slug, idType: URI) {
+      seo {
+        fullHead
+      }
+    }
+    posts {
+      nodes {
+        title(format: RENDERED)
+        excerpt(format: RENDERED)
+        date
+        uri
+        featuredImage {
+          ...FeaturedImageFields
+        }
+      }
+    }
+  }
+`

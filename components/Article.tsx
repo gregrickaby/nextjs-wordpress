@@ -12,7 +12,9 @@ export default function Article({content}) {
           width={content?.featuredImage?.node?.mediaDetails?.width}
         />
       )}
-      <div dangerouslySetInnerHTML={{__html: content?.content}} />
+      <div
+        dangerouslySetInnerHTML={{__html: content?.content || content?.excerpt}}
+      />
     </article>
   )
 }

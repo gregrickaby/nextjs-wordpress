@@ -52,6 +52,24 @@ export interface PageProps {
         fullHead: string
       }
     }
+    posts?: {
+      nodes: [
+        {
+          title: string
+          excerpt: string
+          featuredImage: {
+            node: {
+              altText: string
+              sourceUrl: string
+              mediaDetails: {
+                height: number
+                width: number
+              }
+            }
+          }
+        }
+      ]
+    }
     book?: {
       title: string
       description: string
