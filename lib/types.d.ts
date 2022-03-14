@@ -1,25 +1,47 @@
 export interface PageProps {
   data: {
-    generalSettings: {
-      dateFormat: string
-      description: string
-      language: string
-      timeFormat: string
-      title: string
+    generalSettings: SettingsFields
+    menu: MenuFields
+    page?: ContentFields
+    post?: ContentFields
+    posts?: ArchiveFields
+    book?: ContentFields
+  }
+}
+
+interface SettingsFields {
+  dateFormat: string
+  description: string
+  language: string
+  timeFormat: string
+  title: string
+}
+
+interface MenuFields {
+  menuItems: {
+    nodes: {
+      path: string
+      target: string
+      label: string
     }
-    menu: {
-      menuItems: {
-        nodes: {
-          path: string
-          target: string
-          label: string
-        }
-      }
-    }
-    page?: {
+  }
+}
+
+interface ContentFields {
+  title: string
+  content: string
+  description: string
+  featuredImage: FeaturedImageFields
+  seo: {
+    fullHead: string
+  }
+}
+
+interface ArchiveFields {
+  nodes: [
+    {
       title: string
-      content: string
-      description: string
+      excerpt: string
       featuredImage: {
         node: {
           altText: string
@@ -30,62 +52,17 @@ export interface PageProps {
           }
         }
       }
-      seo: {
-        fullHead: string
-      }
     }
-    post?: {
-      title: string
-      content: string
-      description: string
-      featuredImage: {
-        node: {
-          altText: string
-          sourceUrl: string
-          mediaDetails: {
-            height: number
-            width: number
-          }
-        }
-      }
-      seo: {
-        fullHead: string
-      }
-    }
-    posts?: {
-      nodes: [
-        {
-          title: string
-          excerpt: string
-          featuredImage: {
-            node: {
-              altText: string
-              sourceUrl: string
-              mediaDetails: {
-                height: number
-                width: number
-              }
-            }
-          }
-        }
-      ]
-    }
-    book?: {
-      title: string
-      description: string
-      featuredImage: {
-        node: {
-          altText: string
-          sourceUrl: string
-          mediaDetails: {
-            height: number
-            width: number
-          }
-        }
-      }
-      seo: {
-        fullHead: string
-      }
+  ]
+}
+
+interface FeaturedImageFields {
+  node: {
+    altText: string
+    sourceUrl: string
+    mediaDetails: {
+      height: number
+      width: number
     }
   }
 }
