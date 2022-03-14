@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "547e353803fad989c3718cf68ce8e59d",
+    "content-hash": "577774ec18d444e7ce1dab75bb9f7566",
     "packages": [
         {
             "name": "composer/installers",
@@ -270,22 +270,22 @@
             "homepage": "https://wordpress.org/plugins/advanced-custom-fields/"
         },
         {
-            "name": "wpackagist-plugin/atlas-content-modeler",
-            "version": "0.14.0",
+            "name": "wpackagist-plugin/custom-post-type-ui",
+            "version": "1.10.2",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/atlas-content-modeler/",
-                "reference": "tags/0.14.0"
+                "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
+                "reference": "tags/1.10.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/atlas-content-modeler.0.14.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.10.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/atlas-content-modeler/"
+            "homepage": "https://wordpress.org/plugins/custom-post-type-ui/"
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
