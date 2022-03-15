@@ -32,28 +32,33 @@ interface ContentFields {
   content: string
   description: string
   featuredImage: FeaturedImageFields
+  uri: string
   seo: {
     fullHead: string
+  }
+  nodes?: ArchiveFields
+  bookFields?: {
+    affiliateUrl: string
+    isbn: string
   }
 }
 
 interface ArchiveFields {
-  nodes: [
-    {
-      title: string
-      excerpt: string
-      featuredImage: {
-        node: {
-          altText: string
-          sourceUrl: string
-          mediaDetails: {
-            height: number
-            width: number
-          }
-        }
+  length: number
+  map: any
+  title: string
+  excerpt: string
+  uri: string
+  featuredImage: {
+    node: {
+      altText: string
+      sourceUrl: string
+      mediaDetails: {
+        height: number
+        width: number
       }
     }
-  ]
+  }
 }
 
 interface FeaturedImageFields {

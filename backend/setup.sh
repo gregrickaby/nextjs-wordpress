@@ -42,7 +42,7 @@ wp option update show_on_front page
 wp option update page_on_front 4
 wp option update page_for_posts 5
 wp menu create "Primary"
-wp menu item add-post primary 4
+wp menu item add-post primary 2
 wp menu item add-post primary 5
 wp menu location assign primary primary
 wp rewrite structure "/%year%/%monthnum%/%postname%"

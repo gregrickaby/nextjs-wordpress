@@ -1,0 +1,65 @@
+[
+    {
+        "key": "group_622fb14312d3b",
+        "title": "Book Fields",
+        "fields": [
+            {
+                "key": "field_622fb14c31605",
+                "label": "Affiliate URL",
+                "name": "affiliate_url",
+                "type": "url",
+                "instructions": "Please add your affiliate URL",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_622fb181d25b1",
+                "label": "ISBN",
+                "name": "isbn",
+                "type": "text",
+                "instructions": "Please add either the 11 or 13 digit ISBN number",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "book"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 1,
+        "show_in_graphql": 1,
+        "graphql_field_name": "bookFields"
+    }
+]

@@ -1,5 +1,5 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
-import Image from 'next/image'
+import Article from '~/components/Article'
 import Layout from '~/components/Layout'
 import {GET_ALL_BOOKS, SINGLE_BOOK_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
@@ -12,18 +12,11 @@ export default function Book({data}: PageProps) {
       menu={data?.menu}
       seo={data?.book?.seo}
     >
-      <article>
-        <h1 className="mb-4 text-3xl">{data?.book?.title}</h1>
-        {!!data?.book?.featuredImage && (
-          <Image
-            alt={data?.book?.featuredImage?.node?.altText}
-            src={data?.book?.featuredImage?.node?.sourceUrl}
-            height={data?.book?.featuredImage?.node?.mediaDetails?.height}
-            width={data?.book?.featuredImage?.node?.mediaDetails?.width}
-          />
-        )}
-        <div dangerouslySetInnerHTML={{__html: data?.book?.description}} />
-      </article>
+      <Article content={data?.page} />
+      <p>ISBN: {data?.page?.bookFields?.isbn}</p>
+      <a href={data?.page?.bookFields?.affiliateUrl} rel="external nofollow">
+        Purchase Book
+      </a>
     </Layout>
   )
 }
@@ -44,10 +37,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
-  const {data} = await client.query({
+  // Query the book data.
+  let {data} = await client.query({
     query: SINGLE_BOOK_QUERY,
     variables: {slug: params.slug}
   })
+
+  // Set data shape.
+  data = {
+    generalSettings: data.generalSettings,
+    menu: data.menu,
+    page: data.book
+  }
 
   return {
     props: {

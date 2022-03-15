@@ -12,6 +12,11 @@ export const GET_ALL_PAGES = gql`
         slug
       }
     }
+    books {
+      nodes {
+        slug
+      }
+    }
   }
 `
 
@@ -49,6 +54,7 @@ export const SINGLE_PAGE_QUERY = gql`
     page(id: $slug, idType: URI) {
       title(format: RENDERED)
       content(format: RENDERED)
+      uri
       featuredImage {
         ...FeaturedImageFields
       }
@@ -73,6 +79,7 @@ export const SINGLE_POST_QUERY = gql`
     post(id: $slug, idType: URI) {
       title(format: RENDERED)
       content(format: RENDERED)
+      uri
       featuredImage {
         ...FeaturedImageFields
       }
@@ -95,14 +102,18 @@ export const SINGLE_BOOK_QUERY = gql`
       ...MenuItems
     }
     book(id: $slug, idType: URI) {
-      affiliateLink
-      title
-      description
+      title(format: RENDERED)
+      content(format: RENDERED)
+      uri
       featuredImage {
         ...FeaturedImageFields
       }
       seo {
         fullHead
+      }
+      bookFields {
+        affiliateUrl
+        isbn
       }
     }
   }
@@ -112,17 +123,12 @@ export const POSTS_ARCHIVE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  query PostArchiveQuery($slug: ID!) {
+  query PostArchiveQuery {
     generalSettings {
       ...Settings
     }
     menu(id: "PRIMARY", idType: NAME) {
       ...MenuItems
-    }
-    page(id: $slug, idType: URI) {
-      seo {
-        fullHead
-      }
     }
     posts {
       nodes {
@@ -132,6 +138,34 @@ export const POSTS_ARCHIVE_QUERY = gql`
         uri
         featuredImage {
           ...FeaturedImageFields
+        }
+      }
+    }
+  }
+`
+
+export const BOOKS_ARCHIVE_QUERY = gql`
+  ${FEATURED_IMAGE_FRAGMENT}
+  ${GENERAL_FRAGMENT}
+  ${MENU_FRAGMENT}
+  query PostArchiveQuery {
+    generalSettings {
+      ...Settings
+    }
+    menu(id: "PRIMARY", idType: NAME) {
+      ...MenuItems
+    }
+    books {
+      nodes {
+        slug
+        title(format: RENDERED)
+        content(format: RENDERED)
+        uri
+        featuredImage {
+          ...FeaturedImageFields
+        }
+        seo {
+          fullHead
         }
       }
     }

@@ -1,9 +1,18 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Article({content}) {
   return (
     <article>
-      <h1 className="mb-4 text-3xl">{content?.title}</h1>
+      <h1 className="mb-4 text-3xl">
+        {content?.uri ? (
+          <Link href={content?.uri}>
+            <a>{content?.title}</a>
+          </Link>
+        ) : (
+          content?.title
+        )}
+      </h1>
       {!!content?.featuredImage && (
         <Image
           alt={content?.featuredImage?.node?.altText}

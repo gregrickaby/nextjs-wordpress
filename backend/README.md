@@ -27,6 +27,9 @@ The following instructions will help you get started with setting up the WordPre
   - [Recreate Containers](#recreate-containers)
   - [Destroy Containers](#destroy-containers)
   - [Tunnel Into Containers](#tunnel-into-containers)
+- [Custom Post Types and Fields](#custom-post-types-and-fields)
+  - [Import Book CPT](#import-book-cpt)
+  - [Import Book Custom Fields](#import-book-custom-fields)
 
 ---
 
@@ -298,5 +301,97 @@ Where `<container-name>` is the name of the container you want to tunnel into. H
 - `wpcli`
 
 To exit a tunnel, type `exit` and press enter.
+
+---
+
+## Custom Post Types and Fields
+
+The front-end has support for a "Books" custom post type and fields. This is just a simple example, so feel free to edit or remove as needed.
+
+### Import Book CPT
+
+1. Visit the CPT UI tools page: <http://localhost:8000/wp-admin/admin.php?page=cptui_tools>
+2. Copy and paste the following JSON into the "Import Post Types" field:
+
+   ```json
+   {
+     "book": {
+       "name": "book",
+       "label": "Books",
+       "singular_label": "Book",
+       "description": "",
+       "public": "true",
+       "publicly_queryable": "true",
+       "show_ui": "true",
+       "show_in_nav_menus": "true",
+       "delete_with_user": "false",
+       "show_in_rest": "true",
+       "rest_base": "",
+       "rest_controller_class": "",
+       "has_archive": "false",
+       "has_archive_string": "",
+       "exclude_from_search": "false",
+       "capability_type": "page",
+       "hierarchical": "false",
+       "rewrite": "true",
+       "rewrite_slug": "",
+       "rewrite_withfront": "true",
+       "query_var": "true",
+       "query_var_slug": "",
+       "menu_position": "",
+       "show_in_menu": "true",
+       "show_in_menu_string": "",
+       "menu_icon": "dashicons-book-alt",
+       "supports": ["title", "editor", "thumbnail"],
+       "taxonomies": [],
+       "labels": {
+         "menu_name": "My Books",
+         "all_items": "All Books",
+         "add_new": "Add new",
+         "add_new_item": "Add new Book",
+         "edit_item": "Edit Book",
+         "new_item": "New Book",
+         "view_item": "View Book",
+         "view_items": "View Books",
+         "search_items": "Search Books",
+         "not_found": "No Books found",
+         "not_found_in_trash": "No Books found in trash",
+         "parent": "Parent Book:",
+         "featured_image": "Featured image for this Book",
+         "set_featured_image": "Set featured image for this Book",
+         "remove_featured_image": "Remove featured image for this Book",
+         "use_featured_image": "Use as featured image for this Book",
+         "archives": "Book archives",
+         "insert_into_item": "Insert into Book",
+         "uploaded_to_this_item": "Upload to this Book",
+         "filter_items_list": "Filter Books list",
+         "items_list_navigation": "Books list navigation",
+         "items_list": "Books list",
+         "attributes": "Books attributes",
+         "name_admin_bar": "Book",
+         "item_published": "Book published",
+         "item_published_privately": "Book published privately.",
+         "item_reverted_to_draft": "Book reverted to draft.",
+         "item_scheduled": "Book scheduled",
+         "item_updated": "Book updated.",
+         "parent_item_colon": "Parent Book:"
+       },
+       "custom_supports": "",
+       "show_in_graphql": "1",
+       "graphql_single_name": "Book",
+       "graphql_plural_name": "Books"
+     }
+   }
+   ```
+
+3. Click the "Import" button.
+
+---
+
+### Import Book Custom Fields
+
+1. Visit the ACF tools page: <http://localhost:8000/wp-admin/edit.php?post_type=acf-field-group&page=acf-tools>
+2. Under the Import settings, click "choose file" and select `backend/acf-export.json`
+3. Click the blue "Import" button
 
 ---
