@@ -8,7 +8,8 @@
 - WordPress in a Docker container
 - Apollo Client w/ WP GraphQL
 - Year/Month based blog post routing
-- Custom Post Type support via Atlas Content Modeler
+- Custom Post Type support via CPT UI
+- Custom Field support via Advanced Custom Fields
 - ESLint, Stylelint, Prettier, and more!
 
 ## Table of Contents <!-- omit in toc -->
