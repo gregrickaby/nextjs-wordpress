@@ -28,10 +28,15 @@ interface MenuFields {
 }
 
 interface ContentFields {
-  title: string
+  commentCount: number
+  commentStatus: string
+  comments: {
+    nodes: CommentFields
+  }
   content: string
   description: string
   featuredImage: FeaturedImageFields
+  title: string
   uri: string
   seo: {
     fullHead: string
@@ -70,4 +75,18 @@ interface FeaturedImageFields {
       width: number
     }
   }
+}
+
+interface CommentFields {
+  author: {
+    node: {
+      gravatarUrl: string
+      name: string
+      url: string
+    }
+  }
+  approved: boolean
+  content: string
+  databaseId: number
+  date: string
 }

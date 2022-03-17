@@ -34,3 +34,21 @@ export const FEATURED_IMAGE_FRAGMENT = gql`
     }
   }
 `
+
+export const COMMENTS_FRAGMENT = gql`
+  fragment CommentFields on PostToCommentConnection {
+    nodes {
+      author {
+        node {
+          gravatarUrl
+          name
+          url
+        }
+      }
+      approved
+      content(format: RENDERED)
+      databaseId
+      date
+    }
+  }
+`

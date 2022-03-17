@@ -1,5 +1,6 @@
 import {gql} from '@apollo/client'
 import {
+  COMMENTS_FRAGMENT,
   FEATURED_IMAGE_FRAGMENT,
   GENERAL_FRAGMENT,
   MENU_FRAGMENT
@@ -66,6 +67,7 @@ export const SINGLE_PAGE_QUERY = gql`
 `
 
 export const SINGLE_POST_QUERY = gql`
+  ${COMMENTS_FRAGMENT}
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
@@ -77,8 +79,19 @@ export const SINGLE_POST_QUERY = gql`
       ...MenuItems
     }
     post(id: $slug, idType: URI) {
+      author {
+        node {
+          gravatarUrl
+          name
+        }
+      }
       title(format: RENDERED)
       content(format: RENDERED)
+      commentCount
+      commentStatus
+      comments {
+        ...CommentFields
+      }
       uri
       featuredImage {
         ...FeaturedImageFields

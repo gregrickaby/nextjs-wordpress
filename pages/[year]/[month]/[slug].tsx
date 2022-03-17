@@ -1,5 +1,6 @@
 import {GetStaticProps} from 'next'
 import Article from '~/components/Article'
+import Comments from '~/components/Comments'
 import Layout from '~/components/Layout'
 import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
@@ -13,6 +14,12 @@ export default function Post({data}: PageProps) {
       seo={data?.post?.seo}
     >
       <Article content={data?.post} />
+      {data?.post?.commentStatus === 'open' && (
+        <Comments
+          total={data?.post?.commentCount}
+          comments={data?.post?.comments}
+        />
+      )}
     </Layout>
   )
 }
