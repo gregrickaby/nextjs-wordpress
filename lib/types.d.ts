@@ -54,16 +54,7 @@ interface ArchiveFields {
   title: string
   excerpt: string
   uri: string
-  featuredImage: {
-    node: {
-      altText: string
-      sourceUrl: string
-      mediaDetails: {
-        height: number
-        width: number
-      }
-    }
-  }
+  featuredImage: FeaturedImageFields
 }
 
 interface FeaturedImageFields {
