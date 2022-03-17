@@ -19,7 +19,10 @@ export default function Comments({total, comments}) {
                       width="50"
                     />
                     <h3>
-                      <a href={comment?.author?.node?.url} rel="noreferrer">
+                      <a
+                        href={comment?.author?.node?.url}
+                        rel="external nofollow"
+                      >
                         {comment?.author?.node?.name}
                       </a>
                       <time>{comment?.date}</time>
