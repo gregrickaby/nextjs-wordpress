@@ -14,6 +14,7 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'jsx-a11y/anchor-is-valid': 'off',
+    '@next/next/no-img-element': 'off',
     'no-console': ['error', {allow: ['warn', 'error']}],
     'prettier/prettier': 'error'
   }
