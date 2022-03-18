@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import {HeaderProps} from '~/lib/types'
 
-export default function Header({settings, menu}) {
+export default function Header({settings, menu}: HeaderProps) {
   return (
     <header className="flex justify-between">
       <div className="flex space-x-8">

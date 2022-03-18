@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import {ArticleProps} from '~/lib/types'
 
-export default function Article({content}) {
+export default function Article({content}: ArticleProps) {
   return (
     <article>
       <h1 className="mb-4 text-3xl">

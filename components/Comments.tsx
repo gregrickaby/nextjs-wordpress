@@ -1,6 +1,6 @@
-import {CommentFields} from '~/lib/types'
+import {CommentFields, CommentProps} from '~/lib/types'
 
-export default function Comments({total, comments}) {
+export default function Comments({total, comments}: CommentProps) {
   return (
     <section id="comments">
       <h2>{total < 1 ? `Start a` : `Join the`} discussion!</h2>

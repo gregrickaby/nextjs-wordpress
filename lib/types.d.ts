@@ -9,6 +9,31 @@ export interface PageProps {
   }
 }
 
+export interface ArticleProps {
+  content: ContentFields
+}
+
+export interface CommentProps {
+  total: number
+  comments: {
+    nodes: CommentFields
+  }
+}
+
+export interface HeaderProps {
+  settings: SettingsFields
+  menu: MenuFields
+}
+
+export interface LayoutProps {
+  settings: SettingsFields
+  menu: MenuFields
+  seo: {
+    fullHead: string
+  }
+  children: any
+}
+
 interface SettingsFields {
   dateFormat: string
   description: string
@@ -20,6 +45,7 @@ interface SettingsFields {
 interface MenuFields {
   menuItems: {
     nodes: {
+      map: any
       path: string
       target: string
       label: string
@@ -34,7 +60,8 @@ interface ContentFields {
     nodes: CommentFields
   }
   content: string
-  description: string
+  description?: string
+  excerpt?: string
   featuredImage: FeaturedImageFields
   title: string
   uri: string
@@ -80,4 +107,5 @@ interface CommentFields {
   content: string
   databaseId: number
   date: string
+  map: any
 }
