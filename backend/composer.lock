@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8"
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
+                "url": "https://api.github.com/repos/composer/installers/zipball/75e5ef05436c90ac565a48176cc7465991908352",
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352",
                 "shasum": ""
             },
             "require": {
@@ -37,7 +37,8 @@
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-main": "2.x-dev"
-                }
+                },
+                "plugin-modifies-install-path": true
             },
             "autoload": {
                 "psr-4": {
@@ -131,7 +132,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.0.1"
+                "source": "https://github.com/composer/installers/tree/v2.1.0"
             },
             "funding": [
                 {
@@ -147,20 +148,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T08:21:20+00:00"
+            "time": "2022-03-18T12:27:54+00:00"
         },
         {
             "name": "webdevstudios/wds-headless-core",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WebDevStudios/wds-headless-core.git",
-                "reference": "39f12497a43ff25de0fc4fd6f98928632fb6c105"
+                "reference": "201b85e94a1104fb97dd303fdafc6e36d264d93f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/39f12497a43ff25de0fc4fd6f98928632fb6c105",
-                "reference": "39f12497a43ff25de0fc4fd6f98928632fb6c105",
+                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/201b85e94a1104fb97dd303fdafc6e36d264d93f",
+                "reference": "201b85e94a1104fb97dd303fdafc6e36d264d93f",
                 "shasum": ""
             },
             "require-dev": {
@@ -183,9 +184,9 @@
             "description": "The core WordPress plugin for the Next.js WordPress Starter.",
             "homepage": "https://github.com/WebDevStudios/nextjs-wordpress-starter",
             "support": {
-                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.1"
+                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.2"
             },
-            "time": "2022-01-17T16:53:21+00:00"
+            "time": "2022-03-18T17:58:02+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",
@@ -271,15 +272,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.10.2",
+            "version": "1.11.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.10.2"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.10.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.zip?timestamp=1647615885"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
