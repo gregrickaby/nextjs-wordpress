@@ -14,10 +14,11 @@ export interface ArticleProps {
 }
 
 export interface CommentProps {
-  total: number
   comments: {
     nodes: CommentFields
   }
+  postId: number
+  total: number
 }
 
 export interface HeaderProps {
@@ -60,6 +61,7 @@ interface ContentFields {
     nodes: CommentFields
   }
   content: string
+  databaseId: number
   description?: string
   excerpt?: string
   featuredImage: FeaturedImageFields
