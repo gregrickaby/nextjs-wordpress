@@ -55,6 +55,7 @@ export const SINGLE_PAGE_QUERY = gql`
     page(id: $slug, idType: URI) {
       title(format: RENDERED)
       content(format: RENDERED)
+      databaseId
       uri
       featuredImage {
         ...FeaturedImageFields
@@ -89,9 +90,10 @@ export const SINGLE_POST_QUERY = gql`
       content(format: RENDERED)
       commentCount
       commentStatus
-      comments {
+      comments(where: {order: ASC}) {
         ...CommentFields
       }
+      databaseId
       uri
       featuredImage {
         ...FeaturedImageFields
@@ -117,6 +119,7 @@ export const SINGLE_BOOK_QUERY = gql`
     book(id: $slug, idType: URI) {
       title(format: RENDERED)
       content(format: RENDERED)
+      databaseId
       uri
       featuredImage {
         ...FeaturedImageFields
