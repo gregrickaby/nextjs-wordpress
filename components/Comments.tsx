@@ -1,7 +1,8 @@
+import Comment from '~/components/Comment'
+import CommentForm from '~/components/CommentForm'
 import {CommentFields, CommentProps} from '~/lib/types'
-import CommentForm from './CommentForm'
 
-export default function Comments({total, comments}: CommentProps) {
+export default function Comments({comments, postId, total}: CommentProps) {
   return (
     <section id="comments">
       <h2>{total < 1 ? `Start a` : `Join the`} discussion!</h2>
@@ -10,33 +11,13 @@ export default function Comments({total, comments}: CommentProps) {
           if (comment?.approved) {
             return (
               <li key={index} id={`comment-${comment?.databaseId}`}>
-                <article>
-                  <header>
-                    <img
-                      alt={comment?.author?.node?.name}
-                      height="50"
-                      loading="lazy"
-                      src={comment?.author?.node?.gravatarUrl}
-                      width="50"
-                    />
-                    <h3>
-                      <a
-                        href={comment?.author?.node?.url}
-                        rel="external nofollow"
-                      >
-                        {comment?.author?.node?.name}
-                      </a>
-                      <time>{comment?.date}</time>
-                    </h3>
-                  </header>
-                  <main dangerouslySetInnerHTML={{__html: comment?.content}} />
-                </article>
+                <Comment {...comment} />
               </li>
             )
           }
         })}
       </ol>
-      <CommentForm />
+      <CommentForm postId={postId} />
     </section>
   )
 }
