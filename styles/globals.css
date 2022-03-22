@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .field {
+    @apply flex rounded-md border-2 p-2;
+  }
+}
