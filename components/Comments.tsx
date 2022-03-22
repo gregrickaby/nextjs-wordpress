@@ -1,4 +1,5 @@
 import {CommentFields, CommentProps} from '~/lib/types'
+import CommentForm from './CommentForm'
 
 export default function Comments({total, comments}: CommentProps) {
   return (
@@ -35,6 +36,7 @@ export default function Comments({total, comments}: CommentProps) {
           }
         })}
       </ol>
+      <CommentForm />
     </section>
   )
 }
