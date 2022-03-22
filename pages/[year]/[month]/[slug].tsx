@@ -16,8 +16,9 @@ export default function Post({data}: PageProps) {
       <Article content={data?.post} />
       {data?.post?.commentStatus === 'open' && (
         <Comments
-          total={data?.post?.commentCount}
           comments={data?.post?.comments}
+          postId={data?.post?.databaseId}
+          total={data?.post?.commentCount}
         />
       )}
     </Layout>
