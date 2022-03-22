@@ -10,6 +10,7 @@
 - `YYYY/MM` based blog post routing
 - Custom Post Type support via CPT UI
 - Custom Field support via Advanced Custom Fields
+- WordPress comment support
 - ESLint, Stylelint, Prettier, and more!
 
 ## Table of Contents <!-- omit in toc -->
