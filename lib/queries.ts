@@ -86,13 +86,13 @@ export const SINGLE_POST_QUERY = gql`
           name
         }
       }
-      title(format: RENDERED)
       content(format: RENDERED)
       commentCount
       commentStatus
       comments(where: {order: ASC}) {
         ...CommentFields
       }
+      date
       databaseId
       uri
       featuredImage {
@@ -100,6 +100,19 @@ export const SINGLE_POST_QUERY = gql`
       }
       seo {
         fullHead
+      }
+      tags {
+        nodes {
+          name
+          uri
+        }
+      }
+      title(format: RENDERED)
+      categories {
+        nodes {
+          name
+          uri
+        }
       }
     }
   }

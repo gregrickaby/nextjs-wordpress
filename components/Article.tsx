@@ -14,6 +14,18 @@ export default function Article({content}: ArticleProps) {
           content?.title
         )}
       </h1>
+      <div className="flex justify-between">
+        <cite>{content?.author?.node?.name}</cite>
+        {content?.date && (
+          <time>
+            {new Intl.DateTimeFormat('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            }).format(Date.parse(content?.date))}
+          </time>
+        )}
+      </div>
       {!!content?.featuredImage && (
         <Image
           alt={content?.featuredImage?.node?.altText}
@@ -25,6 +37,16 @@ export default function Article({content}: ArticleProps) {
       <div
         dangerouslySetInnerHTML={{__html: content?.content || content?.excerpt}}
       />
+      {content?.categories?.nodes.map((category) => (
+        <div key={category?.name}>
+          Posted under: <a href={`${category?.uri}`}>{category?.name}</a>
+        </div>
+      ))}
+      {content?.tags?.nodes.map((tag) => (
+        <div key={tag?.name}>
+          Tagged with: <a href={`${tag?.uri}`}>{tag?.name}</a>
+        </div>
+      ))}
     </article>
   )
 }

@@ -55,12 +55,19 @@ interface MenuFields {
 }
 
 interface ContentFields {
+  author: {
+    node: {
+      name: string
+      gravatarUrl: string
+    }
+  }
   commentCount: number
   commentStatus: string
   comments: {
     nodes: CommentFields
   }
   content: string
+  date: string
   databaseId: number
   description?: string
   excerpt?: string
@@ -74,6 +81,22 @@ interface ContentFields {
   bookFields?: {
     affiliateUrl: string
     isbn: string
+  }
+  tags: {
+    nodes: [
+      {
+        name: string
+        uri: string
+      }
+    ]
+  }
+  categories: {
+    nodes: [
+      {
+        name: string
+        uri: string
+      }
+    ]
   }
 }
 
