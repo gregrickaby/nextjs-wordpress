@@ -163,7 +163,6 @@ export const POSTS_ARCHIVE_QUERY = gql`
       nodes {
         title(format: RENDERED)
         excerpt(format: RENDERED)
-        date
         uri
         featuredImage {
           ...FeaturedImageFields
