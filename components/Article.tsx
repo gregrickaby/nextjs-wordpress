@@ -39,12 +39,12 @@ export default function Article({content}: ArticleProps) {
       />
       {content?.categories?.nodes.map((category) => (
         <div key={category?.name}>
-          Posted under: <a href={`${category?.uri}`}>{category?.name}</a>
+          Posted under: <span>{category?.name}</span>
         </div>
       ))}
       {content?.tags?.nodes.map((tag) => (
         <div key={tag?.name}>
-          Tagged with: <a href={`${tag?.uri}`}>{tag?.name}</a>
+          Tagged with: <span>{tag?.name}</span>
         </div>
       ))}
     </article>
