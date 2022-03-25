@@ -7,11 +7,11 @@
 - Next.js w/ TypeScript
 - WordPress in a Docker container
 - Apollo Client w/ WP GraphQL
+- Native WordPress menus and comments
 - Date based blog routing (`YYYY/MM/DD/slug`)
-- Custom Post Type support via CPT UI
-- Custom Field support via Advanced Custom Fields
-- Native WordPress comment support
-- SEO support via Yoast SEO
+- SEO via Yoast
+- Custom Post Types via CPT UI
+- Custom Fields via Advanced Custom Fields
 - ESLint, Stylelint, Prettier, and more!
 
 ## Table of Contents <!-- omit in toc -->
