@@ -10,7 +10,7 @@ export default function Layout({settings, menu, seo, children}: LayoutProps) {
       <Head>{seo?.fullHead ? parse(seo?.fullHead) : null}</Head>
       <Header settings={settings} menu={menu} />
       <main>{children}</main>
-      <Footer />
+      <Footer {...settings} />
     </div>
   )
 }
