@@ -89,7 +89,7 @@ export const SINGLE_POST_QUERY = gql`
       content(format: RENDERED)
       commentCount
       commentStatus
-      comments(where: {order: ASC}) {
+      comments(first: 100, where: {order: ASC}) {
         ...CommentFields
       }
       date
