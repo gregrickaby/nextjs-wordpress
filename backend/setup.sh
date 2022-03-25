@@ -45,5 +45,5 @@ wp menu create "Primary"
 wp menu item add-post primary 2
 wp menu item add-post primary 5
 wp menu location assign primary primary
-wp rewrite structure "/%year%/%monthnum%/%postname%"
+wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"

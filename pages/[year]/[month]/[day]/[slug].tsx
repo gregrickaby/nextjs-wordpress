@@ -37,7 +37,8 @@ export async function getStaticPaths() {
       params: {
         year: slug[0] || '',
         month: slug[1] || '',
-        slug: slug[2] || ''
+        day: slug[2] || '',
+        slug: slug[3] || ''
       }
     }
   })
