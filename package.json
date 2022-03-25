@@ -1,17 +1,17 @@
 {
-  "name": "next-wordpress-with-apollo",
-  "description": "Next.js + WordPress with Apollo Client",
+  "name": "nextjs-wordpress",
+  "description": "💀 It's headless WordPress!",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregrickaby/nextjs-wordpress-with-apollo.git"
+    "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
   },
   "author": "Greg Rickaby <gregrickaby@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gregrickaby/nextjs-wordpress-with-apollo/issues"
+    "url": "https://github.com/gregrickaby/nextjs-wordpress/issues"
   },
-  "homepage": "https://github.com/gregrickaby/nextjs-wordpress-with-apollo#readme",
+  "homepage": "https://github.com/gregrickaby/nextjs-wordpress#readme",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -27,12 +27,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "graphql": "^16.3.0",
-    "hint": "^6.1.10",
-    "html-dom-parser": "^1.1.1",
     "html-react-parser": "^1.4.9",
-    "html2json": "^1.0.2",
-    "htmlparser2": "^7.2.0",
-    "isomorphic-dompurify": "^0.18.0",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
