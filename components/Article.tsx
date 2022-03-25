@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import parseContent from '~/lib/parseContent'
 import {ArticleProps} from '~/lib/types'
 
 export default function Article({content}: ArticleProps) {
@@ -34,9 +35,7 @@ export default function Article({content}: ArticleProps) {
           width={content?.featuredImage?.node?.mediaDetails?.width}
         />
       )}
-      <div
-        dangerouslySetInnerHTML={{__html: content?.content || content?.excerpt}}
-      />
+      {parseContent(content?.content || content?.excerpt)}
       {content?.categories?.nodes.map((category) => (
         <div key={category?.name}>
           Posted under: <span>{category?.name}</span>

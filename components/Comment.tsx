@@ -1,3 +1,4 @@
+import parseComment from '~/lib/parseComment'
 import {CommentFields} from '~/lib/types'
 
 export default function Comment(comment: CommentFields) {
@@ -18,7 +19,7 @@ export default function Comment(comment: CommentFields) {
           <time>{comment?.date}</time>
         </h3>
       </header>
-      <main dangerouslySetInnerHTML={{__html: comment?.content}} />
+      <main>{parseComment(comment?.content)}</main>
     </article>
   )
 }

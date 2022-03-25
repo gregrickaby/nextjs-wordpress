@@ -90,6 +90,12 @@ export default function CommentForm({postId}: {postId: number}) {
           placeholder="Add your comment"
           required
         />
+        <p>
+          Basic HTML tags such as <code>&lt;strong&gt;</code>,{' '}
+          <code>&lt;em&gt;</code>, <code>&lt;pre&gt;</code>,{' '}
+          <code>&lt;code&gt;</code>, are allowed. Press enter twice to create a
+          new paragraph.
+        </p>
         <button aria-label="Click to submit your comment" type="submit">
           Submit
         </button>
