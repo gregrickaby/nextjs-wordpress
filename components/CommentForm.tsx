@@ -2,13 +2,14 @@ import {useMutation} from '@apollo/client'
 import {useForm} from 'react-hook-form'
 import Comment from '~/components/Comment'
 import {CREATE_COMMENT} from '~/lib/mutations'
+import {CommentFormFields} from '~/lib/types'
 
 export default function CommentForm({postId}: {postId: number}) {
   const {register, handleSubmit} = useForm()
   const [addComment, {error, data}] = useMutation(CREATE_COMMENT)
 
   // Form submission handler.
-  function onSubmit(form) {
+  function onSubmit(form: CommentFormFields) {
     addComment({
       variables: {
         authorName: form?.authorName,

@@ -1,4 +1,4 @@
-import {GetStaticProps} from 'next'
+import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Layout from '~/components/Layout'
 import {
@@ -7,7 +7,7 @@ import {
   POSTS_ARCHIVE_QUERY,
   SINGLE_PAGE_QUERY
 } from '~/lib/queries'
-import {PageProps} from '~/lib/types'
+import {ContentFields, PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
 export default function Page({data}: PageProps) {
@@ -21,7 +21,7 @@ export default function Page({data}: PageProps) {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
           // Loop over and display cards.
-          data?.page?.nodes?.map((node, index: number) => (
+          data?.page?.nodes?.map((node: ContentFields, index: number) => (
             <Article key={index} content={node} />
           ))
         ) : (
@@ -32,12 +32,12 @@ export default function Page({data}: PageProps) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const {data} = await client.query({
     query: GET_ALL_PAGES
   })
 
-  const paths = data.pages.nodes.map((page) => {
+  const paths = data.pages.nodes.map((page: {slug: string}) => {
     return {
       params: {
         slug: [page.slug]

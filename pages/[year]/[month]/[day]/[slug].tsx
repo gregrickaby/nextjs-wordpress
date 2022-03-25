@@ -1,4 +1,4 @@
-import {GetStaticProps} from 'next'
+import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Comments from '~/components/Comments'
 import Layout from '~/components/Layout'
@@ -25,12 +25,12 @@ export default function Post({data}: PageProps) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const {data} = await client.query({
     query: GET_ALL_POSTS
   })
 
-  const paths = data.posts.nodes.map((post) => {
+  const paths = data.posts.nodes.map((post: {uri: string}) => {
     const slug = post.uri.replace(/^\/|\/$/g, '').split('/')
 
     return {

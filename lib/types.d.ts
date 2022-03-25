@@ -35,7 +35,7 @@ export interface LayoutProps {
   children: any
 }
 
-interface SettingsFields {
+export interface SettingsFields {
   dateFormat: string
   description: string
   language: string
@@ -43,18 +43,20 @@ interface SettingsFields {
   title: string
 }
 
-interface MenuFields {
+export interface MenuFields {
   menuItems: {
-    nodes: {
-      map: any
-      path: string
-      target: string
-      label: string
-    }
+    nodes: MenuItemFields
   }
 }
 
-interface ContentFields {
+export interface MenuItemFields {
+  map: any
+  path: string
+  target: string
+  label: string
+}
+
+export interface ContentFields {
   author: {
     node: {
       name: string
@@ -100,7 +102,7 @@ interface ContentFields {
   }
 }
 
-interface ArchiveFields {
+export interface ArchiveFields {
   length: number
   map: any
   title: string
@@ -109,7 +111,7 @@ interface ArchiveFields {
   featuredImage: FeaturedImageFields
 }
 
-interface FeaturedImageFields {
+export interface FeaturedImageFields {
   node: {
     altText: string
     sourceUrl: string
@@ -120,7 +122,7 @@ interface FeaturedImageFields {
   }
 }
 
-interface CommentFields {
+export interface CommentFields {
   author: {
     node: {
       gravatarUrl: string
@@ -133,4 +135,12 @@ interface CommentFields {
   databaseId: number
   date: string
   map: any
+}
+
+export interface CommentFormFields {
+  authorName: string
+  authorEmail: string
+  authorUrl: string
+  comment: string
+  postID: number
 }
