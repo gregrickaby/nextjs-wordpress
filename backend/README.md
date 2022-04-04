@@ -207,7 +207,7 @@ Now you can run Composer from inside the container.
 For example, to validate the `composer.json`:
 
 ```bash
-compeser validate
+composer validate
 ```
 
 Will return:
