@@ -236,15 +236,15 @@
         },
         {
             "name": "wpackagist-plugin/add-wpgraphql-seo",
-            "version": "4.16.2",
+            "version": "4.17.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/add-wpgraphql-seo/",
-                "reference": "tags/4.16.2"
+                "reference": "tags/4.17.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.16.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.17.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
