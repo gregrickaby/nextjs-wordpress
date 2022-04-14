@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "75e5ef05436c90ac565a48176cc7465991908352"
+                "reference": "af93ba6e52236418f07a278033eba6959ee5b983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/75e5ef05436c90ac565a48176cc7465991908352",
-                "reference": "75e5ef05436c90ac565a48176cc7465991908352",
+                "url": "https://api.github.com/repos/composer/installers/zipball/af93ba6e52236418f07a278033eba6959ee5b983",
+                "reference": "af93ba6e52236418f07a278033eba6959ee5b983",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.1.0"
+                "source": "https://github.com/composer/installers/tree/v2.1.1"
             },
             "funding": [
                 {
@@ -148,26 +148,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-18T12:27:54+00:00"
+            "time": "2022-04-13T09:13:00+00:00"
         },
         {
             "name": "webdevstudios/wds-headless-core",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WebDevStudios/wds-headless-core.git",
-                "reference": "201b85e94a1104fb97dd303fdafc6e36d264d93f"
+                "reference": "a1d622258e0cb036ac3897616fc1ee21d6376bc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/201b85e94a1104fb97dd303fdafc6e36d264d93f",
-                "reference": "201b85e94a1104fb97dd303fdafc6e36d264d93f",
+                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/a1d622258e0cb036ac3897616fc1ee21d6376bc0",
+                "reference": "a1d622258e0cb036ac3897616fc1ee21d6376bc0",
                 "shasum": ""
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
-                "wp-cli/wp-cli-bundle": "^2.5",
+                "wp-cli/wp-cli-bundle": "^2.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
             "type": "wordpress-plugin",
@@ -184,9 +184,9 @@
             "description": "The core WordPress plugin for the Next.js WordPress Starter.",
             "homepage": "https://github.com/WebDevStudios/nextjs-wordpress-starter",
             "support": {
-                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.2"
+                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.3"
             },
-            "time": "2022-03-18T17:58:02+00:00"
+            "time": "2022-04-14T14:28:29+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",
