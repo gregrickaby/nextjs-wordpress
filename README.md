@@ -7,6 +7,7 @@
 - Next.js w/ TypeScript
 - WordPress in a Docker container
 - Apollo Client w/ WP GraphQL
+- Incremental Static Regeneration + On Demand Revalidation
 - Native WordPress menus and comments
 - Date based blog routing (`YYYY/MM/DD/slug`)
 - SEO via Yoast
