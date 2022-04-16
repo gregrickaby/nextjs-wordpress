@@ -6,46 +6,61 @@ import {ArticleProps} from '~/lib/types'
 export default function Article({content}: ArticleProps) {
   return (
     <article>
-      <h1 className="mb-4 text-3xl">
-        {content?.uri ? (
-          <Link href={content?.uri}>
-            <a>{content?.title}</a>
-          </Link>
-        ) : (
-          content?.title
-        )}
-      </h1>
-      <div className="flex justify-between">
-        <cite>{content?.author?.node?.name}</cite>
-        {content?.date && (
-          <time>
-            {new Intl.DateTimeFormat('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric'
-            }).format(Date.parse(content?.date))}
-          </time>
-        )}
-      </div>
+      <header className="mb-16 text-center">
+        {content?.categories?.nodes.length > 1 &&
+          content?.categories?.nodes.map((category) => (
+            <span key={category?.name}>{category?.name}</span>
+          ))}
+        <h1 className="lg:mb-0">
+          {content?.uri ? (
+            <Link href={content?.uri}>
+              <a>{content?.title}</a>
+            </Link>
+          ) : (
+            content?.title
+          )}
+        </h1>
+        <p>
+          {!!content?.author?.node?.name && (
+            <>
+              By <cite>{content?.author?.node?.name}</cite>
+            </>
+          )}
+          {!!content?.date && (
+            <>
+              on{' '}
+              <time>
+                {new Intl.DateTimeFormat('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                }).format(Date.parse(content?.date))}
+              </time>
+            </>
+          )}
+        </p>
+      </header>
       {!!content?.featuredImage && (
-        <Image
-          alt={content?.featuredImage?.node?.altText}
-          src={content?.featuredImage?.node?.sourceUrl}
-          height={content?.featuredImage?.node?.mediaDetails?.height}
-          width={content?.featuredImage?.node?.mediaDetails?.width}
-        />
+        <aside>
+          <Image
+            alt={content?.featuredImage?.node?.altText}
+            src={content?.featuredImage?.node?.sourceUrl}
+            height={content?.featuredImage?.node?.mediaDetails?.height}
+            width={content?.featuredImage?.node?.mediaDetails?.width}
+          />
+        </aside>
       )}
-      {parseContent(content?.content || content?.excerpt)}
-      {content?.categories?.nodes.map((category) => (
-        <div key={category?.name}>
-          Posted under: <span>{category?.name}</span>
-        </div>
-      ))}
-      {content?.tags?.nodes.map((tag) => (
-        <div key={tag?.name}>
-          Tagged with: <span>{tag?.name}</span>
-        </div>
-      ))}
+      <main>{parseContent(content?.content || content?.excerpt)}</main>
+      <footer>
+        {content?.tags?.nodes.length > 1 && (
+          <>
+            Tagged with:{' '}
+            {content?.tags?.nodes.map((tag) => (
+              <span key={tag?.name}>{tag?.name}</span>
+            ))}
+          </>
+        )}
+      </footer>
     </article>
   )
 }

@@ -6,7 +6,7 @@ import {LayoutProps} from '~/lib/types'
 
 export default function Layout({settings, menu, seo, children}: LayoutProps) {
   return (
-    <div className="container m-auto my-8 space-y-8">
+    <div className="container prose prose-stone m-auto my-8 space-y-16 dark:prose-invert lg:prose-xl">
       <Head>{seo?.fullHead ? parse(seo?.fullHead) : null}</Head>
       <Header settings={settings} menu={menu} />
       <main>{children}</main>

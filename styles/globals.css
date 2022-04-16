@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  .field {
-    @apply flex rounded-md border-2 p-2;
+  html {
+    @apply bg-white dark:bg-black;
+  }
+
+  a:hover {
+    @apply no-underline;
   }
 }
