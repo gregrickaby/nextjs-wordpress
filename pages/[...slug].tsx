@@ -1,5 +1,6 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
+import Card from '~/components/Card'
 import Layout from '~/components/Layout'
 import {
   BOOKS_ARCHIVE_QUERY,
@@ -20,10 +21,11 @@ export default function Page({data}: PageProps) {
       {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
-          // Loop over and display cards.
-          data?.page?.nodes?.map((node: ContentFields, index: number) => (
-            <Article key={index} content={node} />
-          ))
+          <div className="grid grid-cols-2 gap-16">
+            {data?.page?.nodes?.map((node: ContentFields, index: number) => (
+              <Card key={index} content={node} />
+            ))}
+          </div>
         ) : (
           <Article content={data?.page} />
         )
