@@ -135,6 +135,7 @@ export interface CommentFields {
   databaseId: number
   date: string
   map: any
+  parentId: string
 }
 
 export interface CommentFormFields {

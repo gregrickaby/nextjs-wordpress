@@ -49,6 +49,7 @@ export const COMMENTS_FRAGMENT = gql`
       content(format: RENDERED)
       databaseId
       date
+      parentId
     }
   }
 `
