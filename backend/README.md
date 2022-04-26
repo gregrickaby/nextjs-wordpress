@@ -144,10 +144,13 @@ WORDPRESS_DEBUG: 1 # Set to 0 to disable `WP_DEBUG`
 WORDPRESS_CONFIG_EXTRA: |
   define('WP_CACHE', false);
   define('WP_DEBUG_DISPLAY', false);
-  define('WP_DEBUG_LOG', false);
+  define('WP_DEBUG_LOG', true);
   define('WP_MEMORY_LIMIT', '256M');
   define('WP_ENVIRONMENT_TYPE', 'development');
   define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
+  define('PREVIEW_SECRET_TOKEN', '${PREVIEW_SECRET_TOKEN}');
+  define('WP_SITEURL', '${WORDPRESS_BACKEND_URL}');
+  define('WP_HOME', '${WORDPRESS_BACKEND_URL}');
 ```
 
 > If you change the default values, run `docker-compose up -d` to rebuild the containers.
