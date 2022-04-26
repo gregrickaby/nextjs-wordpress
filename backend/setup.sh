@@ -31,7 +31,7 @@ sleep 2
 echo -e "\e[36mStarting setup of Headless WordPress...\e[0m"
 sleep 2
 wp --info
-wp core install --url="http://localhost:8000" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email
+wp core install --url="${WORDPRESS_BACKEND_URL}" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email
 wp theme activate twentytwentyone
 wp theme delete twentytwenty twentytwentytwo
 wp plugin delete akismet hello

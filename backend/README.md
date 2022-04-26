@@ -50,6 +50,9 @@ cp .env.sample .env
 If you'd like, open the `.env` file in your editor, and customize the following values:
 
 ```text
+# The WordPress URL
+WORDPRESS_BACKEND_URL="http://localhost:8000"
+
 # MySQL Creds
 MYSQL_ROOT_PASSWORD="root"
 
@@ -67,6 +70,7 @@ WORDPRESS_EMAIL="foo@bar.com"
 
 # Headless Creds
 HEADLESS_FRONTEND_URL="http://localhost:3000/"
+PREVIEW_SECRET_TOKEN="wordpress"
 ```
 
 Save the the `.env` file.

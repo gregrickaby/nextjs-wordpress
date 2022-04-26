@@ -40,6 +40,8 @@ services:
         define('WP_ENVIRONMENT_TYPE', 'development');
         define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
         define('PREVIEW_SECRET_TOKEN', '${PREVIEW_SECRET_TOKEN}');
+        define('WP_SITEURL', '${WORDPRESS_BACKEND_URL}');
+        define('WP_HOME', '${WORDPRESS_BACKEND_URL}');
 
   wpcli:
     container_name: wpcli
