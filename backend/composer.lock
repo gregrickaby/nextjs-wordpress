@@ -152,16 +152,16 @@
         },
         {
             "name": "webdevstudios/wds-headless-core",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WebDevStudios/wds-headless-core.git",
-                "reference": "a1d622258e0cb036ac3897616fc1ee21d6376bc0"
+                "reference": "ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/a1d622258e0cb036ac3897616fc1ee21d6376bc0",
-                "reference": "a1d622258e0cb036ac3897616fc1ee21d6376bc0",
+                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17",
+                "reference": "ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17",
                 "shasum": ""
             },
             "require-dev": {
@@ -184,9 +184,9 @@
             "description": "The core WordPress plugin for the Next.js WordPress Starter.",
             "homepage": "https://github.com/WebDevStudios/nextjs-wordpress-starter",
             "support": {
-                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.3"
+                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.4"
             },
-            "time": "2022-04-14T14:28:29+00:00"
+            "time": "2022-04-26T17:38:14+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",
@@ -333,5 +333,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
