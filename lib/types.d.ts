@@ -74,6 +74,9 @@ export interface ContentFields {
   description?: string
   excerpt?: string
   featuredImage: FeaturedImageFields
+  hearts?: {
+    hearts: number
+  }
   title: string
   uri: string
   seo: {

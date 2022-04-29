@@ -1,9 +1,29 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import {useEffect, useState} from 'react'
 import parseContent from '~/lib/parseContent'
 import {ArticleProps} from '~/lib/types'
 
 export default function Article({content}: ArticleProps) {
+  const [hearts, setHearts] = useState(0)
+
+  function incrementHeart(totalHearts: number) {
+    fetch(
+      `/api/wordpress/hearts?postID=${content?.databaseId}&hearts=${
+        totalHearts + 1
+      }`,
+      {
+        method: 'POST'
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setHearts(data.hearts)
+      })
+  }
+
+  useEffect(() => setHearts(content?.hearts?.hearts), [content])
+
   return (
     <article>
       <header className="mb-16 text-center">
@@ -28,6 +48,7 @@ export default function Article({content}: ArticleProps) {
           )}
           {!!content?.date && (
             <>
+              {' '}
               on{' '}
               <time>
                 {new Intl.DateTimeFormat('en-US', {
@@ -60,6 +81,13 @@ export default function Article({content}: ArticleProps) {
             ))}
           </>
         )}
+
+        <button onClick={() => incrementHeart(hearts)}>
+          {hearts} likes{' '}
+          <span role="img" arial-label="heart">
+            ❤️
+          </span>
+        </button>
       </footer>
     </article>
   )

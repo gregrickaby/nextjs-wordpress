@@ -94,6 +94,9 @@ export const SINGLE_POST_QUERY = gql`
       }
       date
       databaseId
+      hearts {
+        hearts
+      }
       uri
       featuredImage {
         ...FeaturedImageFields
