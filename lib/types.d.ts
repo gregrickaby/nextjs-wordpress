@@ -1,11 +1,11 @@
 export interface PageProps {
   data: {
+    book?: ContentFields
     generalSettings: SettingsFields
     menu: MenuFields
     page?: ContentFields
     post?: ContentFields
     posts?: ArchiveFields
-    book?: ContentFields
   }
 }
 
@@ -22,17 +22,17 @@ export interface CommentProps {
 }
 
 export interface HeaderProps {
-  settings: SettingsFields
   menu: MenuFields
+  settings: SettingsFields
 }
 
 export interface LayoutProps {
-  settings: SettingsFields
+  children: any
   menu: MenuFields
+  settings: SettingsFields
   seo: {
     fullHead: string
   }
-  children: any
 }
 
 export interface SettingsFields {
@@ -63,9 +63,23 @@ export interface ContentFields {
       gravatarUrl: string
     }
   }
-  commentCount: number
-  commentStatus: string
-  comments: {
+  bookFields?: {
+    affiliateUrl: string
+    isbn: string
+  }
+  categories?: {
+    edges: [
+      node: {
+        node: {
+          name: string
+          uri: string
+        }
+      }
+    ]
+  }
+  commentCount?: number
+  commentStatus?: string
+  comments?: {
     nodes: CommentFields
   }
   content: string
@@ -77,41 +91,31 @@ export interface ContentFields {
   hearts?: {
     hearts: number
   }
+  tags?: {
+    edges: [
+      node: {
+        node: {
+          name: string
+          uri: string
+        }
+      }
+    ]
+  }
   title: string
   uri: string
   seo: {
     fullHead: string
   }
   nodes?: ArchiveFields
-  bookFields?: {
-    affiliateUrl: string
-    isbn: string
-  }
-  tags: {
-    nodes: [
-      {
-        name: string
-        uri: string
-      }
-    ]
-  }
-  categories: {
-    nodes: [
-      {
-        name: string
-        uri: string
-      }
-    ]
-  }
 }
 
 export interface ArchiveFields {
+  excerpt: string
+  featuredImage: FeaturedImageFields
   length: number
   map: any
   title: string
-  excerpt: string
   uri: string
-  featuredImage: FeaturedImageFields
 }
 
 export interface FeaturedImageFields {

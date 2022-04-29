@@ -27,9 +27,9 @@ export default function Article({content}: ArticleProps) {
   return (
     <article>
       <header className="mb-16 text-center">
-        {content?.categories?.nodes.length > 1 &&
-          content?.categories?.nodes.map((category) => (
-            <span key={category?.name}>{category?.name}</span>
+        {content?.categories?.edges?.length >= 1 &&
+          content?.categories?.edges?.map(({node}) => (
+            <span key={node?.name}>{node?.name}</span>
           ))}
         <h1 className="lg:mb-0">
           {content?.uri ? (
@@ -73,21 +73,24 @@ export default function Article({content}: ArticleProps) {
       )}
       <main>{parseContent(content?.content || content?.excerpt)}</main>
       <footer>
-        {content?.tags?.nodes.length > 1 && (
+        {content?.tags?.edges.length >= 1 && (
           <>
             Tagged with:{' '}
-            {content?.tags?.nodes.map((tag) => (
-              <span key={tag?.name}>{tag?.name}</span>
+            {content?.tags?.edges.map(({node}) => (
+              <span key={node?.name} className="mx-1 p-1 dark:bg-zinc-600">
+                {node?.name}
+              </span>
             ))}
           </>
         )}
-
-        <button onClick={() => incrementHeart(hearts)}>
-          {hearts} likes{' '}
-          <span role="img" arial-label="heart">
-            ❤️
-          </span>
-        </button>
+        <div>
+          <button onClick={() => incrementHeart(hearts)}>
+            {hearts} likes{' '}
+            <span role="img" arial-label="heart">
+              ❤️
+            </span>
+          </button>
+        </div>
       </footer>
     </article>
   )

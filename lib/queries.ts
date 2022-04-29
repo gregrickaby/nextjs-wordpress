@@ -86,6 +86,14 @@ export const SINGLE_POST_QUERY = gql`
           name
         }
       }
+      categories {
+        edges {
+          node {
+            name
+            uri
+          }
+        }
+      }
       content(format: RENDERED)
       commentCount
       commentStatus
@@ -105,18 +113,14 @@ export const SINGLE_POST_QUERY = gql`
         fullHead
       }
       tags {
-        nodes {
-          name
-          uri
+        edges {
+          node {
+            name
+            uri
+          }
         }
       }
       title(format: RENDERED)
-      categories {
-        nodes {
-          name
-          uri
-        }
-      }
     }
   }
 `
