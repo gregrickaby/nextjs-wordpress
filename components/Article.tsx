@@ -7,6 +7,9 @@ import {ArticleProps} from '~/lib/types'
 export default function Article({content}: ArticleProps) {
   const [hearts, setHearts] = useState(0)
 
+  /**
+   * Increment the number of hearts.
+   */
   function incrementHeart(totalHearts: number) {
     fetch(
       `/api/wordpress/hearts?postID=${content?.databaseId}&hearts=${
@@ -22,6 +25,7 @@ export default function Article({content}: ArticleProps) {
       })
   }
 
+  // Set heart count on initial load.
   useEffect(() => setHearts(content?.hearts?.hearts), [content])
 
   return (

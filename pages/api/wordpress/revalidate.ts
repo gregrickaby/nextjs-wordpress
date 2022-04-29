@@ -4,6 +4,15 @@ interface ResponseData {
   message: string
 }
 
+/**
+ * On Demand Revalidation
+ *
+ * @author Greg Rickaby
+ * @see https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation-beta
+ * @see https://nextjs.org/docs/api-routes/introduction
+ * @see https://nodejs.org/api/http.html#http_class_http_incomingmessage
+ * @see https://nodejs.org/api/http.html#http_class_http_serverresponse
+ */
 export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
