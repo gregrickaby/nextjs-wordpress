@@ -83,6 +83,11 @@ export interface ContentFields {
     nodes: CommentFields
   }
   content: string
+  contentType: {
+    node: {
+      name: string
+    }
+  }
   date: string
   databaseId: number
   description?: string

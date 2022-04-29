@@ -83,14 +83,16 @@ export default function Article({content}: ArticleProps) {
             ))}
           </>
         )}
-        <div>
-          <button onClick={() => incrementHeart(hearts)}>
-            {hearts} likes{' '}
-            <span role="img" arial-label="heart">
-              ❤️
-            </span>
-          </button>
-        </div>
+        {content?.contentType?.node?.name === 'post' && (
+          <div>
+            <button onClick={() => incrementHeart(hearts)}>
+              {!hearts ? 0 : hearts} likes{' '}
+              <span role="img" arial-label="heart">
+                ❤️
+              </span>
+            </button>
+          </div>
+        )}
       </footer>
     </article>
   )
