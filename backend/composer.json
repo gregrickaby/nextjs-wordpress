@@ -41,6 +41,7 @@
     "wpackagist-plugin/advanced-custom-fields": "^5.12",
     "wpackagist-plugin/wordpress-seo": "^18.2",
     "wpackagist-plugin/wp-graphql": "^1.6",
-    "wpackagist-plugin/custom-post-type-ui": "^1.10"
+    "wpackagist-plugin/custom-post-type-ui": "^1.10",
+    "wpackagist-plugin/wordpress-beta-tester": "^3.2"
   }
 }
