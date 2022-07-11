@@ -2,7 +2,6 @@ version: '3'
 
 services:
   mysql:
-    container_name: mysql
     image: mariadb:latest
     restart: always
     volumes:
@@ -17,7 +16,6 @@ services:
       MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
 
   traefik:
-    container_name: traefik
     image: traefik:latest
     restart: always
     ports:
@@ -41,7 +39,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   wordpress:
-    container_name: wordpress
     image: wordpress:latest
     restart: always
     depends_on:
@@ -74,7 +71,6 @@ services:
         define('WP_HOME', 'https://${WORDPRESS_URL}');
 
   wpcli:
-    container_name: wpcli
     image: wordpress:cli
     depends_on:
       - wordpress
@@ -91,7 +87,6 @@ services:
       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
 
   phpmyadmin:
-    container_name: phpmyadmin
     image: phpmyadmin:latest
     depends_on:
       - mysql
@@ -104,7 +99,6 @@ services:
       PMA_PASSWORD: ${WORDPRESS_DB_PASSWORD}
 
   composer:
-    container_name: composer
     image: composer:latest
     command: >
       /bin/sh -c '
