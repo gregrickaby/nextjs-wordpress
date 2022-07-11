@@ -31,7 +31,7 @@ sleep 2
 echo -e "\e[36mStarting setup of Headless WordPress...\e[0m"
 sleep 2
 wp --info
-wp core install --url="${WORDPRESS_BACKEND_URL}" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email
+wp core install --url="https://${WORDPRESS_URL}" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email
 wp theme activate twentytwentyone
 wp theme delete twentytwenty twentytwentytwo
 wp plugin delete akismet hello
@@ -47,3 +47,8 @@ wp menu item add-post primary 5
 wp menu location assign primary primary
 wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"
+sleep 1
+echo -e "\e[36m\e[1mInfo:\e[0m\e[0m Please add the following entry to your hosts file: \e[36m\e[1m127.0.0.1 ${WORDPRESS_URL}\e[0m\e[0m"
+sleep 1
+echo -e "\e[36m\e[1mInfo:\e[0m\e[0m Visit https://${WORDPRESS_URL}/wp-admin to log into WordPress."
+exit 0

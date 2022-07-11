@@ -4,11 +4,11 @@ services:
   mysql:
     container_name: mysql
     image: mariadb:latest
+    restart: always
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
       - 3306:3306
-    restart: always
     command: '--default-authentication-plugin=mysql_native_password'
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -16,16 +16,46 @@ services:
       MYSQL_USER: ${WORDPRESS_DB_USER}
       MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
 
+  traefik:
+    container_name: traefik
+    image: traefik:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    command:
+      - --accesslog
+      - --log.level=INFO
+      - --api.dashboard=true
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.web.http.redirections.entrypoint.permanent=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   wordpress:
     container_name: wordpress
     image: wordpress:latest
+    restart: always
     depends_on:
       - mysql
     volumes:
       - ./wordpress:/var/www/html
-    ports:
-      - 8000:80
-    restart: always
+    expose:
+      - 80
+      - 443
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wordpress.rule=Host(`${WORDPRESS_URL}`)
+      - traefik.http.routers.wordpress.entrypoints=websecure
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
@@ -40,8 +70,8 @@ services:
         define('WP_ENVIRONMENT_TYPE', 'development');
         define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
         define('PREVIEW_SECRET_TOKEN', '${PREVIEW_SECRET_TOKEN}');
-        define('WP_SITEURL', '${WORDPRESS_BACKEND_URL}');
-        define('WP_HOME', '${WORDPRESS_BACKEND_URL}');
+        define('WP_SITEURL', 'https://${WORDPRESS_URL}');
+        define('WP_HOME', 'https://${WORDPRESS_URL}');
 
   wpcli:
     container_name: wpcli
@@ -66,7 +96,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8080:80
+      - 8081:80
     restart: always
     environment:
       PMA_HOST: ${WORDPRESS_DB_HOST}

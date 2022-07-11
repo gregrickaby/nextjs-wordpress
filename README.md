@@ -6,6 +6,7 @@
 
 - Next.js w/ TypeScript
 - WordPress in a Docker container
+- Self-signed SSL certificate from Traefik
 - Apollo Client w/ WP GraphQL
 - Incremental Static Regeneration + On Demand Revalidation
 - Native WordPress menus and comments
@@ -20,9 +21,8 @@
 - [Requirements](#requirements)
 - [Next.js Install & Setup](#nextjs-install--setup)
   - [ENV Variables](#env-variables)
-    - [ENV Variables Explained](#env-variables-explained)
 - [WordPress Setup](#wordpress-setup)
-- [Development](#development)
+- [Next.js Development](#nextjs-development)
 - [Get Ready for Production](#get-ready-for-production)
 
 ## Requirements
@@ -38,24 +38,10 @@ npx create-next-app nextjs-wordpress --example https://github.com/gregrickaby/ne
 
 ### ENV Variables
 
-Copy `.env.sample` to `.env.local`
+Copy `.env.sample` to `.env`
 
 ```bash
-cp .env.sample .env.local
-```
-
-#### ENV Variables Explained
-
-The WordPress URL (without trailing slash):
-
-```bash
-NEXT_PUBLIC_WORDPRESS_URL="http://localhost:8000"
-```
-
-Domains for Next/Image component:
-
-```bash
-NEXT_PUBLIC_IMAGE_DOMAINS="localhost"
+cp .env.sample .env
 ```
 
 ---
@@ -66,7 +52,7 @@ See [backend/README.md](backend/README.md) for instructions on setting up WordPr
 
 ---
 
-## Development
+## Next.js Development
 
 Start the development server on <http://localhost:3000>
 

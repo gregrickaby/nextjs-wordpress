@@ -13,13 +13,15 @@ The following instructions will help you get started with setting up the WordPre
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
   - [3) Create Containers](#3-create-containers)
   - [4) Run Setup Script](#4-run-setup-script)
-  - [5) Log into WordPress](#5-log-into-wordpress)
+  - [5) Update your hosts file](#5-update-your-hosts-file)
+  - [6) Log into WordPress](#6-log-into-wordpress)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
+  - [Traefik](#traefik)
 - [Docker Compose](#docker-compose)
   - [Start Containers](#start-containers)
   - [Pause Containers](#pause-containers)
@@ -50,8 +52,8 @@ cp .env.sample .env
 If you'd like, open the `.env` file in your editor, and customize the following values:
 
 ```text
-# The WordPress URL
-WORDPRESS_BACKEND_URL="http://localhost:8000"
+# The WordPress URL (no http//https!)
+WORDPRESS_URL="headlesswp.test"
 
 # MySQL Creds
 MYSQL_ROOT_PASSWORD="root"
@@ -92,6 +94,7 @@ The following containers will be created:
 - Composer
 - MariaDB (MySQL)
 - phpMyAdmin
+- Traefik
 - WordPress
 - WP-CLI
 
@@ -104,16 +107,38 @@ The following containers will be created:
 The setup script will configure WordPress for you. Run the following command:
 
 ```bash
-docker exec -it wpcli bash -c "chmod +x setup.sh && ./setup.sh && exit"
+docker exec -it wpcli bash -c "chmod +x setup.sh && ./setup.sh"
 ```
 
 > You only need to run this command once. If you destroy and recreate the containers at a later time, you can run this command again.
 
 ---
 
-### 5) Log into WordPress
+### 5) Update your hosts file
 
-View the WordPress dashboard at: <http://localhost:8000/wp-admin/>
+Before you can log into WordPress, you'll need to add an entry to your hosts file.
+
+On MacOS or Linux:
+
+```bash
+sudo nano /etc/hosts
+```
+
+Copy and paste the following to the bottom of the hosts file:
+
+```text
+127.0.0.1 headlesswp.test
+```
+
+Save the hosts file and close it.
+
+> Use `headlesswp.test` unless you've customized the `WORDPRESS_URL` variable in the `.env` file.
+
+---
+
+### 6) Log into WordPress
+
+View the WordPress dashboard at: <https://headlesswp.test/wp-admin/>
 
 - username `wordpress`
 - password `wordpress`
@@ -128,9 +153,9 @@ That's it!
 
 ### GraphQL
 
-GraphQL endpoint: `http://localhost:8000/graphql`
+GraphQL endpoint: `https://headlesswp.test/graphql`
 
-GraphiQL IDE: <http://localhost:8000/wp-admin/admin.php?page=graphiql-ide>
+GraphiQL IDE: <https://headlesswp.test/wp-admin/admin.php?page=graphiql-ide>
 
 ---
 
@@ -149,8 +174,8 @@ WORDPRESS_CONFIG_EXTRA: |
   define('WP_ENVIRONMENT_TYPE', 'development');
   define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
   define('PREVIEW_SECRET_TOKEN', '${PREVIEW_SECRET_TOKEN}');
-  define('WP_SITEURL', '${WORDPRESS_BACKEND_URL}');
-  define('WP_HOME', '${WORDPRESS_BACKEND_URL}');
+  define('WP_SITEURL', 'https://${WORDPRESS_URL}');
+  define('WP_HOME', 'https://${WORDPRESS_URL}');
 ```
 
 > If you change the default values, run `docker-compose up -d` to rebuild the containers.
@@ -227,7 +252,13 @@ Will return:
 
 ### phpMyAdmin
 
-View the phpMyAdmin dashboard at <http://localhost:8080/>. No credentials are required.
+View the phpMyAdmin dashboard at <http://localhost:8081/>. No credentials are required.
+
+---
+
+### Traefik
+
+View the Traefik dashboard at <http://localhost:8080/dashboard/>. No credentials are required.
 
 ---
 
@@ -317,7 +348,7 @@ The front-end has support for a "Books" custom post type and fields. This is jus
 
 ### Import Book CPT
 
-1. Visit the CPT UI tools page: <http://localhost:8000/wp-admin/admin.php?page=cptui_tools>
+1. Visit the CPT UI tools page: <https://headlesswp.test/wp-admin/admin.php?page=cptui_tools>
 2. Copy and paste the following JSON into the "Import Post Types" field:
 
    ```json
@@ -397,7 +428,7 @@ The front-end has support for a "Books" custom post type and fields. This is jus
 
 ### Import Book Custom Fields
 
-1. Visit the ACF tools page: <http://localhost:8000/wp-admin/edit.php?post_type=acf-field-group&page=acf-tools>
+1. Visit the ACF tools page: <https://headlesswp.test/wp-admin/edit.php?post_type=acf-field-group&page=acf-tools>
 2. Under the Import settings, click "choose file" and select `backend/acf-export.json`
 3. Click the blue "Import" button
 
