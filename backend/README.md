@@ -107,7 +107,7 @@ The following containers will be created:
 The setup script will configure WordPress for you. Run the following command:
 
 ```bash
-docker exec -it wpcli bash -c "chmod +x setup.sh && ./setup.sh"
+docker exec -it backend-wpcli-1 bash -c "chmod +x setup.sh && ./setup.sh"
 ```
 
 > You only need to run this command once. If you destroy and recreate the containers at a later time, you can run this command again.
