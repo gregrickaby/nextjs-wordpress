@@ -49,7 +49,7 @@ cp .env.sample .env
 
 ### 2) Customize ENV Variables (optional)
 
-If you'd like, open the `.env` file in your editor, and customize the following values:
+If you'd like, open the `.env` file in your editor and customize the following values:
 
 ```text
 # The WordPress URL (no http//https!)
