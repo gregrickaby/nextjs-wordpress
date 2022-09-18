@@ -39,7 +39,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   wordpress:
-    image: wordpress:latest
+    image: wordpress:php8.0
     restart: always
     depends_on:
       - mysql
@@ -71,7 +71,7 @@ services:
         define('WP_HOME', 'https://${WORDPRESS_URL}');
 
   wpcli:
-    image: wordpress:cli
+    image: wordpress:cli-php8.0
     depends_on:
       - wordpress
     volumes:

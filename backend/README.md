@@ -203,13 +203,13 @@ wp --info
 Will return:
 
 ```bash
-OS:     Linux 5.10.76-linuxkit #1 SMP PREEMPT Mon Nov 8 11:22:26 UTC 2021 aarch64
+OS:     Linux 5.10.124-linuxkit #1 SMP PREEMPT Thu Jun 30 08:18:26 UTC 2022 aarch64
 Shell:
 PHP binary:     /usr/local/bin/php
-PHP version:    7.4.28
+PHP version:    8.0.23
 php.ini used:
 MySQL binary:   /usr/bin/mysql
-MySQL version:  mysql  Ver 15.1 Distrib 10.6.4-MariaDB, for Linux (aarch64) using readline 5.1
+MySQL version:  mysql  Ver 15.1 Distrib 10.6.9-MariaDB, for Linux (aarch64) using readline 5.1
 SQL modes:
 WP-CLI root dir:        phar://wp-cli.phar/vendor/wp-cli/wp-cli
 WP-CLI vendor dir:      phar://wp-cli.phar/vendor
