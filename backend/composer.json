@@ -35,13 +35,13 @@
     }
   },
   "require": {
-    "webdevstudios/wds-headless-core": "^2.1",
+    "gregrickaby/nextjs-wordpress-core-plugin": "^1.0",
     "wp-graphql/wp-graphql-acf": "^0.3",
     "wpackagist-plugin/add-wpgraphql-seo": "^4.16",
     "wpackagist-plugin/advanced-custom-fields": "^5.12",
-    "wpackagist-plugin/wordpress-seo": "^19.0",
-    "wpackagist-plugin/wp-graphql": "^1.6",
     "wpackagist-plugin/custom-post-type-ui": "^1.10",
-    "wpackagist-plugin/wordpress-beta-tester": "^3.2"
+    "wpackagist-plugin/wordpress-beta-tester": "^3.2",
+    "wpackagist-plugin/wordpress-seo": "^19.0",
+    "wpackagist-plugin/wp-graphql": "^1.6"
   }
 }

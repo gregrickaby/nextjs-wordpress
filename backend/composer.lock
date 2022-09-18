@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93cab4d6c458ae821c96e0c7ecd51e49",
+    "content-hash": "c7a5fe798cfc505b42babc54c5f56fe5",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,42 +152,42 @@
             "time": "2022-08-20T06:45:11+00:00"
         },
         {
-            "name": "webdevstudios/wds-headless-core",
-            "version": "2.1.4",
+            "name": "gregrickaby/nextjs-wordpress-core-plugin",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WebDevStudios/wds-headless-core.git",
-                "reference": "ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17"
+                "url": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin.git",
+                "reference": "b13f5eb054bbf7cddcd9d0fe41c76b5090f48117"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WebDevStudios/wds-headless-core/zipball/ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17",
-                "reference": "ac4b4ff7b9a7dc4be6bf133cafc8128b0349bd17",
+                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-core-plugin/zipball/b13f5eb054bbf7cddcd9d0fe41c76b5090f48117",
+                "reference": "b13f5eb054bbf7cddcd9d0fe41c76b5090f48117",
                 "shasum": ""
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
-                "wp-cli/wp-cli-bundle": "^2.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
             "type": "wordpress-plugin",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0-or-later"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "WebDevStudios",
-                    "email": "contact@webdevstudios.com"
+                    "name": "Greg Rickaby",
+                    "email": "greg@gregrickaby.com"
                 }
             ],
-            "description": "The core WordPress plugin for the Next.js WordPress Starter.",
-            "homepage": "https://github.com/WebDevStudios/nextjs-wordpress-starter",
+            "description": "A plugin to help turn WordPress into a headless CMS.",
+            "homepage": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin",
             "support": {
-                "source": "https://github.com/WebDevStudios/wds-headless-core/tree/2.1.4"
+                "issues": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin/issues",
+                "source": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin/tree/1.0.1"
             },
-            "time": "2022-04-26T17:38:14+00:00"
+            "time": "2022-09-18T20:10:06+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",
