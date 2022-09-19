@@ -41,10 +41,10 @@ wp post create --post_type="page" --post_title="Blog" --post_status="publish"
 wp option update show_on_front page
 wp option update page_on_front 4
 wp option update page_for_posts 5
-wp menu create "Primary"
-wp menu item add-post primary 2
-wp menu item add-post primary 5
-wp menu location assign primary primary
+wp menu create "Header"
+wp menu item add-post header 2
+wp menu item add-post header 5
+wp menu location assign header header
 wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"
 sleep 1
