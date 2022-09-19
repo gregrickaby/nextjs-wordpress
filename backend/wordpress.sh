@@ -1,35 +1,9 @@
 #!/bin/bash
 
-# Simple spinner function.
-spin() {
-  spinner="/|\\-/|\\-"
-  while :
-  do
-    for i in `seq 0 7`
-    do
-      echo -n "${spinner:$i:1}"
-      echo -en "\010"
-      sleep 1
-    done
-  done
-}
-
-spin &
-SPIN_PID=$!
-trap "kill -9 $SPIN_PID" `seq 0 15`
-
-# Wait.
-echo -e "\e[36mWaiting for the MySQL database and WordPress files to be created...\e[0m"
-sleep 45
-
-# Read ENV variables.
-echo -e "\e[36mReading ENV variables...\e[0m"
+# Setup WordPress.
+echo -e "\e[36mSetup WordPress...\e[0m"
+sleep 2
 source .env
-sleep 2
-
-# Setup Headless WordPress.
-echo -e "\e[36mStarting setup of Headless WordPress...\e[0m"
-sleep 2
 wp --info
 wp core install --url="https://${WORDPRESS_URL}" --title="${WORDPRESS_TITLE}" --admin_user="${WORDPRESS_USERNAME}" --admin_password="${WORDPRESS_PASSWORD}" --admin_email="${WORDPRESS_EMAIL}" --skip-email
 wp theme activate twentytwentyone
@@ -47,8 +21,5 @@ wp menu item add-post header 5
 wp menu location assign header header-menu
 wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"
-sleep 1
-echo -e "\e[36m\e[1mInfo:\e[0m\e[0m Please add the following entry to your hosts file: \e[36m\e[1m127.0.0.1 ${WORDPRESS_URL}\e[0m\e[0m"
-sleep 1
-echo -e "\e[36m\e[1mInfo:\e[0m\e[0m Visit https://${WORDPRESS_URL}/wp-admin to log into WordPress."
+sleep 2
 exit 0

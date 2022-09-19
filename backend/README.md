@@ -11,10 +11,8 @@ The following instructions will help you get started with setting up the WordPre
 - [Install](#install)
   - [1) Copy ENV Variables](#1-copy-env-variables)
   - [2) Customize ENV Variables (optional)](#2-customize-env-variables-optional)
-  - [3) Create Containers](#3-create-containers)
-  - [4) Run Setup Script](#4-run-setup-script)
-  - [5) Update your hosts file](#5-update-your-hosts-file)
-  - [6) Log into WordPress](#6-log-into-wordpress)
+  - [3) Run Install Script](#3-run-install-script)
+  - [4) Log into WordPress](#4-log-into-wordpress)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
@@ -79,64 +77,21 @@ Save the the `.env` file.
 
 ---
 
-### 3) Create Containers
+### 3) Run Install Script
 
-The following command will create the containers for the first time:
+From inside the `/backend` directory, run the following command:
 
 ```bash
-docker-compose up -d
+chmod +x install.sh && ./install.sh
 ```
 
-This pulls down the required images, creates each container in detached mode (in the background), then starts each container. Composer will also pull in the required plugins automatically.
+This script pulls down and starts each container. Composer will download the required plugins, WordPress will be configured, and finally the script add an entry to your host file.
 
-The following containers will be created:
-
-- Composer
-- MariaDB (MySQL)
-- phpMyAdmin
-- Traefik
-- WordPress
-- WP-CLI
-
-> During the first run, this process can take several minutes to complete! Please be patient.
+> Note: You will be prompted to enter your password so the script can edit your `/etc/hosts` file
 
 ---
 
-### 4) Run Setup Script
-
-The setup script will configure WordPress for you. Run the following command:
-
-```bash
-docker exec -it backend-wpcli-1 bash -c "chmod +x setup.sh && ./setup.sh"
-```
-
-> You only need to run this command once. If you destroy and recreate the containers at a later time, you can run this command again.
-
----
-
-### 5) Update your hosts file
-
-Before you can log into WordPress, you'll need to add an entry to your hosts file.
-
-On MacOS or Linux:
-
-```bash
-sudo nano /etc/hosts
-```
-
-Copy and paste the following to the bottom of the hosts file:
-
-```text
-127.0.0.1 headlesswp.test
-```
-
-Save the hosts file and close it.
-
-> Use `headlesswp.test` unless you've customized the `WORDPRESS_URL` variable in the `.env` file.
-
----
-
-### 6) Log into WordPress
+### 4) Log into WordPress
 
 View the WordPress dashboard at: <https://headlesswp.test/wp-admin/>
 
@@ -327,7 +282,7 @@ docker-compose down --remove-orphans && rm -rf mysql wordpress
 If you need to tunnel into a Docker container via the terminal, run the following command:
 
 ```bash
-docker exec -it <backend-container-name> /bin/sh
+docker exec -it <backend-container-name-1> /bin/sh
 ```
 
 Where `<container-name>` is the name of the container you want to tunnel into. Here is the list of container names:

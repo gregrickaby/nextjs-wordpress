@@ -76,7 +76,7 @@ services:
       - wordpress
     volumes:
       - ./wordpress:/var/www/html
-      - ./setup.sh:/var/www/html/setup.sh
+      - ./wordpress.sh:/var/www/html/wordpress.sh
       - ./.env:/var/www/html/.env
     user: xfs
     command: tail -f /dev/null;
