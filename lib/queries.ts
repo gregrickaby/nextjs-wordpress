@@ -49,7 +49,7 @@ export const SINGLE_PAGE_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    menu(id: "PRIMARY", idType: NAME) {
+    menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     page(id: $slug, idType: URI) {
@@ -76,7 +76,7 @@ export const SINGLE_POST_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    menu(id: "PRIMARY", idType: NAME) {
+    menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     post(id: $slug, idType: URI) {
@@ -138,7 +138,7 @@ export const SINGLE_BOOK_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    menu(id: "PRIMARY", idType: NAME) {
+    menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     book(id: $slug, idType: URI) {
@@ -168,7 +168,7 @@ export const POSTS_ARCHIVE_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    menu(id: "PRIMARY", idType: NAME) {
+    menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     posts {
@@ -192,7 +192,7 @@ export const BOOKS_ARCHIVE_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    menu(id: "PRIMARY", idType: NAME) {
+    menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     books {
