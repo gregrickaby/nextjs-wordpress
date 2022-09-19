@@ -27,7 +27,7 @@ sleep 2
 
 echo -e "Setting up Docker...this may take a few minutes!"
 docker compose up -d
-sleep 2
+sleep 90
 
 docker exec -it backend-wpcli-1 bash -c "chmod +x wordpress.sh && ./wordpress.sh"
 
