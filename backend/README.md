@@ -189,7 +189,7 @@ WORDPRESS_CONFIG_EXTRA: |
 First, tunnel into the `wpcli` container:
 
 ```bash
-docker exec -it wpcli /bin/sh
+docker exec -it backend-wpcli-1 /bin/sh
 ```
 
 Now you can run WP-CLI commands against your WordPress installation.
@@ -231,7 +231,7 @@ See the full list of WP-CLI commands at: <https://developer.wordpress.org/cli/co
 First, tunnel into the `composer` container:
 
 ```bash
-docker exec -it composer /bin/sh
+docker exec -it backend-composer-1 /bin/sh
 ```
 
 Now you can run Composer from inside the container.
@@ -327,7 +327,7 @@ docker-compose down --remove-orphans && rm -rf mysql wordpress
 If you need to tunnel into a Docker container via the terminal, run the following command:
 
 ```bash
-docker exec -it <container-name> /bin/sh
+docker exec -it <backend-container-name> /bin/sh
 ```
 
 Where `<container-name>` is the name of the container you want to tunnel into. Here is the list of container names:
