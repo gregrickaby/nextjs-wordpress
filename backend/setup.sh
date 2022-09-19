@@ -44,7 +44,7 @@ wp option update page_for_posts 5
 wp menu create "Header"
 wp menu item add-post header 2
 wp menu item add-post header 5
-wp menu location assign header header
+wp menu location assign header header-menu
 wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"
 sleep 1
