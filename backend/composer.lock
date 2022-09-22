@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2328063da9e70749ddab207bfec6da76",
+    "content-hash": "bc4a3e465ee2f420d4edc6d3a26cbe13",
     "packages": [
         {
             "name": "composer/installers",
@@ -255,15 +255,15 @@
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "5.12.3",
+            "version": "6.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/5.12.3"
+                "reference": "tags/6.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.5.12.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.0.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -309,15 +309,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.6.1",
+            "version": "19.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.6.1"
+                "reference": "tags/19.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.7.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -327,15 +327,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.10.0",
+            "version": "1.11.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.10.0"
+                "reference": "tags/1.11.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.10.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.11.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
