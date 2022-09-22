@@ -9,9 +9,12 @@
 - Self-signed SSL certificate from Traefik
 - Apollo Client w/ WP GraphQL
 - Incremental Static Regeneration + On Demand Revalidation
-- Native WordPress menus and comments
 - Date based blog routing (`YYYY/MM/DD/slug`)
 - SEO via Yoast
+- Menus support
+- Preview support
+- Comments support
+- Post reactions support
 - Custom Post Types via CPT UI
 - Custom Fields via Advanced Custom Fields
 - ESLint, Stylelint, Prettier, and more!
