@@ -21,7 +21,7 @@ export default function Page({data}: PageProps) {
       {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid gap-8 md:grid-cols-2">
             {data?.page?.nodes?.map((node: ContentFields, index: number) => (
               <Card key={index} content={node} />
             ))}
@@ -53,28 +53,52 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+interface QueryProps {
+  query: any
+  variables: {
+    slug?: string
+    category?: string
+  }
+}
+
 export const getStaticProps: GetStaticProps = async ({params}) => {
   // Get the page slug.
   const slug = params.slug.toString()
 
   // Set default query.
-  let query = SINGLE_PAGE_QUERY
+  let graphQuery = {
+    query: SINGLE_PAGE_QUERY,
+    variables: {slug: slug}
+  } as QueryProps
 
   // If Blog archive...
   if (slug === 'blog') {
-    query = POSTS_ARCHIVE_QUERY
+    graphQuery = {
+      query: POSTS_ARCHIVE_QUERY,
+      variables: {category: 'uncategorized'}
+    }
   }
 
   // If Books archive...
   if (slug === 'books') {
-    query = BOOKS_ARCHIVE_QUERY
+    graphQuery = {
+      query: BOOKS_ARCHIVE_QUERY,
+      variables: {slug: slug}
+    }
   }
 
   // Query the page data.
-  let {data} = await client.query({
-    query,
-    variables: {slug}
-  })
+  let {data} = await client.query(graphQuery)
+
+  // If the page doesn't exist, bail and return 404.
+  if (data.books === null || data.page === null || data.posts === null) {
+    return {
+      props: {
+        data
+      },
+      notFound: true
+    }
+  }
 
   // Set data shape.
   data = {

@@ -1,103 +1,64 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import {useEffect, useState} from 'react'
+import Image from 'next/future/image'
+import Reactions from '~/components/Reactions'
 import parseContent from '~/lib/parseContent'
 import {ArticleProps} from '~/lib/types'
 
 export default function Article({content}: ArticleProps) {
-  const [hearts, setHearts] = useState(0)
-
-  /**
-   * Increment the number of hearts.
-   */
-  function incrementHeart(totalHearts: number) {
-    fetch(
-      `/api/wordpress/hearts?postID=${content?.databaseId}&hearts=${
-        totalHearts + 1
-      }`,
-      {
-        method: 'POST'
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setHearts(data.hearts)
-      })
-  }
-
-  // Set heart count on initial load.
-  useEffect(() => setHearts(content?.hearts?.hearts), [content])
-
   return (
-    <article>
-      <header className="mb-16 text-center">
+    <article className="prose prose-stone m-auto pb-4 dark:prose-invert lg:prose-xl">
+      <header className="mb-4">
         {content?.categories?.edges?.length >= 1 &&
           content?.categories?.edges?.map(({node}) => (
-            <span key={node?.name}>{node?.name}</span>
+            <span className="font-bold" key={node?.name}>
+              {node?.name}
+            </span>
           ))}
-        <h1 className="lg:mb-0">
-          {content?.uri ? (
-            <Link href={content?.uri}>
-              <a>{content?.title}</a>
-            </Link>
-          ) : (
-            content?.title
-          )}
-        </h1>
-        <p>
-          {!!content?.author?.node?.name && (
-            <>
-              By <cite>{content?.author?.node?.name}</cite>
-            </>
-          )}
-          {!!content?.date && (
-            <>
-              {' '}
-              on{' '}
-              <time>
-                {new Intl.DateTimeFormat('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric'
-                }).format(Date.parse(content?.date))}
-              </time>
-            </>
-          )}
-        </p>
+        {content?.title != 'Homepage' && (
+          <h1 className="lg:mb-6">{content?.title}</h1>
+        )}
       </header>
-      {!!content?.featuredImage && (
-        <aside>
+      <section className="space-y-4">
+        {!!content?.featuredImage && (
           <Image
             alt={content?.featuredImage?.node?.altText}
-            src={content?.featuredImage?.node?.sourceUrl}
+            className="m-0 lg:m-0"
             height={content?.featuredImage?.node?.mediaDetails?.height}
+            priority
+            src={content?.featuredImage?.node?.sourceUrl}
             width={content?.featuredImage?.node?.mediaDetails?.width}
           />
-        </aside>
-      )}
-      <main>{parseContent(content?.content || content?.excerpt)}</main>
-      <footer>
-        {content?.tags?.edges.length >= 1 && (
-          <>
-            Tagged with:{' '}
-            {content?.tags?.edges.map(({node}) => (
-              <span key={node?.name} className="mx-1 p-1 dark:bg-zinc-600">
-                {node?.name}
-              </span>
-            ))}
-          </>
         )}
-        {content?.contentType?.node?.name === 'post' && (
-          <div>
-            <button onClick={() => incrementHeart(hearts)}>
-              {!hearts ? 0 : hearts} likes{' '}
-              <span role="img" arial-label="heart">
-                ❤️
-              </span>
-            </button>
+        {!!content?.author?.node?.gravatarUrl && (
+          <div className="flex flex-col border-b-2 border-b-zinc-200 pb-4 dark:border-b-zinc-600">
+            <div className="mb-3 font-mono text-sm">Author</div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <cite className="text-sm font-bold not-italic">
+                  {content?.author?.node?.name}
+                </cite>
+              </div>
+              {!!content?.date && (
+                <time className="border-l-2 pl-3 font-mono text-sm dark:border-l-zinc-600 lg:pl-4">
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }).format(Date.parse(content?.date))}
+                </time>
+              )}
+            </div>
           </div>
         )}
-      </footer>
+      </section>
+      <main className="flex flex-col justify-between md:flex-row md:space-x-8">
+        {content?.contentType?.node?.name === 'post' && (
+          <Reactions
+            reactions={content?.postFields?.reactions}
+            postId={content?.databaseId}
+          />
+        )}
+        <div>{parseContent(content?.content)}</div>
+      </main>
     </article>
   )
 }
