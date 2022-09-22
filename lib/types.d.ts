@@ -32,6 +32,8 @@ export interface LayoutProps {
   settings: SettingsFields
   seo: {
     fullHead: string
+    title: string
+    metaDesc: string
   }
 }
 
@@ -93,8 +95,12 @@ export interface ContentFields {
   description?: string
   excerpt?: string
   featuredImage: FeaturedImageFields
-  hearts?: {
-    hearts: number
+  postFields?: {
+    reactions?: {
+      dislike: number
+      like: number
+      love: number
+    }
   }
   tags?: {
     edges: [
@@ -110,6 +116,8 @@ export interface ContentFields {
   uri: string
   seo: {
     fullHead: string
+    title: string
+    metaDesc: string
   }
   nodes?: ArchiveFields
 }
@@ -156,4 +164,13 @@ export interface CommentFormFields {
   authorUrl: string
   comment: string
   postID: number
+}
+
+export interface ReactionsProps {
+  postId: number
+  reactions: {
+    like?: number
+    dislike?: number
+    love?: number
+  }
 }
