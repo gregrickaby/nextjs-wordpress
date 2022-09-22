@@ -62,6 +62,8 @@ export const SINGLE_PAGE_QUERY = gql`
       }
       seo {
         fullHead
+        title
+        metaDesc
       }
     }
   }
@@ -72,7 +74,7 @@ export const SINGLE_POST_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  query SinglePageQuery($slug: ID!) {
+  query SinglePostQuery($slug: ID!) {
     generalSettings {
       ...Settings
     }
@@ -107,15 +109,21 @@ export const SINGLE_POST_QUERY = gql`
       }
       date
       databaseId
-      hearts {
-        hearts
-      }
       uri
       featuredImage {
         ...FeaturedImageFields
       }
+      postFields {
+        reactions {
+          like
+          dislike
+          love
+        }
+      }
       seo {
         fullHead
+        title
+        metaDesc
       }
       tags {
         edges {
@@ -134,7 +142,7 @@ export const SINGLE_BOOK_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  query BookQuery($slug: ID!) {
+  query SingleBookQuery($slug: ID!) {
     generalSettings {
       ...Settings
     }
@@ -151,6 +159,8 @@ export const SINGLE_BOOK_QUERY = gql`
       }
       seo {
         fullHead
+        title
+        metaDesc
       }
       bookFields {
         affiliateUrl
@@ -164,20 +174,33 @@ export const POSTS_ARCHIVE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  query PostArchiveQuery {
+  query PostArchiveQuery($category: String!) {
     generalSettings {
       ...Settings
     }
     menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
-    posts {
+    posts(where: {categoryName: $category}) {
       nodes {
         title(format: RENDERED)
         excerpt(format: RENDERED)
         uri
         featuredImage {
           ...FeaturedImageFields
+        }
+        categories {
+          edges {
+            node {
+              name
+              uri
+            }
+          }
+        }
+        seo {
+          fullHead
+          title
+          metaDesc
         }
       }
     }
@@ -188,7 +211,7 @@ export const BOOKS_ARCHIVE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  query PostArchiveQuery {
+  query BookArchiveQuery {
     generalSettings {
       ...Settings
     }
@@ -206,6 +229,8 @@ export const BOOKS_ARCHIVE_QUERY = gql`
         }
         seo {
           fullHead
+          title
+          metaDesc
         }
       }
     }
