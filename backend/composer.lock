@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc4a3e465ee2f420d4edc6d3a26cbe13",
+    "content-hash": "14285da5e4d759588af7477a0bca0e09",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,17 +152,17 @@
             "time": "2022-08-20T06:45:11+00:00"
         },
         {
-            "name": "gregrickaby/nextjs-wordpress-core-plugin",
-            "version": "1.0.1",
+            "name": "gregrickaby/nextjs-wordpress-plugin",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin.git",
-                "reference": "b13f5eb054bbf7cddcd9d0fe41c76b5090f48117"
+                "url": "https://github.com/gregrickaby/nextjs-wordpress-plugin.git",
+                "reference": "64b0f52aa0b9c7c492d490a53203d54cdcaccf34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-core-plugin/zipball/b13f5eb054bbf7cddcd9d0fe41c76b5090f48117",
-                "reference": "b13f5eb054bbf7cddcd9d0fe41c76b5090f48117",
+                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-plugin/zipball/64b0f52aa0b9c7c492d490a53203d54cdcaccf34",
+                "reference": "64b0f52aa0b9c7c492d490a53203d54cdcaccf34",
                 "shasum": ""
             },
             "require-dev": {
@@ -182,12 +182,50 @@
                 }
             ],
             "description": "A plugin to help turn WordPress into a headless CMS.",
-            "homepage": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin",
+            "homepage": "https://github.com/gregrickaby/nextjs-wordpress-plugin",
             "support": {
-                "issues": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin/issues",
-                "source": "https://github.com/gregrickaby/nextjs-wordpress-core-plugin/tree/1.0.1"
+                "issues": "https://github.com/gregrickaby/nextjs-wordpress-plugin/issues",
+                "source": "https://github.com/gregrickaby/nextjs-wordpress-plugin/tree/1.0.2"
             },
-            "time": "2022-09-18T20:10:06+00:00"
+            "time": "2022-09-23T16:48:04+00:00"
+        },
+        {
+            "name": "gregrickaby/nextjs-wordpress-theme",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gregrickaby/nextjs-wordpress-theme.git",
+                "reference": "79ce1c72d35204d316f07adc2697ba071cc659b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-theme/zipball/79ce1c72d35204d316f07adc2697ba071cc659b8",
+                "reference": "79ce1c72d35204d316f07adc2697ba071cc659b8",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+                "phpcompatibility/phpcompatibility-wp": "^2.1",
+                "wp-coding-standards/wpcs": "^2.3"
+            },
+            "type": "wordpress-theme",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Rickaby",
+                    "email": "greg@gregrickaby.com"
+                }
+            ],
+            "description": "A plugin to help turn WordPress into a headless CMS.",
+            "homepage": "https://github.com/gregrickaby/nextjs-wordpress-theme",
+            "support": {
+                "issues": "https://github.com/gregrickaby/nextjs-wordpress-theme/issues",
+                "source": "https://github.com/gregrickaby/nextjs-wordpress-theme/tree/1.0.0"
+            },
+            "time": "2022-09-23T16:41:49+00:00"
         },
         {
             "name": "wp-graphql/wp-graphql-acf",
