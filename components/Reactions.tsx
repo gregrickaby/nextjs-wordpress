@@ -27,7 +27,7 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
   async function incrementReaction(name: string, total: number) {
     setAnimate({name, animate: true})
     try {
-      const respose = await fetch(
+      const response = await fetch(
         `/api/wordpress/reactions?postId=${postId}&reaction=${name}&total=${
           total + 1
         }`,
@@ -36,11 +36,11 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
         }
       )
 
-      if (respose.status != 200) {
+      if (response.status != 200) {
         throw new Error('Failed to increment reaction.')
       }
 
-      const data = await respose.json()
+      const data = await response.json()
 
       if ('success' != data.message) {
         throw new Error('Failed to increment reaction.')
