@@ -90,4 +90,6 @@ To exit a tunnel, type `exit` and press enter.
 
 ## Up Next
 
-Learn more about [Contributing](/CONTRIBUTING.md).
+Learn more about [Contributing](/CONTRIBUTING.md)
+
+---

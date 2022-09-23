@@ -141,4 +141,6 @@ View the Traefik dashboard at <http://localhost:8080/dashboard/>. No credentials
 
 ## Up Next
 
-Learn more about [Managing Docker](docker.md).
+Learn more about [Managing Docker](docker.md)
+
+---

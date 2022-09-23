@@ -27,7 +27,7 @@ See a fully working, production site running this stack at <https://gregrickaby.
 
 ---
 
-## Documentation
+## Setup Documentation
 
 Head on over to the [docs](./docs/index.md) to get started!
 

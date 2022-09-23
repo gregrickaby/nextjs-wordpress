@@ -244,4 +244,6 @@ The front-end has support for a "Books" custom post type with custom fields. Thi
 
 ## Up Next
 
-Learn more about [Local Development](development.md).
+Learn more about [Local Development](development.md)
+
+---
