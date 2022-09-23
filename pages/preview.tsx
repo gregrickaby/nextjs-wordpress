@@ -17,7 +17,7 @@ export default function Preview({data}) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // Get the PostID from preview mode context.
   // @ts-ignore
-  const postID = context.previewData.postID
+  const postID = parseInt(context?.previewData?.postID) || 0
 
   // The GraphQL query.
   const previewQuery = {
