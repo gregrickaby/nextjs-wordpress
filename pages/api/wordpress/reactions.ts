@@ -59,10 +59,9 @@ export default async function reactions(req: NextRequest) {
           'Content-Type': 'application/json',
           Authorization:
             'Basic ' +
-            Buffer.from(
-              `${process.env.WORDPRESS_USERNAME}:${process.env.WORDPRESS_APPLICATION_PASSWORD}`,
-              'binary'
-            ).toString('base64')
+            btoa(
+              `${process.env.WORDPRESS_USERNAME}:${process.env.WORDPRESS_APPLICATION_PASSWORD}`
+            )
         },
         body: JSON.stringify({
           acf: {
