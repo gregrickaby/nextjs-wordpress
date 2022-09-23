@@ -1,0 +1,29 @@
+name: Assertions
+
+on:
+  pull_request:
+    branches: ['main']
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ github.token }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm i --legacy-peer-deps
+
+      - name: Lint Frontend
+        run: npm run lint
