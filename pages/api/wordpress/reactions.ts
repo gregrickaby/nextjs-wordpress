@@ -1,4 +1,18 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
+import type {NextRequest} from 'next/server'
+
+export const config = {
+  runtime: 'experimental-edge'
+}
+
+export interface ReactionResponse {
+  acf: {
+    reactions: {
+      like: number
+      dislike: number
+      love: number
+    }
+  }
+}
 
 /**
  * Increments the reaction count for a post.
@@ -8,41 +22,37 @@ import type {NextApiRequest, NextApiResponse} from 'next'
  * @author Greg Rickaby
  * @see https://www.advancedcustomfields.com/resources/wp-rest-api-integration/
  * @see https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/
- * @see https://nextjs.org/docs/api-routes/introduction
+ * @see https://nextjs.org/docs/api-routes/edge-api-routes
+ * @see https://nextjs.org/docs/api-reference/edge-runtime
  * @see https://nodejs.org/api/http.html#http_class_http_incomingmessage
  * @see https://nodejs.org/api/http.html#http_class_http_serverresponse
  */
-export default async function reactions(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  // No post ID? Bail...
-  if (!req.query.postId) {
-    return res.status(400).json({
-      message: `error`,
-      error: `You must pass a post ID in the query string.`
-    })
+export default async function reactions(req: NextRequest) {
+  // Get query parameters.
+  const postIdParam = new URL(req.url).searchParams.get('postId')
+  const reactionParam = new URL(req.url).searchParams.get('reaction')
+  const totalParam = new URL(req.url).searchParams.get('total')
+
+  // No query parameters? Bail.
+  if (!postIdParam || !reactionParam || !totalParam) {
+    return new Response(
+      JSON.stringify({error: 'No query parameters provided.'}),
+      {
+        status: 400,
+        statusText: 'Bad Request'
+      }
+    )
   }
 
-  // No reaction name? Bail...
-  if (!req.query.reaction) {
-    return res.status(400).json({
-      message: `error`,
-      error: `You must pass a reaction in the query string.`
-    })
-  }
-
-  // No total? Bail...
-  if (!req.query.total) {
-    return res.status(400).json({
-      message: `error`,
-      error: `You must pass the total reactions in the query string.`
-    })
-  }
+  // Parse the query parameters.
+  const postID = parseInt(postIdParam) || 0
+  const reaction = reactionParam || ''
+  const total = parseInt(totalParam) || 0
 
   try {
+    // Attempt to POST reaction to WordPress REST-API.
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/posts/${req.query.postId}?_fields=acf`,
+      `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/posts/${postID}?_fields=acf`,
       {
         method: 'POST',
         headers: {
@@ -57,33 +67,37 @@ export default async function reactions(
         body: JSON.stringify({
           acf: {
             reactions: {
-              [req.query.reaction as string]: req.query.total
+              [reaction]: total
             }
           }
         })
       }
     )
 
-    // If there's a network error, bail...
+    // Issue with the response? Bail.
     if (response.status != 200) {
-      return res
-        .status(response.status)
-        .json({message: `error`, error: response.statusText})
+      return new Response(JSON.stringify({error: response.statusText}), {
+        status: response.status,
+        statusText: response.statusText
+      })
     }
 
-    const data = await response.json()
+    // Parse the response.
+    const data = (await response.json()) as ReactionResponse
 
-    // If WordPress throws an authentication error, bail...
-    if (data?.data?.status) {
-      return res
-        .status(data?.data?.status)
-        .json({message: `error`, error: data})
-    }
-
-    return res
-      .status(200)
-      .json({message: `success`, reactions: data?.acf?.reactions})
+    // Return reaction response.
+    return new Response(
+      JSON.stringify({message: `success`, reactions: data.acf.reactions}),
+      {
+        status: 200,
+        statusText: 'OK'
+      }
+    )
   } catch (error) {
-    return res.status(500).json({message: `error`, error})
+    console.error(error)
+    return new Response(JSON.stringify({error: `${error}`}), {
+      status: 500,
+      statusText: 'Internal Server Error'
+    })
   }
 }
