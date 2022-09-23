@@ -19,62 +19,22 @@
 - Custom Fields via Advanced Custom Fields
 - ESLint, Stylelint, Prettier, and more!
 
-## Table of Contents <!-- omit in toc -->
+---
 
-- [Requirements](#requirements)
-- [Next.js Install & Setup](#nextjs-install--setup)
-  - [ENV Variables](#env-variables)
-- [WordPress Setup](#wordpress-setup)
-- [Next.js Development](#nextjs-development)
-- [Get Ready for Production](#get-ready-for-production)
+## Demo
 
-## Requirements
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- Node / NPM
-
-## Next.js Install & Setup
-
-```bash
-npx create-next-app nextjs-wordpress --example https://github.com/gregrickaby/nextjs-wordpress
-```
-
-### ENV Variables
-
-Copy `.env.sample` to `.env`
-
-```bash
-cp .env.sample .env
-```
+See a fully working, production site running this stack at <https://gregrickaby.com>
 
 ---
 
-## WordPress Setup
+## Documentation
 
-See [backend/README.md](backend/README.md) for instructions on setting up WordPress.
+Head on over to the [docs](./docs/index.md) to get started!
 
 ---
 
-## Next.js Development
+## Contributing
 
-Start the development server on <http://localhost:3000>
-
-```bash
-npm run dev
-```
-
-Lint the codebase:
-
-```bash
-npm run lint
-```
-
-## Get Ready for Production
-
-Build the site and test pages on <http://localhost:3000>
-
-```bash
-npm run build && npm run start
-```
+Contributions are welcome! Please see the [contributing guidelines](./CONTRIBUTING.md) for more information.
 
 ---
