@@ -153,16 +153,16 @@
         },
         {
             "name": "gregrickaby/nextjs-wordpress-plugin",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gregrickaby/nextjs-wordpress-plugin.git",
-                "reference": "64b0f52aa0b9c7c492d490a53203d54cdcaccf34"
+                "reference": "9bbecc1abd269813a990e4e7aed718ca1e1ada39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-plugin/zipball/64b0f52aa0b9c7c492d490a53203d54cdcaccf34",
-                "reference": "64b0f52aa0b9c7c492d490a53203d54cdcaccf34",
+                "url": "https://api.github.com/repos/gregrickaby/nextjs-wordpress-plugin/zipball/9bbecc1abd269813a990e4e7aed718ca1e1ada39",
+                "reference": "9bbecc1abd269813a990e4e7aed718ca1e1ada39",
                 "shasum": ""
             },
             "require-dev": {
@@ -185,9 +185,9 @@
             "homepage": "https://github.com/gregrickaby/nextjs-wordpress-plugin",
             "support": {
                 "issues": "https://github.com/gregrickaby/nextjs-wordpress-plugin/issues",
-                "source": "https://github.com/gregrickaby/nextjs-wordpress-plugin/tree/1.0.2"
+                "source": "https://github.com/gregrickaby/nextjs-wordpress-plugin/tree/1.0.3"
             },
-            "time": "2022-09-23T16:48:04+00:00"
+            "time": "2022-09-23T20:29:32+00:00"
         },
         {
             "name": "gregrickaby/nextjs-wordpress-theme",
