@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
   },
-  "author": "Greg Rickaby <gregrickaby@gmail.com>",
+  "author": "Greg Rickaby <greg@gregrickaby.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gregrickaby/nextjs-wordpress/issues"
@@ -29,9 +29,9 @@
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
     "isomorphic-dompurify": "^0.22.0",
-    "next": "12.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.0",
     "react-icons": "^4.4.0"
   },
@@ -45,7 +45,6 @@
     "eslint": "^8.23.1",
     "eslint-config-next": "^12.3.1",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "markdownlint": "^0.26.2",
     "markdownlint-cli": "^0.32.2",
     "postcss": "^8.4.16",

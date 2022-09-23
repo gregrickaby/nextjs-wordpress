@@ -1,21 +1,6 @@
 module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    es6: true
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:jsx-a11y/recommended',
-    'next',
-    'next/core-web-vitals',
-    'prettier'
-  ],
-  plugins: ['prettier'],
+  extends: ['next/core-web-vitals', 'prettier'],
   rules: {
-    'jsx-a11y/anchor-is-valid': 'off',
-    '@next/next/no-img-element': 'off',
-    'no-console': ['error', {allow: ['warn', 'error']}],
-    'prettier/prettier': 'error'
+    'no-console': ['error', {allow: ['warn', 'error']}]
   }
 }
