@@ -14,6 +14,7 @@ The following instructions will help you get started with setting up the WordPre
   - [3) Run Install Script](#3-run-install-script)
   - [4) Log into WordPress](#4-log-into-wordpress)
   - [5) Create Application Password](#5-create-application-password)
+  - [6) Import ACF Fields Groups](#6-import-acf-fields-groups)
 - [Managing The Environment](#managing-the-environment)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
@@ -114,6 +115,16 @@ In order for Next.js to `POST` comments and reaction data back to WordPress, it 
 5. Copy the password that was generated and paste into `.env`: ![screenshot of new application password](https://uc815edbebefa34f9dc4d1e9a9a0.previews.dropboxusercontent.com/p/thumb/ABq6wlKtHrWXNel-aoGj-W4cFjM4E-U86-0R9N2XdEPyiAJALsMqNkT7IS5CA5NQXlsEc9quLI_Sc5b5v1X6r-72wkOP9kb9ylSelZnv98WCe5ulbAEcYHpa_SUcDk6-UiqTB4b9qC5VwPQDMD4dFqt449GUW2o7tPfRp4oxXWsg85-2Lq-BtTqlXTJLH8rKvGGbkz9M2QCBf6FQ_h_AJWc19n98BJs_lt65F9_AGBZ_sXH8iJiNdbpoTNilzCeSSPOfMJX2ucfuHYJDFYARIJdCQq80pXUSFPMi6O82H3m4mfApxCjJuD_X-4ckYOjyC-gdNjgByimVkVrAkMHHTsOoQmrbjPDmM6iLteVhVdx2srFH2f4Ia1BSPZdv8IfKdKIsucM79LHyBligkVGrIHjm/p.png)
 6. Open the `.env` file in the root of this project
 7. Paste the Application Password next to the `WORDPRESS_APPLICATION_PASSWORD` key: ![screenshot of the application password in the ENV file](https://uc14bb8530922af390ada64ecdcc.previews.dropboxusercontent.com/p/thumb/ABpxonLEsSWJkhS__ckgACbenTpfHi9rim1FLJsUaSl5l4xmwVr7Q7yAArc7mUF9a0lYc5HrzRph8ecx-aE14XgrwKUyTnrcM5JRUHWzfZxpsV8WvMiJRvRqj1f_wsTVJKqq8dmO-IXRyzU7YVVjOTzSNzyebAM30dJ3_5Eh65lSKLbSUPbJRwRoM_PD8Porh3bzV-pvSbScxn3yr-dHeSh3QSUJiv4cLLj-JpfjTyqh9rDOjyMi1-AYx_SyEy1TT7I3HJdnH_nUXF7gUpD3pgCtMZ1PR9ROUcE-_miG6wBf0dcFghthLr-0EWXnJpPSy4WYC30Cs643m0fBtPULq0TzlXHU70_lY22lvPU8g-_tM_k2F1xIL1kpMqMgCPznk2DM-Lviyvggs3NDwTmXUeR0/p.png)
+
+---
+
+### 6) Import ACF Fields Groups
+
+In order for post reactions to work, you'll need to import the ACF fields.
+
+1. Navigate to the WordPress dashboard under `Custom Fields --> Tools`
+2. Under "Import Field Groups" click the "Choose File" button and select the `acf-export-post-fields.json` file from the `/backend` directory: ![screenshot of how to import field groups](https://uc35545d55f151f85536ef38cacc.previews.dropboxusercontent.com/p/thumb/ABrS9oMwMtYF2N9eErOY3UOgjGVDpsy5rGY--tY2ruJiTmq7QKQidZFZpJq-veTQAWjS6ZZ0nqlnacyramnFArnjFQvabhMxHg0sogwQAS4kp0HVTa7pCoIPvPUFRLj8DkFsMw-Ob3soP9jo4LjkGUD_KcD8PZYYOisW3kTKNk1ztIUI1xknAsMNUP8uVzo-AYKOBxBeO-N0KqSooqAw1XONMjHdnVZ845Q4x5c6teWa-j7B9uqA-ew1zEd0oL4mUQyYeIKIoXGLykMFMhbOs9quO2nuBNVFxCXIjrfSlfshxavCTyo72bo2nNLDTjvl00YflgdH2ijc3DPBB5Ruve8Lnj6prG1599JjqAIj2_kU2uNKaUjMoWIyGUsSjCBW6iw74j4DLfxZuPR3w6RiWbFg/p.png)
+3. Click the "Import JSON" button
 
 That's it! WordPress should now be setup and ready to go.
 
