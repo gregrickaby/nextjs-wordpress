@@ -11,10 +11,10 @@
   - [Disable Static Site Generation (SSG)](#disable-static-site-generation-ssg)
   - [Incremental Static Regeneration (ISR)](#incremental-static-regeneration-isr)
   - [Redirects](#redirects)
+  - [Reactions](#reactions)
 - [Managing The Backend (WordPress)](#managing-the-backend-wordpress)
   - [Headless Plugin & Theme](#headless-plugin--theme)
   - [Page/Post Previews](#pagepost-previews)
-  - [Reactions](#reactions)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
@@ -137,6 +137,16 @@ async redirects() {
 
 ---
 
+### Reactions
+
+Post reactions are supported. Simply click a "like", "dislike", or "love" icon on a blog post and you'll see the number increase.
+
+Reactions are saved in the WordPress database as post meta, and can be easily edited in the "Post Fields" section under the WordPress block editor:
+
+![screenshot of post meta under the block editor](https://ucbfc2fffdb69e5a814489571532.previews.dropboxusercontent.com/p/thumb/ABoi5nGMV4GKqD09UqbD1bNAvv3qDEFaWKcvKRTzWASXZQUXYNsXYFXzAT5T7_FOFa5T0g8XAAvuOsXdglcxw5_HO_bvnDL7Y-PKkzCw19MdWaQTx14enjbJVuytswtYJtKnEgqTqQNAlQSx2o53ic5ffDrLyjMgP3dPo-qhogEo_1SAuGV-YLVt6bYJt40W-t0KbqK64rMn1DrTgkGAtGHzahwLWJITWp_LFvy_RJ_rPE2YQ2hp3hJdns-7GZBTfupptloQkGCfOS7_kn34VkgTMEXDq603w85GkvcQa1DNNGHsK9RjQQTaBasBNvRBA_-Ky06heej4m_ceQzAGfplWFiDXq1vJDr-6fJoOfVUOCsH6ym2zMF_0rBTHRTWfF8zSgTw1XhY9bltmoT9KtJsp/p.png)
+
+---
+
 ## Managing The Backend (WordPress)
 
 ### Headless Plugin & Theme
@@ -158,16 +168,6 @@ Contributions to the plugin and theme are welcome!
 ### Page/Post Previews
 
 Previewing pages and posts is supported. Simply click "preview" in the WordPress admin and you'll be taken to the frontend where you can see a preview.
-
----
-
-### Reactions
-
-Post reactions are supported. Simply click the "like", "dislike", or "love" icons on a post and you'll see the number of reactions increase.
-
-Reactions are saved in the WordPress database as post meta, and can be easily edited in the "Post Fields" section under the WordPress block editor:
-
-![screenshot of post meta under the block editor](https://ucbfc2fffdb69e5a814489571532.previews.dropboxusercontent.com/p/thumb/ABoi5nGMV4GKqD09UqbD1bNAvv3qDEFaWKcvKRTzWASXZQUXYNsXYFXzAT5T7_FOFa5T0g8XAAvuOsXdglcxw5_HO_bvnDL7Y-PKkzCw19MdWaQTx14enjbJVuytswtYJtKnEgqTqQNAlQSx2o53ic5ffDrLyjMgP3dPo-qhogEo_1SAuGV-YLVt6bYJt40W-t0KbqK64rMn1DrTgkGAtGHzahwLWJITWp_LFvy_RJ_rPE2YQ2hp3hJdns-7GZBTfupptloQkGCfOS7_kn34VkgTMEXDq603w85GkvcQa1DNNGHsK9RjQQTaBasBNvRBA_-Ky06heej4m_ceQzAGfplWFiDXq1vJDr-6fJoOfVUOCsH6ym2zMF_0rBTHRTWfF8zSgTw1XhY9bltmoT9KtJsp/p.png)
 
 ---
 
