@@ -174,3 +174,11 @@ export interface ReactionsProps {
     love?: number
   }
 }
+
+export interface QueryProps {
+  query: any
+  variables: {
+    slug?: string
+    category?: string
+  }
+}
