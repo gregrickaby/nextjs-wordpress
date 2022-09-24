@@ -8,10 +8,17 @@ import {
   POSTS_ARCHIVE_QUERY,
   SINGLE_PAGE_QUERY
 } from '~/lib/queries'
-import {ContentFields, PageProps} from '~/lib/types'
+import {ContentFields, PageProps, QueryProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Page({data}: PageProps) {
+/**
+ * Generic page component.
+ *
+ * This component is used as a catch-all for pages, CPTs, and archives.
+ *
+ * @see https://nextjs.org/docs/routing/dynamic-routes
+ */
+export default function GenericPage({data}: PageProps) {
   return (
     <Layout
       settings={data?.generalSettings}
@@ -34,11 +41,26 @@ export default function Page({data}: PageProps) {
   )
 }
 
+/**
+ * Get all paths at build time.
+ *
+ * @see https://nextjs.org/docs/api-reference/data-fetching/get-static-paths
+ */
 export const getStaticPaths: GetStaticPaths = async () => {
+  // Don't pre-render any pages at build time.
+  if (process.env.DISABLE_STATIC_SITE_GENERATION === 'true') {
+    return {
+      paths: [],
+      fallback: 'blocking'
+    }
+  }
+
+  // Query all pages for static site generation.
   const {data} = await client.query({
     query: GET_ALL_PAGES
   })
 
+  // Loop over all pages and create a path for each.
   const paths = data.pages.nodes.map((page: {slug: string}) => {
     return {
       params: {
@@ -53,19 +75,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-interface QueryProps {
-  query: any
-  variables: {
-    slug?: string
-    category?: string
-  }
-}
-
+/**
+ * Query data and pass it to the page component.
+ *
+ * @see https://nextjs.org/docs/api-reference/data-fetching/get-static-props
+ */
 export const getStaticProps: GetStaticProps = async ({params}) => {
   // Get the page slug.
   const slug = params.slug.toString()
 
-  // Set default query.
+  // Set a default query.
   let graphQuery = {
     query: SINGLE_PAGE_QUERY,
     variables: {slug: slug}
@@ -90,7 +109,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   // Query the page data.
   let {data} = await client.query(graphQuery)
 
-  // If the page doesn't exist, bail and return 404.
+  // Page doesn't exist? Return a 404.
   if (data.books === null || data.page === null || data.posts === null) {
     return {
       props: {
@@ -107,10 +126,11 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     page: data.books || data.page || data.posts
   }
 
+  // Pass data to the page via props.
   return {
     props: {
       data
     },
-    revalidate: 300
+    revalidate: false
   }
 }

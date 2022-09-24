@@ -5,7 +5,12 @@ import {GET_ALL_BOOKS, SINGLE_BOOK_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
-export default function Book({data}: PageProps) {
+/**
+ * Single book component.
+ *
+ * This component is used to display single books.
+ */
+export default function SingleBook({data}: PageProps) {
   return (
     <Layout
       settings={data?.generalSettings}
@@ -21,11 +26,26 @@ export default function Book({data}: PageProps) {
   )
 }
 
+/**
+ * Get all paths at build time.
+ *
+ * @see https://nextjs.org/docs/api-reference/data-fetching/get-static-paths
+ */
 export const getStaticPaths: GetStaticPaths = async () => {
+  // Don't pre-render any books at build time.
+  if (process.env.DISABLE_STATIC_SITE_GENERATION === 'true') {
+    return {
+      paths: [],
+      fallback: 'blocking'
+    }
+  }
+
+  // Query all books for static site generation.
   const {data} = await client.query({
     query: GET_ALL_BOOKS
   })
 
+  // Loop over all posts and create a path for each.
   const paths = data.books.nodes.map((book) => ({
     params: {slug: book.slug}
   }))
@@ -36,11 +56,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+/**
+ * Query data and pass it to the book component.
+ *
+ * @see https://nextjs.org/docs/api-reference/data-fetching/get-static-props
+ */
 export const getStaticProps: GetStaticProps = async ({params}) => {
-  // Query the book data.
+  // Get the post slug.
+  const slug = params.slug.toString()
+
+  // Query a single book by slug.
   let {data} = await client.query({
     query: SINGLE_BOOK_QUERY,
-    variables: {slug: params.slug}
+    variables: {slug: slug}
   })
 
   // Set data shape.
@@ -50,10 +78,11 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     page: data.book
   }
 
+  // Pass data to the page via props.
   return {
     props: {
       data
     },
-    revalidate: 300
+    revalidate: false
   }
 }
