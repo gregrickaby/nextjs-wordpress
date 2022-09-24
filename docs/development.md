@@ -2,31 +2,174 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Next.js Development](#nextjs-development)
-- [Managing The WordPress Stack](#managing-the-wordpress-stack)
+- [Managing The Frontend (Next.js)](#managing-the-frontend-nextjs)
+  - [Dev Server](#dev-server)
+  - [Linting](#linting)
+  - [Run a Production Build](#run-a-production-build)
+  - [Image Optimization](#image-optimization)
+  - [On-Demand Revalidation](#on-demand-revalidation)
+  - [Disable Static Site Generation (SSG)](#disable-static-site-generation-ssg)
+  - [Incremental Static Regeneration (ISR)](#incremental-static-regeneration-isr)
+  - [Redirects](#redirects)
+- [Managing The Backend (WordPress)](#managing-the-backend-wordpress)
+  - [Headless Plugin & Theme](#headless-plugin--theme)
+  - [Page/Post Previews](#pagepost-previews)
+  - [Reactions](#reactions)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
   - [Composer](#composer)
   - [phpMyAdmin](#phpmyadmin)
   - [Traefik](#traefik)
+- [Other](#other)
+  - [Bypass Pre-Commit Hooks](#bypass-pre-commit-hooks)
 - [Up Next](#up-next)
 
-## Next.js Development
+## Managing The Frontend (Next.js)
 
-Start the development server on <http://localhost:3000>
+### Dev Server
+
+From the root of this project, run the following command to start the Next.js development server on <http://localhost:3000>
 
 ```bash
 npm run dev
 ```
 
-Lint the codebase:
+> Note: Make sure Docker is running first, otherwise Next.js wont be able to query any data.
+
+---
+
+### Linting
+
+Regularly linting the codebase is highly encouraged (and is enforced via pre-commit hook) to ensure code quality and consistency.
 
 ```bash
 npm run lint
 ```
 
-## Managing The WordPress Stack
+---
+
+### Run a Production Build
+
+It's often helpful to run a production build locally to verify everything works before deploying. To run a production build, run the following command:
+
+```bash
+npm run build && npm run start
+```
+
+---
+
+### Image Optimization
+
+Next.js supports [image optimization](https://nextjs.org/docs/basic-features/image-optimization) out of the box. To use it, you can import the `Image` component from `next/image` and pass it the URL of the image you want to optimize, including images from WordPress.
+
+In order to use [Remote Images](https://nextjs.org/docs/basic-features/image-optimization#remote-images), you'll need to update the list of hostnames in `next.config.js`.
+
+For example, if you're loading remote images from `unsplash.com`:
+
+```js
+// next.config.js
+images: {
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: '**.unsplash.com'
+    }
+  ]
+}
+```
+
+---
+
+### On-Demand Revalidation
+
+Next.js supports [on-demand revalidation](https://nextjs.org/docs/basic-features/data-fetching/overview#on-demand-revalidation). This means that if a post or page is updated in WordPress, then WordPress will ping the frontend and tell Next.js to re-generate that post or page in the background. The next visitor to that page will see the updated content.
+
+If your site has a lot of traffic, this option provides the best user experience and prevents your WordPress server from becoming overwhelmed, since content will remain static until it has been updated.
+
+To view the code for this feature, check out the [frontend](https://github.com/gregrickaby/nextjs-wordpress/blob/main/pages/api/wordpress/revalidate.ts) and [backend](https://github.com/gregrickaby/nextjs-wordpress-plugin/blob/main/inc/revalidation.php) repositories.
+
+---
+
+### Disable Static Site Generation (SSG)
+
+If your WordPress install has hundreds or even thousands of pages and posts, it will take a long time to generate a static site at build time. Additionally, WP GraphQL caps the number of requests to 100, so querying more than that will likely overwhelm your server[[1]](https://github.com/WebDevStudios/nextjs-wordpress-starter/issues/1008#issue-1228084495).
+
+Instead, you can [generate paths on-demand](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#generating-paths-on-demand). This means pages and posts will be server-side rendered first, then cached, and then served statically for the next visitor. This is a good compromise for sites with a lot of content.
+
+To disable static site generation, set the `DISABLE_STATIC_SITE_GENERATION` environment variable in `.env` to `true`:
+
+```text
+// .env
+DISABLE_STATIC_SITE_GENERATION="true"
+```
+
+---
+
+### Incremental Static Regeneration (ISR)
+
+Next.js supports [ISR](https://nextjs.org/docs/basic-features/data-fetching/overview#incremental-static-regeneration) for pages that use `getStaticProps`. This means Next.js will re-generate a page or post in the background and serve the updated page to the next user.
+
+If you open `pages/[...slug].js` and look at the `getStaticProps` function, you'll see that it has a `revalidate` property set to `false`. That's because this project uses [on-demand revalidation](#on-demand-revalidation) instead of ISR. If you want to use ISR, you can set `revalidate` to a number of seconds. For example, to re-generate a page or post every 60 seconds, set `revalidate` to `60`.
+
+> In my experience, ISR has the potential to overwhelm your server[[2]](https://webdevstudios.com/2021/03/09/next-js-headless-wordpress/) if you have a large site with a lot of traffic. This is because pages/posts will be constantly querying WordPress in the background.
+
+---
+
+### Redirects
+
+Next.js supports [redirects](https://nextjs.org/docs/api-reference/next.config.js/redirects). If you change the slug of a page or post, you can add a redirect to `next.config.js` redirect visitors to the new URL.
+
+The current redirect forwards visitors from the `/homepage` path to the actual homepage:
+
+```js
+// next.config.js
+async redirects() {
+  return [
+    {
+      source: '/homepage',
+      destination: '/',
+      permanent: true
+    }
+  ]
+}
+```
+
+---
+
+## Managing The Backend (WordPress)
+
+### Headless Plugin & Theme
+
+There is a WordPress [plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin) and [theme](https://github.com/gregrickaby/nextjs-wordpress-theme) that help support turing WordPress into a headless CMS.
+
+By design, these helpers are lightweight and use old-school functional programming to keep things simple. If you need more robust functionality, please check out [Faust.js](https://faustjs.org/).
+
+They're both managed with Composer, so you can update them by running the following command from the `/backend` directory:
+
+```bash
+composer upgrade
+```
+
+Contributions to the plugin and theme are welcome!
+
+---
+
+### Page/Post Previews
+
+Previewing pages and posts is supported. Simply click "preview" in the WordPress admin and you'll be taken to the frontend where you can see a preview.
+
+---
+
+### Reactions
+
+Post reactions are supported. Simply click the "like", "dislike", or "love" icons on a post and you'll see the number of reactions increase.
+
+Reactions are saved in the WordPress database as post meta, and can be easily edited in the "Post Fields" section under the WordPress block editor:
+
+![screenshot of post meta under the block editor](https://ucbfc2fffdb69e5a814489571532.previews.dropboxusercontent.com/p/thumb/ABoi5nGMV4GKqD09UqbD1bNAvv3qDEFaWKcvKRTzWASXZQUXYNsXYFXzAT5T7_FOFa5T0g8XAAvuOsXdglcxw5_HO_bvnDL7Y-PKkzCw19MdWaQTx14enjbJVuytswtYJtKnEgqTqQNAlQSx2o53ic5ffDrLyjMgP3dPo-qhogEo_1SAuGV-YLVt6bYJt40W-t0KbqK64rMn1DrTgkGAtGHzahwLWJITWp_LFvy_RJ_rPE2YQ2hp3hJdns-7GZBTfupptloQkGCfOS7_kn34VkgTMEXDq603w85GkvcQa1DNNGHsK9RjQQTaBasBNvRBA_-Ky06heej4m_ceQzAGfplWFiDXq1vJDr-6fJoOfVUOCsH6ym2zMF_0rBTHRTWfF8zSgTw1XhY9bltmoT9KtJsp/p.png)
+
+---
 
 ### GraphQL
 
@@ -138,6 +281,16 @@ View the phpMyAdmin dashboard at <http://localhost:8081/>. No credentials are re
 View the Traefik dashboard at <http://localhost:8080/dashboard/>. No credentials are required.
 
 ---
+
+## Other
+
+### Bypass Pre-Commit Hooks
+
+If you need to bypass the pre-commit hooks, you can use the `--no-verify` flag:
+
+```bash
+git commit -m "My commit message" --no-verify
+```
 
 ## Up Next
 
