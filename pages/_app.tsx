@@ -1,6 +1,6 @@
 import {ApolloProvider} from '@apollo/client'
 import type {AppProps} from 'next/app'
-import {client} from '~/lib/wordpressClient'
+import {client} from '~/lib/helpers'
 import '~/styles/globals.css'
 
 export default function App({Component, pageProps}: AppProps) {

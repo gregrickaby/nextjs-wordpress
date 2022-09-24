@@ -1,6 +1,14 @@
 import Link from 'next/link'
-import {HeaderProps, MenuItemFields} from '~/lib/types'
+import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
 
+export interface HeaderProps {
+  menu: MenuFields
+  settings: SettingsFields
+}
+
+/**
+ * Header component.
+ */
 export default function Header({settings, menu}: HeaderProps) {
   return (
     <header className="flex content-center justify-between">

@@ -2,14 +2,22 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Card from '~/components/Card'
 import Layout from '~/components/Layout'
+import {client} from '~/lib/helpers'
 import {
   BOOKS_ARCHIVE_QUERY,
   GET_ALL_PAGES,
   POSTS_ARCHIVE_QUERY,
   SINGLE_PAGE_QUERY
 } from '~/lib/queries'
-import {ContentFields, PageProps, QueryProps} from '~/lib/types'
-import {client} from '~/lib/wordpressClient'
+import {ContentFields, PageProps} from '~/lib/types'
+
+export interface QueryProps {
+  query: any
+  variables: {
+    slug?: string
+    category?: string
+  }
+}
 
 /**
  * Generic page component.

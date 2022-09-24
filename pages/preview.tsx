@@ -2,6 +2,11 @@ import {GetServerSideProps} from 'next'
 import Article from '~/components/Article'
 import Layout from '~/components/Layout'
 
+/**
+ * Preview page.
+ *
+ * @see https://nextjs.org/docs/advanced-features/preview-mode
+ */
 export default function Preview({data}) {
   return (
     <Layout
@@ -14,10 +19,15 @@ export default function Preview({data}) {
   )
 }
 
+/**
+ * Render this page on the server only.
+ *
+ * @see https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
+ */
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // Get the PostID from preview mode context.
   // @ts-ignore
-  const postID = parseInt(context?.previewData?.postID) || 0
+  const postID = parseInt(context?.previewData?.postID) || 1
 
   // The GraphQL query.
   const previewQuery = {
@@ -123,19 +133,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // Bad response? Bail...
   if (response.status !== 200) {
     console.error(response.statusText)
+    return {
+      props: {}
+    }
   }
 
   // Parse the response.
   const post = await response.json()
 
-  // Bad response? Bail...
+  // Error with the post? Bail...
   if (post.errors) {
     console.error(post.errors)
+    return {
+      props: {}
+    }
   }
 
   return {
     props: {
-      data: post.data || {}
+      data: post.data
     }
   }
 }

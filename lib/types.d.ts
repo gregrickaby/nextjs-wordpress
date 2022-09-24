@@ -1,3 +1,5 @@
+// Global Types Only.
+
 export interface PageProps {
   data: {
     book?: ContentFields
@@ -6,34 +8,6 @@ export interface PageProps {
     page?: ContentFields
     post?: ContentFields
     posts?: ArchiveFields
-  }
-}
-
-export interface ArticleProps {
-  content: ContentFields
-}
-
-export interface CommentProps {
-  comments: {
-    nodes: CommentFields
-  }
-  postId: number
-  total: number
-}
-
-export interface HeaderProps {
-  menu: MenuFields
-  settings: SettingsFields
-}
-
-export interface LayoutProps {
-  children: any
-  menu: MenuFields
-  settings: SettingsFields
-  seo: {
-    fullHead: string
-    title: string
-    metaDesc: string
   }
 }
 
@@ -139,46 +113,5 @@ export interface FeaturedImageFields {
       height: number
       width: number
     }
-  }
-}
-
-export interface CommentFields {
-  author: {
-    node: {
-      gravatarUrl: string
-      name: string
-      url: string
-    }
-  }
-  approved: boolean
-  content: string
-  databaseId: number
-  date: string
-  map: any
-  parentId: string
-}
-
-export interface CommentFormFields {
-  authorName: string
-  authorEmail: string
-  authorUrl: string
-  comment: string
-  postID: number
-}
-
-export interface ReactionsProps {
-  postId: number
-  reactions: {
-    like?: number
-    dislike?: number
-    love?: number
-  }
-}
-
-export interface QueryProps {
-  query: any
-  variables: {
-    slug?: string
-    category?: string
   }
 }

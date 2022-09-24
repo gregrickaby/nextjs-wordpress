@@ -1,8 +1,15 @@
 import Image from 'next/future/image'
+import ParseContent from '~/components/ParseContent'
 import Reactions from '~/components/Reactions'
-import parseContent from '~/lib/parseContent'
-import {ArticleProps} from '~/lib/types'
+import {ContentFields} from '~/lib/types'
 
+export interface ArticleProps {
+  content: ContentFields
+}
+
+/**
+ * Article component.
+ */
 export default function Article({content}: ArticleProps) {
   return (
     <article className="prose prose-stone m-auto pb-4 dark:prose-invert lg:prose-xl">
@@ -57,7 +64,7 @@ export default function Article({content}: ArticleProps) {
             postId={content?.databaseId}
           />
         )}
-        <div>{parseContent(content?.content)}</div>
+        <div>{ParseContent(content?.content)}</div>
       </main>
     </article>
   )

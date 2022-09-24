@@ -1,13 +1,16 @@
-import parseContent from '~/lib/parseContent'
-import {ArticleProps} from '~/lib/types'
+import {ArticleProps} from '~/components/Article'
+import ParseContent from '~/components/ParseContent'
 
+/**
+ * Card component.
+ */
 export default function Card({content}: ArticleProps) {
   return (
     <div>
       <h2>
         <a href={content?.uri}>{content?.title}</a>
       </h2>
-      {parseContent(content?.content || content?.excerpt)}
+      {ParseContent(content?.content || content?.excerpt)}
     </div>
   )
 }

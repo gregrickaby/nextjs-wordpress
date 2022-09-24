@@ -1,6 +1,14 @@
 import {useState} from 'react'
 import {FiHeart, FiThumbsDown, FiThumbsUp} from 'react-icons/fi'
-import {ReactionsProps} from '~/lib/types'
+
+export interface ReactionsProps {
+  postId: number
+  reactions: {
+    like?: number
+    dislike?: number
+    love?: number
+  }
+}
 
 const Icons = [
   {
@@ -17,6 +25,9 @@ const Icons = [
   }
 ]
 
+/**
+ * Reactions component.
+ */
 export default function Reactions({postId, reactions}: ReactionsProps) {
   const [postReactions, setPostReactions] = useState(reactions)
   const [animate, setAnimate] = useState({name: '', animate: false})

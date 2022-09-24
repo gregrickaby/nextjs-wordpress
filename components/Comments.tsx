@@ -1,7 +1,17 @@
-import Comment from '~/components/Comment'
+import Comment, {CommentFields} from '~/components/Comment'
 import CommentForm from '~/components/CommentForm'
-import {CommentFields, CommentProps} from '~/lib/types'
 
+export interface CommentProps {
+  comments: {
+    nodes: CommentFields
+  }
+  postId: number
+  total: number
+}
+
+/**
+ * Display comments.
+ */
 export default function Comments({comments, postId, total}: CommentProps) {
   return (
     <section id="comments">

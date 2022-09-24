@@ -1,10 +1,58 @@
 import {gql} from '@apollo/client'
-import {
-  COMMENTS_FRAGMENT,
-  FEATURED_IMAGE_FRAGMENT,
-  GENERAL_FRAGMENT,
-  MENU_FRAGMENT
-} from '~/lib/fragments'
+
+export const GENERAL_FRAGMENT = gql`
+  fragment Settings on GeneralSettings {
+    dateFormat
+    description
+    language
+    timeFormat
+    title
+  }
+`
+
+export const MENU_FRAGMENT = gql`
+  fragment MenuItems on Menu {
+    menuItems {
+      nodes {
+        path
+        target
+        label
+      }
+    }
+  }
+`
+
+export const FEATURED_IMAGE_FRAGMENT = gql`
+  fragment FeaturedImageFields on NodeWithFeaturedImageToMediaItemConnectionEdge {
+    node {
+      altText
+      sourceUrl(size: LARGE)
+      mediaDetails {
+        height
+        width
+      }
+    }
+  }
+`
+
+export const COMMENTS_FRAGMENT = gql`
+  fragment CommentFields on PostToCommentConnection {
+    nodes {
+      author {
+        node {
+          gravatarUrl
+          name
+          url
+        }
+      }
+      approved
+      content(format: RENDERED)
+      databaseId
+      date
+      parentId
+    }
+  }
+`
 
 export const GET_ALL_PAGES = gql`
   query AllPagesQuery {
@@ -232,6 +280,40 @@ export const BOOKS_ARCHIVE_QUERY = gql`
           title
           metaDesc
         }
+      }
+    }
+  }
+`
+
+export const CREATE_COMMENT = gql`
+  mutation CREATE_COMMENT(
+    $authorEmail: String!
+    $authorName: String!
+    $authorUrl: String
+    $comment: String!
+    $postID: Int!
+  ) {
+    createComment(
+      input: {
+        author: $authorName
+        authorEmail: $authorEmail
+        authorUrl: $authorUrl
+        commentOn: $postID
+        content: $comment
+      }
+    ) {
+      success
+      comment {
+        author {
+          node {
+            email
+            gravatarUrl
+            name
+            url
+          }
+        }
+        content(format: RENDERED)
+        date
       }
     }
   }

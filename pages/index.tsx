@@ -1,9 +1,9 @@
 import {GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Layout from '~/components/Layout'
+import {client} from '~/lib/helpers'
 import {SINGLE_PAGE_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
-import {client} from '~/lib/wordpressClient'
 
 /**
  * Homepage component.

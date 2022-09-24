@@ -1,9 +1,25 @@
+import {ApolloClient, InMemoryCache} from '@apollo/client'
 import parse from 'html-react-parser'
 import DOMPurify from 'isomorphic-dompurify'
 
-export default function sanitizeComment(dirtyComment: string) {
+/**
+ * The WordPress connector for Apollo Client.
+ *
+ * @see https://www.npmjs.com/package/apollo-client
+ */
+export const client = new ApolloClient({
+  uri: `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/graphql`,
+  cache: new InMemoryCache()
+})
+
+/**
+ * Sanitize comment content.
+ *
+ * @see https://www.npmjs.com/package/isomorphic-dompurify
+ */
+export function sanitizeComment(dirtyComment: string) {
   /**
-   * Process comment hyperlinks.
+   * Deal with comment hyperlinks.
    *
    * @see https://github.com/cure53/DOMPurify/blob/main/demos/hooks-target-blank-demo.html
    */

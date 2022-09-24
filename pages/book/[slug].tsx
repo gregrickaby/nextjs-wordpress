@@ -1,9 +1,9 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Layout from '~/components/Layout'
+import {client} from '~/lib/helpers'
 import {GET_ALL_BOOKS, SINGLE_BOOK_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
-import {client} from '~/lib/wordpressClient'
 
 /**
  * Single book component.

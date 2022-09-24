@@ -1,7 +1,25 @@
 import Image from 'next/image'
-import parseComment from '~/lib/parseComment'
-import {CommentFields} from '~/lib/types'
+import {sanitizeComment} from '~/lib/helpers'
 
+export interface CommentFields {
+  author: {
+    node: {
+      gravatarUrl: string
+      name: string
+      url: string
+    }
+  }
+  approved: boolean
+  content: string
+  databaseId: number
+  date: string
+  map: any
+  parentId: string
+}
+
+/**
+ * Display a single comment.
+ */
 export default function Comment(comment: CommentFields) {
   return (
     <article className="border-l-4 px-4 py-1">
@@ -38,7 +56,7 @@ export default function Comment(comment: CommentFields) {
           </div>
         </div>
       </header>
-      <main>{parseComment(comment?.content)}</main>
+      <main>{sanitizeComment(comment?.content)}</main>
     </article>
   )
 }

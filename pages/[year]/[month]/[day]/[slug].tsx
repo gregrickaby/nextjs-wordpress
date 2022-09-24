@@ -2,9 +2,9 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Comments from '~/components/Comments'
 import Layout from '~/components/Layout'
+import {client} from '~/lib/helpers'
 import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
-import {client} from '~/lib/wordpressClient'
 
 /**
  * Single post component.

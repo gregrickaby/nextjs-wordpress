@@ -61,7 +61,7 @@ export default async function reactions(req: NextRequest) {
             'Basic ' +
             btoa(
               `${process.env.WORDPRESS_USERNAME}:${process.env.WORDPRESS_APPLICATION_PASSWORD}`
-            )
+            ) // Edge Runtime does not support `Buffer.from()`.
         },
         body: JSON.stringify({
           acf: {
