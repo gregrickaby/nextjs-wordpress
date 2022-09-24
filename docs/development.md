@@ -15,6 +15,7 @@
 - [Managing The Backend (WordPress)](#managing-the-backend-wordpress)
   - [Headless Plugin & Theme](#headless-plugin--theme)
   - [Page/Post Previews](#pagepost-previews)
+  - [Comments](#comments)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
@@ -168,6 +169,14 @@ Contributions to the plugin and theme are welcome!
 ### Page/Post Previews
 
 Previewing pages and posts is supported. Simply click "preview" in the WordPress admin and you'll be taken to the frontend where you can see a preview.
+
+---
+
+### Comments
+
+Comments, Gravatars, nested comments, and comment moderation are all supported.
+
+> Note: Comments are held for moderation by default. You can change this in the WordPress admin under "Settings" > "Discussion".
 
 ---
 
