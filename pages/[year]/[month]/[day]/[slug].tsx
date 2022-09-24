@@ -2,7 +2,7 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Comments from '~/components/Comments'
 import Layout from '~/components/Layout'
-import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
+import {SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
 import {client} from '~/lib/wordpressClient'
 
@@ -26,25 +26,8 @@ export default function Post({data}: PageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const {data} = await client.query({
-    query: GET_ALL_POSTS
-  })
-
-  const paths = data.posts.nodes.map((post: {uri: string}) => {
-    const slug = post.uri.replace(/^\/|\/$/g, '').split('/')
-
-    return {
-      params: {
-        year: slug[0] || '',
-        month: slug[1] || '',
-        day: slug[2] || '',
-        slug: slug[3] || ''
-      }
-    }
-  })
-
   return {
-    paths,
+    paths: [],
     fallback: 'blocking'
   }
 }
