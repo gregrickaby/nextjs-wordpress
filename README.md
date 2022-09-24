@@ -48,6 +48,8 @@ A special thanks to the following people:
 - [John Jeeves](https://github.com/orgs/AEWP/people/john-jeeves-americaneagle) and [Adam Hollister](https://github.com/ahollister) for their [nifty work](https://github.com/gregrickaby/nextjs-wordpress-plugin/blob/main/inc/blocks.php) registering Gutenberg Blocks in the WordPress REST-API.
 - [Jason Bahl](https://github.com/jasonbahl) for his tireless work on [WP GraphQL](https://github.com/jasonbahl/wp-graphql), and all of our chats/DMs over the years.
 
-I ❤️❤️❤️ the open source community, and hope this project inspires you to create something awesome. Cheers! 🍻
+I ❤️❤️❤️ the open source community, and hope this project inspires you to create something awesome.
+
+Cheers! 🍻
 
 ---
