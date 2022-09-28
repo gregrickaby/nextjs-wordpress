@@ -73,10 +73,10 @@ For example, if you're loading remote images from `unsplash.com`:
 images: {
   remotePatterns: [
     {
-      protocol: 'https',
-      hostname: '**.unsplash.com'
-    }
-  ]
+      protocol: "https",
+      hostname: "**.unsplash.com",
+    },
+  ];
 }
 ```
 
@@ -113,7 +113,7 @@ Next.js supports [ISR](https://nextjs.org/docs/basic-features/data-fetching/over
 
 If you open `pages/[...slug].js` and look at the `getStaticProps` function, you'll see that it has a `revalidate` property set to `false`. That's because this project uses [on-demand revalidation](#on-demand-revalidation) instead of ISR. If you want to use ISR, you can set `revalidate` to a number of seconds. For example, to re-generate a page or post every 60 seconds, set `revalidate` to `60`.
 
-> In my experience, ISR has the potential to overwhelm your server[[2]](https://webdevstudios.com/2021/03/09/next-js-headless-wordpress/) if you have a large site with a lot of traffic. This is because pages/posts will be constantly querying WordPress in the background.
+> In my experience, ISR has the potential to overwhelm your server if you have a large site with a lot of traffic[[2]](https://web.archive.org/web/20220928131746/https://webdevstudios.com/2021/03/09/next-js-headless-wordpress/). This is because pages/posts will be constantly querying WordPress in the background.
 
 ---
 
@@ -182,9 +182,9 @@ Comments, Gravatars, nested comments, and comment moderation are all supported.
 
 ### GraphQL
 
-GraphQL endpoint: `https://headlesswp.test/graphql`
+GraphQL endpoint: `https://nextjswp.test/graphql`
 
-GraphiQL IDE: <https://headlesswp.test/wp-admin/admin.php?page=graphiql-ide>
+GraphiQL IDE: <https://nextjswp.test/wp-admin/admin.php?page=graphiql-ide>
 
 ---
 
@@ -218,7 +218,7 @@ WORDPRESS_CONFIG_EXTRA: |
 First, tunnel into the `wpcli` container:
 
 ```bash
-docker exec -it backend-wpcli-1 /bin/sh
+docker exec -it nextjs-wordpress-wpcli-1 /bin/sh
 ```
 
 Now you can run WP-CLI commands against your WordPress installation.
@@ -260,7 +260,7 @@ See the full list of WP-CLI commands at: <https://developer.wordpress.org/cli/co
 First, tunnel into the `composer` container:
 
 ```bash
-docker exec -it backend-composer-1 /bin/sh
+docker exec -it nextjs-wordpress-composer-1 /bin/sh
 ```
 
 Now you can run Composer from inside the container.

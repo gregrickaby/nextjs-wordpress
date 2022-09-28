@@ -2,6 +2,8 @@
 
 The backbone of the backend is Docker Compose. Learn more at <https://docs.docker.com/engine/reference/commandline/compose/>
 
+> Note: The following commands must be run from the `/apps/wordpress/` directory.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Start Containers](#start-containers)
@@ -17,7 +19,7 @@ The backbone of the backend is Docker Compose. Learn more at <https://docs.docke
 Run the following command to start the containers back up:
 
 ```bash
-docker-compose start
+docker compose start
 ```
 
 ---
@@ -27,7 +29,7 @@ docker-compose start
 Run the following command to pause the containers:
 
 ```bash
-docker-compose pause
+docker compose pause
 ```
 
 ---
@@ -37,7 +39,7 @@ docker-compose pause
 Run the following command to stop the containers:
 
 ```bash
-docker-compose stop
+docker compose stop
 ```
 
 > Both MySQL and WordPress data _will_ persist when you stop the containers.
@@ -46,10 +48,10 @@ docker-compose stop
 
 ## Recreate Containers
 
-If you've made changes to `docker-comper.yml` and you want to recreate the containers, run the following command:
+If you've made changes to `docker compose.yml` and you want to recreate the containers, run the following command:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 > Both MySQL and WordPress data _will_ persist when you recreate the containers.
@@ -61,10 +63,10 @@ docker-compose up -d
 Need a fresh start? To destroy the containers _and_ the persistant data, run the following command:
 
 ```bash
-docker-compose down --remove-orphans && rm -rf mysql wordpress
+docker compose down --volumes
 ```
 
-> Warning: This is a destructive operation! All WordPress data will be lost!
+> Warning: This is a destructive operation! All data will be lost!
 
 ---
 
@@ -73,7 +75,7 @@ docker-compose down --remove-orphans && rm -rf mysql wordpress
 If you need to tunnel into a Docker container via the terminal, run the following command:
 
 ```bash
-docker exec -it <backend-container-name-1> /bin/sh
+docker exec -it nextjs-wordpress-<container-name>-1 /bin/sh
 ```
 
 Where `<container-name>` is the name of the container you want to tunnel into. Here is the list of container names:

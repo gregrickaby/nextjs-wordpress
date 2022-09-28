@@ -10,8 +10,7 @@ The following will help you setup Next.js WordPress.
   - [ENV Variables](#env-variables)
 - [WordPress Setup](#wordpress-setup)
   - [Install](#install-1)
-  - [1) Copy ENV Variables](#1-copy-env-variables)
-    - [Customize ENV Variables (optional)](#customize-env-variables-optional)
+    - [1) Customize ENV Variables (optional)](#1-customize-env-variables-optional)
   - [2) Run Install Script](#2-run-install-script)
   - [3) Log into WordPress](#3-log-into-wordpress)
   - [4) Create Application Password](#4-create-application-password)
@@ -24,8 +23,7 @@ The following will help you setup Next.js WordPress.
 ## Requirements
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- Node v16
-- NPM v8
+- [Node (LTS)](https://nodejs.org/en/)
 
 ## Next.js Setup
 
@@ -49,55 +47,21 @@ That's it for Next.js. You're ready to move on to the WordPress setup.
 
 ## WordPress Setup
 
-All CLI commands must be run from inside the `/backend` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
+All WordPress commands must be run from inside the `/wordpress` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
 
 ---
 
 ### Install
 
-### 1) Copy ENV Variables
+#### 1) Customize ENV Variables (optional)
 
-From inside the `/backend` directory, run the following command:
-
-```bash
-cp .env.sample .env
-```
-
-#### Customize ENV Variables (optional)
-
-This step can be done at a later time. Open the `.env` file in your code editor and customize the following values to meet your needs:
-
-```text
-# The WordPress URL (no http//https!)
-WORDPRESS_URL="headlesswp.test"
-
-# MySQL Creds
-MYSQL_ROOT_PASSWORD="root"
-
-# WordPress DB Creds
-WORDPRESS_DB_HOST="mysql"
-WORDPRESS_DB_NAME="wordpress"
-WORDPRESS_DB_USER="wordpress"
-WORDPRESS_DB_PASSWORD="wordpress"
-
-# WordPress Creds
-WORDPRESS_TITLE="Next.js WordPress"
-WORDPRESS_USERNAME="wordpress"
-WORDPRESS_PASSWORD="wordpress"
-WORDPRESS_EMAIL="foo@bar.com"
-
-# Headless Creds
-HEADLESS_FRONTEND_URL="http://localhost:3000/"
-PREVIEW_SECRET_TOKEN="wordpress"
-```
-
-Save the the `.env` file.
+This step can be done at a later time. Open the `/apps/wordpress/.env` file in your code editor.
 
 ---
 
 ### 2) Run Install Script
 
-From inside the `/backend` directory, run the following command:
+From inside the `/wordpress` directory, run the following command:
 
 ```bash
 chmod +x install.sh && ./install.sh
@@ -111,12 +75,12 @@ This script pulls down and starts each container. Composer will download the req
 
 ### 3) Log into WordPress
 
-View the WordPress dashboard at: <https://headlesswp.test/wp-admin/>
+View the WordPress dashboard at: <https://nextjswp.test/wp-admin/>
 
-- username `wordpress`
-- password `wordpress`
+- username `admin`
+- password `password`
 
-> Use the credentials above, unless you've customized the `WORDPRESS_USERNAME` and `WORDPRESS_PASSWORD` variables in the `.env` file.
+> Use the credentials above, unless you've customized the `WORDPRESS_USERNAME` and `WORDPRESS_PASSWORD` variables in the `/apps/wordpress/.env` file.
 
 ---
 
@@ -139,7 +103,7 @@ In order for Next.js to `POST` comment and reaction data back to WordPress, it n
 In order for post reactions to work, you'll need to import the ACF fields.
 
 1. Navigate to the WordPress dashboard under `Custom Fields --> Tools`
-2. Under "Import Field Groups" click the "Choose File" button and select the `acf-export-post-fields.json` file from the `/backend` directory: ![screenshot of how to import field groups](https://uc35545d55f151f85536ef38cacc.previews.dropboxusercontent.com/p/thumb/ABrS9oMwMtYF2N9eErOY3UOgjGVDpsy5rGY--tY2ruJiTmq7QKQidZFZpJq-veTQAWjS6ZZ0nqlnacyramnFArnjFQvabhMxHg0sogwQAS4kp0HVTa7pCoIPvPUFRLj8DkFsMw-Ob3soP9jo4LjkGUD_KcD8PZYYOisW3kTKNk1ztIUI1xknAsMNUP8uVzo-AYKOBxBeO-N0KqSooqAw1XONMjHdnVZ845Q4x5c6teWa-j7B9uqA-ew1zEd0oL4mUQyYeIKIoXGLykMFMhbOs9quO2nuBNVFxCXIjrfSlfshxavCTyo72bo2nNLDTjvl00YflgdH2ijc3DPBB5Ruve8Lnj6prG1599JjqAIj2_kU2uNKaUjMoWIyGUsSjCBW6iw74j4DLfxZuPR3w6RiWbFg/p.png)
+2. Under "Import Field Groups" click the "Choose File" button and select the `acf-export-post-fields.json` file from the `/wordpress` directory: ![screenshot of how to import field groups](https://uc35545d55f151f85536ef38cacc.previews.dropboxusercontent.com/p/thumb/ABrS9oMwMtYF2N9eErOY3UOgjGVDpsy5rGY--tY2ruJiTmq7QKQidZFZpJq-veTQAWjS6ZZ0nqlnacyramnFArnjFQvabhMxHg0sogwQAS4kp0HVTa7pCoIPvPUFRLj8DkFsMw-Ob3soP9jo4LjkGUD_KcD8PZYYOisW3kTKNk1ztIUI1xknAsMNUP8uVzo-AYKOBxBeO-N0KqSooqAw1XONMjHdnVZ845Q4x5c6teWa-j7B9uqA-ew1zEd0oL4mUQyYeIKIoXGLykMFMhbOs9quO2nuBNVFxCXIjrfSlfshxavCTyo72bo2nNLDTjvl00YflgdH2ijc3DPBB5Ruve8Lnj6prG1599JjqAIj2_kU2uNKaUjMoWIyGUsSjCBW6iw74j4DLfxZuPR3w6RiWbFg/p.png)
 3. Click the "Import JSON" button
 
 That's it! WordPress should now be setup and ready to go.
@@ -152,7 +116,7 @@ The front-end has support for a "Books" custom post type with custom fields. Thi
 
 ### Import Book CPT
 
-1. Visit the CPT UI tools page: <https://headlesswp.test/wp-admin/admin.php?page=cptui_tools>
+1. Visit the CPT UI tools page: <https://nextjswp.test/wp-admin/admin.php?page=cptui_tools>
 2. Copy and paste the following JSON into the "Import Post Types" field:
 
    ```json
@@ -236,8 +200,8 @@ The front-end has support for a "Books" custom post type with custom fields. Thi
 
 ### Import Book Custom Fields
 
-1. Visit the ACF tools page: <https://headlesswp.test/wp-admin/edit.php?post_type=acf-field-group&page=acf-tools>
-2. Under the Import settings, click "choose file" and select `backend/acf-export-cpt-fields.json`
+1. Visit the ACF tools page: <https://nextjswp.test/wp-admin/edit.php?post_type=acf-field-group&page=acf-tools>
+2. Under the Import settings, click "choose file" and select `/apps/wordpress/acf-export-cpt-fields.json`
 3. Click the blue "Import" button
 
 ---
