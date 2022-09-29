@@ -2,6 +2,7 @@
   "name": "nextjs-wordpress",
   "version": "1.0.0",
   "description": "💀 It's headless WordPress!",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
