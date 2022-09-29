@@ -2,20 +2,16 @@
   "name": "nextjs-wordpress",
   "version": "1.0.0",
   "description": "💀 It's headless WordPress!",
-  "author": "greg@gregrickaby.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
+  },
+  "author": "Greg Rickaby <greg@gregrickaby.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gregrickaby/nextjs-wordpress/issues"
   },
   "homepage": "https://github.com/gregrickaby/nextjs-wordpress#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
-  },
-  "keywords": [
-    "nextjs",
-    "wordpress"
-  ],
   "scripts": {
     "build": "turbo run build",
     "test": "turbo run test",
@@ -27,6 +23,12 @@
     "apps/*"
   ],
   "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-custom": "*",
+    "prettier-config-custom": "*",
+    "prettier": "^2.7.1",
+    "markdownlint": "^0.26.2",
+    "markdownlint-cli": "^0.32.2",
     "turbo": "^1.5.4"
   }
 }

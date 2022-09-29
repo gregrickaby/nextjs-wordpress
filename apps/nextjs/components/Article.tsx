@@ -12,7 +12,7 @@ export interface ArticleProps {
  */
 export default function Article({content}: ArticleProps) {
   return (
-    <article className="prose prose-stone m-auto pb-4 dark:prose-invert lg:prose-xl">
+    <article className="prose prose-stone dark:prose-invert lg:prose-xl m-auto pb-4">
       <header className="mb-4">
         {content?.categories?.edges?.length >= 1 &&
           content?.categories?.edges?.map(({node}) => (

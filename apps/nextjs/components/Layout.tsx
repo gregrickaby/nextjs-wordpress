@@ -11,6 +11,7 @@ export interface LayoutProps {
   seo: {
     fullHead: string
     title: string
+
     metaDesc: string
   }
 }
@@ -20,7 +21,7 @@ export interface LayoutProps {
  */
 export default function Layout({settings, menu, seo, children}: LayoutProps) {
   return (
-    <div className="container prose prose-stone m-auto my-8 space-y-16 dark:prose-invert lg:prose-xl">
+    <div className="prose prose-stone dark:prose-invert lg:prose-xl container m-auto my-8 space-y-16">
       <Head>
         <title>{seo?.title ? parse(seo?.title) : `Next.js WordPress`}</title>
         {seo?.metaDesc ? parse(seo?.metaDesc) : null}

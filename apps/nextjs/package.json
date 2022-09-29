@@ -1,26 +1,13 @@
 {
   "name": "nextjs-wordpress",
-  "description": "💀 It's headless WordPress!",
-  "version": "0.1.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gregrickaby/nextjs-wordpress.git"
-  },
-  "author": "Greg Rickaby <greg@gregrickaby.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gregrickaby/nextjs-wordpress/issues"
-  },
-  "homepage": "https://github.com/gregrickaby/nextjs-wordpress#readme",
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "rimraf .next && next dev",
-    "format": "npx prettier '**/*.{js,jsx,ts,tsx,md,mdx,html,css,scss,json,yml}' --config=.prettierrc.js --write || true",
-    "lint": "npm run format && npm run lint:js && npm run lint:css && npm run lint:md && npm run type-check",
-    "lint:css": "npx stylelint '**/*.css' --config=.stylelintrc.js --fix || true",
+    "format": "npx prettier '**/*.{js,jsx,ts,tsx,md,mdx,html,css,scss,json,yml}' --write || true",
+    "lint": "npm run format && npm run lint:js && npm run lint:css && npm run type-check",
+    "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
-    "lint:md": "npx markdownlint '**/*.{md,mdx}' --fix",
     "start": "next start",
     "type-check": "tsc"
   },
@@ -32,29 +19,25 @@
     "next": "^12.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.36.0",
+    "react-hook-form": "^7.36.1",
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.1.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.7",
-    "@types/node": "^18.7.18",
+    "@types/node": "^18.7.23",
     "@types/react": "^18.0.21",
     "autoprefixer": "^10.4.12",
-    "eslint": "^8.23.1",
-    "eslint-config-next": "^12.3.1",
-    "eslint-config-prettier": "^8.5.0",
-    "markdownlint": "^0.26.2",
-    "markdownlint-cli": "^0.32.2",
+    "eslint-config-custom": "*",
     "postcss": "^8.4.16",
-    "prettier": "^2.7.1",
+    "prettier-config-custom": "*",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "rimraf": "^3.0.2",
     "sharp": "^0.31.0",
-    "stylelint": "^14.12.1",
-    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-custom": "*",
     "tailwindcss": "^3.1.8",
-    "typescript": "^4.8.3"
+    "tsconfig": "*",
+    "typescript": "^4.8.4"
   }
 }
