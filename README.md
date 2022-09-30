@@ -61,16 +61,14 @@ The repo config file. Learn more about configuring [Turborepo](https://turborepo
 
 ---
 
-## Prequisites
+## Quick Start
+
+### Prequisites
 
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 2. [Node LTS](https://nodejs.dev/)
 
----
-
-## Quick Start
-
-1. Clone this repo:
+3. Clone this repo:
 
 ```bash
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
@@ -79,7 +77,7 @@ npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 2. Copy ENV file:
 
 ```bash
-cd nextjs-wordpress/apps/nextjs && cp .env.example .env
+cd nextjs-wordpress/apps/nextjs && cp .env.sample .env
 ```
 
 3. Install Next.js:
