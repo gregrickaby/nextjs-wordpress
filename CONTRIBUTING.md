@@ -2,9 +2,12 @@
 
 Here are the ways to get involved with this project:
 
-- [Submit an issue](#submitting-issues)
-- [Contribute code](#contributing-code)
-- [Start a discussion](https://github.com/gregrickaby/nextjs-wordpress/discussions)
+- [Contributing](#contributing)
+  - [Submitting issues](#submitting-issues)
+  - [Contributing code](#contributing-code)
+  - [Git Workflow](#git-workflow)
+  - [Legal Stuff](#legal-stuff)
+  - [Up Next](#up-next)
 
 ## Submitting issues
 
@@ -41,6 +44,6 @@ This repo is maintained by [Greg Rickaby](https://gregrickaby.com/). By contribu
 
 ## Up Next
 
-Head over to the [README](/README.md)
+Go back to the [README](/README.md)
 
 ---

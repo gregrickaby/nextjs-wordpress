@@ -1,0 +1,12 @@
+{
+  "name": "prettier-config-custom",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^2.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

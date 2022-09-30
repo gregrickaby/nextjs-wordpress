@@ -1,6 +1,9 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
-  rules: {
-    'no-console': ['error', {allow: ['warn', 'error']}]
+  root: true,
+  extends: ['custom'],
+  settings: {
+    next: {
+      rootDir: ['apps/*/']
+    }
   }
 }

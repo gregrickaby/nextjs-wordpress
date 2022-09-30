@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: 'github-actions'
-    directory: '/'
+    directory: './workflows'
     schedule:
       interval: 'weekly'
       day: 'monday'
@@ -13,7 +13,13 @@ updates:
       day: 'monday'
 
   - package-ecosystem: 'npm'
-    directory: '/docs'
+    directory: '/apps/docs'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/nextjs'
     schedule:
       interval: 'weekly'
       day: 'monday'

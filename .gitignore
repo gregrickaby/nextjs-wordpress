@@ -1,19 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
+vendor
 /.pnp
 .pnp.js
 
 # testing
-/coverage
-
-# next.js
-/.next/
-/out/
+coverage
 
 # production
-/build
+build
 
 # misc
 .DS_Store
@@ -36,3 +33,18 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# next.js
+.next/
+out/
+
+# wordpress
+apps/wordpress/plugins/*
+apps/wordpress/themes/*
+apps/wordpress/mu-plugins/*
+!apps/wordpress/plugins/.gitkeep
+!apps/wordpress/themes/.gitkeep
+!apps/wordpress/mu-plugins/.gitkeep
+
+# turbo
+.turbo
