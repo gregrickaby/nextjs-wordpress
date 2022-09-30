@@ -27,6 +27,40 @@ See a fully working, production site running this stack at <https://gregrickaby.
 
 ---
 
+## Monorepo
+
+This project is a monorepo managed by [Turborepo](https://turborepo.org/).
+
+```text
+nextjs-wordpress
+├── apps
+│   ├── docs
+│   ├── nextjs
+│   └── wordpress
+├── packages
+│   ├── eslint-config-custom
+│   ├── nextjs-wordpress-plugin
+│   ├── nextjs-wordpress-theme
+│   ├── prettier-config-custom
+│   ├── stylelint-config-custom
+│   └── tsconfig
+└── turbo.json
+```
+
+### `apps/`
+
+The applications directory. This includes the documentation, Next.js (frontend), and WordPress (backend).
+
+### `packages/`
+
+Shared packages used by the apps. This includes ESLint, Stylelint, Prettier, and TypeScript configs. As well as the WordPress plugin and theme.
+
+### `turbo.json`
+
+The repo config file. Learn more about configuring [Turborepo](https://turborepo.org/docs/configuration).
+
+---
+
 ## Prequisites
 
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
