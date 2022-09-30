@@ -59,7 +59,7 @@ cd apps/wordpress && chmod +x install.sh && ./install.sh
 - Log into WordPress <https://nextjswp.test/wp-admin> (admin/password)
 - Go to Custom Fields --> Tools --> Import Field Groups
 - Click "Choose File"
-- Select `apps/wordpress/acf-export.json`
+- Select `apps/wordpress/acf-export-post-fields.json`
 - Click "Import JSON"
 
 5. Start the development server:
