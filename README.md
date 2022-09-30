@@ -79,7 +79,7 @@ npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 2. Copy ENV file:
 
 ```bash
-cd nextjs-wordpress && cp .env.example .env
+cd nextjs-wordpress/apps/nextjs && cp .env.example .env
 ```
 
 3. Install Next.js:
