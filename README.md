@@ -126,9 +126,9 @@ Contributions are welcome! Please see the [contributing guidelines](./CONTRIBUTI
 
 A special thanks to the following people:
 
-- [Rae Van Epps](https://github.com/ravewebdev) wrote the bulk of the PHP code for the [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin), giving this project a jumping off point.
+- [Rae Van Epps](https://github.com/ravewebdev) wrote the bulk of the PHP code for the Next.js WordPress Plugin, giving this project a jumping off point.
 - [Amor Kumar](https://github.com/itsamoreh) insipired me to deep dive into Docker with his [BYOB Headless WordPress](https://github.com/itsamoreh/byob-headless-wordpress) project.
-- [John Jeeves](https://github.com/orgs/AEWP/people/john-jeeves-americaneagle) and [Adam Hollister](https://github.com/ahollister) for their [nifty work](https://github.com/gregrickaby/nextjs-wordpress-plugin/blob/main/inc/blocks.php) registering Gutenberg Blocks in the WordPress REST-API.
+- [John Jeeves](https://github.com/orgs/AEWP/people/john-jeeves-americaneagle) and [Adam Hollister](https://github.com/ahollister) for their work on registering Gutenberg Blocks in the WordPress REST-API.
 - [Jason Bahl](https://github.com/jasonbahl) for his tireless work on [WP GraphQL](https://github.com/jasonbahl/wp-graphql), and all of our chats/DMs over the years.
 
 I ❤️❤️❤️ the open source community, and hope this project inspires you to create something awesome.
