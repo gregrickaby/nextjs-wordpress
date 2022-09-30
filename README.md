@@ -5,7 +5,7 @@
 ## Features <!-- omit in toc -->
 
 - Next.js w/ TypeScript
-- WordPress in a Docker container with PHP 8.0
+- WordPress in a Docker container with PHP 8.1
 - Self-signed SSL certificate from Traefik
 - Apollo Client w/ WP GraphQL
 - On-demand revalidation
