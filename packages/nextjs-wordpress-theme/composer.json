@@ -1,31 +1,31 @@
 {
-	"name": "gregrickaby/nextjs-wordpress-theme",
-	"description": "A plugin to help turn WordPress into a headless CMS.",
-	"homepage": "https://github.com/gregrickaby/nextjs-wordpress-theme",
-	"type": "wordpress-theme",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Greg Rickaby",
-			"email": "greg@gregrickaby.com"
-		}
-	],
-	"config": {
-		"platform": {
-			"php": "8.0"
-		},
-		"allow-plugins": {
-			"composer/installers": true,
-			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
-	},
-	"require-dev": {
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpcompatibility/phpcompatibility-wp": "^2.1",
-		"wp-coding-standards/wpcs": "^2.3"
-	},
-	"scripts": {
-		"format": "./vendor/bin/phpcbf --standard=.phpcs.xml --report=summary,source",
-		"lint": "./vendor/bin/phpcs --standard=.phpcs.xml --report=summary,source"
-	}
+  "name": "gregrickaby/nextjs-wordpress-theme",
+  "description": "A plugin to help turn WordPress into a headless CMS.",
+  "homepage": "https://github.com/gregrickaby/nextjs-wordpress-theme",
+  "type": "wordpress-theme",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Greg Rickaby",
+      "email": "greg@gregrickaby.com"
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "8.0"
+    },
+    "allow-plugins": {
+      "composer/installers": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "wp-coding-standards/wpcs": "^2.3"
+  },
+  "scripts": {
+    "format": "./vendor/bin/phpcbf --standard=.phpcs.xml --report=summary,source",
+    "lint": "./vendor/bin/phpcs --standard=.phpcs.xml --report=summary,source"
+  }
 }
