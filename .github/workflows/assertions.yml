@@ -16,6 +16,19 @@ jobs:
         with:
           token: ${{ github.token }}
 
+      - name: Setup PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer:v2, phpcs
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.OS }}-composer-
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -23,7 +36,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm i
+        run: |
+          composer install
+          npm i
 
       - name: Lint
         run: npm run lint
