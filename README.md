@@ -104,9 +104,9 @@ cd ../../ && npm run dev
 
 ---
 
-## Setup Documentation
+## Full Documentation
 
-Head on over to the [docs](./docs/index.md) to get started!
+The documentation is a work in progress. You can view them [here](./apps/docs/index.md).
 
 ---
 

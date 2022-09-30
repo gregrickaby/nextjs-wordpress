@@ -5,4 +5,6 @@ There are two environments, the backend (WordPress) and the frontend (Next.js). 
 1. [Setup](setup.md)
 2. [Local Development](development.md)
 3. [Managing Docker](docker.md)
-4. [Contributing](/CONTRIBUTING.md)
+4. [Contributing](../../CONTRIBUTING.md)
+
+---

@@ -73,10 +73,10 @@ For example, if you're loading remote images from `unsplash.com`:
 images: {
   remotePatterns: [
     {
-      protocol: "https",
-      hostname: "**.unsplash.com",
-    },
-  ];
+      protocol: 'https',
+      hostname: '**.unsplash.com'
+    }
+  ]
 }
 ```
 
@@ -300,6 +300,8 @@ If you need to bypass the pre-commit hooks, you can use the `--no-verify` flag:
 ```bash
 git commit -m "My commit message" --no-verify
 ```
+
+---
 
 ## Up Next
 
