@@ -27,6 +27,49 @@ See a fully working, production site running this stack at <https://gregrickaby.
 
 ---
 
+## Prequisites
+
+1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. [Node LTS](https://nodejs.dev/)
+
+---
+
+## Quick Start
+
+1. Clone this repo:
+
+```bash
+npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
+```
+
+2. Install Next.js:
+
+```bash
+cd nextjs-wordpress && npm i
+```
+
+3. Install WordPress (Docker Desktop must be running):
+
+```bash
+cd apps/wordpress && chmod +x install.sh && ./install.sh
+```
+
+4. Import ACF Fields:
+
+- Log into WordPress <https://nextjswp.test/wp-admin> (admin/password)
+- Go to Custom Fields --> Tools --> Import Field Groups
+- Click "Choose File"
+- Select `apps/wordpress/acf-export.json`
+- Click "Import JSON"
+
+5. Start the development server:
+
+```bash
+cd ../../ && npm run dev
+```
+
+---
+
 ## Setup Documentation
 
 Head on over to the [docs](./docs/index.md) to get started!
