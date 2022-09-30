@@ -34,14 +34,15 @@
 	<!-- Use WordPress PHP Compatibility. -->
 	<rule ref="PHPCompatibilityWP"/>
 
-	<!-- WordPress Core currently supports PHP 8.0+. -->
-	<config name="testVersion" value="8.0"/>
+	<!-- WordPress Core currently supports PHP 8.1+. -->
+	<config name="testVersion" value="8.1"/>
 
 	<!-- Only sniff PHP files. -->
 	<arg name="extensions" value="php"/>
 
-	<!-- Sniff the entire plugin. -->
-	<file>.</file>
+	<!-- Sniff the plugin and theme. -->
+	<file>./packages/nextjs-wordpress-plugin</file>
+	<file>./packages/nextjs-wordpress-theme</file>
 
 	<!-- Don't sniff the following directories. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>

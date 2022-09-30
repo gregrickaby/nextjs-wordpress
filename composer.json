@@ -1,8 +1,9 @@
 {
-  "name": "gregrickaby/nextjs-wordpress-theme",
-  "description": "A plugin to help turn WordPress into a headless CMS.",
-  "homepage": "https://github.com/gregrickaby/nextjs-wordpress-theme",
-  "type": "wordpress-theme",
+  "name": "gregrickaby/nextjs-wordpress",
+  "description": "💀 It's headless WordPress!",
+  "version": "1.0.0",
+  "homepage": "https://github.com/gregrickaby/nextjs-wordpress",
+  "type": "library",
   "license": "MIT",
   "authors": [
     {
@@ -12,7 +13,7 @@
   ],
   "config": {
     "platform": {
-      "php": "8.0"
+      "php": "8.1"
     },
     "allow-plugins": {
       "composer/installers": true,

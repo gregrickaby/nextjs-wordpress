@@ -1,9 +1,7 @@
 # Next.js WordPress Plugin
 
-A plugin to help turn WordPress into a headless CMS. This plugin is a companion to the [Next.js WordPress Repo](https://github.com/gregrickaby/nextjs-wordpress).
+A plugin to help turn WordPress into a headless CMS.
 
-## Installation
+> Feel free to edit this plugin. The changes will automatically appear in the Docker container.
 
-```bash
-composer require gregrickaby/nextjs-wordpress-plugin
-```
+---
