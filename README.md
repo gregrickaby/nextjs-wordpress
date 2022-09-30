@@ -106,7 +106,7 @@ cd ../../ && npm run dev
 
 ## Full Documentation
 
-The documentation is a work in progress. You can view them [here](./apps/docs/index.md).
+The docs are a work in progress. You can view them [here](./apps/docs/index.md).
 
 ---
 
