@@ -217,15 +217,15 @@
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "6.0.0",
+            "version": "6.0.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/6.0.0"
+                "reference": "tags/6.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.0.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.0.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -271,15 +271,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.11.1",
+            "version": "1.11.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.11.1"
+                "reference": "tags/1.11.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.11.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.11.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
