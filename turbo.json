@@ -3,24 +3,10 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"],
-      "env": [
-        "NEXT_PUBLIC_WORDPRESS_URL",
-        "PREVIEW_SECRET_TOKEN",
-        "WORDPRESS_USERNAME",
-        "WORDPRESS_PASSWORD",
-        "DISABLE_STATIC_SITE_GENERATION"
-      ]
+      "outputs": ["dist/**", ".next/**"]
     },
     "lint": {
-      "outputs": [],
-      "env": [
-        "NEXT_PUBLIC_WORDPRESS_URL",
-        "PREVIEW_SECRET_TOKEN",
-        "WORDPRESS_USERNAME",
-        "WORDPRESS_PASSWORD",
-        "DISABLE_STATIC_SITE_GENERATION"
-      ]
+      "outputs": []
     },
     "dev": {
       "cache": false
