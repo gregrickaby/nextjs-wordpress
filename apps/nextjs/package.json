@@ -26,7 +26,7 @@
     "@evilmartians/lefthook": "^1.1.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.7",
-    "@types/node": "^18.7.23",
+    "@types/node": "^18.8.0",
     "@types/react": "^18.0.21",
     "autoprefixer": "^10.4.12",
     "eslint-config-custom": "*",
