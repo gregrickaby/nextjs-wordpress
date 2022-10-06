@@ -15,6 +15,7 @@ export default function SingleBook({data}: PageProps) {
     <Layout
       settings={data?.generalSettings}
       menu={data?.menu}
+      footerMenu={data?.footerMenu}
       seo={data?.book?.seo}
     >
       <Article content={data?.page} />
@@ -75,6 +76,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   data = {
     generalSettings: data.generalSettings,
     menu: data.menu,
+    footerMenu: data.footerMenu,
     page: data.book
   }
 

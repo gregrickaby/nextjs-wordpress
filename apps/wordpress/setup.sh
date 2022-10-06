@@ -19,6 +19,8 @@ wp menu create "Header"
 wp menu item add-post header 2
 wp menu item add-post header 5
 wp menu location assign header header-menu
+wp menu create "Footer"
+wp menu location assign footer footer-menu
 wp rewrite structure "/%year%/%monthnum%/%day%/%postname%/"
 echo -e "\e[32m\e[1mSuccess:\e[0m\e[0m WordPress setup complete!"
 sleep 2

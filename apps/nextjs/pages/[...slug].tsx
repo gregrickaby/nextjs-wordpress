@@ -31,6 +31,7 @@ export default function GenericPage({data}: PageProps) {
     <Layout
       settings={data?.generalSettings}
       menu={data?.menu}
+      footerMenu={data?.footerMenu}
       seo={data?.page?.seo}
     >
       {
@@ -131,6 +132,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   data = {
     generalSettings: data.generalSettings,
     menu: data.menu,
+    footerMenu: data.footerMenu,
     page: data.books || data.page || data.posts
   }
 
