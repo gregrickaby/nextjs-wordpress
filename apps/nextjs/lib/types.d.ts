@@ -5,6 +5,7 @@ export interface PageProps {
     book?: ContentFields
     generalSettings: SettingsFields
     menu: MenuFields
+    footerMenu?: MenuFields
     page?: ContentFields
     post?: ContentFields
     posts?: ArchiveFields

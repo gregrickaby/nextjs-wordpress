@@ -7,6 +7,7 @@ import {MenuFields, SettingsFields} from '~/lib/types'
 export interface LayoutProps {
   children: any
   menu: MenuFields
+  footerMenu?: MenuFields
   settings: SettingsFields
   seo: {
     fullHead: string
@@ -19,7 +20,7 @@ export interface LayoutProps {
 /**
  * Layout component.
  */
-export default function Layout({settings, menu, seo, children}: LayoutProps) {
+export default function Layout({settings, menu, footerMenu, seo, children}: LayoutProps) {
   return (
     <div className="prose prose-stone dark:prose-invert lg:prose-xl container m-auto my-8 space-y-16">
       <Head>
@@ -38,7 +39,7 @@ export default function Layout({settings, menu, seo, children}: LayoutProps) {
       </Head>
       <Header settings={settings} menu={menu} />
       <main>{children}</main>
-      <Footer {...settings} />
+      <Footer settings={settings} menu={footerMenu}/>
     </div>
   )
 }

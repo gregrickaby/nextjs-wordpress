@@ -16,6 +16,7 @@ export default function SinglePost({data}: PageProps) {
     <Layout
       settings={data?.generalSettings}
       menu={data?.menu}
+      footerMenu={data?.footerMenu}
       seo={data?.post?.seo}
     >
       <Article content={data?.post} />
