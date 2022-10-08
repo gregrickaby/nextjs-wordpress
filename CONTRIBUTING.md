@@ -1,13 +1,13 @@
-# Contributing
+# Contributing <!-- omit in toc -->
 
 Here are the ways to get involved with this project:
 
-- [Contributing](#contributing)
-  - [Submitting issues](#submitting-issues)
-  - [Contributing code](#contributing-code)
+- [Submitting issues](#submitting-issues)
+- [Contributing code](#contributing-code)
+  - [Development Setup](#development-setup)
   - [Git Workflow](#git-workflow)
-  - [Legal Stuff](#legal-stuff)
-  - [Up Next](#up-next)
+  - [Vercel CLI](#vercel-cli)
+- [Legal Stuff](#legal-stuff)
 
 ## Submitting issues
 
@@ -17,33 +17,48 @@ Before submitting your issue, make sure it has not been mentioned earlier. You c
 
 ## Contributing code
 
-Found a bug you can fix? Fantastic! Patches are always welcome. Here's a few tips for crafting a great pull request:
+Found a bug you can fix? Fantastic! Patches are always welcome.
 
-- Lint your code with `npm run lint`
-- When opening a PR, please fill out the Pull Request template completely.
-- Reference any existing issues that relate to your PR. This allows everyone to easily see all related discussions.
+### Development Setup
+
+Follow the [Quick Start guide](https://github.com/gregrickaby/nextjs-wordpress#quick-start) to get the project up and running.
 
 ---
 
-## Git Workflow
+### Git Workflow
 
-1. Fork the repo
+1. Fork the repo and create a feature/patch branch off `main`
 2. Work locally adhering to coding standards
-3. When your feature has been tested, open a Pull Request (PR) and fill out the PR template
-4. Your PR must pass assertions and deploy successfully
-5. After peer review, the PR will be merged back into main
-6. Repeat ♻️
+3. Run `npm run lint`
+4. Make sure the app builds locally with `npm run build && npm run start`
+5. Push your code, open a PR, and fill out the PR template
+6. After peer review, the PR will be merged back into `main`
+7. Repeat ♻️
+
+> Your PR must pass automated assertions, deploy to Vercel successfully, and pass a peer review before it can be merged.
+
+---
+
+### Vercel CLI
+
+I've found that running `vercel` locally is a great way to verify Edge Functions and Middleware are working as expected.
+
+To install the [Vercel CLI](https://vercel.com/docs/cli), run:
+
+```bash
+npm i -g vercel
+```
+
+Start a Vercel development server locally:
+
+```bash
+vercel dev
+```
 
 ---
 
 ## Legal Stuff
 
 This repo is maintained by [Greg Rickaby](https://gregrickaby.com/). By contributing code you grant its use under the [MIT](https://github.com/gregrickaby/nextjs-wordpress/blob/main/LICENSE).
-
----
-
-## Up Next
-
-Go back to the [README](/README.md)
 
 ---
