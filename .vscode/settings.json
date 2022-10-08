@@ -1,9 +1,15 @@
 {
-  // Sort imports on save.
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
-  // This will get emmet working in JSX.
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   }
