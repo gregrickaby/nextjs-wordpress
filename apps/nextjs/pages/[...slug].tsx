@@ -37,7 +37,7 @@ export default function GenericPage({data}: PageProps) {
       {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
-          <div className="grid gap-8 md:grid-cols-2">
+          <div>
             {data?.page?.nodes?.map((node: ContentFields, index: number) => (
               <Card key={index} content={node} />
             ))}

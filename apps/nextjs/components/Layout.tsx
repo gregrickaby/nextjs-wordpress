@@ -12,7 +12,6 @@ export interface LayoutProps {
   seo: {
     fullHead: string
     title: string
-
     metaDesc: string
   }
 }
@@ -20,9 +19,15 @@ export interface LayoutProps {
 /**
  * Layout component.
  */
-export default function Layout({settings, menu, footerMenu, seo, children}: LayoutProps) {
+export default function Layout({
+  settings,
+  menu,
+  footerMenu,
+  seo,
+  children
+}: LayoutProps) {
   return (
-    <div className="prose prose-stone dark:prose-invert lg:prose-xl container m-auto my-8 space-y-16">
+    <div>
       <Head>
         <title>{seo?.title ? parse(seo?.title) : `Next.js WordPress`}</title>
         {seo?.metaDesc ? parse(seo?.metaDesc) : null}
@@ -39,7 +44,7 @@ export default function Layout({settings, menu, footerMenu, seo, children}: Layo
       </Head>
       <Header settings={settings} menu={menu} />
       <main>{children}</main>
-      <Footer settings={settings} menu={footerMenu}/>
+      <Footer settings={settings} menu={footerMenu} />
     </div>
   )
 }

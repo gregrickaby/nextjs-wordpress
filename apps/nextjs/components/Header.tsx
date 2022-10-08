@@ -11,22 +11,22 @@ export interface HeaderProps {
  */
 export default function Header({settings, menu}: HeaderProps) {
   return (
-    <header className="flex content-center justify-between">
-      <div className="flex space-x-8">
-        <h1 className="lg:m-0 lg:text-xl">
+    <header>
+      <div>
+        <h1>
           <Link href="/" prefetch={false}>
             <a>{settings?.title}</a>
           </Link>
         </h1>
-        <aside className="lg:text-lg">{settings?.description}</aside>
+        <aside>{settings?.description}</aside>
       </div>
       <nav>
-        <ul className="flex space-x-4 lg:m-0">
+        <ul>
           {menu?.menuItems?.nodes?.map(
             (menu: MenuItemFields, index: number) => (
-              <li className="list-none p-0 leading-none lg:m-0" key={index}>
+              <li key={index}>
                 <Link href={menu?.path}>
-                  <a className="lg:text-lg">{menu?.label}</a>
+                  <a>{menu?.label}</a>
                 </Link>
               </li>
             )

@@ -40,9 +40,7 @@ export default function CommentForm({postId}: {postId: number}) {
         {!!error?.graphQLErrors &&
           error?.graphQLErrors?.length >= 1 &&
           error?.graphQLErrors?.map((error, index) => (
-            <p key={index} className="font-mono text-red-500">
-              {error?.message}
-            </p>
+            <p key={index}>{error?.message}</p>
           ))}
       </>
     )
@@ -65,15 +63,10 @@ export default function CommentForm({postId}: {postId: number}) {
   }
 
   return (
-    <form
-      className="mt-16 flex flex-col space-y-4"
-      name="comment-form"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form name="comment-form" onSubmit={handleSubmit(onSubmit)}>
       <input
         {...register('authorName', {required: true})}
         aria-label="Your first and last name"
-        className="field"
         placeholder="Jane Doe"
         required
         type="text"
@@ -81,7 +74,6 @@ export default function CommentForm({postId}: {postId: number}) {
       <input
         {...register('authorEmail', {required: true})}
         aria-label="Your email address"
-        className="field"
         placeholder="email@example.com"
         required
         type="email"
@@ -89,28 +81,22 @@ export default function CommentForm({postId}: {postId: number}) {
       <input
         {...register('authorUrl')}
         aria-label="Your website address"
-        className="field"
         placeholder="https://example.com"
         type="url"
       />
       <textarea
         {...register('comment', {required: true})}
         aria-label="Add your comment"
-        className="field"
         placeholder="Add your comment"
         required
       />
-      <p className="lg:text-base">
+      <p>
         Basic HTML tags such as <code>&lt;strong&gt;</code>,{' '}
         <code>&lt;em&gt;</code>, <code>&lt;pre&gt;</code>,{' '}
         <code>&lt;code&gt;</code>, are allowed. Press enter twice to create a
         new paragraph.
       </p>
-      <button
-        className="bg-zinc-400 px-2 py-2 dark:bg-zinc-700"
-        aria-label="Click to submit your comment"
-        type="submit"
-      >
+      <button aria-label="Click to submit your comment" type="submit">
         Submit
       </button>
     </form>

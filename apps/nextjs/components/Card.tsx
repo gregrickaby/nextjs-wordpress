@@ -6,11 +6,11 @@ import ParseContent from '~/components/ParseContent'
  */
 export default function Card({content}: ArticleProps) {
   return (
-    <div>
+    <>
       <h2>
         <a href={content?.uri}>{content?.title}</a>
       </h2>
       {ParseContent(content?.content || content?.excerpt)}
-    </div>
+    </>
   )
 }
