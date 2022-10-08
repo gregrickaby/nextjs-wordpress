@@ -12,14 +12,19 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.5.4",
+    "@mantine/hooks": "^5.5.4",
+    "@mantine/next": "^5.5.4",
+    "@tabler/icons": "^1.101.0",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
     "isomorphic-dompurify": "^0.23.0",
     "next": "^12.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.37.0",
-    "react-icons": "^4.4.0"
+    "react-hook-form": "^7.37.0"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.1.1",
