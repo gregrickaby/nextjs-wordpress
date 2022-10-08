@@ -73,39 +73,11 @@ The repo config file. Learn more about configuring [Turborepo](https://turborepo
 ```bash
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 ```
-
-2. Copy ENV file:
-
-```bash
-cd nextjs-wordpress/apps/nextjs && cp .env.sample .env
-```
-
-3. Install Next.js:
+4. Set up your dev environment:
 
 ```bash
-npm i
+npm run setup
 ```
-
-4. Install WordPress (Docker Desktop must be running):
-
-```bash
-cd ../wordpress && chmod +x install.sh && ./install.sh
-```
-
-5. Import ACF Fields:
-
-- Log into WordPress <https://nextjswp.test/wp-admin> (admin/password)
-- Go to Custom Fields --> Tools --> Import Field Groups
-- Click "Choose File"
-- Select `apps/wordpress/acf-export-post-fields.json`
-- Click "Import JSON"
-
-6. Start the development server:
-
-```bash
-cd ../../ && npm run dev
-```
-
 ---
 
 ## Full Documentation
