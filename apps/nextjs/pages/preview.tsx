@@ -12,6 +12,7 @@ export default function Preview({data}) {
     <Layout
       settings={data?.generalSettings}
       menu={data?.menu}
+      footerMenu={data?.footerMenu}
       seo={data?.post?.seo}
     >
       <Article content={data.contentNode} />
