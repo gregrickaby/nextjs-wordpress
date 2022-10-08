@@ -1,5 +1,5 @@
+import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons'
 import {useState} from 'react'
-import {FiHeart, FiThumbsDown, FiThumbsUp} from 'react-icons/fi'
 
 export interface ReactionsProps {
   postId: number
@@ -13,15 +13,15 @@ export interface ReactionsProps {
 const Icons = [
   {
     label: 'like',
-    icon: <FiThumbsUp />
+    icon: <IconThumbUp />
   },
   {
     label: 'dislike',
-    icon: <FiThumbsDown />
+    icon: <IconThumbDown />
   },
   {
     label: 'love',
-    icon: <FiHeart />
+    icon: <IconHeart />
   }
 ]
 
