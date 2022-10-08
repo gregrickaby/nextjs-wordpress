@@ -17,7 +17,8 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint && composer run lint",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "setup": "./setup.sh"
   },
   "workspaces": [
     "packages/*",
