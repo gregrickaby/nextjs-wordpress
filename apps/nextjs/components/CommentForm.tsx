@@ -1,5 +1,12 @@
 import {useMutation} from '@apollo/client'
-import {Button, Stack, Text, Textarea, TextInput} from '@mantine/core'
+import {
+  Button,
+  createStyles,
+  Stack,
+  Text,
+  Textarea,
+  TextInput
+} from '@mantine/core'
 import {useForm} from '@mantine/form'
 import {showNotification} from '@mantine/notifications'
 import {IconAlertCircle, IconMessage} from '@tabler/icons'
@@ -11,10 +18,18 @@ export interface CommentFormProps {
   postId: number
 }
 
+const useStyles = createStyles((theme) => ({
+  button: {
+    maxWidth: '115px'
+  }
+}))
+
 /**
  * Comment form component.
  */
 export default function CommentForm({postId}: CommentFormProps) {
+  const {classes} = useStyles()
+
   /**
    * Setup comment form.
    *
@@ -133,6 +148,7 @@ export default function CommentForm({postId}: CommentFormProps) {
           </Text>
           <Button
             aria-label="Click to submit your comment"
+            className={classes.button}
             loading={loading}
             type="submit"
           >
