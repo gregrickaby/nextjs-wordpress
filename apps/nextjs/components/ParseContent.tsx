@@ -1,4 +1,5 @@
-import parse, {Element, HTMLReactParserOptions} from 'html-react-parser'
+import parse, {Element, HTMLReactParserOptions, domToReact} from 'html-react-parser'
+import {Blockquote} from "@mantine/core";
 
 /**
  * Parse HTML content into React components.
@@ -11,6 +12,13 @@ export default function ParseContent(content: string) {
     replace: (domNode) => {
       if (domNode instanceof Element && domNode.attribs.class === 'remove') {
         return <></>
+      }
+
+      if(domNode instanceof Element && domNode.name === 'blockquote') {
+       return(<Blockquote>
+          {domToReact(domNode.children, options)}
+          Life is like an npm install – you never know what you are going to get.
+        </Blockquote>)
       }
     }
   }
