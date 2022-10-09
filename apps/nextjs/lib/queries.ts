@@ -14,9 +14,18 @@ export const MENU_FRAGMENT = gql`
   fragment MenuItems on Menu {
     menuItems {
       nodes {
+        label
+        linkRelationship
         path
         target
-        label
+        childItems {
+          nodes {
+            label
+            linkRelationship
+            path
+            target
+          }
+        }
       }
     }
   }
