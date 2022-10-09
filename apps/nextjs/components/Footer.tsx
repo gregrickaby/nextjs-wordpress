@@ -1,28 +1,28 @@
 import Link from 'next/link'
-import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
-
-export interface FooterProps {
-  menu: MenuFields
-  settings: SettingsFields
-}
+import {MenuItemFields} from '~/lib/types'
+import {useWordPressContext} from './WordPressProvider'
 
 /**
  * Footer component.
  */
-export default function Footer({settings, menu}: FooterProps) {
+export default function Footer() {
+  const {footerMenu, generalSettings} = useWordPressContext()
+
   return (
     <footer>
       <ul>
-        {menu?.menuItems?.nodes?.map((menu: MenuItemFields, index: number) => (
-          <li key={index}>
-            <Link href={menu?.path}>
-              <a>{menu?.label}</a>
-            </Link>
-          </li>
-        ))}
+        {footerMenu?.menuItems?.nodes?.map(
+          (menu: MenuItemFields, index: number) => (
+            <li key={index}>
+              <Link href={menu?.path}>
+                <a>{menu?.label}</a>
+              </Link>
+            </li>
+          )
+        )}
       </ul>
-      &copy; {new Date().getFullYear()} - {settings?.title} -{' '}
-      {settings?.description}
+      &copy; {new Date().getFullYear()} - {generalSettings?.title} -{' '}
+      {generalSettings?.description}
     </footer>
   )
 }

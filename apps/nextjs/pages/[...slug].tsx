@@ -28,12 +28,7 @@ export interface QueryProps {
  */
 export default function GenericPage({data}: PageProps) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.page?.seo}
-    >
+    <Layout seo={data?.page?.seo}>
       {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
@@ -131,7 +126,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   // Set data shape.
   data = {
     generalSettings: data.generalSettings,
-    menu: data.menu,
+    headerMenu: data.headerMenu,
     footerMenu: data.footerMenu,
     page: data.books || data.page || data.posts
   }

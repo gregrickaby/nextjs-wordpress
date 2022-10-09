@@ -1,28 +1,26 @@
 import Link from 'next/link'
-import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
-
-export interface HeaderProps {
-  menu: MenuFields
-  settings: SettingsFields
-}
+import {MenuItemFields} from '~/lib/types'
+import {useWordPressContext} from './WordPressProvider'
 
 /**
  * Header component.
  */
-export default function Header({settings, menu}: HeaderProps) {
+export default function Header() {
+  const {headerMenu, generalSettings} = useWordPressContext()
+
   return (
     <header>
       <div>
         <h1>
           <Link href="/" prefetch={false}>
-            <a>{settings?.title}</a>
+            <a>{generalSettings?.title}</a>
           </Link>
         </h1>
-        <aside>{settings?.description}</aside>
+        <aside>{generalSettings?.description}</aside>
       </div>
       <nav>
         <ul>
-          {menu?.menuItems?.nodes?.map(
+          {headerMenu?.menuItems?.nodes?.map(
             (menu: MenuItemFields, index: number) => (
               <li key={index}>
                 <Link href={menu?.path}>

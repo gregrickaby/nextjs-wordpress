@@ -2,13 +2,9 @@ import parse from 'html-react-parser'
 import Head from 'next/head'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
-import {MenuFields, SettingsFields} from '~/lib/types'
 
 export interface LayoutProps {
   children: any
-  menu: MenuFields
-  footerMenu?: MenuFields
-  settings: SettingsFields
   seo: {
     fullHead: string
     title: string
@@ -19,13 +15,7 @@ export interface LayoutProps {
 /**
  * Layout component.
  */
-export default function Layout({
-  settings,
-  menu,
-  footerMenu,
-  seo,
-  children
-}: LayoutProps) {
+export default function Layout({seo, children}: LayoutProps) {
   return (
     <div>
       <Head>
@@ -42,9 +32,9 @@ export default function Layout({
         />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <Header settings={settings} menu={menu} />
+      <Header />
       <main>{children}</main>
-      <Footer settings={settings} menu={footerMenu} />
+      <Footer />
     </div>
   )
 }
