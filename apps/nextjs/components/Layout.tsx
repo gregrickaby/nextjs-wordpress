@@ -1,50 +1,19 @@
-import parse from 'html-react-parser'
-import Head from 'next/head'
+import {Container} from '@mantine/core'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
-import {MenuFields, SettingsFields} from '~/lib/types'
-
-export interface LayoutProps {
-  children: any
-  menu: MenuFields
-  footerMenu?: MenuFields
-  settings: SettingsFields
-  seo: {
-    fullHead: string
-    title: string
-    metaDesc: string
-  }
-}
+import Meta from '~/components/Meta'
+import {ChildrenProps} from '~/lib/types'
 
 /**
  * Layout component.
  */
-export default function Layout({
-  settings,
-  menu,
-  footerMenu,
-  seo,
-  children
-}: LayoutProps) {
+export default function Layout({children}: ChildrenProps) {
   return (
-    <div>
-      <Head>
-        <title>{seo?.title ? parse(seo?.title) : `Next.js WordPress`}</title>
-        {seo?.metaDesc ? parse(seo?.metaDesc) : null}
-        {seo?.fullHead ? parse(seo?.fullHead) : null}
-        <link
-          rel="preconnect"
-          href={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}`}
-        />
-        <link
-          rel="dns-prefetch"
-          href={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}`}
-        />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
-      <Header settings={settings} menu={menu} />
+    <Container>
+      <Meta />
+      <Header />
       <main>{children}</main>
-      <Footer settings={settings} menu={footerMenu} />
-    </div>
+      <Footer />
+    </Container>
   )
 }

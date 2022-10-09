@@ -12,12 +12,7 @@ import {PageProps} from '~/lib/types'
  */
 export default function SingleBook({data}: PageProps) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.book?.seo}
-    >
+    <Layout>
       <Article content={data?.page} />
       <p>ISBN: {data?.page?.bookFields?.isbn}</p>
       <a href={data?.page?.bookFields?.affiliateUrl} rel="external nofollow">

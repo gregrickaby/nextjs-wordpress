@@ -10,7 +10,6 @@ import {
   SINGLE_PAGE_QUERY
 } from '~/lib/queries'
 import {ContentFields, PageProps} from '~/lib/types'
-import {Container} from "@mantine/core";
 
 export interface QueryProps {
   query: any
@@ -29,26 +28,19 @@ export interface QueryProps {
  */
 export default function GenericPage({data}: PageProps) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.page?.seo}
-    >
-      <Container>
-        {
-          // If this is an archive page...
-          data?.page?.nodes?.length > 0 ? (
-            <div>
-              {data?.page?.nodes?.map((node: ContentFields, index: number) => (
-                <Card key={index} content={node} />
-              ))}
-            </div>
-          ) : (
-            <Article content={data?.page} />
-          )
-        }
-      </Container>
+    <Layout>
+      {
+        // If this is an archive page...
+        data?.page?.nodes?.length > 0 ? (
+          <div>
+            {data?.page?.nodes?.map((node: ContentFields, index: number) => (
+              <Card key={index} content={node} />
+            ))}
+          </div>
+        ) : (
+          <Article content={data?.page} />
+        )
+      }
     </Layout>
   )
 }
@@ -134,7 +126,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   // Set data shape.
   data = {
     generalSettings: data.generalSettings,
-    menu: data.menu,
+    headerMenu: data.headerMenu,
     footerMenu: data.footerMenu,
     page: data.books || data.page || data.posts
   }

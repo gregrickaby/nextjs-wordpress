@@ -9,12 +9,7 @@ import Layout from '~/components/Layout'
  */
 export default function Preview({data}) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.post?.seo}
-    >
+    <Layout>
       <Article content={data.contentNode} />
     </Layout>
   )

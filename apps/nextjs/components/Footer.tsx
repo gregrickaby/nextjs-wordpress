@@ -1,6 +1,7 @@
-import {createStyles, Container, Group, Anchor} from '@mantine/core';
+import {createStyles, Group, Anchor} from '@mantine/core';
 import Link from 'next/link'
 import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
+import {useWordPressContext} from "~/components/WordPressProvider";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -37,9 +38,10 @@ export interface FooterProps {
 /**
  * Footer component.
  */
-export default function FooterComponent({settings, menu}: FooterProps) {
+export default function FooterComponent() {
+  const {footerMenu, generalSettings} = useWordPressContext()
   const { classes } = useStyles();
-  const items =  menu?.menuItems?.nodes?.map((item: MenuItemFields, index: number)  => (
+  const items =  footerMenu?.menuItems?.nodes?.map((item: MenuItemFields, index: number)  => (
     <Link key={index} href={item.path}>
       <Anchor<'a'>
         color="dimmed"
@@ -52,10 +54,11 @@ export default function FooterComponent({settings, menu}: FooterProps) {
 
   return (
     <div className={classes.footer}>
-      <Container className={classes.inner}>&copy; {new Date().getFullYear()} - {settings?.title} -{' '}
-         {settings?.description}
+      <div className={classes.inner}>
+        &copy; {new Date().getFullYear()} - {generalSettings?.title} -{' '}
+        {generalSettings?.description}
         <Group className={classes.links}>{items}</Group>
-      </Container>
+      </div>
     </div>
   );
 }

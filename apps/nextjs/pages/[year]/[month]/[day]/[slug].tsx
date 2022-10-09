@@ -5,7 +5,6 @@ import Layout from '~/components/Layout'
 import {client} from '~/lib/helpers'
 import {GET_ALL_POSTS, SINGLE_POST_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
-import {Container} from "@mantine/core";
 
 /**
  * Single post component.
@@ -14,22 +13,15 @@ import {Container} from "@mantine/core";
  */
 export default function SinglePost({data}: PageProps) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.post?.seo}
-    >
-      <Container>
-        <Article content={data?.post} />
-        {data?.post?.commentStatus === 'open' && (
-          <Comments
-            comments={data?.post?.comments}
-            postId={data?.post?.databaseId}
-            total={data?.post?.commentCount}
-          />
-        )}
-      </Container>
+    <Layout>
+      <Article content={data?.post} />
+      {data?.post?.commentStatus === 'open' && (
+        <Comments
+          comments={data?.post?.comments}
+          postId={data?.post?.databaseId}
+          total={data?.post?.commentCount}
+        />
+      )}
     </Layout>
   )
 }

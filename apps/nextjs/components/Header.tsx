@@ -1,9 +1,10 @@
 
 import Link from "next/link";
 import { useState } from 'react';
-import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
-import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
+import { MenuItemFields} from '~/lib/types'
+import { createStyles, Header, Group, Burger, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import {useWordPressContext} from "~/components/WordPressProvider";
 
 const HEADER_HEIGHT = 60;
 const useStyles = createStyles((theme) => ({
@@ -88,43 +89,39 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface HeaderProps {
-  menu: MenuFields
-  settings: SettingsFields
-}
-
 /**
  * Header component.
  */
-export default function HeaderComponent({settings, menu}: HeaderProps) {
+export default function HeaderComponent() {
+  const {headerMenu, generalSettings} = useWordPressContext()
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('');
-  const items = menu?.menuItems?.nodes?.map(
+  const items = headerMenu?.menuItems?.nodes?.map(
     (item: MenuItemFields, index: number) => (
-          <Link key={index} href={item?.path}>
-            <a
-              className={cx(classes.link, { [classes.linkActive]: active === item.path })}  onClick={() => {
-              setActive(item.path);
-              close();
-            }}>
-              {item?.label}
-            </a>
-          </Link>
+      <Link key={index} href={item?.path}>
+        <a
+          className={cx(classes.link, { [classes.linkActive]: active === item.path })}  onClick={() => {
+          setActive(item.path);
+          close();
+        }}>
+          {item?.label}
+        </a>
+      </Link>
     )
   )
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
-      <Container className={classes.header}>
-             <div className={classes.title}>
-                 <h3>
-                   <Link href="/" prefetch={false}>
-                   <a>{settings?.title}</a>
-                </Link>
-                </h3>
-             <h4 className={classes.subtitle}> {settings?.description}</h4>
-             </div>
+      <div className={classes.header}>
+        <div className={classes.title}>
+          <h3>
+            <Link href="/" prefetch={false}>
+              <a>{generalSettings?.title}</a>
+            </Link>
+          </h3>
+          <h4 className={classes.subtitle}> {generalSettings?.description}</h4>
+        </div>
         <nav>
           <Group spacing={5} className={classes.links}>
             {items}
@@ -138,8 +135,9 @@ export default function HeaderComponent({settings, menu}: HeaderProps) {
             </Paper>
           )}
         </Transition>
-      </Container>
+      </div>
     </Header>
   );
 }
+
 
