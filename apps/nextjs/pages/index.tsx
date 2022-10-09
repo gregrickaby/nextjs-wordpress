@@ -4,6 +4,7 @@ import Layout from '~/components/Layout'
 import {client} from '~/lib/helpers'
 import {SINGLE_PAGE_QUERY} from '~/lib/queries'
 import {PageProps} from '~/lib/types'
+import {Container} from "@mantine/core";
 
 /**
  * Homepage component.
@@ -19,7 +20,8 @@ export default function HomePage({data}: PageProps) {
         footerMenu={data?.footerMenu}
         seo={data?.page?.seo}
       >
-        <Article content={data?.page} />
+        <Container>
+          <Article content={data?.page} /></Container>
       </Layout>
     </>
 

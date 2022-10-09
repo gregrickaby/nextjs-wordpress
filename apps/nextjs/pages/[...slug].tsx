@@ -10,6 +10,7 @@ import {
   SINGLE_PAGE_QUERY
 } from '~/lib/queries'
 import {ContentFields, PageProps} from '~/lib/types'
+import {Container} from "@mantine/core";
 
 export interface QueryProps {
   query: any
@@ -34,18 +35,20 @@ export default function GenericPage({data}: PageProps) {
       footerMenu={data?.footerMenu}
       seo={data?.page?.seo}
     >
-      {
-        // If this is an archive page...
-        data?.page?.nodes?.length > 0 ? (
-          <div>
-            {data?.page?.nodes?.map((node: ContentFields, index: number) => (
-              <Card key={index} content={node} />
-            ))}
-          </div>
-        ) : (
-          <Article content={data?.page} />
-        )
-      }
+      <Container>
+        {
+          // If this is an archive page...
+          data?.page?.nodes?.length > 0 ? (
+            <div>
+              {data?.page?.nodes?.map((node: ContentFields, index: number) => (
+                <Card key={index} content={node} />
+              ))}
+            </div>
+          ) : (
+            <Article content={data?.page} />
+          )
+        }
+      </Container>
     </Layout>
   )
 }
