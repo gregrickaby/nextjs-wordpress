@@ -2,7 +2,10 @@ import {ApolloProvider} from '@apollo/client'
 import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
 import {useColorScheme, useHotkeys, useLocalStorage} from '@mantine/hooks'
 import type {AppProps} from 'next/app'
+import {useState} from 'react'
+import WordPressProvider from '~/components/WordPressProvider'
 import {client} from '~/lib/helpers'
+import {PageProps} from '~/lib/types'
 
 /**
  * Custom App component.
@@ -12,6 +15,10 @@ import {client} from '~/lib/helpers'
  * @see https://www.apollographql.com/docs/react/api/react/hooks/#the-apolloprovider-component
  */
 export default function App({Component, pageProps}: AppProps) {
+  const {data} = pageProps as PageProps
+  const [headerMenu] = useState(data?.headerMenu)
+  const [footerMenu] = useState(data?.footerMenu)
+  const [generalSettings] = useState(data?.generalSettings)
   const preferredColorScheme = useColorScheme()
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'nextjs-wp-color-scheme',
@@ -32,7 +39,13 @@ export default function App({Component, pageProps}: AppProps) {
     >
       <MantineProvider theme={{colorScheme}} withGlobalStyles withNormalizeCSS>
         <ApolloProvider client={client}>
-          <Component {...pageProps} />
+          <WordPressProvider
+            headerMenu={headerMenu}
+            footerMenu={footerMenu}
+            generalSettings={generalSettings}
+          >
+            <Component {...pageProps} />
+          </WordPressProvider>
         </ApolloProvider>
       </MantineProvider>
     </ColorSchemeProvider>
