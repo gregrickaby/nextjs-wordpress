@@ -1,6 +1,7 @@
 import {ApolloProvider} from '@apollo/client'
 import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
 import {useColorScheme, useHotkeys, useLocalStorage} from '@mantine/hooks'
+import {NotificationsProvider} from '@mantine/notifications'
 import type {AppProps} from 'next/app'
 import {useState} from 'react'
 import WordPressProvider from '~/components/WordPressProvider'
@@ -38,15 +39,17 @@ export default function App({Component, pageProps}: AppProps) {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider theme={{colorScheme}} withGlobalStyles withNormalizeCSS>
-        <ApolloProvider client={client}>
-          <WordPressProvider
-            headerMenu={headerMenu}
-            footerMenu={footerMenu}
-            generalSettings={generalSettings}
-          >
-            <Component {...pageProps} />
-          </WordPressProvider>
-        </ApolloProvider>
+        <NotificationsProvider autoClose={5000} limit={2}>
+          <ApolloProvider client={client}>
+            <WordPressProvider
+              headerMenu={headerMenu}
+              footerMenu={footerMenu}
+              generalSettings={generalSettings}
+            >
+              <Component {...pageProps} />
+            </WordPressProvider>
+          </ApolloProvider>
+        </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )
