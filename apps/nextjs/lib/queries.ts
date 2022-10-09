@@ -200,7 +200,7 @@ export const SINGLE_BOOK_QUERY = gql`
     generalSettings {
       ...Settings
     }
-    footerMenu: menu(id: "Header", idType: NAME) {
+    headerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
