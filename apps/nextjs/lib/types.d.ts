@@ -1,10 +1,14 @@
-// Global Types Only.
+/** Global Types */
+
+export interface ChildrenProps {
+  children: React.ReactNode
+}
 
 export interface PageProps {
   data: {
     book?: ContentFields
     generalSettings: SettingsFields
-    menu: MenuFields
+    headerMenu: MenuFields
     footerMenu?: MenuFields
     page?: ContentFields
     post?: ContentFields
