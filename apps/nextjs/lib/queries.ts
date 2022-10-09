@@ -22,18 +22,6 @@ export const MENU_FRAGMENT = gql`
   }
 `
 
-export const FOOTER_MENU_FRAGMENT = gql`
-  fragment FooterMenuItems on Menu {
-    menuItems {
-      nodes {
-        path
-        target
-        label
-      }
-    }
-  }
-`
-
 export const FEATURED_IMAGE_FRAGMENT = gql`
   fragment FeaturedImageFields on NodeWithFeaturedImageToMediaItemConnectionEdge {
     node {
@@ -104,17 +92,16 @@ export const GET_ALL_BOOKS = gql`
 export const SINGLE_PAGE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
-  ${FOOTER_MENU_FRAGMENT}
   ${MENU_FRAGMENT}
   query SinglePageQuery($slug: ID!) {
     generalSettings {
       ...Settings
     }
-    menu(id: "Header", idType: NAME) {
+    headerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
-      ...FooterMenuItems
+      ...MenuItems
     }
     page(id: $slug, idType: URI) {
       title(format: RENDERED)
@@ -138,16 +125,15 @@ export const SINGLE_POST_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  ${FOOTER_MENU_FRAGMENT}
   query SinglePostQuery($slug: ID!) {
     generalSettings {
       ...Settings
     }
-    menu(id: "Header", idType: NAME) {
+    headerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
-      ...FooterMenuItems
+      ...MenuItems
     }
     post(id: $slug, idType: URI) {
       author {
@@ -210,12 +196,11 @@ export const SINGLE_BOOK_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  ${FOOTER_MENU_FRAGMENT}
   query SingleBookQuery($slug: ID!) {
     generalSettings {
       ...Settings
     }
-    menu(id: "Header", idType: NAME) {
+    footerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
@@ -246,16 +231,15 @@ export const POSTS_ARCHIVE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  ${FOOTER_MENU_FRAGMENT}
   query PostArchiveQuery($category: String!) {
     generalSettings {
       ...Settings
     }
-    menu(id: "Header", idType: NAME) {
+    headerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
-      ...FooterMenuItems
+      ...MenuItems
     }
     posts(where: {categoryName: $category}) {
       nodes {
@@ -287,12 +271,11 @@ export const BOOKS_ARCHIVE_QUERY = gql`
   ${FEATURED_IMAGE_FRAGMENT}
   ${GENERAL_FRAGMENT}
   ${MENU_FRAGMENT}
-  ${FOOTER_MENU_FRAGMENT}
   query BookArchiveQuery {
     generalSettings {
       ...Settings
     }
-    menu(id: "Header", idType: NAME) {
+    headerMenu: menu(id: "Header", idType: NAME) {
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
