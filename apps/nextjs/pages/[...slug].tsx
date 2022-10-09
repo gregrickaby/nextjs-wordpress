@@ -28,7 +28,7 @@ export interface QueryProps {
  */
 export default function GenericPage({data}: PageProps) {
   return (
-    <Layout seo={data?.page?.seo}>
+    <Layout>
       {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
