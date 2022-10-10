@@ -23,8 +23,15 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           echo "${{ secrets.DOCKER_ENV }}" > ./apps/wordpress/.env
 
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+          if_key_exists: ignore
+
       - name: Docker
         run: |
-          docker context create remote --docker "host=${{ secrets.SSH_HOST }}"
+          docker context create remote --docker "host=ssh://${{ secrets.SSH_HOST }}"
           docker context use remote
           docker compose -f ./apps/wordpress/docker-compose.yml up -d
