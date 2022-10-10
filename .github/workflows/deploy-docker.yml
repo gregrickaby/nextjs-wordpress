@@ -25,6 +25,6 @@ jobs:
 
       - name: Docker
         run: |
-          docker context create remote --docker “host=${{ secrets.SSH_HOST }}”
+          docker context create remote --docker "host=${{ secrets.SSH_HOST }}"
           docker context use remote
           docker compose --context remote -f ./apps/wordpress/docker-compose.yml up -d
