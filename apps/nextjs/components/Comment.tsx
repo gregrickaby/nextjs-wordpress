@@ -1,3 +1,4 @@
+import {createStyles, Group, Stack} from '@mantine/core'
 import Image from 'next/image'
 import {sanitizeComment} from '~/lib/helpers'
 
@@ -17,14 +18,22 @@ export interface CommentFields {
   parentId: string
 }
 
+const useStyles = createStyles((theme) => ({
+  authorName: {
+    lineHeight: 1,
+    margin: 0
+  }
+}))
+
 /**
  * Display a single comment.
  */
 export default function Comment(comment: CommentFields) {
+  const {classes} = useStyles()
   return (
     <article>
       <header>
-        <div>
+        <Group>
           <Image
             alt={comment?.author?.node?.name}
             height="64"
@@ -32,8 +41,8 @@ export default function Comment(comment: CommentFields) {
             src={comment?.author?.node?.gravatarUrl}
             width="64"
           />
-          <div>
-            <h3>
+          <Stack>
+            <h3 className={classes.authorName}>
               {comment?.author?.node?.url ? (
                 <a href={comment?.author?.node?.url} rel="external nofollow">
                   {comment?.author?.node?.name}
@@ -48,8 +57,8 @@ export default function Comment(comment: CommentFields) {
                 timeStyle: 'short'
               }).format(Date.parse(comment?.date))}
             </time>
-          </div>
-        </div>
+          </Stack>
+        </Group>
       </header>
       <main>{sanitizeComment(comment?.content)}</main>
     </article>

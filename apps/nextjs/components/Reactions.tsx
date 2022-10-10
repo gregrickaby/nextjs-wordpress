@@ -1,3 +1,4 @@
+import {Button} from '@mantine/core'
 import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons'
 import {useState} from 'react'
 
@@ -30,11 +31,13 @@ const Icons = [
  */
 export default function Reactions({postId, reactions}: ReactionsProps) {
   const [postReactions, setPostReactions] = useState(reactions)
+  const [loading, setLoading] = useState('')
 
   /**
    * Increment the number of reactions.
    */
   async function incrementReaction(name: string, total: number) {
+    setLoading(name)
     try {
       const response = await fetch(
         `/api/wordpress/reactions?postId=${postId}&reaction=${name}&total=${
@@ -56,35 +59,41 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
       }
 
       setPostReactions(data?.reactions)
+      setLoading('')
     } catch (error) {
       console.error(error)
+      setLoading('')
     }
   }
 
   return (
     <aside>
-      {!!postReactions &&
-        Object.entries(postReactions).map((reaction, index) => {
-          // Skip the typename def which comes from GraphQL.
-          if (reaction[0] === '__typename') {
-            return null
-          }
+      <Button.Group>
+        {!!postReactions &&
+          Object.entries(postReactions).map((reaction, index) => {
+            // Skip the typename def which comes from GraphQL.
+            if (reaction[0] === '__typename') {
+              return null
+            }
 
-          // Set vars...
-          const label = reaction[0]
-          const total = reaction[1]
+            // Set vars...
+            const label = reaction[0]
+            const total = reaction[1]
 
-          return (
-            <button
-              aria-label={label}
-              key={index}
-              onClick={() => incrementReaction(label, total)}
-            >
-              {Icons.find((icon) => icon.label === label)?.icon}
-              <span>{total >= 1 ? total : 0}</span>
-            </button>
-          )
-        })}
+            return (
+              <Button
+                aria-label={label}
+                key={index}
+                leftIcon={Icons.find((icon) => icon.label === label)?.icon}
+                loading={loading === label ? true : false}
+                onClick={() => incrementReaction(label, total)}
+                type="button"
+              >
+                {total >= 1 ? total : 0}
+              </Button>
+            )
+          })}
+      </Button.Group>
     </aside>
   )
 }
