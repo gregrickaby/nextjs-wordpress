@@ -1,0 +1,30 @@
+name: Deploy Docker
+
+on:
+  push:
+    branches: ['main']
+
+  workflow_dispatch:
+
+jobs:
+  deploydocker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ github.token }}
+
+      - name: Setup Environment
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          echo "${{ secrets.DOCKER_ENV }}" > ./apps/wordpress/.env
+
+      - name: Docker
+        run: |
+          docker context create remote --docker “host=${{ secrets.SSH_HOST }}”
+          docker context use remote
+          docker compose --context remote -f ./apps/wordpress/docker-compose.yml up -d
