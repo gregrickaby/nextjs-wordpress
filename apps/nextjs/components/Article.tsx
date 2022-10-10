@@ -4,6 +4,7 @@ import Head from 'next/head'
 import ParseContent from '~/components/ParseContent'
 import Reactions from '~/components/Reactions'
 import {ContentFields} from '~/lib/types'
+import {AspectRatio} from "@mantine/core";
 
 export interface ArticleProps {
   content: ContentFields
@@ -35,13 +36,15 @@ export default function Article({content}: ArticleProps) {
         </header>
         <section>
           {!!content?.featuredImage && (
+            <AspectRatio ratio={1920 / 1080}>
             <Image
               alt={content?.featuredImage?.node?.altText}
-              height={content?.featuredImage?.node?.mediaDetails?.height}
-              priority
               src={content?.featuredImage?.node?.sourceUrl}
+              height={content?.featuredImage?.node?.mediaDetails?.height}
               width={content?.featuredImage?.node?.mediaDetails?.width}
+              priority
             />
+            </AspectRatio>
           )}
           {!!content?.author?.node?.gravatarUrl && (
             <div>
