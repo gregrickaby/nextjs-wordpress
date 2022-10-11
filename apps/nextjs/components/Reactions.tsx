@@ -1,4 +1,4 @@
-import {Button} from '@mantine/core'
+import {Button, createStyles} from '@mantine/core'
 import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons'
 import {useState} from 'react'
 
@@ -26,10 +26,49 @@ const Icons = [
   }
 ]
 
+const useStyles = createStyles((theme) => ({
+  reactions: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    padding: theme.spacing.sm,
+
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'row'
+    },
+
+    '& button': {
+      border: `1px solid ${theme.colors.dark[2]}`,
+      color:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[3]
+          : theme.colors.dark[6],
+      height: 42,
+      marginBottom: theme.spacing.md,
+      marginTop: theme.spacing.xs,
+      paddingLeft: theme.spacing.sm,
+      paddingRight: theme.spacing.sm,
+
+      '&:hover': {
+        backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[8]
+            : theme.fn.lighten(theme.colors.dark[0], 0.6)
+      },
+
+      [theme.fn.smallerThan('sm')]: {
+        marginRight: theme.spacing.xs,
+        marginBottom: 0
+      }
+    }
+  }
+}))
+
 /**
  * Reactions component.
  */
 export default function Reactions({postId, reactions}: ReactionsProps) {
+  const {classes} = useStyles()
   const [postReactions, setPostReactions] = useState(reactions)
   const [loading, setLoading] = useState('')
 
@@ -67,33 +106,33 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
   }
 
   return (
-    <aside>
-      <Button.Group>
-        {!!postReactions &&
-          Object.entries(postReactions).map((reaction, index) => {
-            // Skip the typename def which comes from GraphQL.
-            if (reaction[0] === '__typename') {
-              return null
-            }
+    <aside className={classes.reactions}>
+      {!!postReactions &&
+        Object.entries(postReactions).map((reaction, index) => {
+          // Skip the typename def which comes from GraphQL.
+          if (reaction[0] === '__typename') {
+            return null
+          }
 
-            // Set vars...
-            const label = reaction[0]
-            const total = reaction[1]
+          // Set vars...
+          const label = reaction[0]
+          const total = reaction[1]
 
-            return (
-              <Button
-                aria-label={label}
-                key={index}
-                leftIcon={Icons.find((icon) => icon.label === label)?.icon}
-                loading={loading === label ? true : false}
-                onClick={() => incrementReaction(label, total)}
-                type="button"
-              >
-                {total >= 1 ? total : 0}
-              </Button>
-            )
-          })}
-      </Button.Group>
+          return (
+            <Button
+              aria-label={label}
+              key={index}
+              leftIcon={Icons.find((icon) => icon.label === label)?.icon}
+              loading={loading === label ? true : false}
+              onClick={() => incrementReaction(label, total)}
+              size="md"
+              type="button"
+              variant="outline"
+            >
+              {total >= 1 ? total : 0}
+            </Button>
+          )
+        })}
     </aside>
   )
 }
