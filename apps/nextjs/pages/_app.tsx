@@ -38,7 +38,25 @@ export default function App({Component, pageProps}: AppProps) {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider theme={{colorScheme}} withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        theme={{
+          colorScheme,
+          fontSizes: {
+            xs: 10,
+            sm: 16,
+            md: 18,
+            lg: 22,
+            xl: 28
+          },
+          headings: {
+            sizes: {
+              h1: {fontSize: 48, lineHeight: 1.4}
+            }
+          }
+        }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <NotificationsProvider autoClose={5000} limit={2}>
           <ApolloProvider client={client}>
             <WordPressProvider
