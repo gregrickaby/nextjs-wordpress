@@ -51,8 +51,7 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column'
     }
-  },
-  content: {}
+  }
 }))
 
 /**
@@ -73,7 +72,7 @@ export default function Article({content}: ArticleProps) {
       </Head>
 
       <article className={classes.article}>
-        <header className={classes.header}>
+        <header>
           {content?.categories?.edges?.length >= 1 &&
             content?.categories?.edges?.map(({node}) => (
               <Text weight={700} key={node?.name}>
@@ -129,9 +128,7 @@ export default function Article({content}: ArticleProps) {
               postId={content?.databaseId}
             />
           )}
-          <div className={classes.content}>
-            {ParseContent(content?.content)}
-          </div>
+          <div>{ParseContent(content?.content)}</div>
         </main>
       </article>
     </>
