@@ -1,0 +1,50 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-versions: ['8.1']
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v3
+        with:
+          path: composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install Dependencies
+        run: |
+          cp -R packages/nextjs-wordpress-plugin apps/wordpress/plugins/nextjs-wordpress-plugin
+          cp -R packages/nextjs-wordpress-theme apps/wordpress/themes/nextjs-wordpress-theme
+          cd apps/wordpress
+          composer install --prefer-dist --no-dev
+
+      - name: SSH Deploy
+        uses: easingthemes/ssh-deploy@v2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          ARGS: '-v -a -z'
+          SOURCE: 'apps/wordpress/'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_PATH }}
+          EXCLUDE: '.phpcs.xml,.env,.env.sample,acf-export-cpt-fields.json,acf-export-post-fields.json,docker-compose.yml,install.sh,setup.sh.git*,.gitattributes,.github/,.gitignore,advanced-cache.php,auth.json,cache/,composer.json,composer.lock,db.php,debug.log,mu-plugins/mu-plugin.php,mysql.sql,node_modules/,object-cache.php,package-lock.json,package.json,themes/twenty*,upgrade/,uploads/,wp-cache-config.php'
