@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   // Set data shape.
   data = {
     generalSettings: data.generalSettings,
-    menu: data.menu,
+    headerMenu: data.headerMenu,
     footerMenu: data.footerMenu,
     page: data.book
   }
