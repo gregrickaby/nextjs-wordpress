@@ -1,16 +1,17 @@
-import Link from 'next/link'
-import {useState} from 'react'
-import {MenuItemFields} from '~/lib/types'
 import {
-  createStyles,
-  Header,
-  Group,
   Burger,
+  createStyles,
+  Group,
+  Header,
   Paper,
   Transition
 } from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
+import Link from 'next/link'
+import {useState} from 'react'
 import {useWordPressContext} from '~/components/WordPressProvider'
+import {MenuItemFields} from '~/lib/types'
+import ParseContent from './ParseContent'
 
 const HEADER_HEIGHT = 60
 const useStyles = createStyles((theme) => ({
@@ -137,10 +138,12 @@ export default function HeaderComponent() {
         <div className={classes.title}>
           <h3>
             <Link href="/" prefetch={false}>
-              <a>{generalSettings?.title}</a>
+              <a>{ParseContent(generalSettings?.title)}</a>
             </Link>
           </h3>
-          <h4 className={classes.subtitle}> {generalSettings?.description}</h4>
+          <h4 className={classes.subtitle}>
+            {ParseContent(generalSettings?.description)}
+          </h4>
         </div>
         <nav>
           <Group spacing={5} className={classes.links}>
