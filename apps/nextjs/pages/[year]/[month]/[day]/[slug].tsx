@@ -13,12 +13,7 @@ import {PageProps} from '~/lib/types'
  */
 export default function SinglePost({data}: PageProps) {
   return (
-    <Layout
-      settings={data?.generalSettings}
-      menu={data?.menu}
-      footerMenu={data?.footerMenu}
-      seo={data?.post?.seo}
-    >
+    <Layout>
       <Article content={data?.post} />
       {data?.post?.commentStatus === 'open' && (
         <Comments

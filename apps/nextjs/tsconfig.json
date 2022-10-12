@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"]
-    }
+    },
+    "jsx": "preserve"
   }
 }

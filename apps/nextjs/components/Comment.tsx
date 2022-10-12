@@ -1,3 +1,4 @@
+import {createStyles, Group, Stack} from '@mantine/core'
 import Image from 'next/image'
 import {sanitizeComment} from '~/lib/helpers'
 
@@ -17,44 +18,47 @@ export interface CommentFields {
   parentId: string
 }
 
+const useStyles = createStyles((theme) => ({
+  authorName: {
+    lineHeight: 1,
+    margin: 0
+  }
+}))
+
 /**
  * Display a single comment.
  */
 export default function Comment(comment: CommentFields) {
+  const {classes} = useStyles()
   return (
-    <article className="border-l-4 px-4 py-1">
+    <article>
       <header>
-        <div className="not-prose flex items-center space-x-2">
+        <Group>
           <Image
             alt={comment?.author?.node?.name}
-            className="rounded-full"
             height="64"
             loading="lazy"
             src={comment?.author?.node?.gravatarUrl}
             width="64"
           />
-          <div>
-            <h3 className="leading-none">
+          <Stack>
+            <h3 className={classes.authorName}>
               {comment?.author?.node?.url ? (
-                <a
-                  className="no-underline"
-                  href={comment?.author?.node?.url}
-                  rel="external nofollow"
-                >
+                <a href={comment?.author?.node?.url} rel="external nofollow">
                   {comment?.author?.node?.name}
                 </a>
               ) : (
                 comment?.author?.node?.name
               )}
             </h3>
-            <time className="text-sm italic">
+            <time>
               {new Intl.DateTimeFormat('en-US', {
                 dateStyle: 'full',
                 timeStyle: 'short'
               }).format(Date.parse(comment?.date))}
             </time>
-          </div>
-        </div>
+          </Stack>
+        </Group>
       </header>
       <main>{sanitizeComment(comment?.content)}</main>
     </article>

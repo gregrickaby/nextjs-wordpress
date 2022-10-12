@@ -12,17 +12,9 @@ import {PageProps} from '~/lib/types'
  */
 export default function HomePage({data}: PageProps) {
   return (
-    <>
-      <Layout
-        settings={data?.generalSettings}
-        menu={data?.menu}
-        footerMenu={data?.footerMenu}
-        seo={data?.page?.seo}
-      >
-        <Article content={data?.page} />
-      </Layout>
-    </>
-
+    <Layout>
+      <Article content={data?.page} />
+    </Layout>
   )
 }
 

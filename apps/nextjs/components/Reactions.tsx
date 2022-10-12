@@ -1,5 +1,6 @@
+import {Button, createStyles} from '@mantine/core'
+import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons'
 import {useState} from 'react'
-import {FiHeart, FiThumbsDown, FiThumbsUp} from 'react-icons/fi'
 
 export interface ReactionsProps {
   postId: number
@@ -13,30 +14,69 @@ export interface ReactionsProps {
 const Icons = [
   {
     label: 'like',
-    icon: <FiThumbsUp />
+    icon: <IconThumbUp />
   },
   {
     label: 'dislike',
-    icon: <FiThumbsDown />
+    icon: <IconThumbDown />
   },
   {
     label: 'love',
-    icon: <FiHeart />
+    icon: <IconHeart />
   }
 ]
+
+const useStyles = createStyles((theme) => ({
+  reactions: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    padding: theme.spacing.sm,
+
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'row'
+    },
+
+    '& button': {
+      border: `1px solid ${theme.colors.dark[2]}`,
+      color:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[3]
+          : theme.colors.dark[6],
+      height: 42,
+      marginBottom: theme.spacing.md,
+      marginTop: theme.spacing.xs,
+      paddingLeft: theme.spacing.sm,
+      paddingRight: theme.spacing.sm,
+
+      '&:hover': {
+        backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[8]
+            : theme.fn.lighten(theme.colors.dark[0], 0.6)
+      },
+
+      [theme.fn.smallerThan('sm')]: {
+        marginRight: theme.spacing.xs,
+        marginBottom: 0
+      }
+    }
+  }
+}))
 
 /**
  * Reactions component.
  */
 export default function Reactions({postId, reactions}: ReactionsProps) {
+  const {classes} = useStyles()
   const [postReactions, setPostReactions] = useState(reactions)
-  const [animate, setAnimate] = useState({name: '', animate: false})
+  const [loading, setLoading] = useState('')
 
   /**
    * Increment the number of reactions.
    */
   async function incrementReaction(name: string, total: number) {
-    setAnimate({name, animate: true})
+    setLoading(name)
     try {
       const response = await fetch(
         `/api/wordpress/reactions?postId=${postId}&reaction=${name}&total=${
@@ -58,14 +98,15 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
       }
 
       setPostReactions(data?.reactions)
-      setAnimate({name: '', animate: false})
+      setLoading('')
     } catch (error) {
       console.error(error)
+      setLoading('')
     }
   }
 
   return (
-    <aside className="flex space-x-4 md:flex-col md:space-x-0 md:space-y-2">
+    <aside className={classes.reactions}>
       {!!postReactions &&
         Object.entries(postReactions).map((reaction, index) => {
           // Skip the typename def which comes from GraphQL.
@@ -76,21 +117,20 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
           // Set vars...
           const label = reaction[0]
           const total = reaction[1]
-          const isAnimating =
-            !!animate.name && animate.name === label ? 'animate-wiggle' : ''
 
           return (
-            <button
+            <Button
               aria-label={label}
-              className={`mt-6 space-y-1 p-2 text-center text-base text-zinc-800 hover:text-green-600 dark:text-white ${isAnimating}`}
               key={index}
+              leftIcon={Icons.find((icon) => icon.label === label)?.icon}
+              loading={loading === label ? true : false}
               onClick={() => incrementReaction(label, total)}
+              size="md"
+              type="button"
+              variant="outline"
             >
-              {Icons.find((icon) => icon.label === label)?.icon}
-              <span className="relative inline-flex">
-                {total >= 1 ? total : 0}
-              </span>
-            </button>
+              {total >= 1 ? total : 0}
+            </Button>
           )
         })}
     </aside>

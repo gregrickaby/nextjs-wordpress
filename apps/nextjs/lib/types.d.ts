@@ -1,10 +1,14 @@
-// Global Types Only.
+/** Global Types */
+
+export interface ChildrenProps {
+  children: React.ReactNode
+}
 
 export interface PageProps {
   data: {
     book?: ContentFields
     generalSettings: SettingsFields
-    menu: MenuFields
+    headerMenu: MenuFields
     footerMenu?: MenuFields
     page?: ContentFields
     post?: ContentFields
@@ -22,15 +26,19 @@ export interface SettingsFields {
 
 export interface MenuFields {
   menuItems: {
-    nodes: MenuItemFields
+    nodes: MenuItemFields[]
   }
 }
 
 export interface MenuItemFields {
-  map: any
+  databaseId: number
+  label: string
+  linkRelationship: string
   path: string
   target: string
-  label: string
+  childItems: {
+    nodes: MenuItemFields
+  }
 }
 
 export interface ContentFields {
