@@ -14,12 +14,14 @@ export const MENU_FRAGMENT = gql`
   fragment MenuItems on Menu {
     menuItems {
       nodes {
+        databaseId
         label
         linkRelationship
         path
         target
         childItems {
           nodes {
+            databaseId
             label
             linkRelationship
             path
