@@ -1,29 +1,23 @@
 # Next.js + WordPress <!-- omit in toc -->
 
-💀 It's headless WordPress!
+💀 It's headless WordPress! - <https://nextjswp.com>
 
 ## Features <!-- omit in toc -->
 
 - Next.js w/ TypeScript
+- React Components from [Mantine](https://mantine.dev)
 - WordPress in a Docker container with PHP 8.1
-- Self-signed SSL certificate from Traefik
 - Apollo Client w/ WP GraphQL
 - On-demand revalidation
 - Date based blog routing (`YYYY/MM/DD/slug`)
-- SEO via Yoast
+- Yoast SEO support
+- CPT UI support
 - Menus support
 - Preview support
 - Comments support
 - Post reactions support
-- Custom Post Types via CPT UI
-- Custom Fields via Advanced Custom Fields
+- Advanced Custom Fields support
 - ESLint, Stylelint, Prettier, and more!
-
----
-
-## Demo
-
-See a fully working, production site running this stack at <https://gregrickaby.com>
 
 ---
 
