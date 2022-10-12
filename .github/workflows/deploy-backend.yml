@@ -47,4 +47,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_PATH }}
-          EXCLUDE: '.phpcs.xml,.env,.env.sample,acf-export-cpt-fields.json,acf-export-post-fields.json,docker-compose.yml,install.sh,setup.sh.git*,.gitattributes,.github/,.gitignore,advanced-cache.php,auth.json,cache/,composer.json,composer.lock,db.php,debug.log,mu-plugins/mu-plugin.php,mysql.sql,node_modules/,object-cache.php,package-lock.json,package.json,themes/twenty*,upgrade/,uploads/,wp-cache-config.php'
+          EXCLUDE: '.phpcs.xml,.env,.env.sample,acf-export-cpt-fields.json,acf-export-post-fields.json,docker-compose.yml,install.sh,setup.sh,README.md,.git*,.gitattributes,.github/,.gitignore,advanced-cache.php,auth.json,cache/,composer.json,composer.lock,db.php,debug.log,mu-plugins/mu-plugin.php,mysql.sql,node_modules/,object-cache.php,package-lock.json,package.json,themes/twenty*,upgrade/,uploads/,wp-cache-config.php'
