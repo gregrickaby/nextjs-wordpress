@@ -1,63 +1,55 @@
-import {createStyles, Group, Anchor} from '@mantine/core'
+import {Anchor, createStyles, Group, Text} from '@mantine/core'
 import Link from 'next/link'
-import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
 import {useWordPressContext} from '~/components/WordPressProvider'
-
-const useStyles = createStyles((theme) => ({
-  footer: {
-    marginTop: 120,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`
-  },
-
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.xl,
-
-    [theme.fn.smallerThan('xs')]: {
-      flexDirection: 'column'
-    }
-  },
-
-  links: {
-    [theme.fn.smallerThan('xs')]: {
-      marginTop: theme.spacing.md
-    }
-  }
-}))
+import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
+import ParseContent from './ParseContent'
 
 export interface FooterProps {
   menu: MenuFields
   settings: SettingsFields
 }
 
+const useStyles = createStyles((theme) => ({
+  footer: {
+    alignItems: 'center',
+    borderTop: `1px solid ${theme.colors.gray[3]}`,
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingBottom: theme.spacing.xl,
+    paddingTop: theme.spacing.xl,
+
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'column'
+    }
+  },
+  links: {
+    [theme.fn.smallerThan('sm')]: {
+      marginTop: theme.spacing.md
+    }
+  }
+}))
+
 /**
  * Footer component.
  */
 export default function FooterComponent() {
-  const {footerMenu, generalSettings} = useWordPressContext()
   const {classes} = useStyles()
-  const items = footerMenu?.menuItems?.nodes?.map(
-    (item: MenuItemFields, index: number) => (
-      <Link key={index} href={item.path}>
-        <Anchor<'a'> color="dimmed" size="sm">
-          {item.label}
-        </Anchor>
-      </Link>
-    )
-  )
+  const {footerMenu, generalSettings} = useWordPressContext()
 
   return (
-    <div className={classes.footer}>
-      <div className={classes.inner}>
-        &copy; {new Date().getFullYear()} - {generalSettings?.title} -{' '}
-        {generalSettings?.description}
-        <Group className={classes.links}>{items}</Group>
-      </div>
-    </div>
+    <footer className={classes.footer}>
+      <Text>
+        &copy; {new Date().getFullYear()} -{' '}
+        {ParseContent(generalSettings?.title)} -{' '}
+        {ParseContent(generalSettings?.description)}
+      </Text>
+      <Group className={classes.links}>
+        {footerMenu?.menuItems?.nodes?.map((item: MenuItemFields) => (
+          <Link key={item.databaseId} href={item.path} passHref>
+            <Anchor component="a">{item.label}</Anchor>
+          </Link>
+        ))}
+      </Group>
+    </footer>
   )
 }
