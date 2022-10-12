@@ -215,7 +215,7 @@ export const SINGLE_BOOK_QUERY = gql`
       ...MenuItems
     }
     footerMenu: menu(id: "Footer", idType: NAME) {
-      ...FooterMenuItems
+      ...MenuItems
     }
     book(id: $slug, idType: URI) {
       title(format: RENDERED)
