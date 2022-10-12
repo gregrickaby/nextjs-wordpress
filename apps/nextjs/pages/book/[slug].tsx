@@ -80,6 +80,6 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     props: {
       data
     },
-    revalidate: false
+    revalidate: 60
   }
 }
