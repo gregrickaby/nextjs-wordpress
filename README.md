@@ -36,7 +36,6 @@ nextjs-wordpress
 │   ├── nextjs-wordpress-plugin
 │   ├── nextjs-wordpress-theme
 │   ├── prettier-config-custom
-│   ├── stylelint-config-custom
 │   └── tsconfig
 └── turbo.json
 ```
@@ -47,7 +46,7 @@ The applications directory. This includes the documentation, Next.js (frontend),
 
 ### `packages/`
 
-Shared packages used by the apps. This includes ESLint, Stylelint, Prettier, and TypeScript configs. As well as the WordPress plugin and theme.
+Shared packages used by the apps. This includes ESLint, Prettier, and TypeScript configs. As well as the WordPress plugin and theme.
 
 ### `turbo.json`
 
@@ -67,11 +66,13 @@ The repo config file. Learn more about configuring [Turborepo](https://turborepo
 ```bash
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 ```
+
 4. Set up your dev environment:
 
 ```bash
 npm run setup
 ```
+
 ---
 
 ## Full Documentation
