@@ -45,7 +45,7 @@ export default function FooterComponent() {
       </Text>
       <Group className={classes.links}>
         {footerMenu?.menuItems?.nodes?.map((item: MenuItemFields) => (
-          <Link key={item.databaseId} href={item.path} passHref>
+          <Link key={item.id} href={item.path} passHref>
             <Anchor component="a">{item.label}</Anchor>
           </Link>
         ))}
