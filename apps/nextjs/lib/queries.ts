@@ -12,20 +12,24 @@ export const GENERAL_FRAGMENT = gql`
 
 export const MENU_FRAGMENT = gql`
   fragment MenuItems on Menu {
+    count
     menuItems {
       nodes {
-        databaseId
+        id
+        path
         label
         linkRelationship
-        path
         target
+        parentId
         childItems {
           nodes {
-            databaseId
+            id
+            path
+            cssClasses
             label
             linkRelationship
-            path
             target
+            parentId
           }
         }
       }

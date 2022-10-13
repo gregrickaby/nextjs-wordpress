@@ -1,69 +1,39 @@
 import {
   Burger,
   createStyles,
+  Drawer,
   Group,
-  Header,
-  Paper,
-  Transition
+  Menu,
+  Text,
+  Title
 } from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
-import Link from 'next/link'
-import {useState} from 'react'
+import {IconChevronDown} from '@tabler/icons'
 import ParseContent from '~/components/ParseContent'
 import {useWordPressContext} from '~/components/WordPressProvider'
+import {flatListToHierarchical} from '~/lib/helpers'
 import {MenuItemFields} from '~/lib/types'
 
-const HEADER_HEIGHT = 60
 const useStyles = createStyles((theme) => ({
-  root: {
-    position: 'relative',
-    zIndex: 1
+  header: {
+    height: 64
   },
 
-  title: {
+  inner: {
+    alignItems: 'center',
     display: 'flex',
-    gap: '24px',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    height: 64,
+    justifyContent: 'space-between'
   },
 
-  subtitle: {
+  links: {
     [theme.fn.smallerThan('sm')]: {
       display: 'none'
     }
   },
 
-  dropdown: {
-    position: 'absolute',
-    top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
-    zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopWidth: 0,
-    overflow: 'hidden',
-
-    [theme.fn.largerThan('md')]: {
-      display: 'none'
-    }
-  },
-
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%'
-  },
-
-  links: {
-    [theme.fn.smallerThan('md')]: {
-      display: 'none'
-    }
-  },
-
   burger: {
-    [theme.fn.largerThan('md')]: {
+    [theme.fn.largerThan('sm')]: {
       display: 'none'
     }
   },
@@ -71,99 +41,87 @@ const useStyles = createStyles((theme) => ({
   link: {
     display: 'block',
     lineHeight: 1,
-    padding: '8px 12px',
-    borderRadius: theme.radius.sm,
-    textDecoration: 'none',
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0]
-    },
-
-    [theme.fn.smallerThan('sm')]: {
-      borderRadius: 0,
-      padding: theme.spacing.md
-    }
+    padding: '8px 12px'
   },
 
-  linkActive: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({
-        variant: 'light',
-        color: theme.primaryColor
-      }).background,
-      color: theme.fn.variant({variant: 'light', color: theme.primaryColor})
-        .color
-    }
+  linkLabel: {
+    marginRight: 5
   }
 }))
 
 /**
  * Header component.
  */
-export default function HeaderComponent() {
+export default function Header() {
   const {headerMenu, generalSettings} = useWordPressContext()
-  const [opened, {toggle, close}] = useDisclosure(false)
-  const {classes, cx} = useStyles()
-  const [active, setActive] = useState('')
-  const items = headerMenu?.menuItems?.nodes?.map(
-    (item: MenuItemFields, index: number) => (
-      <Link key={index} href={item?.path}>
-        <a
-          className={cx(classes.link, {
-            [classes.linkActive]: active === item.path
-          })}
-          onClick={() => {
-            setActive(item.path)
-            close()
-          }}
-        >
-          {item?.label}
-        </a>
-      </Link>
+  const [opened, {toggle}] = useDisclosure(false)
+  const {classes} = useStyles()
+
+  // Convert flat list to hierarchical list.
+  const menuData = flatListToHierarchical(headerMenu?.menuItems?.nodes ?? [])
+
+  // Loop over all menu items.
+  const menuItems = menuData.map((parent) => {
+    // If there is a child item...
+    if (parent?.childItems?.nodes?.length > 0) {
+      // Loop over all child items.
+      const dropdownItems = parent.childItems.nodes.map(
+        (child: MenuItemFields) => {
+          return (
+            <Menu.Item key={child.id}>
+              <a href={child.path} className={classes.link}>
+                {child.label}
+              </a>
+            </Menu.Item>
+          )
+        }
+      )
+
+      // Build the parent item and its dropdown.
+      return (
+        <Menu key={parent.id} trigger="hover" exitTransitionDuration={0}>
+          <Menu.Target>
+            <a href={parent.path} className={classes.link}>
+              <span className={classes.linkLabel}>{parent.label}</span>
+              <IconChevronDown size={12} stroke={1.5} />
+            </a>
+          </Menu.Target>
+          <Menu.Dropdown>{dropdownItems}</Menu.Dropdown>
+        </Menu>
+      )
+    }
+
+    // Return a parent/single menu item.
+    return (
+      <a key={parent.id} href={parent.path} className={classes.link}>
+        {parent.label}
+      </a>
     )
-  )
+  })
 
   return (
-    <Header height={HEADER_HEIGHT} className={classes.root}>
-      <div className={classes.header}>
-        <div className={classes.title}>
-          <h3>
-            <Link href="/" prefetch={false}>
-              <a>{ParseContent(generalSettings?.title)}</a>
-            </Link>
-          </h3>
-          <h4 className={classes.subtitle}>
-            {ParseContent(generalSettings?.description)}
-          </h4>
-        </div>
-        <nav>
-          <Group spacing={5} className={classes.links}>
-            {items}
-          </Group>
-        </nav>
-        <Burger
+    <header className={classes.header}>
+      <div className={classes.inner}>
+        <Group>
+          <Title order={1} size="h2">
+            {ParseContent(generalSettings.title)}
+          </Title>
+          <Text>{ParseContent(generalSettings.description)}</Text>
+        </Group>
+        <Group spacing={5} className={classes.links}>
+          {menuItems}
+        </Group>
+        <Burger opened={opened} onClick={toggle} className={classes.burger} />
+        <Drawer
+          onClose={toggle}
           opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
+          padding="md"
+          position="right"
+          title="Menu"
+        >
+          {menuItems}
+        </Drawer>
       </div>
-    </Header>
+    </header>
   )
 }

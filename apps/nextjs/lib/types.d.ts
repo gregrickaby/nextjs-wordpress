@@ -32,6 +32,7 @@ export interface MenuFields {
 
 export interface MenuItemFields {
   databaseId: number
+  id: string
   label: string
   linkRelationship: string
   path: string
