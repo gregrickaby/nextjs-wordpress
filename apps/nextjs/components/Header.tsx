@@ -53,9 +53,9 @@ const useStyles = createStyles((theme) => ({
  * Header component.
  */
 export default function Header() {
+  const {classes} = useStyles()
   const {headerMenu, generalSettings} = useWordPressContext()
   const [opened, {toggle}] = useDisclosure(false)
-  const {classes} = useStyles()
 
   // Convert flat list to hierarchical list.
   const menuData = flatListToHierarchical(headerMenu?.menuItems?.nodes ?? [])
@@ -104,7 +104,7 @@ export default function Header() {
       <div className={classes.inner}>
         <Group>
           <Title order={1} size="h2">
-            {ParseContent(generalSettings.title)}
+            <a href="/">{ParseContent(generalSettings.title)}</a>
           </Title>
           <Text>{ParseContent(generalSettings.description)}</Text>
         </Group>

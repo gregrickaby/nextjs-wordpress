@@ -1,21 +1,17 @@
+import {Anchor, Button, Card, createStyles, Text} from '@mantine/core'
+import Image from 'next/future/image'
 import {ArticleProps} from '~/components/Article'
 import ParseContent from '~/components/ParseContent'
-import {createStyles, Card, Image, Text, AspectRatio} from '@mantine/core'
 
 const useStyles = createStyles((theme) => ({
-  card: {
-    transition: 'transform 150ms ease, box-shadow 150ms ease',
-    marginTop: '16px',
-
-    '&:hover': {
-      transform: 'scale(1.01)',
-      boxShadow: theme.shadows.md
-    }
+  featuredImage: {
+    aspectRatio: '16/9',
+    height: 'auto',
+    width: '100%'
   },
 
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontWeight: 600
+  inner: {
+    padding: theme.spacing.md
   }
 }))
 
@@ -24,30 +20,34 @@ const useStyles = createStyles((theme) => ({
  */
 export default function CardComponent({content}: ArticleProps) {
   const {classes} = useStyles()
+
   return (
-    <Card
-      p="md"
-      radius="md"
-      component="a"
-      href={content?.uri}
-      className={classes.card}
-    >
-      <AspectRatio ratio={1920 / 1080}>
-        {content.featuredImage ? (
+    <Card radius="md" withBorder>
+      <Card.Section component="a" href={content.uri}>
+        {content.featuredImage && (
           <Image
-            src={content.featuredImage?.node?.sourceUrl}
-            alt={content.featuredImage?.node?.altText}
+            alt={content.featuredImage.node.altText}
+            className={classes.featuredImage}
+            height={content.featuredImage.node.mediaDetails.height}
+            priority
+            src={content.featuredImage.node.sourceUrl}
+            width={content.featuredImage.node.mediaDetails.width}
           />
-        ) : (
-          <Image src={'cat.jpeg'} alt={'cat'} />
         )}
-      </AspectRatio>
-      <Text className={classes.title} mt={5}>
-        {content?.title}
-      </Text>
-      <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
-        {ParseContent(content?.content || content?.excerpt)}
-      </Text>
+      </Card.Section>
+
+      <Card.Section className={classes.inner}>
+        <Anchor href={content.uri} weight={500}>
+          {content.title}
+        </Anchor>
+        <Text color="dimmed">
+          {ParseContent(content.excerpt || content.content)}
+        </Text>
+
+        <Button aria-label="Continue reading" component="a" href={content.uri}>
+          Continue Reading
+        </Button>
+      </Card.Section>
     </Card>
   )
 }

@@ -31,13 +31,14 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    padding: theme.spacing.sm,
+    paddingTop: theme.spacing.sm,
+    paddingRight: theme.spacing.md,
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'row'
     },
 
-    '& button': {
+    button: {
       border: `1px solid ${theme.colors.dark[2]}`,
       color:
         theme.colorScheme === 'dark'

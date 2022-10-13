@@ -14,7 +14,7 @@ import {PageProps} from '~/lib/types'
 export default function SinglePost({data}: PageProps) {
   return (
     <Layout>
-      <Article content={data?.post} />
+      <Article content={data.post} />
       {data?.post?.commentStatus === 'open' && (
         <Comments
           comments={data?.post?.comments}

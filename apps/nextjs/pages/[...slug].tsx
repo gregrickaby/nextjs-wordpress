@@ -34,12 +34,12 @@ export default function GenericPage({data}: PageProps) {
         // If this is an archive page...
         data?.page?.nodes?.length > 0 ? (
           <SimpleGrid cols={2} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
-            {data?.page?.nodes?.map((node: ContentFields, index: number) => (
+            {data.page.nodes.map((node: ContentFields, index: number) => (
               <Card key={index} content={node} />
             ))}
           </SimpleGrid>
         ) : (
-          <Article content={data?.page} />
+          <Article content={data.page} />
         )
       }
     </Layout>

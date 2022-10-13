@@ -1,5 +1,4 @@
-import {Anchor, createStyles, Group, Text} from '@mantine/core'
-import Link from 'next/link'
+import {createStyles, Group, Text} from '@mantine/core'
 import {useWordPressContext} from '~/components/WordPressProvider'
 import {MenuFields, MenuItemFields, SettingsFields} from '~/lib/types'
 import ParseContent from './ParseContent'
@@ -22,6 +21,7 @@ const useStyles = createStyles((theme) => ({
       flexDirection: 'column'
     }
   },
+
   links: {
     [theme.fn.smallerThan('sm')]: {
       marginTop: theme.spacing.md
@@ -40,14 +40,13 @@ export default function FooterComponent() {
     <footer className={classes.footer}>
       <Text>
         &copy; {new Date().getFullYear()} -{' '}
-        {ParseContent(generalSettings?.title)} -{' '}
-        {ParseContent(generalSettings?.description)}
+        {ParseContent(generalSettings?.title)}
       </Text>
       <Group className={classes.links}>
         {footerMenu?.menuItems?.nodes?.map((item: MenuItemFields) => (
-          <Link key={item.id} href={item.path} passHref>
-            <Anchor component="a">{item.label}</Anchor>
-          </Link>
+          <a key={item.id} href={item.path}>
+            {item.label}
+          </a>
         ))}
       </Group>
     </footer>

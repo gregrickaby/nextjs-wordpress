@@ -1,12 +1,4 @@
-import {
-  AspectRatio,
-  Avatar,
-  createStyles,
-  Group,
-  Stack,
-  Text,
-  Title
-} from '@mantine/core'
+import {Avatar, createStyles, Group, Stack, Text, Title} from '@mantine/core'
 import parse from 'html-react-parser'
 import Image from 'next/future/image'
 import Head from 'next/head'
@@ -20,29 +12,37 @@ export interface ArticleProps {
 
 const useStyles = createStyles((theme) => ({
   article: {
-    borderBottom: `1px solid ${theme.colors.gray[3]}`,
-    '> * ': {
+    '& > *': {
       marginBottom: theme.spacing.xl,
       marginTop: theme.spacing.xl
     }
   },
+
   heroSection: {
-    '> * ': {
+    '& > *': {
       marginBottom: theme.spacing.xl,
       marginTop: theme.spacing.xl
     }
   },
+
+  heroImage: {
+    height: 'auto',
+    width: '100%'
+  },
+
   authorIntro: {
     fontFamily:
       'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fontSize: theme.fontSizes.sm,
     lineHeight: 0
   },
+
   publishedDate: {
     fontFamily:
       'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fontSize: theme.fontSizes.sm
   },
+
   mainContent: {
     display: 'flex',
     flexDirection: 'row',
@@ -59,63 +59,61 @@ const useStyles = createStyles((theme) => ({
  */
 export default function Article({content}: ArticleProps) {
   const {classes} = useStyles()
+
   return (
     <>
       <Head>
         <title>
-          {content?.seo?.title
-            ? parse(content?.seo?.title)
-            : `Next.js WordPress`}
+          {content.seo.title ? parse(content.seo.title) : `Next.js WordPress`}
         </title>
-        {content?.seo?.metaDesc ? parse(content?.seo?.metaDesc) : null}
-        {content?.seo?.fullHead ? parse(content?.seo?.fullHead) : null}
+        {content.seo.metaDesc ? parse(content.seo.metaDesc) : null}
+        {content.seo.fullHead ? parse(content.seo.fullHead) : null}
       </Head>
 
       <article className={classes.article}>
         <header>
           {content?.categories?.edges?.length >= 1 &&
-            content?.categories?.edges?.map(({node}) => (
-              <Text weight={700} key={node?.name}>
-                {node?.name}
+            content.categories.edges.map(({node}) => (
+              <Text weight={700} key={node.name}>
+                {node.name}
               </Text>
             ))}
-          {content?.title != 'Homepage' && (
-            <Title order={1}>{content?.title}</Title>
+          {content.title != 'Homepage' && (
+            <Title order={1}>{content.title}</Title>
           )}
         </header>
         <section className={classes.heroSection}>
-          {!!content?.featuredImage && (
-            <AspectRatio ratio={16 / 9}>
-              <Image
-                alt={content?.featuredImage?.node?.altText}
-                src={content?.featuredImage?.node?.sourceUrl}
-                height={content?.featuredImage?.node?.mediaDetails?.height}
-                width={content?.featuredImage?.node?.mediaDetails?.width}
-                priority
-              />
-            </AspectRatio>
+          {content?.featuredImage && (
+            <Image
+              alt={content.featuredImage.node.altText}
+              className={classes.heroImage}
+              src={content.featuredImage.node.sourceUrl}
+              height={content.featuredImage.node.mediaDetails.height}
+              width={content.featuredImage.node.mediaDetails.width}
+              priority
+            />
           )}
-          {!!content?.author?.node?.gravatarUrl && (
+          {content?.author?.node?.gravatarUrl && (
             <Group align="center" position="apart">
               <Group align="flex-end">
                 <Avatar
-                  alt={content?.author?.node?.name}
+                  alt={content.author.node.name}
                   size={48}
-                  src={content?.author?.node?.gravatarUrl}
+                  src={content.author.node.gravatarUrl}
                   radius="xl"
                 />
                 <Stack spacing="xs">
                   <Text className={classes.authorIntro}>Author</Text>
-                  <cite>{content?.author?.node?.name}</cite>
+                  <cite>{content.author.node.name}</cite>
                 </Stack>
               </Group>
-              {!!content?.date && (
+              {content.date && (
                 <time className={classes.publishedDate}>
                   {new Intl.DateTimeFormat('en-US', {
                     month: 'long',
                     day: 'numeric',
                     year: 'numeric'
-                  }).format(Date.parse(content?.date))}
+                  }).format(Date.parse(content.date))}
                 </time>
               )}
             </Group>
@@ -124,11 +122,11 @@ export default function Article({content}: ArticleProps) {
         <main className={classes.mainContent}>
           {content?.contentType?.node?.name === 'post' && (
             <Reactions
-              reactions={content?.postFields?.reactions}
-              postId={content?.databaseId}
+              reactions={content.postFields.reactions}
+              postId={content.databaseId}
             />
           )}
-          <div>{ParseContent(content?.content)}</div>
+          <div>{ParseContent(content.content)}</div>
         </main>
       </article>
     </>

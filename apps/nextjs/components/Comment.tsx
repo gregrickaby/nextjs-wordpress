@@ -1,4 +1,4 @@
-import {createStyles, Group, Stack} from '@mantine/core'
+import {Anchor, createStyles, Group, Stack, Title} from '@mantine/core'
 import Image from 'next/image'
 import {sanitizeComment} from '~/lib/helpers'
 
@@ -30,37 +30,38 @@ const useStyles = createStyles((theme) => ({
  */
 export default function Comment(comment: CommentFields) {
   const {classes} = useStyles()
+
   return (
     <article>
       <header>
         <Group>
           <Image
-            alt={comment?.author?.node?.name}
+            alt={comment.author.node.name}
             height="64"
             loading="lazy"
-            src={comment?.author?.node?.gravatarUrl}
+            src={comment.author.node.gravatarUrl}
             width="64"
           />
           <Stack>
-            <h3 className={classes.authorName}>
-              {comment?.author?.node?.url ? (
-                <a href={comment?.author?.node?.url} rel="external nofollow">
-                  {comment?.author?.node?.name}
-                </a>
+            <Title order={3} className={classes.authorName}>
+              {comment.author.node.url ? (
+                <Anchor href={comment.author.node.url} rel="external nofollow">
+                  {comment.author.node.name}
+                </Anchor>
               ) : (
-                comment?.author?.node?.name
+                comment.author.node.name
               )}
-            </h3>
+            </Title>
             <time>
               {new Intl.DateTimeFormat('en-US', {
                 dateStyle: 'full',
                 timeStyle: 'short'
-              }).format(Date.parse(comment?.date))}
+              }).format(Date.parse(comment.date))}
             </time>
           </Stack>
         </Group>
       </header>
-      <main>{sanitizeComment(comment?.content)}</main>
+      <main>{sanitizeComment(comment.content)}</main>
     </article>
   )
 }

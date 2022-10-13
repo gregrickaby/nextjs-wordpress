@@ -71,7 +71,7 @@ export default function CommentForm({postId}: CommentFormProps) {
     onError: (error) =>
       showNotification({
         title: 'Error',
-        message: error?.message
+        message: error.message
           ? parse(error.message)
           : 'There was an error submitting your comment.',
         color: 'red',
@@ -85,10 +85,10 @@ export default function CommentForm({postId}: CommentFormProps) {
         // If the user submits a comment, display it or the moderation message.
         !loading && data && (
           <ol>
-            {data?.createComment?.success &&
-            data?.createComment?.comment != null ? (
+            {data.createComment.success &&
+            data.createComment.comment != null ? (
               <li>
-                <Comment {...data?.createComment?.comment} />
+                <Comment {...data.createComment.comment} />
               </li>
             ) : (
               <p>Your comment is awaiting moderation.</p>
@@ -102,10 +102,10 @@ export default function CommentForm({postId}: CommentFormProps) {
         onSubmit={commentForm.onSubmit((values) =>
           addComment({
             variables: {
-              authorName: values?.authorName,
-              authorEmail: values?.authorEmail,
-              authorUrl: values?.authorUrl,
-              comment: values?.comment,
+              authorName: values.authorName,
+              authorEmail: values.authorEmail,
+              authorUrl: values.authorUrl,
+              comment: values.comment,
               postID: postId
             }
           })

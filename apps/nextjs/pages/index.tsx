@@ -13,7 +13,7 @@ import {PageProps} from '~/lib/types'
 export default function HomePage({data}: PageProps) {
   return (
     <Layout>
-      <Article content={data?.page} />
+      <Article content={data.page} />
     </Layout>
   )
 }
