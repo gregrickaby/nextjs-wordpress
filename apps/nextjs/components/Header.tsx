@@ -119,7 +119,6 @@ export default function Header() {
         </Group>
         <Burger opened={opened} onClick={toggle} className={classes.burger} />
         <Drawer
-          className={classes.drawer}
           onClose={toggle}
           opened={opened}
           padding="md"
