@@ -1,3 +1,4 @@
+import {Button, Stack, Text} from '@mantine/core'
 import {GetStaticPaths, GetStaticProps} from 'next'
 import Article from '~/components/Article'
 import Layout from '~/components/Layout'
@@ -14,10 +15,17 @@ export default function SingleBook({data}: PageProps) {
   return (
     <Layout>
       <Article content={data.page} />
-      <p>ISBN: {data?.page?.bookFields?.isbn}</p>
-      <a href={data?.page?.bookFields?.affiliateUrl} rel="external nofollow">
-        Purchase Book
-      </a>
+      <Stack>
+        <Text color="dimmed">ISBN: {data?.page?.bookFields?.isbn}</Text>
+        <Button
+          aria-label="Purchase book"
+          component="a"
+          href={data?.page?.bookFields?.affiliateUrl}
+          rel="external nofollow"
+        >
+          Purchase Book
+        </Button>
+      </Stack>
     </Layout>
   )
 }
