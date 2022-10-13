@@ -8,6 +8,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     margin: '0 auto',
     maxWidth: '811px',
+    padding: `0 ${theme.spacing.xl}px`,
 
     '& > *': {
       marginBottom: theme.spacing.xl,

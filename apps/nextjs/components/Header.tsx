@@ -26,26 +26,30 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between'
   },
 
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none'
-    }
-  },
-
   burger: {
     [theme.fn.largerThan('sm')]: {
       display: 'none'
     }
   },
 
+  links: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none'
+    }
+  },
+
   link: {
     display: 'block',
-    lineHeight: 1,
     padding: '8px 12px'
   },
 
   linkLabel: {
     marginRight: 5
+  },
+
+  dropdown: {
+    border: 0,
+    borderRadius: 0
   }
 }))
 
@@ -68,7 +72,7 @@ export default function Header() {
       const dropdownItems = parent.childItems.nodes.map(
         (child: MenuItemFields) => {
           return (
-            <Menu.Item key={child.id}>
+            <Menu.Item key={child.id} component="a">
               <a href={child.path} className={classes.link}>
                 {child.label}
               </a>
@@ -79,14 +83,16 @@ export default function Header() {
 
       // Build the parent item and its dropdown.
       return (
-        <Menu key={parent.id} trigger="hover" exitTransitionDuration={0}>
+        <Menu key={parent.id} exitTransitionDuration={0} position="bottom-end">
           <Menu.Target>
-            <a href={parent.path} className={classes.link}>
+            <span className={classes.link}>
               <span className={classes.linkLabel}>{parent.label}</span>
               <IconChevronDown size={12} stroke={1.5} />
-            </a>
+            </span>
           </Menu.Target>
-          <Menu.Dropdown>{dropdownItems}</Menu.Dropdown>
+          <Menu.Dropdown className={classes.dropdown}>
+            {dropdownItems}
+          </Menu.Dropdown>
         </Menu>
       )
     }
@@ -113,6 +119,7 @@ export default function Header() {
         </Group>
         <Burger opened={opened} onClick={toggle} className={classes.burger} />
         <Drawer
+          className={classes.drawer}
           onClose={toggle}
           opened={opened}
           padding="md"
