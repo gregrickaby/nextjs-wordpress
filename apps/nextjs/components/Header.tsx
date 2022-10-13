@@ -9,9 +9,9 @@ import {
 import {useDisclosure} from '@mantine/hooks'
 import Link from 'next/link'
 import {useState} from 'react'
+import ParseContent from '~/components/ParseContent'
 import {useWordPressContext} from '~/components/WordPressProvider'
 import {MenuItemFields} from '~/lib/types'
-import ParseContent from './ParseContent'
 
 const HEADER_HEIGHT = 60
 const useStyles = createStyles((theme) => ({
