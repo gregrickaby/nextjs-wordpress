@@ -301,6 +301,7 @@ export const BOOKS_ARCHIVE_QUERY = gql`
         slug
         title(format: RENDERED)
         content(format: RENDERED)
+        excerpt(format: RENDERED)
         uri
         featuredImage {
           ...FeaturedImageFields
