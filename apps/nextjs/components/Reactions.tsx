@@ -29,38 +29,14 @@ const Icons = [
 const useStyles = createStyles((theme) => ({
   reactions: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    paddingTop: theme.spacing.sm,
-    paddingRight: theme.spacing.md,
+    justifyContent: 'center'
+  },
 
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'row'
-    },
+  button: {
+    marginRight: theme.spacing.lg,
 
-    button: {
-      border: `1px solid ${theme.colors.dark[2]}`,
-      color:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[3]
-          : theme.colors.dark[6],
-      height: 42,
-      marginBottom: theme.spacing.md,
-      marginTop: theme.spacing.xs,
-      paddingLeft: theme.spacing.sm,
-      paddingRight: theme.spacing.sm,
-
-      '&:hover': {
-        backgroundColor:
-          theme.colorScheme === 'dark'
-            ? theme.colors.dark[8]
-            : theme.fn.lighten(theme.colors.dark[0], 0.6)
-      },
-
-      [theme.fn.smallerThan('sm')]: {
-        marginRight: theme.spacing.xs,
-        marginBottom: 0
-      }
+    '&:last-child': {
+      marginRight: 0
     }
   }
 }))
@@ -107,7 +83,7 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
   }
 
   return (
-    <aside className={classes.reactions}>
+    <div className={classes.reactions}>
       {!!postReactions &&
         Object.entries(postReactions).map((reaction, index) => {
           // Skip the typename def which comes from GraphQL.
@@ -122,18 +98,17 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
           return (
             <Button
               aria-label={label}
+              className={classes.button}
               key={index}
               leftIcon={Icons.find((icon) => icon.label === label)?.icon}
               loading={loading === label ? true : false}
               onClick={() => incrementReaction(label, total)}
-              size="md"
               type="button"
-              variant="outline"
             >
               {total >= 1 ? total : 0}
             </Button>
           )
         })}
-    </aside>
+    </div>
   )
 }

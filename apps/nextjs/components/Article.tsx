@@ -31,26 +31,14 @@ const useStyles = createStyles((theme) => ({
   },
 
   authorIntro: {
-    fontFamily:
-      'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
+    fontFamily: theme.fontFamilyMonospace,
     fontSize: theme.fontSizes.sm,
     lineHeight: 0
   },
 
   publishedDate: {
-    fontFamily:
-      'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
+    fontFamily: theme.fontFamilyMonospace,
     fontSize: theme.fontSizes.sm
-  },
-
-  mainContent: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'between',
-
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column'
-    }
   }
 }))
 
@@ -119,15 +107,15 @@ export default function Article({content}: ArticleProps) {
             </Group>
           )}
         </section>
-        <main className={classes.mainContent}>
-          {content?.contentType?.node?.name === 'post' && (
+        <main>{ParseContent(content.content)}</main>
+        {content?.contentType?.node?.name === 'post' && (
+          <aside>
             <Reactions
               reactions={content.postFields.reactions}
               postId={content.databaseId}
             />
-          )}
-          <div>{ParseContent(content.content)}</div>
-        </main>
+          </aside>
+        )}
       </article>
     </>
   )
