@@ -6,6 +6,7 @@ import type {AppProps} from 'next/app'
 import {useState} from 'react'
 import WordPressProvider from '~/components/WordPressProvider'
 import {client} from '~/lib/helpers'
+import {customTheme} from '~/lib/theme'
 import {PageProps} from '~/lib/types'
 
 /**
@@ -38,25 +39,7 @@ export default function App({Component, pageProps}: AppProps) {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider
-        theme={{
-          colorScheme,
-          fontSizes: {
-            xs: 10,
-            sm: 16,
-            md: 18,
-            lg: 22,
-            xl: 28
-          },
-          headings: {
-            sizes: {
-              h1: {fontSize: 48, lineHeight: 1.4}
-            }
-          }
-        }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
+      <MantineProvider theme={{colorScheme, ...customTheme}} withGlobalStyles>
         <NotificationsProvider autoClose={5000} limit={2}>
           <ApolloProvider client={client}>
             <WordPressProvider
