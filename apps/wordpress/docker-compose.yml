@@ -47,10 +47,9 @@ services:
     volumes:
       - wp-data:/var/www/html
       - ./.env:/var/www/html/.env
+      - ./wp-content:/var/www/html/wp-content
       - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
       - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
-      - ./plugins:/var/www/html/wp-content/plugins
-      - ./themes:/var/www/html/wp-content/themes
     expose:
       - 80
       - 443
@@ -88,12 +87,11 @@ services:
       '
     volumes:
       - wp-data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
       - ./composer.json:/var/www/html/wp-content/composer.json
       - ./composer.lock:/var/www/html/wp-content/composer.lock
       - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
       - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
-      - ./plugins:/var/www/html/wp-content/plugins
-      - ./themes:/var/www/html/wp-content/themes
 
   wpcli:
     image: wordpress:cli-php8.1
@@ -104,12 +102,11 @@ services:
     working_dir: /var/www/html
     volumes:
       - wp-data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
       - ./.env:/var/www/html/.env
       - ./setup.sh:/var/www/html/setup.sh
       - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
       - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
-      - ./plugins:/var/www/html/wp-content/plugins
-      - ./themes:/var/www/html/wp-content/themes
     user: xfs
     command: >
       /bin/sh -c '

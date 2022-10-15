@@ -39,12 +39,7 @@ yarn-error.log*
 out/
 
 # wordpress
-apps/wordpress/plugins/*
-apps/wordpress/themes/*
-apps/wordpress/mu-plugins/*
-!apps/wordpress/plugins/.gitkeep
-!apps/wordpress/themes/.gitkeep
-!apps/wordpress/mu-plugins/.gitkeep
+apps/wordpress/wp-content/*
 
 # turbo
 .turbo
