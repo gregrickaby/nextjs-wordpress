@@ -1,5 +1,13 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.format.enable": false,
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onSave",
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
@@ -9,8 +17,5 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
-  },
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
   }
 }
