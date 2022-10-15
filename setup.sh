@@ -24,7 +24,7 @@ case $IS_NODEJS_INSTALLED in
 esac
 
 #3 - Copy ENV file:
-cd ./apps/nextjs && cp .env.sample .env
+cd ./apps/nextjs && cp .env.sample .env.local
 
 #4 - Install Next.js:
 echo Installing dependencies...
