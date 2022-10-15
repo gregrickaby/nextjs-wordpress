@@ -1,8 +1,8 @@
-# Next.js + WordPress <!-- omit in toc -->
+# Next.js + WordPress
 
 💀 It's headless WordPress! - <https://nextjswp.com>
 
-## Features <!-- omit in toc -->
+## Features
 
 - Next.js w/ TypeScript
 - React Components from [Mantine](https://mantine.dev)

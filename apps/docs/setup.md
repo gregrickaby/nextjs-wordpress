@@ -5,10 +5,11 @@ The following will help you setup Next.js WordPress.
 ## Table of Contents <!-- omit in toc -->
 
 - [Requirements](#requirements)
-- [Next.js Setup](#nextjs-setup)
+- [Quick Start](#quick-start)
+- [Manual Setup (Next.js)](#manual-setup-nextjs)
   - [Install](#install)
   - [ENV Variables](#env-variables)
-- [WordPress Setup](#wordpress-setup)
+- [Manual Setup (WordPress)](#manual-setup-wordpress)
   - [Install](#install-1)
     - [1) Customize ENV Variables (optional)](#1-customize-env-variables-optional)
   - [2) Run Install Script](#2-run-install-script)
@@ -25,7 +26,21 @@ The following will help you setup Next.js WordPress.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Node (LTS)](https://nodejs.org/en/)
 
-## Next.js Setup
+## Quick Start
+
+1. Clone this repo:
+
+```bash
+npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
+```
+
+4. Set up your dev environment:
+
+```bash
+npm run setup
+```
+
+## Manual Setup (Next.js)
 
 ### Install
 
@@ -35,17 +50,17 @@ npx create-next-app nextjs-wordpress --example https://github.com/gregrickaby/ne
 
 ### ENV Variables
 
-Copy `.env.sample` to `.env`
+Copy `.env.sample` to `.env.local`
 
 ```bash
-cp .env.sample .env
+cp .env.sample .env.local
 ```
 
 That's it for Next.js. You're ready to move on to the WordPress setup.
 
 ---
 
-## WordPress Setup
+## Manual Setup (WordPress)
 
 All WordPress commands must be run from inside the `/wordpress` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
 

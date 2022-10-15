@@ -13,7 +13,7 @@
   - [Redirects](#redirects)
   - [Reactions](#reactions)
 - [Managing The Backend (WordPress)](#managing-the-backend-wordpress)
-  - [Headless Plugin & Theme](#headless-plugin--theme)
+  - [Headless Plugin \& Theme](#headless-plugin--theme)
   - [Page/Post Previews](#pagepost-previews)
   - [Comments](#comments)
   - [GraphQL](#graphql)
@@ -98,10 +98,10 @@ If your WordPress install has hundreds or even thousands of pages and posts, it 
 
 Instead, you can [generate paths on-demand](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#generating-paths-on-demand). This means pages and posts will be server-side rendered first, then cached, and then served statically for the next visitor. This is a good compromise for sites with a lot of content.
 
-To disable static site generation, set the `DISABLE_STATIC_SITE_GENERATION` environment variable in `.env` to `true`:
+To disable static site generation, set the `DISABLE_STATIC_SITE_GENERATION` environment variable in `.env.local` to `true`:
 
 ```text
-// .env
+// .env.local
 DISABLE_STATIC_SITE_GENERATION="true"
 ```
 
