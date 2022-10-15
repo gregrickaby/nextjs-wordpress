@@ -21,5 +21,8 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
+  },
+  "[php]": {
+    "editor.defaultFormatter": "valeryanm.vscode-phpsab"
   }
 }
