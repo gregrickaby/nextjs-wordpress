@@ -33,6 +33,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          mkdir apps/wordpress/wp-content
           cp -R packages/nextjs-wordpress-plugin apps/wordpress/wp-content/plugins/nextjs-wordpress-plugin
           cp -R packages/nextjs-wordpress-theme apps/wordpress/wp-content/themes/nextjs-wordpress-theme
           cd apps/wordpress/wp-content
