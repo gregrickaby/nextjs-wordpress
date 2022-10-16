@@ -169,7 +169,7 @@ function override_post_links( $post_id ) {
 	\wp_update_post(
 		[
 			'ID'           => $post_id,
-			'post_content' => wp_slash( $new_post_content ),
+			'post_content' => \wp_slash( $new_post_content ),
 		]
 	);
 
