@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98dd787067abed826cc421d7dc1c2618",
+    "content-hash": "115f5ac02ea7f11eea225ecbbb040828",
     "packages": [
         {
             "name": "composer/installers",
@@ -157,7 +157,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../../packages/nextjs-wordpress-plugin",
-                "reference": "ef1d47b91a4292ac537cfba5a42ec6a34431219e"
+                "reference": "2490a7e76e7909c6e12d61633d06028f3c2ae1ab"
             },
             "type": "wordpress-plugin",
             "license": [
@@ -171,7 +171,6 @@
             ],
             "description": "A plugin to power Next.js WordPress",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
@@ -181,7 +180,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../../packages/nextjs-wordpress-theme",
-                "reference": "0ba18897c3784223cb498e4fc47f3c101d9ebca5"
+                "reference": "14b9c6ea98fa912165e21292eadb58efeb438959"
             },
             "type": "wordpress-theme",
             "license": [
@@ -195,7 +194,6 @@
             ],
             "description": "A theme to power Next.js WordPress",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
