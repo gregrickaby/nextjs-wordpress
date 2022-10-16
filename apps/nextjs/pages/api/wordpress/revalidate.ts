@@ -25,7 +25,7 @@ export default async function revalidate(
   if (req.query.token !== process.env.PREVIEW_SECRET_TOKEN) {
     return res
       .status(401)
-      .json({message: 'Invalid revalidate token. Please check your .env file.'})
+      .json({message: 'Invalid token. Please check your .env file.'})
   }
 
   // No slug? Bail...
