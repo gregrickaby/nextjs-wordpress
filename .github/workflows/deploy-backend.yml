@@ -35,7 +35,7 @@ jobs:
         run: |
           cp -R packages/nextjs-wordpress-plugin apps/wordpress/plugins/nextjs-wordpress-plugin
           cp -R packages/nextjs-wordpress-theme apps/wordpress/themes/nextjs-wordpress-theme
-          cd apps/wordpress
+          cd apps/wordpress/wp-content
           composer install --prefer-dist --no-dev
 
       - name: SSH Deploy
