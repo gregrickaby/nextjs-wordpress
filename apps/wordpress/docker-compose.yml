@@ -75,38 +75,17 @@ services:
         define('WP_SITEURL', 'https://${WORDPRESS_URL}');
         define('WP_HOME', 'https://${WORDPRESS_URL}');
 
-  composer:
-    image: composer:latest
-    depends_on:
-      - wordpress
-    working_dir: /var/www/html/wp-content
-    command: >
-      /bin/sh -c '
-      composer upgrade;
-      tail -f /dev/null;
-      '
-    volumes:
-      - wp-data:/var/www/html
-      - ./wp-content:/var/www/html/wp-content
-      - ./composer.json:/var/www/html/wp-content/composer.json
-      - ./composer.lock:/var/www/html/wp-content/composer.lock
-      - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
-      - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
-
   wpcli:
     image: wordpress:cli-php8.1
     depends_on:
       - mysql
       - wordpress
-      - composer
     working_dir: /var/www/html
     volumes:
       - wp-data:/var/www/html
       - ./wp-content:/var/www/html/wp-content
       - ./.env:/var/www/html/.env
       - ./setup.sh:/var/www/html/setup.sh
-      - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
-      - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
     user: xfs
     command: >
       /bin/sh -c '
