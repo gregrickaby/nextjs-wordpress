@@ -1,0 +1,12 @@
+{
+  "name": "nextjswp/nextjs-wordpress-plugin",
+  "description": "A plugin to power Next.js WordPress",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Greg Rickaby",
+      "email": "greg@gregrickaby.com"
+    }
+  ]
+}
