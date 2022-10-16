@@ -33,13 +33,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          mkdir apps/wordpress/wp-content
-          mkdir apps/wordpress/wp-content/plugins
-          mkdir apps/wordpress/wp-content/themes
+          cd apps/wordpress
+          composer install --prefer-dist --no-dev
           cp -R packages/nextjs-wordpress-plugin apps/wordpress/wp-content/plugins/nextjs-wordpress-plugin
           cp -R packages/nextjs-wordpress-theme apps/wordpress/wp-content/themes/nextjs-wordpress-theme
-          cd apps/wordpress/wp-content
-          composer install --prefer-dist --no-dev
 
       - name: SSH Deploy
         uses: easingthemes/ssh-deploy@v2
