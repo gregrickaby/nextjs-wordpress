@@ -60,8 +60,9 @@ The repo config file. Learn more about configuring [Turborepo](https://turborepo
 
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 2. [Node LTS](https://nodejs.dev/)
+3. [Composer](https://getcomposer.org/download/)
 
-3. Clone this repo:
+4. Clone this repo:
 
 ```bash
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress

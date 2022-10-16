@@ -7,10 +7,9 @@ The following will help you setup Next.js WordPress.
 - [Requirements](#requirements)
 - [Quick Start](#quick-start)
 - [Manual Setup (Next.js)](#manual-setup-nextjs)
-  - [Install](#install)
   - [ENV Variables](#env-variables)
 - [Manual Setup (WordPress)](#manual-setup-wordpress)
-  - [Install](#install-1)
+  - [Install](#install)
     - [1) Customize ENV Variables (optional)](#1-customize-env-variables-optional)
   - [2) Run Install Script](#2-run-install-script)
   - [3) Log into WordPress](#3-log-into-wordpress)
@@ -25,6 +24,7 @@ The following will help you setup Next.js WordPress.
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Node (LTS)](https://nodejs.org/en/)
+- [Composer](https://getcomposer.org/download/)
 
 ## Quick Start
 
@@ -41,12 +41,6 @@ npm run setup
 ```
 
 ## Manual Setup (Next.js)
-
-### Install
-
-```bash
-npx create-next-app nextjs-wordpress --example https://github.com/gregrickaby/nextjs-wordpress
-```
 
 ### ENV Variables
 
@@ -166,7 +160,7 @@ The front-end has support for a "Books" custom post type with custom fields. Thi
        "show_in_menu_string": "",
        "menu_icon": "dashicons-book-alt",
        "register_meta_box_cb": null,
-       "supports": ["title", "editor", "thumbnail", "custom-fields"],
+       "supports": ["title", "editor", "excerpt", "thumbnail", "custom-fields"],
        "taxonomies": [],
        "labels": {
          "menu_name": "My Books",

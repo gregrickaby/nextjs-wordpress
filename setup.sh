@@ -13,13 +13,23 @@ case $IS_DOCKER_DESKTOP_INSTALLED in
 		exit 1;;
 esac
 
-#2 - Do you have Node LTS installed?
-read  -p "Do you have NodeJs LTS installed? Y/n " IS_NODEJS_INSTALLED
+#2 - Do you have Node 16+ installed?
+read  -p "Do you have Node 16 or LTS installed? Y/n " IS_NODEJS_INSTALLED
 case $IS_NODEJS_INSTALLED in
 	[yY] | "" ) ;;
-	[nN] ) echo 'Please install NodeJs LTS before continuing https://nodejs.org/en/';
+	[nN] ) echo 'Please install Node 16 or LTS before continuing https://nodejs.org/en/';
 		exit;;
 	* ) echo $IS_NODEJS_INSTALLED is an invalid response, please enter y or n;
+		exit 1;;
+esac
+
+#2 - Do you have Composer installed?
+read  -p "Do you have Composer installed? Y/n " IS_COMPOSER_INSTALLED
+case $IS_COMPOSER_INSTALLED in
+	[yY] | "" ) ;;
+	[nN] ) echo 'Please install Composer before continuing https://getcomposer.org/download/';
+		exit;;
+	* ) echo $IS_COMPOSER_INSTALLED is an invalid response, please enter y or n;
 		exit 1;;
 esac
 
@@ -28,7 +38,7 @@ cd ./apps/nextjs && cp .env.sample .env.local
 
 #4 - Install Next.js:
 echo Installing dependencies...
-cd ../.. && npm i
+cd ../.. && npm i && composer install
 
 #5 - Install WordPress (Docker Desktop must be running):
 cd ./apps/wordpress && chmod +x install.sh && ./install.sh
