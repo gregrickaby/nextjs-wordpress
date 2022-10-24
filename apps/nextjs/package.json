@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.3",
-    "@types/react": "^18.0.21",
+    "@types/react": "^18.0.22",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "rimraf": "^3.0.2",
