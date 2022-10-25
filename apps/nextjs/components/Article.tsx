@@ -1,7 +1,7 @@
 import {Avatar, createStyles, Group, Stack, Text, Title} from '@mantine/core'
 import parse from 'html-react-parser'
-import Image from 'next/future/image'
 import Head from 'next/head'
+import Image from 'next/image'
 import ParseContent from '~/components/ParseContent'
 import Reactions from '~/components/Reactions'
 import {ContentFields} from '~/lib/types'

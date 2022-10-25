@@ -1,5 +1,5 @@
 import {Anchor, Button, Card, createStyles, Text} from '@mantine/core'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import {ArticleProps} from '~/components/Article'
 import ParseContent from '~/components/ParseContent'
 

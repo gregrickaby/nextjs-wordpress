@@ -23,13 +23,13 @@
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
     "isomorphic-dompurify": "^0.23.0",
-    "next": "^12.3.1",
+    "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.4",
-    "@types/react": "^18.0.22",
+    "@types/node": "^18.11.5",
+    "@types/react": "^18.0.23",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "rimraf": "^3.0.2",
