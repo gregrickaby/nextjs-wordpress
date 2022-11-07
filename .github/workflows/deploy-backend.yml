@@ -25,11 +25,12 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: composer:v2
 
-      - name: Cache Composer Dependencies
-        uses: actions/cache@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v2
         with:
-          path: composer-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Dependencies
         run: |
