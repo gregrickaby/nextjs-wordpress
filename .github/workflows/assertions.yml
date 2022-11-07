@@ -10,28 +10,36 @@ jobs:
   assertions:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php-versions: ['8.1']
+
     env:
       DOCKER_COMPOSE: './apps/wordpress/docker-compose.yml'
       DOCKER_ENV: './apps/wordpress/.env.sample'
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           token: ${{ github.token }}
 
-      - name: Setup PHP 8.1
+      - name: Setup PHP ${{ matrix.php-versions }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php-versions }}
           tools: composer:v2, phpcs
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v2
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
         with:
-          path: vendor
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.OS }}-composer-
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Setup Node
         uses: actions/setup-node@v3
