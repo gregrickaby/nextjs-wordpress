@@ -25,11 +25,11 @@
     "apps/*"
   ],
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.1",
+    "@evilmartians/lefthook": "^1.2.2",
     "eslint": "^8.28.0",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.0",
     "markdownlint": "^0.26.2",
     "markdownlint-cli": "^0.32.2",
     "turbo": "^1.6.3"
