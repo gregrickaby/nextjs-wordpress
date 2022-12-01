@@ -281,15 +281,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.13.1",
+            "version": "1.13.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.13.1"
+                "reference": "tags/1.13.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -299,15 +299,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.10",
+            "version": "19.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.10"
+                "reference": "tags/19.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.10.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.11.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -317,15 +317,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.12.3",
+            "version": "1.13.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.12.3"
+                "reference": "tags/1.13.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.12.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.13.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
