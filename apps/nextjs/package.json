@@ -19,7 +19,7 @@
     "@mantine/hooks": "^5.9.0",
     "@mantine/next": "^5.9.0",
     "@mantine/notifications": "^5.9.0",
-    "@tabler/icons": "^1.114.0",
+    "@tabler/icons": "^1.115.0",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
     "isomorphic-dompurify": "^0.24.0",
