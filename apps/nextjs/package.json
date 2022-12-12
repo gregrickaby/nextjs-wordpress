@@ -11,15 +11,15 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.1",
+    "@apollo/client": "^3.7.2",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
-    "@mantine/core": "^5.9.0",
-    "@mantine/form": "^5.9.0",
-    "@mantine/hooks": "^5.9.0",
-    "@mantine/next": "^5.9.0",
-    "@mantine/notifications": "^5.9.0",
-    "@tabler/icons": "^1.114.0",
+    "@mantine/core": "^5.9.4",
+    "@mantine/form": "^5.9.4",
+    "@mantine/hooks": "^5.9.4",
+    "@mantine/next": "^5.9.4",
+    "@mantine/notifications": "^5.9.4",
+    "@tabler/icons": "^1.116.1",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
     "isomorphic-dompurify": "^0.24.0",
@@ -28,13 +28,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.10",
-    "@types/react": "^18.0.25",
+    "@types/node": "^18.11.13",
+    "@types/react": "^18.0.26",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "rimraf": "^3.0.2",
     "sharp": "^0.31.2",
     "tsconfig": "*",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   }
 }
