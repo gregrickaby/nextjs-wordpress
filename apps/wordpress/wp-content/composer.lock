@@ -263,15 +263,15 @@
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "6.0.5",
+            "version": "6.0.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/6.0.5"
+                "reference": "tags/6.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.0.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.0.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -281,15 +281,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.13.2",
+            "version": "1.13.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.13.2"
+                "reference": "tags/1.13.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -299,15 +299,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.11",
+            "version": "19.12",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.11"
+                "reference": "tags/19.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.11.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.12.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

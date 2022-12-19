@@ -25,8 +25,8 @@
     "apps/*"
   ],
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.4",
-    "eslint": "^8.29.0",
+    "@evilmartians/lefthook": "^1.2.6",
+    "eslint": "^8.30.0",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "prettier": "^2.8.1",
