@@ -29,9 +29,9 @@
     "eslint": "^8.31.0",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "markdownlint": "^0.27.0",
-    "markdownlint-cli": "^0.32.2",
+    "markdownlint-cli": "^0.33.0",
     "turbo": "^1.6.3"
   }
 }
