@@ -11,7 +11,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.3",
+    "@apollo/client": "^3.7.4",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^5.10.0",
@@ -23,7 +23,7 @@
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.7",
     "isomorphic-dompurify": "^0.26.0",
-    "next": "^13.1.1",
+    "next": "^13.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -32,7 +32,7 @@
     "@types/react": "^18.0.26",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.0.7",
     "sharp": "^0.31.3",
     "tsconfig": "*",
     "typescript": "^4.9.4"
