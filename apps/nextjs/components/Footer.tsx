@@ -39,7 +39,7 @@ export default function FooterComponent() {
   return (
     <footer className={classes.footer}>
       <Text>
-        &copy; {new Date().getFullYear()} -{' '}
+        &copy; 2022-{new Date().getFullYear()} -{' '}
         {ParseContent(generalSettings?.title)}
       </Text>
       <Group className={classes.links}>
