@@ -1,0 +1,11 @@
+!/.*.js
+*.min.js
+.*cache/
+.next/
+.turbo/
+.vercel/
+build/
+dist/
+node_modules/
+public/
+vendor/
