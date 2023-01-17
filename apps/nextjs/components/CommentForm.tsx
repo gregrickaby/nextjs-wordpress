@@ -49,7 +49,7 @@ export default function CommentForm({postId}: CommentFormProps) {
       authorEmail: (value) =>
         /^\S+@\S+$/.test(value) ? null : 'Invalid email!',
       comment: (value) =>
-        value.length < 1 ? 'Comment must be at least 1 characters!' : null
+        value.length < 1 ? 'Comment must be at least 1 character!' : null
     }
   })
 

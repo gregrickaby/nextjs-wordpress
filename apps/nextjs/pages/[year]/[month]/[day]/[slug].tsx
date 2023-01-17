@@ -32,7 +32,7 @@ export default function SinglePost({data}: PageProps) {
  * @see https://nextjs.org/docs/api-reference/data-fetching/get-static-paths
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Don't pre-render any posts at build time.
+  // Bypass pre-rendering at build time.
   if (process.env.DISABLE_STATIC_SITE_GENERATION === 'true') {
     return {
       paths: [],
@@ -80,11 +80,11 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     variables: {slug: slug}
   })
 
-  // Pass data to the post via props.
+  // Pass data via props and revalidate every hour.
   return {
     props: {
       data
     },
-    revalidate: 60
+    revalidate: 3600
   }
 }

@@ -30,11 +30,11 @@ export const getStaticProps: GetStaticProps = async () => {
     variables: {slug: 'homepage'}
   })
 
-  // Pass data to the page via props.
+  // Pass data via props and revalidate every hour.
   return {
     props: {
       data
     },
-    revalidate: 60
+    revalidate: 3600
   }
 }

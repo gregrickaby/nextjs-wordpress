@@ -16,7 +16,7 @@ export default function Preview({data}) {
 }
 
 /**
- * Render this page on the server only.
+ * Server-side render only.
  *
  * @see https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
  */
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // @ts-ignore
   const postID = parseInt(context?.previewData?.postID) || 1
 
-  // The GraphQL query.
+  // Build preview query.
   const previewQuery = {
     query: `
       query PreviewQuery($postID: ID!, $menuID: ID!) {
@@ -145,6 +145,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  // Pass data via props.
   return {
     props: {
       data: post.data

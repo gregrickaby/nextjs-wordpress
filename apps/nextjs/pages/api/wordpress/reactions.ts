@@ -92,7 +92,7 @@ export default async function reactions(req: NextRequest) {
         statusText: 'OK'
       }
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error(error)
     return new Response(JSON.stringify({error: `${error}`}), {
       status: 500,

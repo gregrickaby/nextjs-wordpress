@@ -82,7 +82,10 @@ export default async function preview(
 
     // Finally, redirect to the preview page.
     res.redirect('/preview')
-  } catch (error) {
-    return res.status(500).json({'try catch error': error.message})
+  } catch (error: any) {
+    console.error(error.message)
+    return res.status(500).json({
+      message: error.message
+    })
   }
 }
