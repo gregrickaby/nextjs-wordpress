@@ -2,9 +2,10 @@
 *.min.js
 .*cache/
 .next/
-backend/mysql/
-backend/wordpress/
+.turbo/
+.vercel/
 build/
 dist/
 node_modules/
 public/
+vendor/
