@@ -23,16 +23,16 @@
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.8",
     "isomorphic-dompurify": "^0.26.0",
-    "next": "^13.1.2",
+    "next": "^13.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "@types/react": "^18.0.26",
+    "@types/react": "^18.0.27",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
-    "rimraf": "^4.1.0",
+    "rimraf": "^4.1.1",
     "sharp": "^0.31.3",
     "tsconfig": "*",
     "typescript": "^4.9.4"
