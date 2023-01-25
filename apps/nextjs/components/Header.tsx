@@ -8,7 +8,7 @@ import {
   Title
 } from '@mantine/core'
 import {useDisclosure} from '@mantine/hooks'
-import {IconChevronDown} from '@tabler/icons'
+import {IconChevronDown} from '@tabler/icons-react'
 import ParseContent from '~/components/ParseContent'
 import {useWordPressContext} from '~/components/WordPressProvider'
 import {flatListToHierarchical} from '~/lib/helpers'

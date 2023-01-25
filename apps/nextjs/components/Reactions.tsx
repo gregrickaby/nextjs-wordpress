@@ -1,5 +1,5 @@
 import {Button, createStyles} from '@mantine/core'
-import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons'
+import {IconHeart, IconThumbDown, IconThumbUp} from '@tabler/icons-react'
 import {useState} from 'react'
 
 export interface ReactionsProps {

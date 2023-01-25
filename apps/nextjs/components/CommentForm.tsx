@@ -9,7 +9,7 @@ import {
 } from '@mantine/core'
 import {useForm} from '@mantine/form'
 import {showNotification} from '@mantine/notifications'
-import {IconAlertCircle, IconMessage} from '@tabler/icons'
+import {IconAlertCircle, IconMessage} from '@tabler/icons-react'
 import parse from 'html-react-parser'
 import Comment from '~/components/Comment'
 import {CREATE_COMMENT} from '~/lib/queries'
