@@ -87,7 +87,7 @@ export default function Header() {
           <Menu.Target>
             <span className={classes.link}>
               <span className={classes.linkLabel}>{parent.label}</span>
-              <IconChevronDown size={12} stroke={1.5} />
+              <IconChevronDown size={12} stroke="1.5" />
             </span>
           </Menu.Target>
           <Menu.Dropdown className={classes.dropdown}>
