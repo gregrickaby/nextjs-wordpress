@@ -110,11 +110,15 @@ While Apollo can sometimes introduce a large performance penalty, it was literal
 
 ### When will you support the Next.js 13 `app` directory?
 
-As of March 2023, the `app` directory is still in `beta`. The Next.js team [does not recommend using it in production](https://capture.dropbox.com/akVllqdUQTtzOPKd). Also, I can't stress how much of a blocker this is, but Client Side Data Fetching is [not supported](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9q0dx9/) and the implementation of React Context has been challenging to work with in my testing.
+_As of March 2023, the `app` directory is still in `beta`_
 
-Please understand that I am as equally excited about the `app` directory as you are! However, Server Components represent a complete paradigm shift for React-based projects. Refactoring this repo will require a lot of work.
+First, The Next.js team [does not recommend using it in production](https://capture.dropbox.com/akVllqdUQTtzOPKd).
 
-Don't worry, because `pages` directory will be around [for years to come](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)!
+Second, Client-Side data fetching is [not supported](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9q0dx9/), and the limitations of React Context have been challenging.
+
+Finally, Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2928](https://github.com/emotion-js/emotion/issues/2928) and [#2815](https://github.com/mantinedev/mantine/issues/2815)).
+
+Please understand that I am as equally excited about the `app` directory as you are! However, Server Components represent a complete paradigm shift for React-based projects. Refactoring this repo will require a lot of work. Don't worry, because `pages` directory will be around [for years to come](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)!
 
 ---
 
