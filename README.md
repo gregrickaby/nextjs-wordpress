@@ -23,7 +23,7 @@
 
 ## Monorepo
 
-This project is a monorepo managed by [Turborepo](https://turborepo.org/).
+This project is a monorepo managed by [Turborepo](https://turbo.build/repo).
 
 ```text
 nextjs-wordpress
@@ -50,7 +50,7 @@ Shared packages used by the apps. This includes ESLint, Prettier, and TypeScript
 
 ### `turbo.json`
 
-The repo config file. Learn more about configuring [Turborepo](https://turborepo.org/docs/configuration).
+The repo config file. Learn more about configuring [Turborepo](https://turbo.build/repo/docs/reference/configuration).
 
 ---
 
@@ -79,6 +79,36 @@ npm run setup
 ## Full Documentation
 
 The docs are a work in progress. You can view them [here](./apps/docs/index.md).
+
+---
+
+## FAQ
+
+### Do I have to use Docker?
+
+No. You can use any WordPress install you want. Just make sure you follow [the documentation](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/index.md) and have the Next.js WordPress Plugin and Theme, and WP GraphQL activated.
+
+---
+
+### So this repo will work on any WordPress install?
+
+Yes. The [demo site](https://nextjswp.com/) is not running Docker. See above ^^
+
+---
+
+### Why Mantine and not Tailwind, MUI, or \_\_\_\_?
+
+I did not want to create/maintain UI components like forms, notifications, etc... from scratch. See [this issue](https://github.com/gregrickaby/nextjs-wordpress/issues/69#issuecomment-1426217207) for a more detailed explanation.
+
+---
+
+### When will you support the Next.js 13 `app` directory?
+
+As of March 2023, the `app` directory is still in `beta`. The Next.js team also [does not recommend using it in production](https://capture.dropbox.com/akVllqdUQTtzOPKd). Also, I can't stress how much of a blocker this is, but Client Side Data Fetching is [not supported](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9q0dx9/) and the implementation of React Context has been challenging to work with in my testing.
+
+Please understand that I am as equally excited about the `app` directory as you are! However, Server Components represent a complete paradigm shift for React-based projects. Refactoring this repo will require a lot of work.
+
+Don't worry, because `pages` directory will be around [for years to come](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)!
 
 ---
 
