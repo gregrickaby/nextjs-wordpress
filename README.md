@@ -102,6 +102,12 @@ I did not want to create/maintain UI components like forms, notifications, etc..
 
 ---
 
+### Why Apollo and not \_\_\_\_?
+
+While Apollo can sometimes introduce a large performance penalty, it was literally built for working with GraphQL... and _it works well_.
+
+---
+
 ### When will you support the Next.js 13 `app` directory?
 
 As of March 2023, the `app` directory is still in `beta`. The Next.js team also [does not recommend using it in production](https://capture.dropbox.com/akVllqdUQTtzOPKd). Also, I can't stress how much of a blocker this is, but Client Side Data Fetching is [not supported](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9q0dx9/) and the implementation of React Context has been challenging to work with in my testing.
