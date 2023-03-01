@@ -75,9 +75,9 @@ export default function Reactions({postId, reactions}: ReactionsProps) {
       }
 
       setPostReactions(data?.reactions)
-      setLoading('')
     } catch (error) {
       console.error(error)
+    } finally {
       setLoading('')
     }
   }
