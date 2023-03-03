@@ -20,7 +20,9 @@ services:
     image: traefik:latest
     restart: always
     ports:
-      - 3000:3000
+      - target: 80 #internal, container
+        published: 81 #external to host
+        mode: host
       - 443:443
       - 8080:8080
     command:
@@ -30,7 +32,7 @@ services:
       - --api.insecure=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:3000
+      - --entrypoints.web.address=:81
       - --entrypoints.websecure.address=:443
       - --entrypoints.websecure.http.tls=true
       - --entrypoints.web.http.redirections.entrypoint.to=websecure
@@ -51,7 +53,7 @@ services:
       - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
       - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
     expose:
-      - 3000
+      - 81
       - 443
     labels:
       - traefik.enable=true
@@ -105,7 +107,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8081:3000
+      - 8081:81
     restart: always
     environment:
       PMA_HOST: ${WORDPRESS_DB_HOST}
