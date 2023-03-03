@@ -45,7 +45,7 @@ cd ./apps/wordpress && chmod +x install.sh && ./install.sh
 
 #6 - Import ACF Fields:
 echo -e '\nPlease import ACF Fields:
-         1 - Log into WordPress https://nextjswp.test/wp-admin (admin/password)
+         1 - Log into WordPress https://nextjswp.test/wp-admin/ (admin/password)
          2 - Go to Custom Fields --> Tools --> Import Field Groups
          3 - Click "Choose File"
          4 - Select apps/wordpress/acf-export-post-fields.json
