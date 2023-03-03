@@ -24,7 +24,7 @@ sleep 30
 echo -e "Installation is complete! 🔥"
 sleep 1
 
-echo -e "Visit https://${WORDPRESS_URL}/wp-admin to log into WordPress."
+echo -e "Visit https://${WORDPRESS_URL}/wp-admin/ to log into WordPress."
 echo -e "username: ${WORDPRESS_USERNAME}"
 echo -e "password: ${WORDPRESS_PASSWORD}"
 exit 0
