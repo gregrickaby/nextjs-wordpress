@@ -1,4 +1,4 @@
-import parse, {Element, HTMLReactParserOptions} from 'html-react-parser'
+import parse, {Element} from 'html-react-parser'
 
 /**
  * Parse HTML content into React components.
@@ -6,14 +6,22 @@ import parse, {Element, HTMLReactParserOptions} from 'html-react-parser'
  * @see https://www.npmjs.com/package/html-react-parser
  */
 export default function ParseContent(content: string) {
-  const options: HTMLReactParserOptions = {
-    // @see https://github.com/remarkablemark/html-react-parser#replace
-    replace: (domNode) => {
-      if (domNode instanceof Element && domNode.attribs.class === 'remove') {
-        return <></>
+  // Make sure we have content to parse.
+  const contentToParse = content ?? null
+
+  // If we have content, parse it.
+  if (contentToParse) {
+    const options = {
+      replace: (domNode) => {
+        if (domNode instanceof Element && domNode.attribs.class === 'remove') {
+          return <></>
+        }
       }
     }
+
+    return parse(contentToParse, options)
   }
 
-  return parse(content, options)
+  // Otherwise, return null.
+  return null
 }

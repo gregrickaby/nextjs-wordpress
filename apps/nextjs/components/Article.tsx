@@ -1,5 +1,4 @@
 import {Avatar, createStyles, Group, Stack, Text, Title} from '@mantine/core'
-import parse from 'html-react-parser'
 import Head from 'next/head'
 import Image from 'next/image'
 import ParseContent from '~/components/ParseContent'
@@ -51,11 +50,10 @@ export default function Article({content}: ArticleProps) {
   return (
     <>
       <Head>
-        <title>
-          {content.seo.title ? parse(content.seo.title) : `Next.js WordPress`}
-        </title>
-        {content.seo.metaDesc ? parse(content.seo.metaDesc) : null}
-        {content.seo.fullHead ? parse(content.seo.fullHead) : null}
+        <title>{content?.seo?.title}</title>
+        {content?.seo?.metaDesc && (
+          <meta name="description" content={content.seo.metaDesc} />
+        )}
       </Head>
 
       <article className={classes.article}>

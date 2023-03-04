@@ -8,7 +8,7 @@ import {
   TextInput
 } from '@mantine/core'
 import {useForm} from '@mantine/form'
-import {showNotification} from '@mantine/notifications'
+import {notifications} from '@mantine/notifications'
 import {IconAlertCircle, IconMessage} from '@tabler/icons-react'
 import parse from 'html-react-parser'
 import Comment from '~/components/Comment'
@@ -61,7 +61,7 @@ export default function CommentForm({postId}: CommentFormProps) {
    */
   const [addComment, {data, loading}] = useMutation(CREATE_COMMENT, {
     onCompleted: () =>
-      showNotification({
+      notifications.show({
         title: 'Success',
         message:
           'Your comment has been submitted and may be held for moderation.',
@@ -69,7 +69,7 @@ export default function CommentForm({postId}: CommentFormProps) {
         icon: <IconMessage />
       }),
     onError: (error) =>
-      showNotification({
+      notifications.show({
         title: 'Error',
         message: error.message
           ? parse(error.message)

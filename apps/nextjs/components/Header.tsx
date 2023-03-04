@@ -72,10 +72,13 @@ export default function Header() {
       const dropdownItems = parent.childItems.nodes.map(
         (child: MenuItemFields) => {
           return (
-            <Menu.Item key={child.id} component="a">
-              <a href={child.path} className={classes.link}>
-                {child.label}
-              </a>
+            <Menu.Item
+              className={classes.link}
+              component="a"
+              href={child.path}
+              key={child.id}
+            >
+              {child.label}
             </Menu.Item>
           )
         }
@@ -83,7 +86,7 @@ export default function Header() {
 
       // Build the parent item and its dropdown.
       return (
-        <Menu key={parent.id} exitTransitionDuration={0} position="bottom-end">
+        <Menu key={parent.id} position="bottom-end">
           <Menu.Target>
             <span className={classes.link}>
               <span className={classes.linkLabel}>{parent.label}</span>

@@ -74,6 +74,12 @@ npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 npm run setup
 ```
 
+5. Start the dev server:
+
+```bash
+npm run dev
+```
+
 ---
 
 ## Full Documentation
@@ -92,33 +98,34 @@ No. You can use any WordPress install you want. Just make sure you follow [the d
 
 ### So this repo will work on any WordPress install?
 
-Yes. The [demo site](https://nextjswp.com/) is not running Docker. See above ^^
+Yep! The [demo site](https://nextjswp.com/) is not running Docker. See above ^^
 
 ---
 
 ### Why Mantine and not Tailwind, MUI, or \_\_\_\_?
 
-I did not want to create/maintain UI components like forms, notifications, etc. from scratch. See [this issue](https://github.com/gregrickaby/nextjs-wordpress/issues/69#issuecomment-1426217207) for a more detailed explanation.
+I preferred not to create or maintain UI components such as forms, notifications, dropdowns, and so on from scratch. The reason for this is explained in more detail in [this issue](https://github.com/gregrickaby/nextjs-wordpress/issues/69#issuecomment-1426217207).
 
 ---
 
 ### Why Apollo and not \_\_\_\_?
 
-While Apollo can sometimes introduce a large performance penalty, it was literally built for working with GraphQL... and _it works well_.
+Although Apollo can sometimes negatively impact performance, it was specifically designed for GraphQL and it is a reliable and effective tool for this purpose.
 
 ---
 
-### When will you support the Next.js 13 `app` directory?
+### When will you support the Next.js 13 `app` router?
 
-_As of March 2023, the `app` directory is still in `beta`_
+> As of March 2023, the `app` router is still in `beta`.
 
-First, The Next.js team [does not recommend using it in production](https://capture.dropbox.com/akVllqdUQTtzOPKd).
+There are two primary reasons why this repo hasn't already adopted the `app` router:
 
-Second, Client-Side data fetching is [not supported](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9q0dx9/) and the limitations of React Context have been challenging.
+1. The Next.js team [does not recommend using it in production](https://capture.dropbox.com/ZXzRKgIruGnyF5wP)
+2. Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928))
 
-Finally, Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928)).
+I understand that there's a lot of excitement around the new `app` router and Server Components in React-based projects. However, it's important to recognize that this represents a significant paradigm shift, and it will take time for the community to fully understand and adopt this approach. While refactoring to use Server Components is no small task, I am [exploring and experimenting](https://github.com/gregrickaby/nextjs-app-directory) with this new technology.
 
-Please understand that I am as equally excited about the `app` directory as you are! However, Server Components represent a complete paradigm shift for React-based projects and it will take time for everyone to catch up. Refactoring this repo is no small task, but don't worry, because the `pages` directory will be around [for years to come](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)!
+That being said, I want to assure you that the existing `pages` router is still a reliable and established approach in Next.js. It will continue to be around [for the foreseeable future](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/), and can still be used effectively for many use cases.
 
 ---
 
