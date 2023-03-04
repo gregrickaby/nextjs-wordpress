@@ -68,13 +68,13 @@ The repo config file. Learn more about configuring [Turborepo](https://turbo.bui
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 ```
 
-4. Set up your dev environment:
+5. Set up your dev environment:
 
 ```bash
 npm run setup
 ```
 
-5. Start the dev server:
+6. Start the dev server:
 
 ```bash
 npm run dev
