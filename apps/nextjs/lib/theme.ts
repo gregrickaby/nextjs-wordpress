@@ -13,18 +13,18 @@ export const customTheme: MantineThemeOverride = {
   fontFamilyMonospace:
     'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
   fontSizes: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 20
+    xs: '0.50rem',
+    sm: '0.75rem',
+    md: '1rem',
+    lg: '1.125rem',
+    xl: '1.5rem'
   },
   headings: {
     sizes: {
-      h1: {fontSize: 30, lineHeight: 1.2},
-      h2: {fontSize: 20, lineHeight: 1.4},
-      h3: {fontSize: 18, lineHeight: 1.555},
-      h4: {fontSize: 18, lineHeight: 1.428}
+      h1: {fontSize: '2rem', lineHeight: 1.2},
+      h2: {fontSize: '1.5rem', lineHeight: 1.4},
+      h3: {fontSize: '1.125rem', lineHeight: 1.5},
+      h4: {fontSize: '1rem', lineHeight: 1.75}
     }
   },
   // Style Gutenberg blocks.
