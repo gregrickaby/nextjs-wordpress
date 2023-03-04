@@ -104,7 +104,7 @@ Yep! The [demo site](https://nextjswp.com/) is not running Docker. See above ^^
 
 ### Why Mantine and not Tailwind, MUI, or \_\_\_\_?
 
-I preferred not to create or maintain UI components such as forms, notifications, dropdowns, and so on from scratch. The reason for this is explained in more detail in [this issue](https://github.com/gregrickaby/nextjs-wordpress/issues/69#issuecomment-1426217207).
+I preferred not to create or maintain complex UI components such as forms, notifications, dropdowns, and so on. The reason for this is explained in more detail in [this discussion](https://github.com/gregrickaby/nextjs-wordpress/discussions/76#discussioncomment-5203206).
 
 ---
 
