@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup WordPress.
+# Setup WordPress - This script is called by WP CLI in `docker-compose.yml`.
 echo -e "\e[36mSetup WordPress...\e[0m"
 sleep 2
 source .env
@@ -12,6 +12,7 @@ wp plugin delete akismet hello
 wp plugin activate --all
 wp post create --post_type="page" --post_title="Homepage" --post_content="<!-- wp:paragraph --><p>Welcome to the homepage. Feel free to edit this page.</p><!-- /wp:paragraph -->" --post_status="publish"
 wp post create --post_type="page" --post_title="Blog" --post_status="publish"
+wp post create --post_type="page" --post_title="404 Not Found" --post_content="<!-- wp:paragraph --><p>Uh oh! That page cannot be found. Try returning to the <a href="/">homepage</a>.</p<!-- /wp:paragraph -->" --post_status="publish"
 wp option update show_on_front page
 wp option update page_on_front 4
 wp option update page_for_posts 5
