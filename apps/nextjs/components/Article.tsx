@@ -54,6 +54,9 @@ export default function Article({content}: ArticleProps) {
         {content?.seo?.metaDesc && (
           <meta name="description" content={content.seo.metaDesc} />
         )}
+        {content?.title === '404 Not Found' && (
+          <meta name="robots" content="noindex, follow" />
+        )}
       </Head>
 
       <article className={classes.article}>
