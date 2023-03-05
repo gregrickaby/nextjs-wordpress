@@ -60,13 +60,15 @@ docker compose up -d
 
 ## Destroy Containers
 
-Need a fresh start? To destroy the containers _and_ the persistant data, run the following command:
+Need a fresh start? To destroy the containers, persistant data, and composer packages, run the following command:
 
 ```bash
-docker compose down --volumes
+docker compose down --volumes && rm -rf wp-content/plugins wp-content/themes wp-content/uploads wp-content/mu-plugins wp-content/vendor wp-content/composer.lock
 ```
 
 > Warning: This is a destructive operation! All data will be lost!
+
+Now you can re-run `sh install.sh` to start fresh. Note: You'll need to do the [Manual Setup](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/setup.md#manual-setup-wordpress) again.
 
 ---
 
