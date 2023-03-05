@@ -16,11 +16,17 @@
     },
     {
       "type": "path",
-      "url": "../../../packages/nextjs-wordpress-plugin"
+      "url": "../../../packages/nextjs-wordpress-plugin",
+      "options": {
+        "symlink": false
+      }
     },
     {
       "type": "path",
-      "url": "../../../packages/nextjs-wordpress-theme"
+      "url": "../../../packages/nextjs-wordpress-theme",
+      "options": {
+        "symlink": false
+      }
     }
   ],
   "config": {

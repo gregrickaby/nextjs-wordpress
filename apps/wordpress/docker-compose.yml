@@ -50,8 +50,6 @@ services:
       - wp-data:/var/www/html
       - ./.env:/var/www/html/.env
       - ./wp-content:/var/www/html/wp-content
-      - ../../packages/nextjs-wordpress-plugin:/var/www/html/wp-content/plugins/nextjs-wordpress-plugin
-      - ../../packages/nextjs-wordpress-theme:/var/www/html/wp-content/themes/nextjs-wordpress-theme
     expose:
       - 81
       - 443
