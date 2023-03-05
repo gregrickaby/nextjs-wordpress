@@ -26,6 +26,8 @@ The following will help you setup Next.js WordPress.
 - [Node (LTS)](https://nodejs.org/en/)
 - [Composer](https://getcomposer.org/download/)
 
+---
+
 ## Quick Start
 
 1. Clone this repo:
@@ -34,17 +36,25 @@ The following will help you setup Next.js WordPress.
 npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
 ```
 
-4. Set up your dev environment:
+2. Set up your dev environment:
 
 ```bash
 npm run setup
 ```
 
+3. Start the dev server:
+
+```bash
+npm run dev
+```
+
+---
+
 ## Manual Setup (Next.js)
 
 ### ENV Variables
 
-Copy `.env.sample` to `.env.local`
+From inside the `/apps/nextjs/` directory, copy `.env.sample` to `.env.local`
 
 ```bash
 cp .env.sample .env.local
@@ -56,7 +66,7 @@ That's it for Next.js. You're ready to move on to the WordPress setup.
 
 ## Manual Setup (WordPress)
 
-All WordPress commands must be run from inside the `/wordpress` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
+All WordPress commands must be run from inside the `/apps/wordpress` directory. [Docker Desktop](https://www.docker.com/products/docker-desktop) needs to be running as well.
 
 ---
 
@@ -64,13 +74,13 @@ All WordPress commands must be run from inside the `/wordpress` directory. [Dock
 
 #### 1) Customize ENV Variables (optional)
 
-This step can be done at a later time. Open the `/apps/wordpress/.env` file in your code editor.
+This step can be done at a later time. Open the `/apps/wordpress/.env` file in your code editor and customize to meet your needs.
 
 ---
 
 ### 2) Run Install Script
 
-From inside the `/wordpress` directory, run the following command:
+From inside the `/apps/wordpress` directory, run the following command:
 
 ```bash
 chmod +x install.sh && ./install.sh
