@@ -8,7 +8,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL
+        hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL.replace('https://', '')
       },
       {
         protocol: 'https',
