@@ -41,13 +41,7 @@ debug.log*
 out/
 
 # wordpress
-uploads/
-apps/wordpress/wp-content/plugins/*
-!apps/wordpress/wp-content/plugins/.gitkeep
-apps/wordpress/wp-content/mu-plugins/*
-!apps/wordpress/wp-content/mu-plugins/.gitkeep
-apps/wordpress/wp-content/themes/*
-!apps/wordpress/wp-content/themes/.gitkeep
+wp-content/
 
 # turbo
 .turbo

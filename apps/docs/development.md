@@ -13,15 +13,13 @@
   - [Redirects](#redirects)
   - [Reactions](#reactions)
 - [Managing The Backend (WordPress)](#managing-the-backend-wordpress)
+  - [@wordpress/wp-env](#wordpresswp-env)
   - [Headless Plugin \& Theme](#headless-plugin--theme)
   - [Page/Post Previews](#pagepost-previews)
   - [Comments](#comments)
   - [GraphQL](#graphql)
   - [WordPress Constants](#wordpress-constants)
   - [WP CLI](#wp-cli)
-  - [Composer](#composer)
-  - [phpMyAdmin](#phpmyadmin)
-  - [Traefik](#traefik)
 - [Other](#other)
   - [Bypass Pre-Commit Hooks](#bypass-pre-commit-hooks)
 - [Up Next](#up-next)
@@ -36,7 +34,7 @@ From the root of this project, run the following command to start the Next.js de
 npm run dev
 ```
 
-> Note: Make sure Docker is running first, otherwise Next.js wont be able to query any data.
+> Note: Make sure WordPress is running first, otherwise Next.js wont be able to query any data.
 
 ---
 
@@ -144,23 +142,57 @@ Post reactions are supported. Simply click a "like", "dislike", or "love" icon o
 
 Reactions are saved in the WordPress database as post meta, and can be easily edited in the "Post Fields" section under the WordPress block editor:
 
-![screenshot of post meta under the block editor](https://ucbfc2fffdb69e5a814489571532.previews.dropboxusercontent.com/p/thumb/ABoi5nGMV4GKqD09UqbD1bNAvv3qDEFaWKcvKRTzWASXZQUXYNsXYFXzAT5T7_FOFa5T0g8XAAvuOsXdglcxw5_HO_bvnDL7Y-PKkzCw19MdWaQTx14enjbJVuytswtYJtKnEgqTqQNAlQSx2o53ic5ffDrLyjMgP3dPo-qhogEo_1SAuGV-YLVt6bYJt40W-t0KbqK64rMn1DrTgkGAtGHzahwLWJITWp_LFvy_RJ_rPE2YQ2hp3hJdns-7GZBTfupptloQkGCfOS7_kn34VkgTMEXDq603w85GkvcQa1DNNGHsK9RjQQTaBasBNvRBA_-Ky06heej4m_ceQzAGfplWFiDXq1vJDr-6fJoOfVUOCsH6ym2zMF_0rBTHRTWfF8zSgTw1XhY9bltmoT9KtJsp/p.png)
+![screenshot of post meta under the block editor](images/post-meta-fields-in-block-editor.png)
 
 ---
 
 ## Managing The Backend (WordPress)
 
-### Headless Plugin & Theme
+### @wordpress/wp-env
 
-There is a WordPress [plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin) and [theme](https://github.com/gregrickaby/nextjs-wordpress-theme) that help support turing WordPress into a headless CMS.
+This project uses [@wordpress/wp-env](https://developer.wordpress.org/block-editor/packages/packages-env/) to manage the local WordPress environment.
 
-By design, these helpers are lightweight and use old-school functional programming to keep things simple. If you need more robust functionality, please check out [Faust.js](https://faustjs.org/).
+To run any of the following commands, you must be in the `apps/wordpress` directory!
 
-They're both managed with Composer, so you can update them by running the following command from the `/backend` directory:
+To start the WordPress environment:
 
 ```bash
-composer upgrade
+wp-env start
 ```
+
+Read updated config files and reload the WordPress environment:
+
+```bash
+wp-env start --update
+```
+
+To stop the WordPress environment:
+
+```bash
+wp-env stop
+```
+
+To destory the WordPress environment:
+
+```bash
+wp-env destroy
+```
+
+To reset the database and delete media in the WordPress environment:
+
+```bash
+wp-env clean all
+```
+
+View the full list of `wp-env` commands and options at <https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/#usage>
+
+---
+
+### Headless Plugin & Theme
+
+There is a WordPress [plugin](https://github.com/gregrickaby/nextjs-wordpress/tree/main/packages/nextjs-wordpress-plugin) and [theme](https://github.com/gregrickaby/nextjs-wordpress/tree/main/packages/nextjs-wordpress-theme) that help support turing WordPress into a headless CMS.
+
+By design, these helpers are lightweight and use old-school functional programming to keep things simple. If you need more robust functionality, please check out [Faust.js](https://faustjs.org/).
 
 Contributions to the plugin and theme are welcome!
 
@@ -182,112 +214,54 @@ Comments, Gravatars, nested comments, and comment moderation are all supported.
 
 ### GraphQL
 
-GraphQL endpoint: `https://nextjswp.test/graphql`
+GraphQL endpoint: `http://localhost:8888/graphql`
 
-GraphiQL IDE: <https://nextjswp.test/wp-admin/admin.php?page=graphiql-ide>
+GraphiQL IDE: <http://localhost:8888/wp-admin/admin.php?page=graphiql-ide>
 
 ---
 
 ### WordPress Constants
 
-Inside `docker-compose.yml` there are several developer friendly constants you can enable to help with debugging. Feel free to add, remove, or change these values as needed.
+Inside `apps/wordpress/.wp-env.json` there are several developer friendly constants you can enable to help with debugging. Feel free to add, remove, or change these values as needed.
 
-```yml
-# docker-compose.yml
-WORDPRESS_DEBUG: 1 # Set to 0 to disable `WP_DEBUG`
-WORDPRESS_CONFIG_EXTRA: |
-  define('WP_CACHE', false);
-  define('WP_DEBUG_DISPLAY', false);
-  define('WP_DEBUG_LOG', true);
-  define('WP_MEMORY_LIMIT', '256M');
-  define('WP_ENVIRONMENT_TYPE', 'development');
-  define('HEADLESS_FRONTEND_URL', '${HEADLESS_FRONTEND_URL}');
-  define('PREVIEW_SECRET_TOKEN', '${PREVIEW_SECRET_TOKEN}');
-  define('WP_SITEURL', 'https://${WORDPRESS_URL}');
-  define('WP_HOME', 'https://${WORDPRESS_URL}');
-```
-
-> If you change the default values, run `docker-compose up -d` to rebuild the containers.
+> If you change the default values, run `wp-env start --update` to rebuild the containers.
 
 ---
 
 ### WP CLI
 
-[WP-CLI](https://make.wordpress.org/cli/) is a command line interface for WordPress. It's a tool that makes it easy to manage WordPress sites.
-
-First, tunnel into the `wpcli` container:
+[WP-CLI](https://make.wordpress.org/cli/) is a command line interface for WordPress. It's a tool that makes it easy to manage WordPress sites. For example:
 
 ```bash
-docker exec -it nextjs-wordpress-wpcli-1 /bin/sh
-```
-
-Now you can run WP-CLI commands against your WordPress installation.
-
-For example:
-
-```bash
-wp --info
+wp-env run cli wp --info
 ```
 
 Will return:
 
 ```bash
-OS:     Linux 5.10.124-linuxkit #1 SMP PREEMPT Thu Jun 30 08:18:26 UTC 2022 aarch64
+[+] Running 2/0
+ ⠿ Container 5b6d0fdac0955656fb8e35e083b7a348-mysql-1      Running 0.0s
+ ⠿ Container 5b6d0fdac0955656fb8e35e083b7a348-wordpress-1  Running    0.0s
+OS:     Linux 5.15.49-linuxkit
 Shell:
 PHP binary:     /usr/local/bin/php
-PHP version:    8.0.23
+PHP version:    8.0.28
 php.ini used:
 MySQL binary:   /usr/bin/mysql
-MySQL version:  mysql  Ver 15.1 Distrib 10.6.9-MariaDB, for Linux (aarch64) using readline 5.1
+MySQL version:  mysql  Ver 15.1 Distrib 10.6.12-MariaDB, for Linux (aarch64) using readline 5.1
 SQL modes:
 WP-CLI root dir:        phar://wp-cli.phar/vendor/wp-cli/wp-cli
 WP-CLI vendor dir:      phar://wp-cli.phar/vendor
 WP_CLI phar path:       /var/www/html
 WP-CLI packages dir:
+WP-CLI cache dir:       /etc/X11/fs/.wp-cli/cache
 WP-CLI global config:
 WP-CLI project config:
-WP-CLI version: 2.6.0
+WP-CLI version: 2.7.1
+✔ Ran `wp --info` in 'cli'. (in 1s 555ms)
 ```
 
 See the full list of WP-CLI commands at: <https://developer.wordpress.org/cli/commands/>
-
----
-
-### Composer
-
-[Composer](https://getcomposer.org/) is a dependency manager for PHP. It makes it easy to manage your project's dependencies.
-
-First, tunnel into the `composer` container:
-
-```bash
-docker exec -it nextjs-wordpress-composer-1 /bin/sh
-```
-
-Now you can run Composer from inside the container.
-
-For example, to validate the `composer.json`:
-
-```bash
-composer validate
-```
-
-Will return:
-
-```bash
-./composer.json is valid
-```
-
----
-
-### phpMyAdmin
-
-View the phpMyAdmin dashboard at <http://localhost:8081/>. No credentials are required.
-
----
-
-### Traefik
-
-View the Traefik dashboard at <http://localhost:8080/dashboard/>. No credentials are required.
 
 ---
 
@@ -305,6 +279,6 @@ git commit -m "My commit message" --no-verify
 
 ## Up Next
 
-Learn more about [Managing Docker](docker.md)
+Learn more about [Contributing](../../CONTRIBUTING.md).
 
 ---

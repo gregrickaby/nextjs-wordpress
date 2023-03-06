@@ -3,7 +3,7 @@
 
 git pull
 cd ./apps/nextjs && npx npm-check-updates -u
-cd ../wordpress/wp-content && composer upgrade
+cd ../wordpress && npx npm-check-updates -u && composer upgrade
 cd ../../../packages/eslint-config-custom && npx npm-check-updates -u
 cd ../prettier-config-custom && npx npm-check-updates -u
 cd ../../ && composer upgrade && npx npm-check-updates -u && npm i

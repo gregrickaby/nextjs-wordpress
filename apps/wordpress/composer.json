@@ -16,34 +16,34 @@
     },
     {
       "type": "path",
-      "url": "../../../packages/nextjs-wordpress-plugin",
+      "url": "../../packages/nextjs-wordpress-plugin",
       "options": {
         "symlink": false
       }
     },
     {
       "type": "path",
-      "url": "../../../packages/nextjs-wordpress-theme",
+      "url": "../../packages/nextjs-wordpress-theme",
       "options": {
         "symlink": false
       }
     }
   ],
   "config": {
-    "vendor-dir": "vendor",
+    "vendor-dir": "wp-content/vendor",
     "allow-plugins": {
       "composer/installers": true
     }
   },
   "extra": {
     "installer-paths": {
-      "plugins/{$name}/": [
+      "wp-content/plugins/{$name}/": [
         "type:wordpress-plugin"
       ],
-      "mu-plugins/{$name}/": [
+      "wp-content/mu-plugins/{$name}/": [
         "type:wordpress-muplugin"
       ],
-      "themes/{$name}/": [
+      "wp-content/themes/{$name}/": [
         "type:wordpress-theme"
       ]
     }
