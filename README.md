@@ -70,7 +70,7 @@ View the [full documentation](./apps/docs/index.md).
 
 ### Do I have to use @wordpress/env?
 
-Nah, you can use any WordPress environment you want. I've tested with Local and Dreamhost and both work fine. [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) is just a convient way to automate the setup process.
+Nah, you can use any WordPress environment you want. I've tested with Local and Dreamhost and both work fine. Using [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) is just a convient way to shared and automate the setup process.
 
 Follow [the Manual Setup documentation](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/setup.md#manual-setup-nextjs) to turn any WordPress environment into a headless one.
 
