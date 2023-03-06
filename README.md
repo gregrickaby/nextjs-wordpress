@@ -5,9 +5,9 @@
 ## Features
 
 - Next.js w/ TypeScript
+- WordPress environment with [@wordpress/wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
 - React Components from [Mantine](https://mantine.dev)
-- WordPress in a Docker container with PHP 8.1
-- Apollo Client w/ WP GraphQL
+- Apollo and WP GraphQL
 - On-demand revalidation
 - Date based blog routing (`YYYY/MM/DD/slug`)
 - Yoast SEO support
@@ -56,49 +56,23 @@ The repo config file. Learn more about configuring [Turborepo](https://turbo.bui
 
 ## Quick Start
 
-### Prequisites
-
-1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-2. [Node LTS](https://nodejs.dev/)
-3. [Composer](https://getcomposer.org/download/)
-
-4. Clone this repo:
-
-```bash
-npx degit gregrickaby/nextjs-wordpress nextjs-wordpress
-```
-
-5. Set up your dev environment:
-
-```bash
-npm run setup
-```
-
-6. Start the dev server:
-
-```bash
-npm run dev
-```
+View the [Quick Start instructions](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/setup.md#quick-start).
 
 ---
 
 ## Full Documentation
 
-The docs are a work in progress. You can view them [here](./apps/docs/index.md).
+View the [full documentation](./apps/docs/index.md).
 
 ---
 
 ## FAQ
 
-### Do I have to use Docker?
+### Do I have to use @wordpress/env?
 
-No. You can use any WordPress install you want. Just make sure you follow [the documentation](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/index.md) and have the Next.js WordPress Plugin and Theme, and WP GraphQL activated.
+Nah, you can use any WordPress environment you want. I've tested with Local and Dreamhost and both work fine. [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) is just a convient way to automate the setup process.
 
----
-
-### So this repo will work on any WordPress install?
-
-Yep! The [demo site](https://nextjswp.com/) is not running Docker. See above ^^
+Follow [the Manual Setup documentation](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/setup.md#manual-setup-nextjs) to turn any WordPress environment into a headless one.
 
 ---
 
