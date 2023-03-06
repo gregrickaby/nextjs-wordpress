@@ -7,11 +7,14 @@ module.exports = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL
+        protocol: process.env.VERCEL_ENV === 'production' ? 'https' : 'http',
+        hostname:
+          process.env.VERCEL_ENV === 'production'
+            ? process.env.NEXT_PUBLIC_WORDPRESS_URL
+            : 'localhost'
       },
       {
-        protocol: 'http',
+        protocol: process.env.VERCEL_ENV === 'production' ? 'https' : 'http',
         hostname: '**.gravatar.com'
       }
     ]
