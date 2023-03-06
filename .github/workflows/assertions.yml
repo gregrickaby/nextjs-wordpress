@@ -12,11 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['8.1']
-
-    env:
-      DOCKER_COMPOSE: './apps/wordpress/docker-compose.yml'
-      DOCKER_ENV: './apps/wordpress/.env.sample'
+        php-versions: ['8.0']
 
     steps:
       - name: Checkout Repository
@@ -54,9 +50,3 @@ jobs:
 
       - name: Lint Codebase
         run: npm run lint
-
-      - name: Docker
-        run: |
-          docker compose -f ${DOCKER_COMPOSE} --env-file=${DOCKER_ENV} up -d
-          docker ps -a
-          docker compose -f ${DOCKER_COMPOSE} --env-file=${DOCKER_ENV} down --volumes

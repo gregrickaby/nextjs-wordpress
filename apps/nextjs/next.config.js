@@ -7,13 +7,11 @@ module.exports = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL
-          ? process.env.NEXT_PUBLIC_WORDPRESS_URL.replace('https://', '')
-          : 'localhost'
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: '**.gravatar.com'
       }
     ]
