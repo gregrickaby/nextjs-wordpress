@@ -50,13 +50,11 @@ export default function Article({content}: ArticleProps) {
   return (
     <>
       <Head>
-        <title>{content?.seo?.title}</title>
-        {content?.seo?.metaDesc && (
-          <meta name="description" content={content.seo.metaDesc} />
-        )}
-        {content?.title === '404 Not Found' && (
-          <meta name="robots" content="noindex, follow" />
-        )}
+        <title>
+          {content.seo.title ? content.seo.title : `Next.js WordPress`}
+        </title>
+        {content.seo.metaDesc ? content.seo.metaDesc : null}
+        {content.seo.fullHead ? ParseContent(content.seo.fullHead) : null}
       </Head>
 
       <article className={classes.article}>
