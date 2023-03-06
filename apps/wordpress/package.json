@@ -1,0 +1,12 @@
+{
+  "name": "nextjs-wordpress-wp-env",
+  "private": true,
+  "version": "1.0.0",
+  "description": "WordPress development environment with @wordpress/env",
+  "scripts": {
+    "wp-env": "wp-env"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^5.13.0"
+  }
+}
