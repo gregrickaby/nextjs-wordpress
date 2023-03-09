@@ -3,7 +3,7 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Managing The Frontend (Next.js)](#managing-the-frontend-nextjs)
-  - [Dev Server](#dev-server)
+  - [Dev Servers](#dev-servers)
   - [Linting](#linting)
   - [Run a Production Build](#run-a-production-build)
   - [Image Optimization](#image-optimization)
@@ -26,7 +26,13 @@
 
 ## Managing The Frontend (Next.js)
 
-### Dev Server
+### Dev Servers
+
+From the the `/apps/wordpress/` directory, run the following command to start WordPress <http://localhost:8888>
+
+```bash
+wp-env start
+```
 
 From the root of this project, run the following command to start the Next.js development server on <http://localhost:3000>
 
