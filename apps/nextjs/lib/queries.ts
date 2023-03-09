@@ -150,7 +150,7 @@ export const SINGLE_POST_QUERY = gql`
     footerMenu: menu(id: "Footer", idType: NAME) {
       ...MenuItems
     }
-    post(id: $slug, idType: URI) {
+    post(id: $slug, idType: SLUG) {
       author {
         node {
           gravatarUrl
@@ -221,7 +221,7 @@ export const SINGLE_BOOK_QUERY = gql`
     footerMenu: menu(id: "Footer", idType: NAME) {
       ...MenuItems
     }
-    book(id: $slug, idType: URI) {
+    book(id: $slug, idType: SLUG) {
       title(format: RENDERED)
       content(format: RENDERED)
       databaseId
