@@ -5,7 +5,9 @@
 - [Managing The Frontend (Next.js)](#managing-the-frontend-nextjs)
   - [Dev Servers](#dev-servers)
   - [Linting](#linting)
-  - [Run a Production Build](#run-a-production-build)
+  - [Run a Production Build Locally](#run-a-production-build-locally)
+  - [Vercel CLI](#vercel-cli)
+  - [`/pages/[...slug].tsx`](#pagesslugtsx)
   - [Image Optimization](#image-optimization)
   - [On-Demand Revalidation](#on-demand-revalidation)
   - [Disable Static Site Generation (SSG)](#disable-static-site-generation-ssg)
@@ -54,13 +56,65 @@ npm run lint
 
 ---
 
-### Run a Production Build
+### Run a Production Build Locally
 
 It's often helpful to run a production build locally to verify everything works before deploying. To run a production build, run the following command:
 
 ```bash
 npm run build && npm run start
 ```
+
+---
+
+### Vercel CLI
+
+I've found that running `vercel` locally is a great way to verify Edge Functions and Middleware are working as expected.
+
+To install the [Vercel CLI](https://vercel.com/docs/cli), run:
+
+```bash
+npm i -g vercel
+```
+
+Then, run the following command to login to your Vercel account:
+
+```bash
+vercel login
+```
+
+Next, run the following command to link your local project to your Vercel account:
+
+```bash
+vercel link
+```
+
+Finally, run the following command to start a Vercel development server locally:
+
+```bash
+vercel dev
+```
+
+---
+
+### `/pages/[...slug].tsx`
+
+The `pages/[...slug].tsx` file is one the most important file in this project. It's a catch-all responsible for rendering pages and archives.
+
+As such, there are several `if` statements that check for specific conditions and render different components accordingly.
+
+For example:
+
+```tsx
+// If Blog archive...
+if (slug === 'blog') {
+  graphQuery = {
+    query: POSTS_ARCHIVE_QUERY,
+    variables: {category: 'uncategorized'}
+  }
+}
+```
+
+You may need to update the `variables` object to match your WordPress setup.
 
 ---
 
