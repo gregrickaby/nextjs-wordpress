@@ -301,15 +301,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.2.1",
+            "version": "20.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.2.1"
+                "reference": "tags/20.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

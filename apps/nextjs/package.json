@@ -14,26 +14,26 @@
     "@apollo/client": "^3.7.10",
     "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.10.0",
-    "@mantine/core": "^6.0.1",
-    "@mantine/form": "^6.0.1",
-    "@mantine/hooks": "^6.0.1",
-    "@mantine/next": "^6.0.1",
-    "@mantine/notifications": "^6.0.1",
-    "@tabler/icons-react": "^2.10.0",
+    "@mantine/core": "^6.0.2",
+    "@mantine/form": "^6.0.2",
+    "@mantine/hooks": "^6.0.2",
+    "@mantine/next": "^6.0.2",
+    "@mantine/notifications": "^6.0.2",
+    "@tabler/icons-react": "^2.11.0",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.12",
-    "isomorphic-dompurify": "^1.1.0",
+    "isomorphic-dompurify": "^1.2.0",
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.15.1",
+    "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "sharp": "^0.31.3",
     "tsconfig": "*",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   }
 }
