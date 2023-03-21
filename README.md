@@ -109,16 +109,18 @@ Although Apollo can sometimes negatively impact performance, it was specifically
 
 ### When will you support the Next.js 13 `app` router?
 
-> As of March 2023, the `app` router is still in `beta`.
+> As of March 2023, the app router is still in beta.
 
 This repository has not yet adopted the app router due to two main reasons.
 
 1. The Next.js team [does not recommend using it in production](https://capture.dropbox.com/ZXzRKgIruGnyF5wP)
 2. Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928))
 
-While there is considerable enthusiasm for the app router and Server Components in React-based projects, it is essential to acknowledge that Server Components represent a substantial shift in the development of React-based projects. It will inevitably take time for both the tooling and the community to embrace this approach fully. Nevertheless, the `pages directory` is stable and will continue to be actively supported in future versions of Next.js. As a matter of fact, a VP at Vercel has publicly stated that the pages directory will be around for years to come[[1](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)].
+While there is considerable enthusiasm for the app router and Server Components in React-based projects, it is essential to acknowledge that Server Components represent a substantial shift in the development of React-based projects. It will inevitably take time for both the tooling and the community to embrace this approach fully.
 
-I am [actively exploring and experimenting](https://github.com/gregrickaby/nextjs-app-router-examples) with this new technology and is encouraged by the results. More information will be shared about this topic in the future.
+Nevertheless, **the pages directory is stable and will continue to be actively supported in future versions of Next.js**. As a matter of fact, a VP at Vercel has publicly stated that the pages directory will be around for years to come[[1](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/)]!
+
+I am [actively exploring and experimenting](https://github.com/gregrickaby/nextjs-app-router-examples) with this new technology and am encouraged by the results. More information will be shared about this topic in the future.
 
 ---
 
