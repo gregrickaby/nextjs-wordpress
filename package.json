@@ -17,7 +17,9 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint && composer run lint",
-    "dev": "cd apps/wordpress && wp-env start && cd ../../ && turbo run dev",
+    "dev": "npm run dev:wordpress && npm run dev:nextjs",
+    "dev:nextjs": "turbo run dev",
+    "dev:wordpress": "cd apps/wordpress && wp-env start && cd ../../",
     "start": "turbo run start",
     "setup": "./setup.sh"
   },
