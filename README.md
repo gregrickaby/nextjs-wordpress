@@ -116,9 +116,9 @@ There are two primary reasons why this repo hasn't already adopted the `app` rou
 1. The Next.js team [does not recommend using it in production](https://capture.dropbox.com/ZXzRKgIruGnyF5wP)
 2. Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928))
 
-I understand that there's a lot of excitement around the new `app` router and Server Components in React-based projects. However, it's important to recognize that this represents a significant paradigm shift, and it will take time for the community to fully understand and adopt this approach. While refactoring to use Server Components is no small task, I am [exploring and experimenting](https://github.com/gregrickaby/nextjs-app-directory) with this new technology.
+I understand that there's a lot of excitement around the new `app` router and Server Components in React-based projects! However, it's important to recognize that Server Components represent a significant shift in how React-based projects are built. It will undoubtedly take time for both tooling and the community to fully adopt this approach. That said, I am already [exploring and experimenting](https://github.com/gregrickaby/nextjs-app-router-examples) with this new technology.
 
-That being said, I want to assure you that the existing `pages` router is still a reliable and established approach in Next.js. It will continue to be around [for the foreseeable future](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/), and can still be used effectively for many use cases.
+I want to assure you that the existing `pages` router is still a reliable and established approach in Next.js. It will continue to be around [for the foreseeable future](https://www.reddit.com/r/nextjs/comments/11a5vp9/comment/j9x3e4h/), and can still be used effectively for many use cases!
 
 ---
 
