@@ -66,6 +66,25 @@ View the [full documentation](./apps/docs/index.md).
 
 ---
 
+## Development Quick Start
+
+Already set up? In your terminal, start the two dev servers:
+
+```bash
+npm run dev
+```
+
+Once the dev servers have started, you can view the following:
+
+Next.js frontend <http://localhost:3000>
+
+WordPress backend: <http://localhost:8888/wp-admin>
+
+- user: `admin`
+- pass: `password`
+
+---
+
 ## FAQ
 
 ### Do I have to use @wordpress/env?
