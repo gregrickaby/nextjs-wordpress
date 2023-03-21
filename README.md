@@ -89,15 +89,15 @@ WordPress backend: <http://localhost:8888/wp-admin>
 
 ### Do I have to use @wordpress/env?
 
-Nah, you can use any WordPress environment you want. I've tested with Local and Dreamhost and both work fine. Using [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) is just a convient way to shared and automate the setup process.
+Nah, you can use any WordPress environment you want. I've tested with LocalWP and Dreamhost and both work fine. Using [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) is just a convient way to shared and automate the setup process.
 
-Follow [the Manual Setup documentation](https://github.com/gregrickaby/nextjs-wordpress/blob/main/apps/docs/setup.md#manual-setup-nextjs) to turn any WordPress environment into a headless one.
+⚠️ If you choose not to use [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/), you'll need to to do quite a bit of manual setup as well as update some of the scripts in the `package.json` file.
 
 ---
 
 ### Why Mantine and not Tailwind, MUI, or \_\_\_\_?
 
-I preferred not to create or maintain complex UI components such as forms, notifications, dropdowns, and so on. The reason for this is explained in more detail in [this discussion](https://github.com/gregrickaby/nextjs-wordpress/discussions/76#discussioncomment-5203206).
+I did not want to create or maintain complex UI components such as forms, notifications, dropdowns, and so on. The reason for this is explained in more detail in [this discussion](https://github.com/gregrickaby/nextjs-wordpress/discussions/76#discussioncomment-5203206).
 
 ---
 
@@ -134,11 +134,8 @@ A special thanks to the following people:
 
 - [Rae Van Epps](https://github.com/ravewebdev) wrote the bulk of the PHP code for the Next.js WordPress Plugin, giving this project a jumping off point.
 - [Amor Kumar](https://github.com/itsamoreh) insipired me to deep dive into Docker with his [BYOB Headless WordPress](https://github.com/itsamoreh/byob-headless-wordpress) project.
-- [John Jeeves](https://github.com/orgs/AEWP/people/john-jeeves-americaneagle) and [Adam Hollister](https://github.com/ahollister) for their work on registering Gutenberg Blocks in the WordPress REST-API.
 - [Jason Bahl](https://github.com/jasonbahl) for his tireless work on [WP GraphQL](https://www.wpgraphql.com/), and all of our chats/DMs over the years.
 
-I ❤️❤️❤️ the open source community, and hope this project inspires you to create something awesome.
-
-Cheers! 🍻
+I ❤️ the open source community, and hope this project inspires you to create something awesome. Cheers! 🍻
 
 ---
