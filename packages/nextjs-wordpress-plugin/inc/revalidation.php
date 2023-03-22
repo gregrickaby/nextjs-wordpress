@@ -42,12 +42,11 @@ function on_demand_revalidation( $post_ID, WP_Post $post ) {
 	// Build and format the slug.
 	$slug = \get_the_permalink( $post_ID );
 	$slug = str_replace( \home_url(), '', $slug );
-	$slug = ltrim( $slug, '/' );
-	$slug = rtrim( $slug, '/' );
+	$slug = trim( $slug, '/' );
 	$slug = '/' . $slug;
 
 	// Build the API URL.
-	$api_url = HEADLESS_FRONTEND_URL . 'api/wordpress/revalidate';
+	$api_url = HEADLESS_FRONTEND_URL . '/api/wordpress/revalidate';
 	$api_url = \add_query_arg( 'token', PREVIEW_SECRET_TOKEN, $api_url );
 	$api_url = \add_query_arg( 'slug', $slug, $api_url );
 
