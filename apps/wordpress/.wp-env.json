@@ -1,6 +1,6 @@
 {
   "config": {
-    "HEADLESS_FRONTEND_URL": "http://localhost:3000",
+    "HEADLESS_FRONTEND_URL": "http://localhost:3000/",
     "PREVIEW_SECRET_TOKEN": "preview-secret-token",
     "WP_ENV": "development",
     "WP_DEBUG": true,
