@@ -46,7 +46,7 @@ function on_demand_revalidation( $post_ID, WP_Post $post ) {
 	$slug = '/' . $slug;
 
 	// Build the API URL.
-	$api_url = HEADLESS_FRONTEND_URL . '/api/wordpress/revalidate';
+	$api_url = HEADLESS_FRONTEND_URL . 'api/wordpress/revalidate';
 	$api_url = \add_query_arg( 'token', PREVIEW_SECRET_TOKEN, $api_url );
 	$api_url = \add_query_arg( 'slug', $slug, $api_url );
 
