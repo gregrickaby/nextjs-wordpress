@@ -35,6 +35,6 @@
     "markdownlint-cli": "^0.34.0",
     "prettier": "^2.8.8",
     "prettier-config-custom": "*",
-    "turbo": "^1.9.8"
+    "turbo": "^1.9.9"
   }
 }
