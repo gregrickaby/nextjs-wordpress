@@ -283,15 +283,15 @@
         },
         {
             "name": "wpackagist-plugin/custom-post-type-ui",
-            "version": "1.13.5",
+            "version": "1.13.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/custom-post-type-ui/",
-                "reference": "tags/1.13.5"
+                "reference": "tags/1.13.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.1.13.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
