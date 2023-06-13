@@ -28,7 +28,7 @@
     "apps/*"
   ],
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.4.1",
+    "@evilmartians/lefthook": "^1.4.2",
     "eslint": "^8.42.0",
     "eslint-config-custom": "*",
     "markdownlint": "^0.29.0",
