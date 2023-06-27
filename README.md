@@ -109,12 +109,7 @@ Although Apollo can sometimes negatively impact performance, it was specifically
 
 ### When will you support the Next.js 13 `app` router?
 
-> As of March 2023, the app router is still in beta.
-
-This repository has not yet adopted the app router due to two main reasons.
-
-1. The Next.js team [does not recommend using it in production](https://capture.dropbox.com/ZXzRKgIruGnyF5wP)
-2. Mantine (which uses Emotion) doesn't fully support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928))
+This repository has not yet adopted the app router primarily because Mantine (which uses Emotion) doesn't _fully_ support Server Components yet (see [#2815](https://github.com/mantinedev/mantine/issues/2815) and [#2928](https://github.com/emotion-js/emotion/issues/2928))
 
 While there is considerable enthusiasm for the app router and Server Components in React-based projects, it is essential to acknowledge that Server Components represent a substantial shift in the development of React-based projects. It will inevitably take time for both the tooling and the community to embrace this approach fully.
 
