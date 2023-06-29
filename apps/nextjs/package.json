@@ -34,6 +34,6 @@
     "prettier-config-custom": "*",
     "sharp": "^0.32.1",
     "tsconfig": "*",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.6"
   }
 }
