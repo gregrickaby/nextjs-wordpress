@@ -247,15 +247,15 @@
         },
         {
             "name": "wpackagist-plugin/add-wpgraphql-seo",
-            "version": "4.22.4",
+            "version": "4.22.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/add-wpgraphql-seo/",
-                "reference": "tags/4.22.4"
+                "reference": "tags/4.22.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.22.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/add-wpgraphql-seo.4.22.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -319,15 +319,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.14.5",
+            "version": "1.14.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.14.5"
+                "reference": "tags/1.14.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.14.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.14.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
