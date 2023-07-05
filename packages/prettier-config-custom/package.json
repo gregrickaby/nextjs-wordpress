@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "prettier": "^2.8.8"
+    "prettier": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"
