@@ -301,15 +301,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.11",
+            "version": "20.12",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.11"
+                "reference": "tags/20.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.11.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.12.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -319,15 +319,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "1.14.7",
+            "version": "1.14.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/1.14.7"
+                "reference": "tags/1.14.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.14.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.14.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
