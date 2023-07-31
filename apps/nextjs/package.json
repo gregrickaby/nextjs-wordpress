@@ -19,7 +19,7 @@
     "@mantine/hooks": "^6.0.17",
     "@mantine/next": "^6.0.17",
     "@mantine/notifications": "^6.0.17",
-    "@tabler/icons-react": "^2.29.0",
+    "@tabler/icons-react": "^2.30.0",
     "graphql": "^16.7.1",
     "html-react-parser": "^4.2.0",
     "isomorphic-dompurify": "^1.8.0",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
-    "@types/react": "^18.2.16",
+    "@types/react": "^18.2.17",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "sharp": "^0.32.4",
