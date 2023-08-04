@@ -28,8 +28,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.4.5",
-    "@types/react": "^18.2.17",
+    "@types/node": "^20.4.7",
+    "@types/react": "^18.2.18",
     "eslint-config-custom": "*",
     "prettier-config-custom": "*",
     "sharp": "^0.32.4",
