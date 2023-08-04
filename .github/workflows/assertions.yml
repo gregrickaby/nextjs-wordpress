@@ -46,7 +46,7 @@ jobs:
       - name: Install Dependencies
         run: |
           composer install
-          npm i
+          npm ci
 
       - name: Lint Codebase
         run: npm run lint

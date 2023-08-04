@@ -45,7 +45,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.REMOTE_PRIVATE_KEY }}
-          ARGS: '-v -a -z -k'
+          ARGS: '-rlgoDzvc -i --delete'
           SOURCE: 'apps/wordpress/wp-content'
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
