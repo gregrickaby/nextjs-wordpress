@@ -21,7 +21,7 @@
     "@mantine/notifications": "^6.0.19",
     "@tabler/icons-react": "^2.32.0",
     "graphql": "^16.8.0",
-    "html-react-parser": "^4.2.1",
+    "html-react-parser": "^4.2.2",
     "isomorphic-dompurify": "^1.8.0",
     "next": "^13.4.19",
     "react": "^18.2.0",
