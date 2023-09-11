@@ -55,7 +55,7 @@
     "wpackagist-plugin/add-wpgraphql-seo": "^4.0",
     "wpackagist-plugin/advanced-custom-fields": "^6.0",
     "wpackagist-plugin/custom-post-type-ui": "^1.0",
-    "wpackagist-plugin/wordpress-seo": "^20.0",
+    "wpackagist-plugin/wordpress-seo": "^21.0",
     "wpackagist-plugin/wp-graphql": "^1.0"
   }
 }
