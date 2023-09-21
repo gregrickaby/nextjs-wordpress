@@ -20,7 +20,7 @@
     "@mantine/next": "^6.0.21",
     "@mantine/notifications": "^6.0.21",
     "@tabler/icons-react": "^2.34.0",
-    "graphql": "^16.8.0",
+    "graphql": "^16.8.1",
     "html-react-parser": "^4.2.2",
     "isomorphic-dompurify": "^1.8.0",
     "next": "^13.4.19",
