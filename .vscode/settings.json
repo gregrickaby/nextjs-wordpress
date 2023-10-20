@@ -5,7 +5,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.format.enable": false,
   "eslint.run": "onSave",
   "javascript.suggest.autoImports": true,
@@ -21,8 +20,5 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
-  },
-  "[php]": {
-    "editor.defaultFormatter": "valeryanm.vscode-phpsab"
   }
 }
