@@ -1,4 +1,5 @@
-# https://github.com/Arkweid/lefthook/blob/master/docs/full_guide.md
+# Refer for explanation to following link:
+# https://github.com/evilmartians/lefthook/blob/master/docs/usage.md
 
 pre-commit:
   parallel: true
@@ -6,12 +7,9 @@ pre-commit:
     eslint:
       glob: '*.{js,jsx,ts,tsx}'
       run: npx eslint {staged_files} --fix
+    stylelint:
+      glob: '*.{css,scss}'
+      run: npx stylelint {staged_files} --fix
     prettier:
-      glob: '*.{js,jsx,ts,tsx,md,html,json,yml}'
+      glob: '*.{md,html,json,yml}'
       run: npx prettier {staged_files} --write
-    markdown:
-      glob: '*.md'
-      run: npx markdownlint {staged_files} --fix
-    php:
-      glob: '*.php'
-      run: ./vendor/bin/phpcs {staged_files} --standard=.phpcs.xml

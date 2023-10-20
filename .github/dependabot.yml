@@ -11,15 +11,3 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'monday'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/docs'
-    schedule:
-      interval: 'weekly'
-      day: 'monday'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/nextjs'
-    schedule:
-      interval: 'weekly'
-      day: 'monday'

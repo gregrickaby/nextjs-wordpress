@@ -19,10 +19,6 @@ Before submitting your issue, make sure it has not been mentioned earlier. You c
 
 Found a bug you can fix? Fantastic! Patches are always welcome.
 
-### Development Setup
-
-Follow the [Quick Start guide](https://github.com/gregrickaby/nextjs-wordpress#quick-start) to get the project up and running.
-
 ---
 
 ### Git Workflow

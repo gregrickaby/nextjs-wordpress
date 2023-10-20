@@ -2,7 +2,6 @@
   "recommendations": [
     "EditorConfig.EditorConfig",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "valeryanm.vscode-phpsab"
+    "esbenp.prettier-vscode"
   ]
 }
