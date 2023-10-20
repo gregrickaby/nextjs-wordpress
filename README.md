@@ -54,11 +54,11 @@ Once the dev servers have started, you can view the following: <http://localhost
 
 You'll need either a local or public WordPress site with the [WPGraphQL](https://www.wpgraphql.com/) plugin installed and activated.
 
-I'm planning support for additional features like menus, CPT's, SEO, and more.
+I'm working on additional features like menus, CPT's, SEO, and more.
 
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
-I've decided to simplify things based on the Next.js 13 App Router. You can however still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
+I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
 
 ---
 
