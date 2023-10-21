@@ -31,12 +31,13 @@ Please consider it a starting point for your next headless WordPress site.
 
 You'll need either a local or public WordPress site with the following plugins:
 
-- [WPGraphQL](https://www.wpgraphql.com/)
-- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
-- [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
-- [Advanced Custom Fields](https://www.advancedcustomfields.com/)
-- [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
+- [Advanced Custom Fields (ACF)](https://wordpress.org/plugins/advanced-custom-fields/) (free version is fine)
 - [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
+- [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
+- [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
+- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
+- [WPGraphQL](https://www.wpgraphql.com/)
+- [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
 
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
@@ -46,7 +47,7 @@ I've decided to simplify things based on the Next.js 13 App Router. You can stil
 
 ## Development
 
-### 1. Clone this repo
+### 1. Clone the repo
 
 ```bash
 git clone git@github.com:gregrickaby/nextjs-wordpress.git
