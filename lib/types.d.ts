@@ -1,5 +1,10 @@
 /* Global types only */
 
+export interface GraphQLResponse<T = any> {
+  data?: T
+  errors?: Array<{message: string}>
+}
+
 export interface Post {
   author: {
     node: {
