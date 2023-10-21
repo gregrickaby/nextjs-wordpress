@@ -1,7 +1,7 @@
 'use client'
 
+import {createComment} from '@/lib/mutations/createComment'
 import {useState} from 'react'
-import {createComment} from '../lib/functions'
 
 /**
  * The comment form component.

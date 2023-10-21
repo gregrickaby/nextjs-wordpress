@@ -1,4 +1,4 @@
-import {getAllPosts} from '@/lib/functions'
+import {getAllPosts} from '@/lib/queries/getAllPosts'
 import {Post} from '@/lib/types'
 import {Metadata} from 'next'
 import Image from 'next/image'

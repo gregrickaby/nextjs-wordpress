@@ -1,5 +1,6 @@
 import CommentForm from '@/components/CommentForm'
-import {getAllPosts, getPost} from '@/lib/functions'
+import {getAllPosts} from '@/lib/queries/getAllPosts'
+import {getPostBySlug} from '@/lib/queries/getPostBySlug'
 import {Metadata} from 'next'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
@@ -38,7 +39,7 @@ export async function generateMetadata({
   params: {slug: string}
 }): Promise<Metadata | null> {
   // Get the blog post.
-  const post = await getPost(params.slug)
+  const post = await getPostBySlug(params.slug)
 
   // No post? Bail...
   if (!post) {
@@ -58,7 +59,7 @@ export async function generateMetadata({
  */
 export default async function Page({params}: {params: {slug: string}}) {
   // Fetch a single post from WordPress.
-  const post = await getPost(params.slug)
+  const post = await getPostBySlug(params.slug)
 
   // No post? Bail...
   if (!post) {
