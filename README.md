@@ -71,81 +71,81 @@ We can build our queries in GraphiQL (or your favorite REST client) and let `JSO
 Here is a query to fetch a single post (based on the slug), the featured image, author meta, categories, tags, SEO, and post comments:
 
 ```ts
-// truncate for brevity...
-
-const response = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    query: `
-      query GetPost($slug: ID!) {
-        post(id: $slug, idType: SLUG) {
-          databaseId
-          content(format: RENDERED)
-          title(format: RENDERED)
-          featuredImage {
-            node {
-              altText
-              mediaDetails {
-                sizes(include: MEDIUM) {
-                  height
-                  width
-                  sourceUrl
-                }
+/**
+ * Fetch a single post by slug.
+ */
+export async function getPostBySlug(slug: string) {
+  const query = `
+    query GetPost($slug: ID!) {
+      post(id: $slug, idType: SLUG) {
+        databaseId
+        content(format: RENDERED)
+        title(format: RENDERED)
+        featuredImage {
+          node {
+            altText
+            mediaDetails {
+              sizes(include: MEDIUM) {
+                height
+                width
+                sourceUrl
               }
             }
           }
-          author {
-            node {
-              gravatarUrl
-              name
-            }
+        }
+        author {
+          node {
+            gravatarUrl
+            name
           }
-          date
-          tags {
-            nodes {
-              databaseId
-              name
-            }
+        }
+        date
+        tags {
+          nodes {
+            databaseId
+            name
           }
-          categories {
-            nodes {
-              databaseId
-              name
-            }
+        }
+        categories {
+          nodes {
+            databaseId
+            name
           }
-          seo {
-            metaDesc
-            title
-          }
-          comments(first: 10, where: {order: ASC}) {
-            nodes {
-              content(format: RENDERED)
-              databaseId
-              date
-              status
-              author {
-                node {
-                  email
-                  gravatarUrl
-                  name
-                }
+        }
+        seo {
+          metaDesc
+          title
+        }
+        comments(first: 10, where: {order: ASC}) {
+          nodes {
+            content(format: RENDERED)
+            databaseId
+            date
+            status
+            author {
+              node {
+                email
+                gravatarUrl
+                name
               }
             }
           }
         }
       }
-  `,
-    variables: {
-      slug: slug
     }
-  })
-})
+  `
+
+  const variables = {
+    slug: slug
+  }
+
+  const response = await fetchGraphQL(query, variables)
+
+  return response.data.post as Post
+}
 ```
 
-This repo doesn't use a 3rd party GraphQL package because Next.js automatically memoizes `fetch()` requests. This means that if we fetch the same data twice, Next.js will only make one request to WordPress.
+This repo doesn't use a 3rd party GraphQL package because Next.js automatically memoizes `fetch()` requests. This means that if we fetch the same data twice, Next.js will only make one request to WordPress. Feel free to use a 3rd party package if you prefer.
 
 ---
 
