@@ -2,19 +2,25 @@
 
 💀 It's headless WordPress! - <https://nextjswp.com>
 
-This repo is a basic Next.js app which fetches data from WordPress and styles it with Tailwind. That's it.
+This repo is a bare bones Next.js app which fetches data from WordPress and styles it with Tailwind. That's it.
 
-Please consider it a starting point for you to build your own headless WordPress site.
+Please consider it a starting point for your next headless WordPress site.
 
 ---
 
 ## Features
 
-- Next.js 13 with App Router
-- Tailwind CSS
-- Comments support
-- TypeScript
-- ESLint, Prettier, Stylelint and more!
+- Next.js 13 with App Router and Tailwind CSS
+- WordPress data via GraphQL
+- Support for:
+  - Custom Post Types
+  - Custom Fields
+  - Comments
+  - Yoast SEO
+  - TypeScript, ESLint, Prettier, and Stylelint
+- Plus it's really fast!
+
+![screenshot](https://dl.dropbox.com/s/xh6uq9mblx8rqm1/Screenshot%202023-10-21%20at%2009.58.44.png?dl=0)
 
 ---
 
@@ -50,9 +56,14 @@ Once the dev servers have started, you can view the following: <http://localhost
 
 ## FAQ
 
-### What sort of setup do I need for WordPress?
+### What do I need for WordPress?
 
-You'll need either a local or public WordPress site with the [WPGraphQL](https://www.wpgraphql.com/) plugin installed and activated.
+You'll need either a local or public WordPress site with the following plugins:
+
+- [WPGraphQL](https://www.wpgraphql.com/)
+- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
+- [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
+- [Advanced Custom Fields](https://www.advancedcustomfields.com/)
 
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
