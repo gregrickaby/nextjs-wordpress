@@ -24,7 +24,10 @@ export async function fetchGraphQL<T = any>(
         body: JSON.stringify({
           query,
           variables
-        })
+        }),
+        next: {
+          tags: ['posts']
+        }
       }
     )
 
