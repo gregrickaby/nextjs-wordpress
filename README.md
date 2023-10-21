@@ -2,7 +2,7 @@
 
 💀 It's headless WordPress! - <https://nextjswp.com>
 
-This repo is a bare bones Next.js app which fetches data from WordPress and styles it with Tailwind. That's it.
+This repo is a bare-bones Next.js app which fetches data from WordPress and styles it with Tailwind.
 
 Please consider it a starting point for your next headless WordPress site.
 
@@ -13,6 +13,7 @@ Please consider it a starting point for your next headless WordPress site.
 - Next.js 13 with App Router and Tailwind CSS
 - WordPress data via GraphQL
 - Support for:
+  - On-demand Revalidation
   - Custom Post Types
   - Custom Fields
   - Comments
@@ -21,6 +22,25 @@ Please consider it a starting point for your next headless WordPress site.
 - Plus it's really fast!
 
 ![screenshot](https://dl.dropbox.com/s/xh6uq9mblx8rqm1/Screenshot%202023-10-21%20at%2009.58.44.png?dl=0)
+
+---
+
+## FAQ
+
+### What do I need for WordPress?
+
+You'll need either a local or public WordPress site with the following plugins:
+
+- [WPGraphQL](https://www.wpgraphql.com/)
+- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
+- [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
+- [Advanced Custom Fields](https://www.advancedcustomfields.com/)
+- [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
+- [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
+
+### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
+
+I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
 
 ---
 
@@ -44,14 +64,17 @@ npm i
 cp .env.example .env.local
 ```
 
-Customize the URLs in `.env.local` to match your WordPress site:
+Customize the URLs in `.env.local` to match your WordPress setup:
 
 ```txt
-# WordPress GraphQL API URL.
+# WordPress GraphQL API URL. No trailing slash.
 NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://your-wordpress-site.com/graphql"
 
-# WordPress REST API URL.
-NEXT_PUBLIC_WORDPRESS_REST_URL="https://your-wordpress-site.com/wp-json/wp/v2/"
+# Preview Secret. Must match the constant in wp-config.php.
+NEXTJS_PREVIEW_SECRET="preview"
+
+# Revalidation Secret. Must match the constant in wp-config.php.
+NEXTJS_REVALIDATION_SECRET="revalidate"
 ```
 
 ### 4. Configure `next.config.js`
@@ -78,32 +101,28 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-### 5. Start the dev servers
+### 5. Configure WordPress
+
+After installing the companion [plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin) and [theme](https://github.com/gregrickaby/nextjs-wordpress-theme), add the following constants to your `wp-config.php` file:
+
+```php
+// The URL of your Next.js frontend. Include the trailing slash.
+define( 'NEXTJS_FRONTEND_URL', 'https://nextjswp.com/' );
+
+// Any random string. This must match the .env variable in the Next.js frontend.
+define( 'NEXTJS_PREVIEW_SECRET', 'preview' );
+
+// Any random string. This must match the .env variable in the Next.js frontend.
+define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
+```
+
+### 6. Start the dev servers
 
 ```bash
 npm run dev
 ```
 
 Once the dev servers have started, you can view the following: <http://localhost:3000>
-
----
-
-## FAQ
-
-### What do I need for WordPress?
-
-You'll need either a local or public WordPress site with the following plugins:
-
-- [WPGraphQL](https://www.wpgraphql.com/)
-- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
-- [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
-- [Advanced Custom Fields](https://www.advancedcustomfields.com/)
-- [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
-- [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
-
-### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
-
-I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
 
 ---
 
