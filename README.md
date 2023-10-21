@@ -45,7 +45,7 @@ I've decided to simplify things based on the Next.js 13 App Router. You can stil
 
 ### Can I hire you to build my headless WordPress site?
 
-Yes! I'm always interested in taking on headless projects. Send an email with your requirements to `greg@gregrickaby.com`.
+Yes! I'm always interested in taking on headless projects. Send an email with your budget and requirements to `greg@gregrickaby.com`
 
 ---
 
