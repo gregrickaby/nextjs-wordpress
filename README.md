@@ -44,7 +44,41 @@ npm i
 cp .env.example .env.local
 ```
 
-### 4. Start the dev servers
+Customize the URLs in `.env.local` to match your WordPress site:
+
+```txt
+# WordPress GraphQL API URL.
+NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://your-wordpress-site.com/graphql"
+
+# WordPress REST API URL.
+NEXT_PUBLIC_WORDPRESS_REST_URL="https://your-wordpress-site.com/wp-json/wp/v2/"
+```
+
+### 4. Configure `next.config.js`
+
+Update the URL in `next.config.js` to match your WordPress site:
+
+```ts
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wordpress.nextjswp.com' // <-- Change to your WordPress site
+      },
+      {
+        protocol: 'https',
+        hostname: '**.gravatar.com'
+      }
+    ]
+  }
+}
+
+module.exports = nextConfig
+```
+
+### 5. Start the dev servers
 
 ```bash
 npm run dev
