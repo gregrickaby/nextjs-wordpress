@@ -1,6 +1,6 @@
 'use client'
 
-import {createComment} from '@/lib/mutations/createComment'
+import {createComment} from '@/lib/api/mutations/createComment'
 import {useState} from 'react'
 
 /**
