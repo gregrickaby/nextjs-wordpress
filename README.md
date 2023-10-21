@@ -31,7 +31,7 @@ Please consider it a starting point for your next headless WordPress site.
 
 You'll need either a local or public WordPress site with the following plugins:
 
-- [Advanced Custom Fields (ACF)](https://wordpress.org/plugins/advanced-custom-fields/) (free version is fine)
+- [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/) (free version is fine)
 - [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
 - [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
 - [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
@@ -69,7 +69,7 @@ Customize the URLs in `.env.local` to match your WordPress setup:
 
 ```txt
 # WordPress GraphQL API URL. No trailing slash.
-NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://your-wordpress-site.com/graphql"
+NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://wordpress.nextjswp.com/graphql"
 
 # Preview Secret. Must match the constant in wp-config.php.
 NEXTJS_PREVIEW_SECRET="preview"
