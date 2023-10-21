@@ -98,6 +98,8 @@ You'll need either a local or public WordPress site with the following plugins:
 - [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
 - [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
 - [Advanced Custom Fields](https://www.advancedcustomfields.com/)
+- [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
+- [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
 
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
