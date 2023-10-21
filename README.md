@@ -43,6 +43,10 @@ You'll need either a local or public WordPress site with the following plugins:
 
 I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
 
+### Can I hire you to build my headless WordPress site?
+
+Yes! I'm always interested in taking on headless projects. Please send an [email](greg@gregrickaby.com) with your requirements to get started.
+
 ---
 
 ## Development
