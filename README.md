@@ -54,8 +54,6 @@ Once the dev servers have started, you can view the following: <http://localhost
 
 You'll need either a local or public WordPress site with the [WPGraphQL](https://www.wpgraphql.com/) plugin installed and activated.
 
-I'm working on additional features like support for menus, CPT's, SEO, and more.
-
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
 I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
@@ -71,10 +69,13 @@ We can build our queries in GraphiQL (or your favorite REST client) and let `JSO
 Here is a query to fetch a single post (based on the slug), the featured image, author meta, categories, tags, SEO, and post comments:
 
 ```ts
+import {Post} from '@/lib/types'
+
 /**
  * Fetch a single post by slug.
  */
 export async function getPostBySlug(slug: string) {
+  // Define our query.
   const query = `
     query GetPost($slug: ID!) {
       post(id: $slug, idType: SLUG) {
@@ -135,17 +136,22 @@ export async function getPostBySlug(slug: string) {
     }
   `
 
+  // Define our variables.
   const variables = {
     slug: slug
   }
 
+  // Fetch the data using a reusable fetch function.
   const response = await fetchGraphQL(query, variables)
 
+  // Return the post.
   return response.data.post as Post
 }
 ```
 
-This repo doesn't use a 3rd party GraphQL package because Next.js automatically memoizes `fetch()` requests. This means that if we fetch the same data twice, Next.js will only make one request to WordPress. Feel free to use a 3rd party package if you prefer.
+This repo does not use a 3rd party GraphQL package, because Next.js automatically memoizes the `fetch()` requests in our custom fetch function. This means that if we fetch the same data twice, Next.js will only make one request to WordPress.
+
+> If you prefer use a 3rd party GraphQL package, simply swap out the custom `fetchGraphQL()` function.
 
 ---
 
