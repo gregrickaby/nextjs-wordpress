@@ -5,6 +5,20 @@ export interface GraphQLResponse<T = any> {
   errors?: Array<{message: string}>
 }
 
+export interface Menu {
+  menuItems: {
+    edges: [
+      {
+        node: {
+          uri: string
+          label: string
+          databaseId: string
+        }
+      }
+    ]
+  }
+}
+
 export interface Page {
   author: {
     node: {
@@ -104,6 +118,12 @@ export interface Post {
         }
       }
     ]
+  }
+}
+
+export interface AllPages {
+  pages: {
+    nodes: Page[]
   }
 }
 
