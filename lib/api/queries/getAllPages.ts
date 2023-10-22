@@ -1,28 +1,31 @@
 import {fetchGraphQL} from '@/lib/functions'
-import {Post} from '@/lib/types'
+import {Page} from '@/lib/types'
 
 /**
- * Fetch all blog posts.
+ * Fetch all pages.
  */
-export default async function getAllPosts() {
+export default async function getAllPages() {
   const query = `
-    query GetAllPosts {
-      posts(where: {status: PUBLISH}) {
+    query GetAllPages {
+      pages(where: {status: PUBLISH}) {
         nodes {
-          commentCount
+          content(format: RENDERED)
           databaseId
-          title
-          slug
           excerpt(format: RENDERED)
+          slug
           featuredImage {
             node {
               altText
               mediaDetails {
-                sizes(include: MEDIUM) {
+                sizes {
                   height
                   width
                   sourceUrl
                 }
+              }
+              seo {
+                metaDesc
+                title
               }
             }
           }
@@ -33,5 +36,5 @@ export default async function getAllPosts() {
 
   const response = await fetchGraphQL(query)
 
-  return response.data.posts.nodes as Post[]
+  return response.data.pages.nodes as Page[]
 }

@@ -2,12 +2,12 @@ import {fetchGraphQL} from '@/lib/functions'
 import {Page} from '@/lib/types'
 
 /**
- * Fetch a page by slug.
+ * Fetch a book by slug.
  */
-export default async function getPageBySlug(slug: string) {
+export default async function getBookBySlug(slug: string) {
   const query = `
-    query GetPageBySlug($slug: ID = "URI") {
-      page(idType: URI, id: $slug) {
+    query GetBookBySlug($slug: ID = "URI") {
+      book(idType: URI, id: $slug) {
         databaseId
         content(format: RENDERED)
         title(format: RENDERED)
@@ -21,12 +21,6 @@ export default async function getPageBySlug(slug: string) {
                 sourceUrl
               }
             }
-          }
-        }
-        author {
-          node {
-            gravatarUrl
-            name
           }
         }
         date
@@ -44,5 +38,5 @@ export default async function getPageBySlug(slug: string) {
 
   const response = await fetchGraphQL(query, variables)
 
-  return response.data.page as Page
+  return response.data.book as Page
 }

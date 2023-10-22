@@ -1,129 +1,113 @@
-import CommentForm from '@/components/CommentForm'
-import {getAllPosts} from '@/lib/api/queries/getAllPosts'
-import {getPostBySlug} from '@/lib/api/queries/getPostBySlug'
-import {Metadata} from 'next'
+import getAllBooks from '@/lib/api/queries/getAllBooks'
+import getAllPosts from '@/lib/api/queries/getAllPosts'
+import getPageBySlug from '@/lib/api/queries/getPageBySlug'
+import {Page, Post} from '@/lib/types'
 import Image from 'next/image'
+import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 export const dynamicParams = true
 export const revalidate = 60
 
 /**
- * Generate the static routes at build time.
- *
- * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+ * Fetches data from WordPress.
  */
-export async function generateStaticParams() {
-  // Get a list of all blog posts.
-  const posts = await getAllPosts()
-
-  // No posts? Bail...
-  if (!posts) {
-    return []
+async function fetchData(slug: string) {
+  // If the slug is 'blog', fetch all posts.
+  if (slug === 'blog') {
+    return {posts: await getAllPosts(), context: 'posts'}
   }
 
-  // Return the slugs for each post.
-  return posts.map((post: {slug: string}) => ({
-    slug: post.slug
-  }))
+  // If the slug is 'books', fetch all books.
+  if (slug === 'books') {
+    return {posts: await getAllBooks(), context: 'books'}
+  }
+
+  // Otherwise, this could be a page.
+  const page = await getPageBySlug(slug)
+
+  // If page data exists, return it.
+  if (page) {
+    return {post: page}
+  }
+
+  // Otherwise, return an error.
+  return {error: 'No data found'}
 }
 
 /**
- * Generate the metadata for each static route at build time.
- *
- * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
+ * Render a single page.
  */
-export async function generateMetadata({
-  params
-}: {
-  params: {slug: string}
-}): Promise<Metadata | null> {
-  // Get the blog post.
-  const post = await getPostBySlug(params.slug)
-
-  // No post? Bail...
-  if (!post) {
-    return {}
-  }
-
-  return {
-    title: post.seo.title,
-    description: post.seo.metaDesc
-  }
+function RenderPage({page}: {page: Page}) {
+  return (
+    <main className="flex flex-col gap-8">
+      <article>
+        <h1 dangerouslySetInnerHTML={{__html: page.title}} />
+        <div dangerouslySetInnerHTML={{__html: page.content}} />
+      </article>
+    </main>
+  )
 }
 
 /**
- * The blog post page.
- *
- * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
+ * Render posts list.
  */
-export default async function Page({params}: {params: {slug: string}}) {
-  // Fetch a single post from WordPress.
-  const post = await getPostBySlug(params.slug)
+function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
+  return (
+    <main className="flex flex-col gap-8">
+      <h1 className="capitalize">Latest {context}</h1>
+      <div className="flex flex-wrap gap-8">
+        {posts.map((post: Post) => (
+          <article className="w-72" key={post.databaseId}>
+            <Image
+              alt={post.featuredImage.node.altText}
+              height={post.featuredImage.node.mediaDetails.sizes[0].height}
+              src={post.featuredImage.node.mediaDetails.sizes[0].sourceUrl}
+              width={post.featuredImage.node.mediaDetails.sizes[0].width}
+              priority={true}
+            />
+            <Link href={`/${context}/${post.slug}`}>
+              <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+            </Link>
+            <p className="text-sm text-gray-500">
+              {post.commentCount} Comments
+            </p>
+            <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+            <Link className="button" href={`/${context}/${post.slug}`}>
+              View Post
+            </Link>
+          </article>
+        ))}
+      </div>
+    </main>
+  )
+}
 
-  // No post? Bail...
-  if (!post) {
+/**
+ * Catch-all Archive Page route.
+ */
+export default async function Archive({params}: {params: {slug: string}}) {
+  // Get the slug from the params.
+  const {slug} = params
+
+  // Fetch data from WordPress.
+  const data = await fetchData(slug)
+
+  // If there's an error, return a 404 page.
+  if (data.error) {
     notFound()
   }
 
-  return (
-    <article>
-      <header>
-        <h2 dangerouslySetInnerHTML={{__html: post.title}} />
-        <p className="italic">
-          By {post.author.node.name} on <time>{post.date}</time>
-        </p>
-      </header>
-      <div dangerouslySetInnerHTML={{__html: post.content}} />
-      <footer className="flex items-center justify-between gap-4 pb-4">
-        <div>
-          <h3>Categories</h3>
-          <ul className="m-0 flex list-none gap-2 p-0">
-            {post.categories.nodes.map((category) => (
-              <li className="m-0 p-0" key={category.databaseId}>
-                {category.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+  // If this is a single page, render the page.
+  if (data.post) {
+    return <RenderPage page={data.post} />
+  }
 
-        <div>
-          <h3>Tags</h3>
-          <ul className="m-0 flex list-none gap-2 p-0">
-            {post.tags.nodes.map((tag) => (
-              <li className="m-0 p-0" key={tag.databaseId}>
-                {tag.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </footer>
-      <section className="border-t-2">
-        <h3>Comments</h3>
-        {post.comments.nodes.map((comment) => (
-          <article key={comment.databaseId}>
-            <header className="flex items-center gap-2">
-              <Image
-                alt={comment.author.node.name}
-                className="m-0 rounded-full"
-                height={64}
-                src={comment.author.node.gravatarUrl}
-                width={64}
-              />
-              <div className="flex flex-col gap-2">
-                <h4
-                  className="m-0 p-0 leading-none"
-                  dangerouslySetInnerHTML={{__html: comment.author.node.name}}
-                />
-                <time className="italic">{comment.date}</time>
-              </div>
-            </header>
+  // Otherwise, this must be an archive. Render the posts list.
+  if (data.posts && data.posts.length > 0) {
+    return <RenderPostsList posts={data.posts} context={data.context} />
+  }
 
-            <div dangerouslySetInnerHTML={{__html: comment.content}} />
-          </article>
-        ))}
-      </section>
-      <CommentForm postID={post.databaseId} />
-    </article>
-  )
+  // Otherwise, return a 404 page.
+  notFound()
 }

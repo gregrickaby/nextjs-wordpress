@@ -4,7 +4,7 @@ import {Post} from '@/lib/types'
 /**
  * Fetch a single blog post by slug.
  */
-export async function getPostBySlug(slug: string) {
+export default async function getPostBySlug(slug: string) {
   const query = `
     query GetPost($slug: ID!) {
       post(id: $slug, idType: SLUG) {

@@ -1,5 +1,5 @@
-import {getAllPosts} from '@/lib/api/queries/getAllPosts'
-import {getPageBySlug} from '@/lib/api/queries/getPageBySlug'
+import getAllPosts from '@/lib/api/queries/getAllPosts'
+import getPageBySlug from '@/lib/api/queries/getPageBySlug'
 import {Post} from '@/lib/types'
 import {Metadata} from 'next'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 /**
- * The homepage component.
+ * The homepage route.
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
@@ -45,14 +45,14 @@ export default async function Home() {
                 width={post.featuredImage.node.mediaDetails.sizes[0].width}
                 priority={true}
               />
-              <Link href={`/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <h2 dangerouslySetInnerHTML={{__html: post.title}} />
               </Link>
               <p className="text-sm text-gray-500">
                 {post.commentCount} Comments
               </p>
               <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
-              <Link className="button" href={`/${post.slug}`}>
+              <Link className="button" href={`/blog/${post.slug}`}>
                 View Post
               </Link>
             </article>
