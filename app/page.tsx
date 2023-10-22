@@ -1,4 +1,5 @@
 import {getAllPosts} from '@/lib/api/queries/getAllPosts'
+import {getPageBySlug} from '@/lib/api/queries/getPageBySlug'
 import {Post} from '@/lib/types'
 import {Metadata} from 'next'
 import Image from 'next/image'
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   // Fetch posts from WordPress.
   const posts = await getAllPosts()
+  const homepage = await getPageBySlug('homepage')
 
   // No posts? Bail...
   if (!posts) {
@@ -26,24 +28,37 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex flex-col items-start justify-center gap-8 md:flex-row">
-      {posts.map((post: Post) => (
-        <article className="w-72" key={post.databaseId}>
-          <Image
-            alt={post.featuredImage.node.altText}
-            height={post.featuredImage.node.mediaDetails.sizes[0].height}
-            src={post.featuredImage.node.mediaDetails.sizes[0].sourceUrl}
-            width={post.featuredImage.node.mediaDetails.sizes[0].width}
-            priority={true}
-          />
-          <h2 dangerouslySetInnerHTML={{__html: post.title}} />
-          <p className="text-sm text-gray-500">{post.commentCount} Comments</p>
-          <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
-          <Link className="button" href={`/${post.slug}`}>
-            View Post
-          </Link>
-        </article>
-      ))}
+    <main className="flex flex-col gap-8">
+      <div className="w-full">
+        <h1 dangerouslySetInnerHTML={{__html: homepage.title}} />
+        <div dangerouslySetInnerHTML={{__html: homepage.content}} />
+      </div>
+      <div>
+        <h2>Latest Posts</h2>
+        <div className="flex flex-wrap gap-8">
+          {posts.map((post: Post) => (
+            <article className="w-72" key={post.databaseId}>
+              <Image
+                alt={post.featuredImage.node.altText}
+                height={post.featuredImage.node.mediaDetails.sizes[0].height}
+                src={post.featuredImage.node.mediaDetails.sizes[0].sourceUrl}
+                width={post.featuredImage.node.mediaDetails.sizes[0].width}
+                priority={true}
+              />
+              <Link href={`/${post.slug}`}>
+                <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+              </Link>
+              <p className="text-sm text-gray-500">
+                {post.commentCount} Comments
+              </p>
+              <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+              <Link className="button" href={`/${post.slug}`}>
+                View Post
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
     </main>
   )
 }
