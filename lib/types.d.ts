@@ -5,6 +5,40 @@ export interface GraphQLResponse<T = any> {
   errors?: Array<{message: string}>
 }
 
+export interface Page {
+  author: {
+    node: {
+      gravatarUrl: string
+      name: string
+    }
+  }
+  databaseId: string
+  date: string
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  featuredImage: {
+    node: {
+      altText: string
+      mediaDetails: {
+        sizes: [
+          {
+            name: string
+            sourceUrl: string
+            height: number
+            width: number
+          }
+        ]
+      }
+    }
+  }
+  seo: {
+    metaDesc: string
+    title: string
+  }
+}
+
 export interface Post {
   author: {
     node: {
