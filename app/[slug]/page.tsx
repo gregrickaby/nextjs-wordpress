@@ -15,7 +15,7 @@ export const revalidate = 60
 async function fetchData(slug: string) {
   // If the slug is 'blog', fetch all posts.
   if (slug === 'blog') {
-    return {posts: await getAllPosts(), context: 'posts'}
+    return {posts: await getAllPosts(), context: 'blog'}
   }
 
   // If the slug is 'books', fetch all books.
