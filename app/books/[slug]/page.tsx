@@ -1,6 +1,7 @@
 import getAllBooks from '@/lib/api/queries/getAllBooks'
 import getBookBySlug from '@/lib/api/queries/getBookBySlug'
 import {Metadata} from 'next'
+import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 export const dynamicParams = true
@@ -55,11 +56,11 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function Page({params}: {params: {slug: string}}) {
-  // Fetch a single page from WordPress.
+export default async function Book({params}: {params: {slug: string}}) {
+  // Fetch a single book from WordPress.
   const book = await getBookBySlug(params.slug)
 
-  // No post? Bail...
+  // No book? Bail...
   if (!book) {
     notFound()
   }
@@ -69,6 +70,9 @@ export default async function Page({params}: {params: {slug: string}}) {
       <article className="w-full">
         <h1 dangerouslySetInnerHTML={{__html: book.title}} />
         <div dangerouslySetInnerHTML={{__html: book.content}} />
+        <Link className="button" href={book.bookFields.affiliateUrl}>
+          View on Amazon
+        </Link>
       </article>
     </main>
   )
