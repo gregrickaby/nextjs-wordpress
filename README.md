@@ -10,7 +10,7 @@ Please consider it a starting point for your next headless WordPress site.
 
 ## Features
 
-- Next.js 13 with App Router and Tailwind CSS
+- Next.js with App Router and Tailwind CSS
 - WordPress data via GraphQL
 - Support for:
   - On-demand Revalidation
@@ -41,7 +41,7 @@ You'll need either a local or public WordPress site with the following plugins:
 
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
-I've decided to simplify things based on the Next.js 13 App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
+I've decided to simplify things based on the Next.js App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
 
 ### Can I hire you to build my headless WordPress site?
 
