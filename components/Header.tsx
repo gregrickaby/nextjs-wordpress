@@ -1,5 +1,9 @@
 import getMenuBySlug from '@/lib/api/queries/getMenuBySlug'
+import Link from 'next/link'
 
+/**
+ * Header component.
+ */
 export default async function Header() {
   const menu = await getMenuBySlug('header')
 
@@ -12,9 +16,9 @@ export default async function Header() {
       <nav className="flex justify-between gap-4">
         {!!menu &&
           menu.menuItems.edges.map((item) => (
-            <a key={item.node.databaseId} href={item.node.uri}>
+            <Link key={item.node.databaseId} href={item.node.uri}>
               {item.node.label}
-            </a>
+            </Link>
           ))}
       </nav>
     </header>
