@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import '@/globals.css'
 import type {Metadata, Viewport} from 'next'
-import './globals.css'
 
 /**
  * Setup metadata.

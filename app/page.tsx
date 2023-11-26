@@ -1,5 +1,5 @@
-import getAllPosts from '@/lib/api/queries/getAllPosts'
-import getPageBySlug from '@/lib/api/queries/getPageBySlug'
+import getAllPosts from '@/lib/queries/getAllPosts'
+import getPageBySlug from '@/lib/queries/getPageBySlug'
 import {Post} from '@/lib/types'
 import {Metadata} from 'next'
 import Image from 'next/image'

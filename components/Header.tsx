@@ -1,4 +1,4 @@
-import getMenuBySlug from '@/lib/api/queries/getMenuBySlug'
+import getMenuBySlug from '@/lib/queries/getMenuBySlug'
 import Link from 'next/link'
 
 /**

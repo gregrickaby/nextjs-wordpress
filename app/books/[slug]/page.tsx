@@ -1,5 +1,5 @@
-import getAllBooks from '@/lib/api/queries/getAllBooks'
-import getBookBySlug from '@/lib/api/queries/getBookBySlug'
+import getAllBooks from '@/lib/queries/getAllBooks'
+import getBookBySlug from '@/lib/queries/getBookBySlug'
 import {Metadata} from 'next'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
