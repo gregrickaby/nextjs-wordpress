@@ -28,7 +28,7 @@
     "sharp": "^0.32.6"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.5.3",
+    "@evilmartians/lefthook": "^1.5.4",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.38",

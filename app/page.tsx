@@ -1,7 +1,6 @@
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
 import {Post} from '@/lib/types'
-import {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
@@ -12,16 +11,6 @@ import {notFound} from 'next/navigation'
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
  */
 export const revalidate = 3600
-
-/**
- * Setup metadata.
- *
- * @see https://nextjs.org/docs/app/building-your-application/optimizing/metadata
- */
-export const metadata: Metadata = {
-  title: 'Next.js WordPress',
-  description: "It's headless WordPress"
-}
 
 /**
  * The homepage route.
