@@ -31,7 +31,7 @@
     "@evilmartians/lefthook": "^1.5.4",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.10.0",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.54.0",
