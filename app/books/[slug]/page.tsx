@@ -4,8 +4,12 @@ import {Metadata} from 'next'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
-export const dynamicParams = true
-export const revalidate = 60
+/**
+ * Route segment config.
+ *
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+ */
+export const revalidate = 3600
 
 /**
  * Generate the static routes at build time.
