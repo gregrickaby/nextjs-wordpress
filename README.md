@@ -39,6 +39,10 @@ You'll need either a local or public WordPress site with the following plugins:
 - [WPGraphQL](https://www.wpgraphql.com/)
 - [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
 
+### Is there a non-demo example?
+
+Yes! You can view a website running this code at <https://gregrickaby.com> ([github repo](https://github.com/gregrickaby/gregrickaby)).
+
 ### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
 
 I've decided to simplify things based on the Next.js App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
