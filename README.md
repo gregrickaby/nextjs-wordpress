@@ -2,24 +2,26 @@
 
 💀 It's headless WordPress! - <https://nextjswp.com>
 
-This repo is a bare-bones Next.js app which fetches data from WordPress and styles it with Tailwind.
+This is a bare-bones Next.js app, which fetches data from WordPress and styles it with Tailwind CSS.
 
-Please consider it a starting point for your next headless WordPress site.
+Please consider it a starting point for your next headless WordPress project.
 
 ---
 
 ## Features
 
-- Next.js with App Router and Tailwind CSS
+- Next.js 14+ with App Router
+- Tailwind CSS
 - WordPress data via GraphQL
-- Support for:
+- Additional support for:
+  - Static site generation (SSG)
   - On-demand Revalidation
   - Custom Post Types
   - Custom Fields
   - Comments
   - Yoast SEO
   - TypeScript, ESLint, Prettier, and Stylelint
-- Plus it's really fast!
+- Plus, it's really fast!
 
 ![screenshot](https://dl.dropbox.com/s/xh6uq9mblx8rqm1/Screenshot%202023-10-21%20at%2009.58.44.png?dl=0)
 
@@ -49,7 +51,7 @@ I've decided to simplify things based on the Next.js App Router. You can still [
 
 ### Can I hire you to build my headless WordPress site?
 
-Yes! I'm always interested in taking on headless projects. Send an email with your budget and requirements to `greg@gregrickaby.com`
+Yes! I'm always interested in taking on headless WordPress projects. Send an email with your budget and requirements to `greg@gregrickaby.com`
 
 ---
 
@@ -131,7 +133,7 @@ define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
 npm run dev
 ```
 
-Once the dev servers have started, you can view the following: <http://localhost:3000>
+Once the dev server has started, you can view the front-end: <http://localhost:3000>
 
 ---
 
