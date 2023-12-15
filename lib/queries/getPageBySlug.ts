@@ -9,17 +9,17 @@ export default async function getPageBySlug(slug: string) {
     query GetPageBySlug($slug: ID = "URI") {
       page(idType: URI, id: $slug) {
         databaseId
+        date
+        modified
         content(format: RENDERED)
         title(format: RENDERED)
         featuredImage {
           node {
             altText
+            sourceUrl
             mediaDetails {
-              sizes(include: MEDIUM) {
                 height
                 width
-                sourceUrl
-              }
             }
           }
         }
@@ -29,7 +29,6 @@ export default async function getPageBySlug(slug: string) {
             name
           }
         }
-        date
         seo {
           metaDesc
           title

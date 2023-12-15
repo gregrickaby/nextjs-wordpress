@@ -13,21 +13,20 @@ export default async function getBookBySlug(slug: string) {
           isbn
         }
         databaseId
+        date
+        modified
         content(format: RENDERED)
         title(format: RENDERED)
         featuredImage {
           node {
             altText
+            sourceUrl
             mediaDetails {
-              sizes(include: MEDIUM) {
                 height
                 width
-                sourceUrl
-              }
             }
           }
         }
-        date
         seo {
           metaDesc
           title

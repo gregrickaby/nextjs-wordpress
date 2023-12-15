@@ -7,13 +7,6 @@ import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 /**
- * Route segment config.
- *
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
- */
-export const revalidate = 3600
-
-/**
  * Fetches data from WordPress.
  */
 async function fetchData(slug: string) {
@@ -65,9 +58,9 @@ function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
           <article className="w-72" key={post.databaseId}>
             <Image
               alt={post.featuredImage.node.altText}
-              height={post.featuredImage.node.mediaDetails.sizes[0].height}
-              src={post.featuredImage.node.mediaDetails.sizes[0].sourceUrl}
-              width={post.featuredImage.node.mediaDetails.sizes[0].width}
+              height={post.featuredImage.node.mediaDetails.height}
+              src={post.featuredImage.node.sourceUrl}
+              width={post.featuredImage.node.mediaDetails.width}
               priority={true}
             />
             <Link href={`/${context}/${post.slug}`}>

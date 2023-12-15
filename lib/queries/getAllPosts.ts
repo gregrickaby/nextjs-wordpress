@@ -11,20 +11,24 @@ export default async function getAllPosts() {
         nodes {
           commentCount
           databaseId
+          date
+          modified
           title
           slug
           excerpt(format: RENDERED)
           featuredImage {
             node {
               altText
+              sourceUrl
               mediaDetails {
-                sizes(include: MEDIUM) {
                   height
                   width
-                  sourceUrl
-                }
               }
             }
+          }
+          seo {
+            metaDesc
+            title
           }
         }
       }

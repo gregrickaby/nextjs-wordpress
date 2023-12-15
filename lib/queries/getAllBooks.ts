@@ -10,18 +10,18 @@ export default async function getAllBooks() {
       books(where: {status: PUBLISH}) {
         nodes {
           databaseId
+          date
+          modified
           title
           slug
           excerpt(format: RENDERED)
           featuredImage {
             node {
               altText
+              sourceUrl
               mediaDetails {
-                sizes {
                   height
                   width
-                  sourceUrl
-                }
               }
             }
           }

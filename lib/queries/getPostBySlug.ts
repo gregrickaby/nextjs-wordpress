@@ -9,17 +9,17 @@ export default async function getPostBySlug(slug: string) {
     query GetPost($slug: ID!) {
       post(id: $slug, idType: SLUG) {
         databaseId
+        date
+        modified
         content(format: RENDERED)
         title(format: RENDERED)
         featuredImage {
           node {
             altText
+            sourceUrl
             mediaDetails {
-              sizes(include: MEDIUM) {
                 height
                 width
-                sourceUrl
-              }
             }
           }
         }
@@ -29,7 +29,6 @@ export default async function getPostBySlug(slug: string) {
             name
           }
         }
-        date
         tags {
           nodes {
             databaseId

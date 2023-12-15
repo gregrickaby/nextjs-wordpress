@@ -11,23 +11,23 @@ export default async function getAllPages() {
         nodes {
           content(format: RENDERED)
           databaseId
+          date
+          modified
           excerpt(format: RENDERED)
           slug
           featuredImage {
             node {
               altText
+              sourceUrl
               mediaDetails {
-                sizes {
                   height
                   width
-                  sourceUrl
-                }
-              }
-              seo {
-                metaDesc
-                title
               }
             }
+          }
+          seo {
+            metaDesc
+            title
           }
         }
       }
