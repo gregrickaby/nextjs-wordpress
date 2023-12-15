@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import config from '@/lib/config'
 import type {Metadata, Viewport} from 'next'
 import './globals.css'
 
@@ -9,8 +10,9 @@ import './globals.css'
  * @see https://nextjs.org/docs/app/building-your-application/optimizing/metadata
  */
 export const metadata: Metadata = {
-  title: 'Next.js WordPress',
-  description: "It's headless WordPress"
+  metadataBase: new URL(config.siteUrl),
+  title: `${config.siteName} - ${config.siteDescription}`,
+  description: config.siteDescription
 }
 
 /**
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
  */
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: 'black'
+  themeColor: '#18181b'
 }
 
 /**
