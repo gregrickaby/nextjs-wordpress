@@ -45,9 +45,6 @@ export default async function getPreview(id: string) {
           metaDesc
           title
         }
-        hideFeaturedImage {
-          hideFeaturedImage
-        }
       }
     }
   `
