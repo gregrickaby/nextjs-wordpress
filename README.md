@@ -15,7 +15,7 @@ Please consider it a starting point for your next headless WordPress project.
 - WordPress data via GraphQL
 - Additional support for:
   - Previews
-  - Static site generation (SSG)
+  - Static Site Generation (SSG)
   - On-demand Revalidation
   - Custom Post Types
   - Custom Fields
@@ -151,7 +151,16 @@ define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
 
 In order to query draft posts for Previews, you'll need to authenticate with WordPress. The following is a one-time step:
 
-- Install the [WPGraphQL JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) plugin
+- Install and activate the [WPGraphQL JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) plugin
+- Generate a random string. I recommend using the [WordPress salt generator](https://api.wordpress.org/secret-key/1.1/salt/)
+- Copy the string
+- Open your `wp-config.php` file, and paste the string into the `GRAPHQL_JWT_AUTH_SECRET_KEY` constant. (Be sure to uncomment the constant by removing the `//` symbols.)
+
+```php
+// Optional. JWT auth refresh token.
+define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'some-random-string-generated-by-wp-salt' );
+```
+
 - Go to **GraphQL -> GraphiQL IDE** in your WordPress admin
 - Copy the following and paste into GraphiQL IDE (replace `your_username` and `your_password` with your WordPress credentials)
 
@@ -176,15 +185,6 @@ mutation Login {
 ```txt
 # Optional. JWT auth refresh token.
 NEXTJS_AUTH_REFRESH_TOKEN="refresh-token-generated-by-grapqh-query"
-```
-
-- Generate a random string. I recommend using the [WordPress salt generator](https://api.wordpress.org/secret-key/1.1/salt/)
-- Copy the string
-- Open your `wp-config.php` file, and paste the string into the `GRAPHQL_JWT_AUTH_SECRET_KEY` constant. (Be sure to uncomment the constant by removing the `//` symbols.)
-
-```php
-// Optional. JWT auth refresh token.
-define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'some-random-string-generated-by-wp-salt' );
 ```
 
 You should now be able to preview draft posts in your Next.js app by clicking the **Preview** button in your WordPress admin.
@@ -298,6 +298,23 @@ This repo does not use a 3rd party GraphQL package, because Next.js automaticall
 ### Going To Production
 
 Remember to add all the environment variables from `.env.local` to your production environment on [Vercel](https://vercel.com) or [Netlify](https://netlify.com).
+
+---
+
+### Other
+
+#### RSS Feed and Sitemap
+
+RSS feed and the Sitemap are available at:
+
+- <https://nextjswp.com/feed.xml>
+- <https://nextjswp.com/sitemap.xml>
+
+#### Previews
+
+Previews are available at:
+
+- <https://nextjswp.com/preview/120?secret=preview>
 
 ---
 
