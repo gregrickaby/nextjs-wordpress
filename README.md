@@ -16,7 +16,6 @@ Please consider it a starting point for your next headless WordPress project.
 - Additional support for:
   - Previews
   - Static Site Generation (SSG)
-  - Category and Tag Archives
   - On-demand Revalidation
   - Category and Tag Archives
   - Custom Post Types
