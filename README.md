@@ -17,6 +17,7 @@ Please consider it a starting point for your next headless WordPress project.
   - Previews
   - Static Site Generation (SSG)
   - On-demand Revalidation
+  - Category and Tag Archives
   - Custom Post Types
   - Custom Fields
   - Comments

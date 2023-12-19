@@ -3,6 +3,7 @@ import getAllPosts from '@/lib/queries/getAllPosts'
 import getPostBySlug from '@/lib/queries/getPostBySlug'
 import {Metadata} from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 /**
@@ -78,7 +79,9 @@ export default async function Post({params}: {params: {slug: string}}) {
           <ul className="m-0 flex list-none gap-2 p-0">
             {post.categories.nodes.map((category) => (
               <li className="m-0 p-0" key={category.databaseId}>
-                {category.name}
+                <Link href={`/blog/category/${category.name}`}>
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -89,7 +92,7 @@ export default async function Post({params}: {params: {slug: string}}) {
           <ul className="m-0 flex list-none gap-2 p-0">
             {post.tags.nodes.map((tag) => (
               <li className="m-0 p-0" key={tag.databaseId}>
-                {tag.name}
+                <Link href={`/blog/tag/${tag.name}`}>{tag.name}</Link>
               </li>
             ))}
           </ul>
