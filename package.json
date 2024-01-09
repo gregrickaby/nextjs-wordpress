@@ -29,7 +29,7 @@
   "devDependencies": {
     "@evilmartians/lefthook": "^1.5.5",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.10.7",
+    "@types/node": "^20.10.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "@types/xml-escape": "^1.1.3",
