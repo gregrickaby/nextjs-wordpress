@@ -41,7 +41,7 @@ export async function fetchGraphQL<T = any>(
         variables
       }),
       next: {
-        tags: [slug]
+        tags: ['graphql']
       }
     })
 
