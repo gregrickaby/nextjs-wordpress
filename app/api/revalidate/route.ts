@@ -10,7 +10,7 @@ export const runtime = 'edge'
  * On-demand revalidation.
  *
  * ### Notes
- * Because Next.js uses such aggressive caching,
+ * Because Next.js has such aggressive caching,
  * we need to invalidate the following items:
  *
  * 1. The path/slug to the SSG page.
@@ -65,6 +65,12 @@ export async function GET(request: NextRequest) {
   try {
     // Revalidate the static page.
     revalidatePath(slug, 'page')
+
+    // Revalidate the layout.
+    revalidatePath('/', 'layout')
+
+    // Revalidate everything.
+    revalidatePath('/')
 
     // Revalidate the cached GraphQL queries.
     revalidateTag(slug)
