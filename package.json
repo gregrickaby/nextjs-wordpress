@@ -27,7 +27,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.5.7",
+    "@evilmartians/lefthook": "^1.6.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
