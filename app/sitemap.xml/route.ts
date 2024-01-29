@@ -7,7 +7,7 @@ import getAllPosts from '@/lib/queries/getAllPosts'
  *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
  */
-export const dynamic = 'force-static'
+export const runtime = 'edge'
 
 /**
  * Route handler for generating sitemap.xml.
