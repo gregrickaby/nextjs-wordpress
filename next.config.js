@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,6 +12,20 @@ const nextConfig = {
         hostname: '**.gravatar.com'
       }
     ]
+  },
+  swcMinify: true,
+  outputFileTracing: true,
+  experimental: {
+    turbotrace: {
+      logLevel: 'fatal',
+      logDetail: true,
+      logAll: false
+    }
+  },
+  logging: {
+    fetches: {
+      fullUrl: true
+    }
   }
 }
 
