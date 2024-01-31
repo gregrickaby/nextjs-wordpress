@@ -2,7 +2,6 @@ import CommentForm from '@/components/CommentForm'
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPostBySlug from '@/lib/queries/getPostBySlug'
 import {Metadata} from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
@@ -103,10 +102,11 @@ export default async function Post({params}: {params: {slug: string}}) {
         {post.comments.nodes.map((comment) => (
           <article key={comment.databaseId}>
             <header className="flex items-center gap-2">
-              <Image
+              <img
                 alt={comment.author.node.name}
                 className="m-0 rounded-full"
                 height={64}
+                loading="lazy"
                 src={comment.author.node.gravatarUrl}
                 width={64}
               />
