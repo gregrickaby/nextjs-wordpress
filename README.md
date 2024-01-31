@@ -234,8 +234,8 @@ export async function getPostBySlug(slug: string) {
         }
         author {
           node {
-            avatar: {
-              url: string
+            avatar {
+              url
             }
             name
           }
@@ -257,20 +257,20 @@ export async function getPostBySlug(slug: string) {
           metaDesc
           title
         }
-        comments(first: 10, where: {order: ASC}) {
+        comments(first: 30, where: {order: ASC}) {
           nodes {
             content(format: RENDERED)
             databaseId
             date
             status
-            author: {
-              node: {
-                avatar: {
-                  url: string
+            author {
+              node {
+                avatar {
+                  url
                 }
-                email: string
-                name: string
-                url: string
+                email
+                name
+                url
               }
             }
           }
