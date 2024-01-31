@@ -1,31 +1,30 @@
 # Next.js + WordPress
 
-💀 It's headless WordPress! - <https://nextjswp.com>
+It's headless WordPress! 💀 - <https://nextjswp.com>
 
-This is a bare-bones Next.js app, which fetches data from WordPress and styles it with Tailwind CSS.
+This is a bare-bones Next.js app, which fetches data from WordPress via WPGraphQL and styles it with TailwindCSS.
 
 Please consider it a starting point for your next headless WordPress project.
 
 ---
 
-## Features
+## Supported Features
 
-- Next.js 14+ with App Router
-- Tailwind CSS
-- WordPress data via GraphQL
-- Additional support for:
-  - Previews
-  - Static Site Generation (SSG)
-  - On-demand Revalidation
-  - Category and Tag Archives
-  - Custom Post Types
-  - Custom Fields
-  - Comments
-  - Yoast SEO
-  - RSS Feed
-  - Sitemap
-  - TypeScript, ESLint, Prettier, and Stylelint
-- Plus, it's really fast!
+- Category and Tag Archives
+- Comments
+- Custom Fields
+- Custom Post Types
+- On-demand Revalidation
+- Post/Page Previews
+- RSS Feed
+- Search
+- Sitemap
+- WordPress Menus
+- Static Site Generation (SSG)
+- TypeScript, ESLint, Stylelint, and Prettier
+- Yoast SEO
+
+Plus it's really, really fast! 🚀
 
 ![screenshot](https://dl.dropbox.com/s/xh6uq9mblx8rqm1/Screenshot%202023-10-21%20at%2009.58.44.png?dl=0)
 
@@ -72,6 +71,9 @@ Customize the URLs in `.env.local` to match your WordPress setup:
 ```txt
 # WordPress GraphQL API URL. No trailing slash.
 NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://wordpress.nextjswp.com/graphql"
+
+# WordPress REST API URL. No trailing slash.
+NEXT_PUBLIC_WORDPRESS_REST_API_URL="https://wordpress.nextjswp.com/wp-json/wp/v2"
 
 # Optional. JWT auth refresh token.
 #NEXTJS_AUTH_REFRESH_TOKEN=""
@@ -232,7 +234,9 @@ export async function getPostBySlug(slug: string) {
         }
         author {
           node {
-            gravatarUrl
+            avatar: {
+              url: string
+            }
             name
           }
         }
@@ -259,11 +263,14 @@ export async function getPostBySlug(slug: string) {
             databaseId
             date
             status
-            author {
-              node {
-                email
-                gravatarUrl
-                name
+            author: {
+              node: {
+                avatar: {
+                  url: string
+                }
+                email: string
+                name: string
+                url: string
               }
             }
           }

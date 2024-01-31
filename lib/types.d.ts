@@ -1,4 +1,10 @@
-/* Global types only */
+export interface SearchResults {
+  id: number
+  title: string
+  url: string
+  type: string
+  subtype: string
+}
 
 export interface Children {
   children: React.ReactNode
@@ -51,7 +57,9 @@ export interface Menu {
 export interface Page {
   author: {
     node: {
-      gravatarUrl: string
+      avatar: {
+        url: string
+      }
       name: string
     }
   }
@@ -72,8 +80,10 @@ export interface Page {
 export interface Post {
   author: {
     node: {
-      gravatarUrl: string
       name: string
+      avatar: {
+        url: string
+      }
     }
   }
   databaseId: string
@@ -115,9 +125,12 @@ export interface Post {
         status: string
         author: {
           node: {
+            avatar: {
+              url: string
+            }
             email: string
-            gravatarUrl: string
             name: string
+            url: string
           }
         }
       }
