@@ -19,7 +19,7 @@ export async function generateMetadata({
 
   return {
     title: `${slug} Archives - ${config.siteName}`,
-    description: `The post archive for ${slug}`
+    description: `The tag archive for ${slug}`
   }
 }
 
@@ -39,7 +39,7 @@ export default async function TagArchive({params}: {params: {slug: string}}) {
 
   return (
     <main className="flex flex-col gap-8">
-      <h1 className="capitalize">Post Category: {params.slug}</h1>
+      <h1 className="capitalize">Post Tag: {params.slug}</h1>
       <div className="flex flex-wrap gap-8">
         {posts.map((post) => (
           <article className="w-72" key={post.databaseId}>
