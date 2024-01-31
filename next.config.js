@@ -5,22 +5,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'wordpress.nextjswp.com'
-      },
-      {
-        protocol: 'https',
-        hostname: '**.gravatar.com'
+        hostname: '*.nextjswp.**'
       }
     ]
-  },
-  swcMinify: true,
-  outputFileTracing: true,
-  experimental: {
-    turbotrace: {
-      logLevel: 'fatal',
-      logDetail: true,
-      logAll: false
-    }
   },
   logging: {
     fetches: {
