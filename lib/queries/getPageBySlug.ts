@@ -25,8 +25,10 @@ export default async function getPageBySlug(slug: string) {
         }
         author {
           node {
-            gravatarUrl
             name
+            avatar {
+              url
+            }
           }
         }
         seo {

@@ -31,8 +31,10 @@ export async function createComment(comment: {
         comment {
           author {
             node {
+              avatar {
+                url
+              }
               email
-              gravatarUrl
               name
               url
             }

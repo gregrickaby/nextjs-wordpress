@@ -107,7 +107,7 @@ export default async function Post({params}: {params: {slug: string}}) {
                 className="m-0 rounded-full"
                 height={64}
                 loading="lazy"
-                src={comment.author.node.gravatarUrl}
+                src={comment.author.node.avatar.url}
                 width={64}
               />
               <div className="flex flex-col gap-2">

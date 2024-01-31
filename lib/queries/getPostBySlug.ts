@@ -25,8 +25,10 @@ export default async function getPostBySlug(slug: string) {
         }
         author {
           node {
-            gravatarUrl
             name
+            avatar {
+              url
+            }
           }
         }
         tags {
@@ -45,7 +47,7 @@ export default async function getPostBySlug(slug: string) {
           metaDesc
           title
         }
-        comments(first: 10, where: {order: ASC}) {
+        comments(first: 30, where: {order: ASC}) {
           nodes {
             content(format: RENDERED)
             databaseId
@@ -53,9 +55,12 @@ export default async function getPostBySlug(slug: string) {
             status
             author {
               node {
+                avatar {
+                  url
+                }
                 email
-                gravatarUrl
                 name
+                url
               }
             }
           }
