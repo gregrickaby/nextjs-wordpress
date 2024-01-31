@@ -94,11 +94,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'wordpress.nextjswp.com' // <-- Change to your WordPress site
-      },
-      {
-        protocol: 'https',
-        hostname: '**.gravatar.com'
+        hostname: '*.nextjswp.**' // <-- Change to your WordPress site
       }
     ]
   }
