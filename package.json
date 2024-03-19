@@ -33,8 +33,8 @@
   "devDependencies": {
     "@evilmartians/lefthook": "^1.6.7",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.11.28",
-    "@types/react": "^18.2.66",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.22",
     "@types/xml-escape": "^1.1.3",
     "autoprefixer": "^10.4.18",
