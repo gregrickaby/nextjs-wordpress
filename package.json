@@ -23,7 +23,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "^14.2.1",
+    "next": "^14.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.33.3",
@@ -39,7 +39,7 @@
     "@types/xml-escape": "^1.1.3",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.1",
+    "eslint-config-next": "^14.2.2",
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
