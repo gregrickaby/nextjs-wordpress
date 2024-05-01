@@ -70,10 +70,10 @@ Customize the URLs in `.env.local` to match your WordPress setup:
 
 ```txt
 # WordPress GraphQL API URL. No trailing slash.
-NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://wordpress.nextjswp.com/graphql"
+NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL="https://blog.nextjswp.com/graphql"
 
 # WordPress REST API URL. No trailing slash.
-NEXT_PUBLIC_WORDPRESS_REST_API_URL="https://wordpress.nextjswp.com/wp-json/wp/v2"
+NEXT_PUBLIC_WORDPRESS_REST_API_URL="https://blog.nextjswp.com/wp-json/wp/v2"
 
 # Optional. JWT auth refresh token.
 #NEXTJS_AUTH_REFRESH_TOKEN=""
