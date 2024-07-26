@@ -30,22 +30,6 @@ Plus it's really, really fast! 🚀
 
 ---
 
-## FAQ
-
-### Is there a non-demo example?
-
-Yes! You can view a website running this code at <https://gregrickaby.com> ([github repo](https://github.com/gregrickaby/gregrickaby)).
-
-### What happened to your old repo? The one with Docker, Mantine, and all the other stuff?
-
-I've decided to simplify things based on the Next.js App Router. You can still [view the old repo](https://github.com/gregrickaby/nextjs-wordpress/tree/1.0.0).
-
-### Can I hire you to build my headless WordPress site?
-
-Yes! I'm always interested in taking on headless WordPress projects. Send an email with your budget and requirements to `greg@gregrickaby.com`
-
----
-
 ## Setup
 
 ### 1. Clone the repo
@@ -295,7 +279,7 @@ export async function getPostBySlug(slug: string) {
 
 This repo does not use a 3rd party GraphQL package, because Next.js automatically memoizes the `fetch()` requests in our custom fetch function. This means that if we fetch the same data twice, Next.js will only make one request to WordPress.
 
-> If you prefer use a 3rd party GraphQL package, simply swap out the custom `fetchGraphQL()` function.
+> If you prefer use a 3rd party GraphQL package, simply swap out the custom `fetchGraphQL()` function with the package of your choosing.
 
 ---
 
