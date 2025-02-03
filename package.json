@@ -33,7 +33,7 @@
   "devDependencies": {
     "@evilmartians/lefthook": "^1.10.10",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "^22.12.0",
+    "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/xml-escape": "^1.1.3",
