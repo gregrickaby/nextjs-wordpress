@@ -130,6 +130,8 @@ define( 'NEXTJS_PREVIEW_SECRET', 'preview' );
 define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
 ```
 
+Finally, set your permalink structure to `/blog/%postname%/` in **Settings -> Permalinks**.
+
 ### 7. Optional. Authentication for Previews
 
 In order to query draft posts for Previews, you'll need to authenticate with WordPress. The following is a one-time step:
