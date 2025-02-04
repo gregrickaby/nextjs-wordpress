@@ -1,6 +1,7 @@
 import getAllBooks from '@/lib/queries/getAllBooks'
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
+import type {DynamicPageProps} from '@/lib/types'
 import {Page, Post} from '@/lib/types'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -83,9 +84,9 @@ function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
 /**
  * Catch-all Archive Page route.
  */
-export default async function Archive({params}: {params: {slug: string}}) {
+export default async function Archive({params}: DynamicPageProps) {
   // Get the slug from the params.
-  const {slug} = params
+  const {slug} = await params
 
   // Fetch data from WordPress.
   const data = await fetchData(slug)

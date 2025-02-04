@@ -1,5 +1,6 @@
 import getAllBooks from '@/lib/queries/getAllBooks'
 import getBookBySlug from '@/lib/queries/getBookBySlug'
+import type {DynamicPageProps} from '@/lib/types'
 import {Metadata} from 'next'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
@@ -31,11 +32,12 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({
   params
-}: {
-  params: {slug: string}
-}): Promise<Metadata | null> {
+}: DynamicPageProps): Promise<Metadata | null> {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Get the page.
-  const book = await getBookBySlug(params.slug)
+  const book = await getBookBySlug(slug)
 
   // No post? Bail...
   if (!book) {
@@ -53,9 +55,12 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function Book({params}: {params: {slug: string}}) {
+export default async function Book({params}: DynamicPageProps) {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Fetch a single book from WordPress.
-  const book = await getBookBySlug(params.slug)
+  const book = await getBookBySlug(slug)
 
   // No book? Bail...
   if (!book) {

@@ -1,7 +1,9 @@
 import CommentForm from '@/components/CommentForm'
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPostBySlug from '@/lib/queries/getPostBySlug'
+import type {DynamicPageProps} from '@/lib/types'
 import {Metadata} from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
@@ -32,11 +34,12 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({
   params
-}: {
-  params: {slug: string}
-}): Promise<Metadata | null> {
+}: DynamicPageProps): Promise<Metadata | null> {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Get the blog post.
-  const post = await getPostBySlug(params.slug)
+  const post = await getPostBySlug(slug)
 
   // No post? Bail...
   if (!post) {
@@ -54,9 +57,12 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function Post({params}: {params: {slug: string}}) {
+export default async function Post({params}: DynamicPageProps) {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Fetch a single post from WordPress.
-  const post = await getPostBySlug(params.slug)
+  const post = await getPostBySlug(slug)
 
   // No post? Bail...
   if (!post) {
@@ -102,7 +108,7 @@ export default async function Post({params}: {params: {slug: string}}) {
         {post.comments.nodes.map((comment) => (
           <article key={comment.databaseId}>
             <header className="flex items-center gap-2">
-              <img
+              <Image
                 alt={comment.author.node.name}
                 className="m-0 rounded-full"
                 height={64}

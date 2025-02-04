@@ -2,11 +2,6 @@ import {revalidatePath, revalidateTag} from 'next/cache'
 import {NextRequest} from 'next/server'
 
 /**
- * Route segment configuration.
- */
-export const runtime = 'edge'
-
-/**
  * On-demand revalidation.
  *
  * ### Notes

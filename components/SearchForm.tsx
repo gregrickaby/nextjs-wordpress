@@ -66,13 +66,8 @@ export default function Search() {
           type="search"
           value={query}
         />
-        <button
-          aria-label="Clear search"
-          className="absolute right-2 z-10 rounded-r-md bg-zinc-400 p-1 font-mono text-xs text-zinc-200 transition-all duration-300 ease-in-out hover:bg-zinc-600 dark:bg-zinc-700 dark:text-zinc-400"
-          onClick={resetSearch}
-          type="reset"
-        >
-          Clear
+        <button aria-label="reset search" onClick={resetSearch} type="reset">
+          Reset
         </button>
       </div>
 

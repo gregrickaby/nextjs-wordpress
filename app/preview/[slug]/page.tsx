@@ -1,11 +1,11 @@
 import config from '@/lib/config'
 import getPreview from '@/lib/queries/getPreview'
+import type {DynamicPageProps} from '@/lib/types'
 import {Metadata} from 'next'
 
-// Types.
 interface PreviewProps {
-  params: {slug: string}
-  searchParams: {[key: string]: string | string[] | undefined}
+  params: Promise<{slug: string}>
+  searchParams: Promise<{[key: string]: string | string[] | undefined}>
 }
 
 /**
@@ -25,11 +25,12 @@ export const runtime = 'edge'
  */
 export async function generateMetadata({
   params
-}: {
-  params: {slug: string}
-}): Promise<Metadata | null> {
+}: DynamicPageProps): Promise<Metadata | null> {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Get the preview post.
-  const post = await getPreview(params.slug)
+  const post = await getPreview(slug)
 
   // No preview? Bail...
   if (!post) {
@@ -43,7 +44,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${post.title} - ${config.siteName}`,
       description: post.excerpt,
-      url: `${config.siteUrl}/blog/${params.slug}`,
+      url: `${config.siteUrl}/blog/${slug}`,
       siteName: config.siteName,
       locale: 'en_US',
       type: 'website',
@@ -70,8 +71,11 @@ export async function generateMetadata({
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
 export default async function Preview({params, searchParams}: PreviewProps) {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Get the secret from the query parameters.
-  const secret = searchParams.secret
+  const {secret} = await searchParams
 
   // No secret? Bail.
   if (!secret || secret !== process.env.NEXTJS_PREVIEW_SECRET) {
@@ -88,7 +92,7 @@ export default async function Preview({params, searchParams}: PreviewProps) {
   }
 
   // Attempt to get the preview.
-  const post = await getPreview(params.slug)
+  const post = await getPreview(slug)
 
   // No preview available? Bail.
   if (!post) {
@@ -97,9 +101,7 @@ export default async function Preview({params, searchParams}: PreviewProps) {
         <h1>Preview Error</h1>
         <p>
           Couldn&apos;t find a WordPress post with the Post ID:{' '}
-          <span className="bg-yellow-200 p-1 font-mono text-black">
-            {params.slug}
-          </span>
+          <span className="bg-yellow-200 p-1 font-mono text-black">{slug}</span>
         </p>
         <p>Please verify the Post ID and try again.</p>
       </div>

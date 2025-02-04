@@ -1,5 +1,6 @@
 import config from '@/lib/config'
 import getTagBySlug from '@/lib/queries/getTagBySlug'
+import type {DynamicPageProps} from '@/lib/types'
 import {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,10 +13,9 @@ import {notFound} from 'next/navigation'
  */
 export async function generateMetadata({
   params
-}: {
-  params: {slug: string}
-}): Promise<Metadata | null> {
-  const slug = params.slug
+}: DynamicPageProps): Promise<Metadata | null> {
+  // Get the slug from the params.
+  const {slug} = await params
 
   return {
     title: `${slug} Archives - ${config.siteName}`,
@@ -28,9 +28,12 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function TagArchive({params}: {params: {slug: string}}) {
+export default async function TagArchive({params}: DynamicPageProps) {
+  // Get the slug from the params.
+  const {slug} = await params
+
   // Fetch posts from WordPress.
-  const posts = await getTagBySlug(params.slug)
+  const posts = await getTagBySlug(slug)
 
   // No posts? Bail...
   if (!posts) {
@@ -39,7 +42,7 @@ export default async function TagArchive({params}: {params: {slug: string}}) {
 
   return (
     <main className="flex flex-col gap-8">
-      <h1 className="capitalize">Post Tag: {params.slug}</h1>
+      <h1 className="capitalize">Post Tag: {slug}</h1>
       <div className="flex flex-wrap gap-8">
         {posts.map((post) => (
           <article className="w-72" key={post.databaseId}>

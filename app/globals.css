@@ -1,33 +1,31 @@
-/* https://nextjs.org/docs/app/building-your-application/styling/tailwind-css */
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Example Styles. Delete to start fresh! */
+body {
+  @apply container mx-auto p-4 grid grid-cols-1 gap-4;
+  @apply text-xl;
+}
 
-@layer base {
-  body {
-    @apply relative mx-auto space-y-8 px-4 py-8 antialiased;
-    @apply prose prose-zinc dark:prose-invert;
-    @apply dark:bg-zinc-900;
-  }
+h1 {
+  @apply text-4xl font-bold;
+}
 
-  input {
-    @apply rounded px-4 py-2;
-    @apply text-zinc-900;
-    @apply bg-zinc-200 dark:bg-zinc-200;
-  }
+h2 {
+  @apply text-2xl font-bold;
+}
 
-  textarea {
-    @apply rounded px-4 py-2;
-    @apply text-zinc-900;
-    @apply bg-zinc-200 dark:bg-zinc-200;
-  }
+h3 {
+  @apply text-xl font-bold;
+}
 
-  button,
-  .button,
-  [type='submit'] {
-    @apply rounded px-4 py-3 leading-tight no-underline;
-    @apply bg-zinc-200 text-zinc-900 dark:bg-zinc-400;
-    @apply hover:bg-zinc-300 dark:hover:bg-zinc-500;
-  }
+a {
+  @apply text-blue-500 underline;
+}
+
+p {
+  @apply my-4;
+}
+
+input {
+  @apply p-2 border border-gray-300 rounded;
 }

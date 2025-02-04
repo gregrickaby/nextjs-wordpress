@@ -1,3 +1,9 @@
+export interface DynamicPageProps {
+  params: Promise<{
+    slug: string
+  }>
+}
+
 export interface SearchResults {
   id: number
   title: string

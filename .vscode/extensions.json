@@ -3,7 +3,6 @@
     "EditorConfig.EditorConfig",
     "GraphQL.vscode-graphql-syntax",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "stylelint.vscode-stylelint"
+    "esbenp.prettier-vscode"
   ]
 }

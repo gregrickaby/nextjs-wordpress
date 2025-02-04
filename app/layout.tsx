@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import config from '@/lib/config'
-import type {Metadata, Viewport} from 'next'
+import type {Metadata} from 'next'
 import './globals.css'
 
 /**
@@ -13,16 +13,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(config.siteUrl),
   title: `${config.siteName} - ${config.siteDescription}`,
   description: config.siteDescription
-}
-
-/**
- * Setup viewport.
- *
- * @see https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- */
-export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#18181b'
 }
 
 /**
