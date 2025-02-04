@@ -1,3 +1,4 @@
+import config from '@/lib/config'
 import {GraphQLResponse, SearchResults} from '@/lib/types'
 
 /**
@@ -41,7 +42,8 @@ export async function fetchGraphQL<T = any>(
         variables
       }),
       next: {
-        tags: ['graphql']
+        tags: [slug],
+        revalidate: config.revalidate
       }
     })
 
@@ -85,7 +87,17 @@ export async function searchQuery(query: string): Promise<SearchResults[]> {
 
     // Always fetch fresh search results.
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_WORDPRESS_REST_API_URL}/search?search=${query}&subtype=any&per_page=100`
+      `${process.env.NEXT_PUBLIC_WORDPRESS_REST_API_URL}/search?search=${query}&subtype=any&per_page=100`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        next: {
+          tags: [`search-${query}`],
+          revalidate: config.revalidate
+        }
+      }
     )
 
     // If the response status is not 200, throw an error.
