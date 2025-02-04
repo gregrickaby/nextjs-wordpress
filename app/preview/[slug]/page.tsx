@@ -15,7 +15,7 @@ interface PreviewProps {
  */
 export async function generateMetadata({
   params
-}: DynamicPageProps): Promise<Metadata | null> {
+}: Readonly<DynamicPageProps>): Promise<Metadata | null> {
   // Get the slug from the params.
   const {slug} = await params
 
@@ -60,7 +60,10 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function Preview({params, searchParams}: PreviewProps) {
+export default async function Preview({
+  params,
+  searchParams
+}: Readonly<PreviewProps>) {
   // Get the slug from the params.
   const {slug} = await params
 

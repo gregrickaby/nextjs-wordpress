@@ -57,7 +57,7 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function Post({params}: DynamicPageProps) {
+export default async function Post({params}: Readonly<DynamicPageProps>) {
   // Get the slug from the params.
   const {slug} = await params
 

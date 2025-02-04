@@ -6,7 +6,7 @@ import {useState} from 'react'
 /**
  * The comment form component.
  */
-export default function CommentForm({postID}: {postID: string}) {
+export default function CommentForm({postID}: Readonly<{postID: string}>) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [website, setWebsite] = useState('')

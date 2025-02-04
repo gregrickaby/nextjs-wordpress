@@ -6,7 +6,10 @@ import {headers} from 'next/headers'
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/not-found
  */
 export default async function NotFound() {
+  // Get the referer header.
   const headersList = await headers()
+
+  // Get the referer header value.
   const referer = headersList.get('referer')
 
   return (

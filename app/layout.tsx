@@ -20,7 +20,9 @@ export const metadata: Metadata = {
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
  */
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children
+}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="en">
       <body>

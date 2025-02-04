@@ -84,7 +84,7 @@ function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
 /**
  * Catch-all Archive Page route.
  */
-export default async function Archive({params}: DynamicPageProps) {
+export default async function Archive({params}: Readonly<DynamicPageProps>) {
   // Get the slug from the params.
   const {slug} = await params
 

@@ -13,7 +13,7 @@ import {notFound} from 'next/navigation'
  */
 export async function generateMetadata({
   params
-}: DynamicPageProps): Promise<Metadata | null> {
+}: Readonly<DynamicPageProps>): Promise<Metadata | null> {
   // Get the slug from the params.
   const {slug} = await params
 
@@ -28,7 +28,7 @@ export async function generateMetadata({
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
  */
-export default async function TagArchive({params}: DynamicPageProps) {
+export default async function TagArchive({params}: Readonly<DynamicPageProps>) {
   // Get the slug from the params.
   const {slug} = await params
 
