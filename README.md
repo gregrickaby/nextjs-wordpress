@@ -17,11 +17,12 @@ Please consider it a starting point for your next headless WordPress project.
 - On-demand Revalidation
 - Post/Page Previews
 - RSS Feed
+- Robots.txt
 - Search
-- Sitemap
-- WordPress Menus
+- Sitemap.xml
 - Static Site Generation (SSG)
 - TypeScript, ESLint, and Prettier
+- WordPress Menus
 - Yoast SEO
 
 Plus it's really, really fast! 🚀
@@ -74,34 +75,34 @@ NEXTJS_REVALIDATION_SECRET="revalidate"
 Update the URL in `next.config.js` to match your WordPress site:
 
 ```ts
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.nextjswp.**' // <-- Change to your WordPress site
+        hostname: '*.nextjswp.**' // <-- Change this to your WordPress site
       }
     ]
   }
 }
-
-module.exports = nextConfig
 ```
 
 ### 5. Configure `/lib/config.ts`
 
-Update the content to match your WordPress site:
+Open `/lib/config.ts` and update the content to match your WordPress site:
 
 ```ts
 const config = {
   siteName: 'Next.js WordPress',
   siteDescription: "It's headless WordPress!",
-  siteUrl: 'https://nextjswp.com'
+  siteUrl: 'https://nextjswp.com',
+  revalidation: 3600
 }
 ```
 
 ### 6. Configure WordPress
+
+#### Plugins
 
 You'll need either a local or public WordPress site with the following plugins:
 
@@ -113,6 +114,8 @@ You'll need either a local or public WordPress site with the following plugins:
 - [WPGraphQL JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) (optional)
 - [WPGraphQL](https://www.wpgraphql.com/)
 - [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
+
+#### WP-Config
 
 After installing all the plugins mentioned above, you'll need to add some constants to your `wp-config.php` file:
 
@@ -130,6 +133,8 @@ define( 'NEXTJS_PREVIEW_SECRET', 'preview' );
 define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
 ```
 
+#### Permalinks
+
 Finally, set your permalink structure to `/blog/%postname%/` in **Settings -> Permalinks**.
 
 ### 7. Optional. Authentication for Previews
@@ -137,13 +142,13 @@ Finally, set your permalink structure to `/blog/%postname%/` in **Settings -> Pe
 In order to query draft posts for Previews, you'll need to authenticate with WordPress. The following is a one-time step:
 
 - Install and activate the [WPGraphQL JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) plugin
-- Generate a random string. I recommend using the [WordPress salt generator](https://api.wordpress.org/secret-key/1.1/salt/)
+- Generate any random string. I recommend using the [WordPress salt generator](https://api.wordpress.org/secret-key/1.1/salt/)
 - Copy the string
-- Open your `wp-config.php` file, and paste the string into the `GRAPHQL_JWT_AUTH_SECRET_KEY` constant. (Be sure to uncomment the constant by removing the `//` symbols.)
+- Open your `wp-config.php` file, and paste the string into the `GRAPHQL_JWT_AUTH_SECRET_KEY` constant
 
 ```php
 // Optional. JWT auth refresh token.
-define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'some-random-string-generated-by-wp-salt' );
+define( 'GRAPHQL_JWT_AUTH_SECRET_KEY', 'the-random-string-generated-by-wp-salt' );
 ```
 
 - Go to **GraphQL -> GraphiQL IDE** in your WordPress admin
@@ -165,7 +170,7 @@ mutation Login {
 
 - Click the **Play** button in GraphiQL to run the mutation
 - Copy the `refreshToken` returned by the mutation
-- Open the Next.js `.env.local` file, and paste the `refreshToken` into the `NEXTJS_AUTH_REFRESH_TOKEN` variable. (Be sure to uncomment the variable by removing the `#` symbol.)
+- Open the Next.js `.env.local` file, and paste the `refreshToken` into the `NEXTJS_AUTH_REFRESH_TOKEN` variable
 
 ```txt
 # Optional. JWT auth refresh token.
@@ -174,7 +179,7 @@ NEXTJS_AUTH_REFRESH_TOKEN="refresh-token-generated-by-grapqh-query"
 
 You should now be able to preview draft posts in your Next.js app by clicking the **Preview** button in your WordPress admin.
 
-### 8. Start the dev servers
+### 8. Start the dev server
 
 ```bash
 npm run dev
@@ -293,16 +298,13 @@ Remember to add all the environment variables from `.env.local` to your producti
 
 ### Other
 
-#### RSS Feed and Sitemap
-
-RSS feed and the Sitemap are available at:
+#### RSS Feed, Sitemap, Robots.txt
 
 - <https://nextjswp.com/feed.xml>
 - <https://nextjswp.com/sitemap.xml>
+- <https://nextjswp.com/robots.txt>
 
 #### Previews
-
-Previews are available at:
 
 - <https://nextjswp.com/preview/120?secret=preview>
 
@@ -310,6 +312,6 @@ Previews are available at:
 
 ## Contributing
 
-Contributions are welcome! Please see the [contributing guidelines](./CONTRIBUTING.md) for more information.
+This is a hobby project and my time is limited, so your contributions are welcome! Please see the [contributing guidelines](./CONTRIBUTING.md) to get started.
 
 ---
