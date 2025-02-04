@@ -9,16 +9,6 @@ interface PreviewProps {
 }
 
 /**
- * Route segment config.
- *
- * Because previews are dynamic, force the route to be dynamic.
- *
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
- */
-export const dynamic = 'force-dynamic'
-export const runtime = 'edge'
-
-/**
  * Generate the metadata for each static route at build time.
  *
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function

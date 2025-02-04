@@ -3,13 +3,6 @@ import getAllPosts from '@/lib/queries/getAllPosts'
 import escape from 'xml-escape'
 
 /**
- * Route segment config.
- *
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
- */
-export const runtime = 'edge'
-
-/**
  * Route handler for generating RSS feed.
  *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/route

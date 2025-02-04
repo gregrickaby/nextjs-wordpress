@@ -3,13 +3,6 @@ import getAllPages from '@/lib/queries/getAllPages'
 import getAllPosts from '@/lib/queries/getAllPosts'
 
 /**
- * Route segment config.
- *
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
- */
-export const runtime = 'edge'
-
-/**
  * Route handler for generating sitemap.xml.
  *
  * @see https://www.sitemaps.org/protocol.html
