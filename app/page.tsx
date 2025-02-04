@@ -36,9 +36,9 @@ export default async function Home() {
             <article className="w-72" key={post.databaseId}>
               <Image
                 alt={post.featuredImage.node.altText}
-                height={post.featuredImage.node.mediaDetails.height}
+                height={230}
                 src={post.featuredImage.node.sourceUrl}
-                width={post.featuredImage.node.mediaDetails.width}
+                width={288}
                 priority={true}
               />
               <Link href={`/blog/${post.slug}`}>

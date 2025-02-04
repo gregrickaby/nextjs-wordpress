@@ -59,9 +59,9 @@ function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
           <article className="w-72" key={post.databaseId}>
             <Image
               alt={post.featuredImage.node.altText}
-              height={post.featuredImage.node.mediaDetails.height}
+              height={233}
               src={post.featuredImage.node.sourceUrl}
-              width={post.featuredImage.node.mediaDetails.width}
+              width={280}
               priority={true}
             />
             <Link href={`/${context}/${post.slug}`}>
