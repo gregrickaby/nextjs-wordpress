@@ -2,7 +2,7 @@
 
 /* Example Styles. Delete to start fresh! */
 body {
-  @apply container mx-auto p-4 grid grid-cols-1 gap-4;
+  @apply container mx-auto grid grid-cols-1 gap-4 p-4;
   @apply text-xl;
 }
 
@@ -19,7 +19,7 @@ h3 {
 }
 
 a {
-  @apply text-blue-500 underline;
+  @apply text-blue-700 underline;
 }
 
 p {
@@ -27,13 +27,13 @@ p {
 }
 
 input {
-  @apply p-2 border border-gray-300 rounded;
+  @apply rounded border border-gray-300 p-2;
 }
 
 ul {
-  @apply list-disc list-inside;
+  @apply list-inside list-disc;
 }
 
 ol {
-  @apply list-decimal list-inside;
+  @apply list-inside list-decimal;
 }
