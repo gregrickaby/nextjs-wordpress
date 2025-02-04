@@ -7,7 +7,7 @@ import {Post} from '@/lib/types'
 export default async function getPreview(id: string) {
   const query = `
     query PreviewPost($id: ID!) {
-      post(id: $id, idType: DATABASE_ID) {
+      post(id: $id, idType: DATABASE_ID, asPreview: true) {
         databaseId
         date
         modified
