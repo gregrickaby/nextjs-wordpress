@@ -21,7 +21,7 @@ Please consider it a starting point for your next headless WordPress project.
 - Sitemap
 - WordPress Menus
 - Static Site Generation (SSG)
-- TypeScript, ESLint, Stylelint, and Prettier
+- TypeScript, ESLint, and Prettier
 - Yoast SEO
 
 Plus it's really, really fast! 🚀
@@ -109,7 +109,7 @@ You'll need either a local or public WordPress site with the following plugins:
 - [Next.js WordPress Plugin](https://github.com/gregrickaby/nextjs-wordpress-plugin)
 - [Next.js WordPress Theme](https://github.com/gregrickaby/nextjs-wordpress-theme)
 - [WPGraphQL Yoast SEO](https://wordpress.org/plugins/add-wpgraphql-seo/)
-- [WPGraphQL for Advanced Custom Fields](https://www.wpgraphql.com/acf/)
+- [WPGraphQL for Advanced Custom Fields](https://wordpress.org/plugins/wpgraphql-acf/)
 - [WPGraphQL JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication) (optional)
 - [WPGraphQL](https://www.wpgraphql.com/)
 - [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
