@@ -29,3 +29,11 @@ p {
 input {
   @apply p-2 border border-gray-300 rounded;
 }
+
+ul {
+  @apply list-disc list-inside;
+}
+
+ol {
+  @apply list-decimal list-inside;
+}
