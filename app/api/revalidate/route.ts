@@ -68,8 +68,8 @@ export async function GET(request: NextRequest) {
     revalidatePath('/')
 
     // Revalidate the cached GraphQL queries.
-    revalidateTag(slug)
-    revalidateTag('graphql') // This tag is set in `lib/functions.ts`.
+    revalidateTag(slug, 'max')
+    revalidateTag('graphql', 'max') // This tag is set in `lib/functions.ts`.
 
     return new Response(
       JSON.stringify({

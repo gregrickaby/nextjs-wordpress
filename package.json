@@ -17,9 +17,8 @@
     "build": "next build",
     "clean": "rimraf .next",
     "dev": "npm run clean && next dev",
-    "format": "prettier '**/*.{js,jsx,ts,tsx,md,html,css,json,yml}' --ignore-path .gitignore --cache --write",
-    "info": "next info",
-    "lint": "next lint",
+    "format": "eslint --fix && prettier '**/*.{js,jsx,ts,tsx,md,html,css,json,yml}' --ignore-path .gitignore --cache --write",
+    "lint": "eslint .",
     "start": "next start"
   },
   "dependencies": {
@@ -30,7 +29,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
-    "lefthook": "^2.0.4",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
@@ -39,6 +37,7 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.4",
     "eslint-config-prettier": "^10.1.8",
+    "lefthook": "^2.0.4",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
     "prettier": "^3.6.2",
