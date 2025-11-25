@@ -29,6 +29,7 @@ Please consider it a starting point for your next headless WordPress project.
 - Search
 - Sitemap.xml
 - Static Site Generation (SSG)
+- Test-Driven Development (Vitest + React Testing Library + MSW + jest-axe)
 - TypeScript, ESLint, and Prettier
 - WordPress Menus
 - Yoast SEO
@@ -347,6 +348,33 @@ This project includes specialized AI agents to help with development:
 - **@docs-agent** - Technical writer for documentation
 
 See [AGENTS.md](./AGENTS.md) for detailed information about using agents.
+
+---
+
+## Testing
+
+This project uses a comprehensive testing stack:
+
+- **Vitest** - Fast unit test framework
+- **React Testing Library** - Component testing with user-centric queries
+- **MSW v2** - Mock Service Worker for API mocking (no fetch mocking)
+- **jest-axe** - Accessibility testing
+
+**Running Tests:**
+
+```bash
+npm test              # Run all tests once
+npm run test:watch    # Watch mode for development
+npm run test:ui       # Interactive UI mode
+npm run test:coverage # Generate coverage report
+npm run validate      # Run all checks: format, lint, typecheck, test
+```
+
+**Test-Driven Development:**
+
+All components and functions have co-located `.test.tsx` or `.test.ts` files. Tests use MSW v2 for GraphQL API mocking and jest-axe for accessibility validation. Target 80%+ test coverage on critical paths.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed testing patterns and best practices.
 
 ---
 
