@@ -1,33 +1,48 @@
 name: Assertions
 
 on:
+  # Run on pull requests to main branch
   pull_request:
     branches: [main]
 
+  # Manual trigger
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   assertions:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 'lts/*'
+          node-version-file: '.nvmrc'
           cache: 'npm'
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      - name: Install Dependencies
+        run: npm i
 
       - name: Copy .env
         run: cp .env.example .env
 
-      - name: Install Dependencies
-        run: npm ci --ignore-scripts
-
       - name: Lint
         run: npm run lint
 
-      - name: Test Build
+      - name: Test
+        run: npm run test
+
+      - name: Build
         run: npm run build
