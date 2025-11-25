@@ -1,9 +1,9 @@
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
-import {Post} from '@/lib/types'
+import { Post } from '@/lib/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 /**
  * The homepage route.
@@ -32,15 +32,19 @@ export default async function Home() {
       <aside>
         <h2>Latest Posts</h2>
         <div className="flex flex-wrap gap-8">
-          {posts.map((post: Post) => (
+          {posts.map((post: Post, index: number) => (
             <article className="w-72" key={post.databaseId}>
-              <Image
-                alt={post.featuredImage.node.altText}
-                height={230}
-                src={post.featuredImage.node.sourceUrl}
-                width={288}
-                priority={true}
-              />
+              {post.featuredImage?.node && (
+                <Image
+                  alt={post.featuredImage.node.altText || post.title}
+                  height={post.featuredImage.node.mediaDetails?.height || 230}
+                  src={post.featuredImage.node.sourceUrl}
+                  width={post.featuredImage.node.mediaDetails?.width || 288}
+                  sizes="(max-width: 768px) 100vw, 288px"
+                  className="h-auto w-full object-cover"
+                  priority={index < 2}
+                />
+              )}
               <Link href={`/blog/${post.slug}`}>
                 <h2 dangerouslySetInnerHTML={{__html: post.title}} />
               </Link>

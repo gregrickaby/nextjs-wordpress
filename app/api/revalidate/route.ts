@@ -1,5 +1,5 @@
-import {revalidatePath, revalidateTag} from 'next/cache'
-import {NextRequest} from 'next/server'
+import { revalidatePath, revalidateTag } from 'next/cache'
+import { NextRequest } from 'next/server'
 
 /**
  * On-demand revalidation.
@@ -25,12 +25,52 @@ import {NextRequest} from 'next/server'
  * @see https://nextjs.org/docs/app/api-reference/functions/revalidateTag
  * @see https://nextjs.org/docs/app/api-reference/functions/revalidatePath
  */
+
+/**
+ * Rate limiting configuration.
+ *
+ * WARNING: This in-memory Map will NOT work correctly in production
+ * serverless environments (Vercel, AWS Lambda, etc.) where each request
+ * may run on a different instance. For production, use:
+ * - Redis (Upstash Redis recommended for serverless)
+ * - Vercel KV
+ * - Other distributed cache solutions
+ */
+const rateLimitMap = new Map<string, number[]>()
+const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 10 // requests per window
+
 export async function GET(request: NextRequest) {
-  const secret = request.headers.get('x-vercel-revalidation-secret')
+  const secret = request.headers.get('x-revalidation-secret')
   const slug = request.nextUrl.searchParams.get('slug')
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+
+  // Rate limiting check
+  const now = Date.now()
+  const requests = rateLimitMap.get(ip) || []
+  const recentRequests = requests.filter(
+    (time) => now - time < RATE_LIMIT_WINDOW_MS
+  )
+
+  if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
+    return new Response(
+      JSON.stringify({revalidated: false, message: 'Rate limit exceeded'}),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Robots-Tag': 'noindex',
+          'Retry-After': '60'
+        }
+      }
+    )
+  }
+
+  recentRequests.push(now)
+  rateLimitMap.set(ip, recentRequests)
 
   // Validate the secret.
-  if (secret !== process.env.NEXTJS_REVALIDATION_SECRET) {
+  if (!secret || secret !== process.env.NEXTJS_REVALIDATION_SECRET) {
     return new Response(
       JSON.stringify({revalidated: false, message: 'Invalid secret'}),
       {
@@ -43,8 +83,8 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // Validate the post slug.
-  if (!slug) {
+  // Validate the post slug (prevent path traversal and injection)
+  if (!slug || !/^[a-zA-Z0-9-_/]+$/.test(slug)) {
     return new Response(
       JSON.stringify({revalidated: false, message: 'Invalid slug parameter.'}),
       {

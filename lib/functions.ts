@@ -1,5 +1,5 @@
 import config from '@/lib/config'
-import {GraphQLResponse, SearchResults} from '@/lib/types'
+import { GraphQLResponse, SearchResults } from '@/lib/types'
 
 /**
  * Function to execute a GraphQL query.
@@ -30,8 +30,16 @@ export async function fetchGraphQL<T = any>(
       headers['Authorization'] = `Bearer ${refreshToken}`
     }
 
-    // Get the slug.
-    const slug = variables?.slug || variables?.id || 'graphql'
+    // Get the slug and determine content type for better cache tagging.
+    const slug = variables?.slug || variables?.id || 'unknown'
+    let contentType = 'content'
+    if (query.includes('posts')) {
+      contentType = 'post'
+    } else if (query.includes('pages')) {
+      contentType = 'page'
+    } else if (query.includes('books')) {
+      contentType = 'book'
+    }
 
     // Fetch data from external API.
     const response = await fetch(graphqlUrl, {
@@ -42,7 +50,7 @@ export async function fetchGraphQL<T = any>(
         variables
       }),
       next: {
-        tags: [slug],
+        tags: [slug, 'graphql', `type:${contentType}`],
         revalidate: config.revalidate
       }
     })
@@ -56,17 +64,26 @@ export async function fetchGraphQL<T = any>(
     // Read the response as JSON.
     const data = await response.json()
 
-    // Throw an error if there was a GraphQL error.
+    // Handle GraphQL errors gracefully.
     if (data.errors) {
       console.error('GraphQL Errors:', data.errors)
-      throw new Error('Error executing GraphQL query')
+      return {
+        data: undefined,
+        errors: data.errors
+      }
     }
 
     // Finally, return the data.
     return data
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error('Fetch error:', error)
+    // Return null instead of throwing to allow graceful degradation.
+    return {
+      data: undefined,
+      errors: [
+        {message: error instanceof Error ? error.message : 'Unknown error'}
+      ]
+    }
   }
 }
 
@@ -80,9 +97,10 @@ export async function searchQuery(query: string): Promise<SearchResults[]> {
   query = encodeURIComponent(query.trim())
 
   try {
-    // If there is no URL, throw an error.
+    // If there is no URL, return empty array.
     if (!process.env.NEXT_PUBLIC_WORDPRESS_REST_API_URL) {
-      throw new Error('Missing WordPress REST API URL environment variable!')
+      console.error('Missing WordPress REST API URL environment variable!')
+      return []
     }
 
     // Always fetch fresh search results.
@@ -100,10 +118,10 @@ export async function searchQuery(query: string): Promise<SearchResults[]> {
       }
     )
 
-    // If the response status is not 200, throw an error.
+    // If the response status is not 200, return empty array.
     if (!response.ok) {
-      console.error('Response Status:', response.status)
-      throw new Error(response.statusText)
+      console.error('Search API Response Status:', response.status)
+      return []
     }
 
     // Read the response as JSON.
@@ -111,13 +129,13 @@ export async function searchQuery(query: string): Promise<SearchResults[]> {
 
     // Verify data has posts.
     if (!data || data.length === 0) {
-      throw new Error('No posts found.')
+      return []
     }
 
     // Return the data.
     return data as SearchResults[]
   } catch (error) {
-    console.error('Error fetching data:', error)
-    throw error
+    console.error('Error fetching search data:', error)
+    return []
   }
 }

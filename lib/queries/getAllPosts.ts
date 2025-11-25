@@ -1,5 +1,5 @@
-import {fetchGraphQL} from '@/lib/functions'
-import {Post} from '@/lib/types'
+import { fetchGraphQL } from '@/lib/functions'
+import { Post } from '@/lib/types'
 
 /**
  * Fetch all blog posts.
@@ -36,6 +36,10 @@ export default async function getAllPosts() {
   `
 
   const response = await fetchGraphQL(query)
+
+  if (!response?.data?.posts?.nodes) {
+    return []
+  }
 
   return response.data.posts.nodes as Post[]
 }

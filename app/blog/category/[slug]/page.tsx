@@ -1,10 +1,10 @@
 import config from '@/lib/config'
 import getCategoryBySlug from '@/lib/queries/getCategoryBySlug'
-import {DynamicPageProps} from '@/lib/types'
-import {Metadata} from 'next'
+import { DynamicPageProps } from '@/lib/types'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import {notFound} from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 /**
  * Generate the metadata for each static route at build time.
@@ -46,15 +46,19 @@ export default async function CategoryArchive({
     <main className="flex flex-col gap-8">
       <h1 className="capitalize">Post Category: {slug}</h1>
       <div className="flex flex-wrap gap-8">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <article className="w-72" key={post.databaseId}>
-            <Image
-              alt={post.featuredImage.node.altText}
-              height={post.featuredImage.node.mediaDetails.height}
-              src={post.featuredImage.node.sourceUrl}
-              width={post.featuredImage.node.mediaDetails.width}
-              priority={true}
-            />
+            {post.featuredImage?.node && (
+              <Image
+                alt={post.featuredImage.node.altText || post.title}
+                height={post.featuredImage.node.mediaDetails?.height || 233}
+                src={post.featuredImage.node.sourceUrl}
+                width={post.featuredImage.node.mediaDetails?.width || 280}
+                sizes="(max-width: 768px) 100vw, 280px"
+                className="h-auto w-full object-cover"
+                priority={index < 2}
+              />
+            )}
             <Link href={`/blog/${post.slug}`}>
               <h2 dangerouslySetInnerHTML={{__html: post.title}} />
             </Link>

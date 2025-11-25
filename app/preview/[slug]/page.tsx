@@ -1,7 +1,7 @@
 import config from '@/lib/config'
 import getPreview from '@/lib/queries/getPreview'
-import type {DynamicPageProps} from '@/lib/types'
-import {Metadata} from 'next'
+import type { DynamicPageProps } from '@/lib/types'
+import { Metadata } from 'next'
 
 interface PreviewProps {
   params: Promise<{slug: string}>
@@ -38,14 +38,16 @@ export async function generateMetadata({
       siteName: config.siteName,
       locale: 'en_US',
       type: 'website',
-      images: [
-        {
-          url: post?.featuredImage?.node?.sourceUrl,
-          width: post?.featuredImage?.node?.mediaDetails?.width,
-          height: post?.featuredImage?.node?.mediaDetails?.height,
-          alt: post?.featuredImage?.node?.altText
-        }
-      ]
+      ...(post.featuredImage?.node?.sourceUrl && {
+        images: [
+          {
+            url: post.featuredImage.node.sourceUrl,
+            width: post.featuredImage.node.mediaDetails?.width,
+            height: post.featuredImage.node.mediaDetails?.height,
+            alt: post.featuredImage.node.altText || post.title
+          }
+        ]
+      })
     }
   }
 }

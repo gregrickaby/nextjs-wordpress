@@ -76,7 +76,7 @@ export interface Page {
   title: string
   excerpt: string
   content: string
-  featuredImage: FeaturedImage
+  featuredImage: FeaturedImage | null
   seo: {
     metaDesc: string
     title: string
@@ -95,52 +95,45 @@ export interface Post {
   databaseId: string
   date: string
   modified: string
-  modified: string
   slug: string
   title: string
   excerpt: string
   content: string
   commentCount: number
   categories: {
-    nodes: [
-      {
-        databaseId: string
-        name: string
-      }
-    ]
+    nodes: Array<{
+      databaseId: string
+      name: string
+    }>
   }
   tags: {
-    nodes: [
-      {
-        databaseId: string
-        name: string
-      }
-    ]
+    nodes: Array<{
+      databaseId: string
+      name: string
+    }>
   }
-  featuredImage: FeaturedImage
+  featuredImage: FeaturedImage | null
   seo: {
     metaDesc: string
     title: string
   }
   comments: {
-    nodes: [
-      {
-        databaseId: string
-        content: string
-        date: string
-        status: string
-        author: {
-          node: {
-            avatar: {
-              url: string
-            }
-            email: string
-            name: string
+    nodes: Array<{
+      databaseId: string
+      content: string
+      date: string
+      status: string
+      author: {
+        node: {
+          avatar: {
             url: string
           }
+          email: string
+          name: string
+          url: string
         }
       }
-    ]
+    }>
   }
 }
 
@@ -156,7 +149,7 @@ export interface Book {
   title: string
   excerpt: string
   content: string
-  featuredImage: FeaturedImage
+  featuredImage: FeaturedImage | null
   seo: {
     metaDesc: string
     title: string
