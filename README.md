@@ -2,9 +2,16 @@
 
 It's headless WordPress! 💀 - <https://nextjswp.com>
 
-This is a bare-bones Next.js app, which fetches data from WordPress via WPGraphQL and styles it with TailwindCSS.
+This is a bare-bones Next.js 16 app with React 19, which fetches data from WordPress via WPGraphQL and styles it with Tailwind CSS 4.
 
 Please consider it a starting point for your next headless WordPress project.
+
+**Tech Stack:**
+- Next.js 16.0.4 (App Router)
+- React 19.2.0 (Server Components)
+- TypeScript 5.9.3
+- Tailwind CSS 4.1.17
+- WordPress (headless via WPGraphQL)
 
 ---
 
@@ -68,23 +75,37 @@ NEXTJS_PREVIEW_SECRET="preview"
 
 # Revalidation Secret. Must match the constant in wp-config.php.
 NEXTJS_REVALIDATION_SECRET="revalidate"
+
+# Optional. Allow self-signed SSL certificates for local development.
+# NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
-### 4. Configure `next.config.js`
+> **Note:** Only use `NODE_TLS_REJECT_UNAUTHORIZED=0` in local development with self-signed certificates. Never use this in production!
 
-Update the URL in `next.config.js` to match your WordPress site:
+### 4. Configure `next.config.ts`
+
+Update the URL in `next.config.ts` to match your WordPress site:
 
 ```ts
-const nextConfig = {
+import type {NextConfig} from 'next'
+
+const nextConfig: NextConfig = {
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '*.nextjswp.**' // <-- Change this to your WordPress site
+      },
+      {
+        protocol: 'https',
+        hostname: '*.gravatar.**' // For comment avatars
       }
     ]
   }
 }
+
+export default nextConfig
 ```
 
 ### 5. Configure `/lib/config.ts`
@@ -136,6 +157,23 @@ define( 'NEXTJS_REVALIDATION_SECRET', 'revalidate' );
 #### Permalinks
 
 Finally, set your permalink structure to `/blog/%postname%/` in **Settings -> Permalinks**.
+
+#### Next.js 16 Migration
+
+This project uses Next.js 16 which requires `params` and `searchParams` to be awaited. All dynamic routes use the async pattern:
+
+```typescript
+export default async function Page({
+  params
+}: {
+  params: Promise<{slug: string}>
+}) {
+  const {slug} = await params
+  // ...
+}
+```
+
+See the [Next.js 16 upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-16) for more details.
 
 ### 7. Optional. Authentication for Previews
 
@@ -198,40 +236,39 @@ We can build our queries in GraphiQL (or your favorite REST client) and let `JSO
 Here is a query to fetch a single post (based on the slug), the featured image, author meta, categories, tags, SEO, and post comments:
 
 ```ts
-import {Post} from '@/lib/types'
+import { fetchGraphQL } from '@/lib/functions'
+import { Post } from '@/lib/types'
 
 /**
  * Fetch a single post by slug.
  */
-export async function getPostBySlug(slug: string) {
-  // Define our query.
+export default async function getPostBySlug(slug: string) {
   const query = `
     query GetPost($slug: ID!) {
       post(id: $slug, idType: SLUG) {
         databaseId
+        date
+        modified
         content(format: RENDERED)
         title(format: RENDERED)
         featuredImage {
           node {
             altText
+            sourceUrl
             mediaDetails {
-              sizes(include: MEDIUM) {
-                height
-                width
-                sourceUrl
-              }
+              height
+              width
             }
           }
         }
         author {
           node {
+            name
             avatar {
               url
             }
-            name
           }
         }
-        date
         tags {
           nodes {
             databaseId
@@ -270,19 +307,29 @@ export async function getPostBySlug(slug: string) {
     }
   `
 
-  // Define our variables.
   const variables = {
     slug: slug
   }
 
-  // Fetch the data using a reusable fetch function. Next.js
-  // automatically memoizes and caches these requests.
+  // Fetch the data using a reusable fetch function.
+  // Next.js automatically memoizes and caches these requests.
   const response = await fetchGraphQL(query, variables)
 
-  // Return the post.
+  // Handle errors gracefully - return null if post not found.
+  if (!response?.data?.post) {
+    return null
+  }
+
   return response.data.post as Post
 }
 ```
+
+**Key Patterns:**
+
+- Always check for null/undefined data before returning
+- Featured images are nullable - use optional chaining: `post.featuredImage?.node`
+- Add fallback alt text: `alt={post.featuredImage.node.altText || post.title}`
+- Return `null` or `[]` on errors for graceful degradation
 
 This repo does not use a 3rd party GraphQL package, because Next.js automatically memoizes the `fetch()` requests in our custom fetch function. This means that if we fetch the same data twice, Next.js will only make one request to WordPress.
 
@@ -290,9 +337,28 @@ This repo does not use a 3rd party GraphQL package, because Next.js automaticall
 
 ---
 
+## AI Agents
+
+This project includes specialized AI agents to help with development:
+
+- **@dev-agent** - Full-stack developer for Next.js 16, TypeScript, and WordPress integration
+- **@test-agent** - QA engineer for writing comprehensive tests
+- **@docs-agent** - Technical writer for documentation
+
+See [AGENTS.md](./AGENTS.md) for detailed information about using agents.
+
+---
+
 ### Going To Production
 
 Remember to add all the environment variables from `.env.local` to your production environment on [Vercel](https://vercel.com) or [Netlify](https://netlify.com).
+
+**Important Production Notes:**
+
+- The revalidation API includes rate limiting (10 requests/minute per IP)
+- In serverless environments (Vercel, AWS Lambda), the in-memory rate limiting won't work across instances
+- For production, consider using Redis (Upstash) or Vercel KV for distributed rate limiting
+- See `app/api/revalidate/route.ts` for implementation details
 
 ---
 
@@ -312,6 +378,9 @@ Remember to add all the environment variables from `.env.local` to your producti
 
 ## Contributing
 
-This is a hobby project and my time is limited, so your contributions are welcome! Please see the [contributing guidelines](./CONTRIBUTING.md) to get started.
+This is a hobby project and my time is limited, so your contributions are welcome! Please see:
+
+- [Contributing Guidelines](./CONTRIBUTING.md) - How to contribute code
+- [Agents Guide](./AGENTS.md) - How to use AI agents for development
 
 ---
