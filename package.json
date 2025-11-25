@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/gregrickaby/nextjs-wordpress#readme",
   "scripts": {
-    "build": "next build",
+    "build": "npm run codegen && next build",
     "codegen": "graphql-codegen --config codegen.ts",
     "dev": "npm run codegen && rimraf .next && next dev",
     "format": "eslint --fix && prettier '**/*.{js,jsx,ts,tsx,md,html,css,json,yml}' --ignore-path .gitignore --cache --write",
