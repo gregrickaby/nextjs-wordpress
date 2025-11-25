@@ -1,5 +1,5 @@
 import config from '@/lib/config'
-import { GraphQLResponse, SearchResults } from '@/lib/types'
+import {GraphQLResponse, SearchResults} from '@/lib/types'
 
 /**
  * Function to execute a GraphQL query.

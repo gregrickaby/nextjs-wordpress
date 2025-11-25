@@ -133,6 +133,19 @@ NEXTJS_REVALIDATION_SECRET=your-secret-here
 
 ---
 
+## Validation Protocol
+
+**All agents MUST complete these validation steps before declaring work is complete:**
+
+1. **Format Code** - Run `npm run format` to apply Prettier and ESLint auto-fixes
+2. **Check Linting** - Run `npm run lint` and fix any errors
+3. **Verify Build** - Run `npm run build` to ensure TypeScript compilation succeeds
+4. **Review Changes** - Confirm all changes align with project patterns and standards
+
+**Never skip validation steps.** These checks prevent bugs, maintain code quality, and ensure the project builds successfully.
+
+---
+
 ## Common Tasks
 
 ### Adding a GraphQL Query
@@ -141,6 +154,7 @@ NEXTJS_REVALIDATION_SECRET=your-secret-here
 2. Import `fetchGraphQL` from `lib/functions.ts`
 3. Add null safety: `if (!response?.data) return []`
 4. Export with proper TypeScript return type
+5. **Run validation protocol** (format, lint, build)
 
 ### Creating a New Page
 
@@ -149,12 +163,20 @@ NEXTJS_REVALIDATION_SECRET=your-secret-here
 3. Await params: `const {slug} = await params`
 4. Add `generateMetadata` for SEO
 5. Handle null data with `notFound()`
+6. **Run validation protocol** (format, lint, build)
 
 ### Adding a Client Component
 
 1. Add `'use client'` directive at top
 2. Use only where interactivity is needed
 3. Keep Server Components as default
+4. **Run validation protocol** (format, lint, build)
+
+---
+
+## Validation Steps
+
+After
 
 ---
 

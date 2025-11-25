@@ -1,5 +1,5 @@
-import { fetchGraphQL } from '@/lib/functions'
-import { Page } from '@/lib/types'
+import {fetchGraphQL} from '@/lib/functions'
+import {Page} from '@/lib/types'
 
 /**
  * Fetch a page by slug.

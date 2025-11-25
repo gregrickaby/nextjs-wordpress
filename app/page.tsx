@@ -1,9 +1,9 @@
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
-import { Post } from '@/lib/types'
+import {Post} from '@/lib/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import {notFound} from 'next/navigation'
 
 /**
  * The homepage route.

@@ -1,5 +1,5 @@
-import { fetchGraphQL } from '@/lib/functions'
-import { Post } from '@/lib/types'
+import {fetchGraphQL} from '@/lib/functions'
+import {Post} from '@/lib/types'
 
 /**
  * Fetch all books.

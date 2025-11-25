@@ -1,5 +1,5 @@
-import { revalidatePath, revalidateTag } from 'next/cache'
-import { NextRequest } from 'next/server'
+import {revalidatePath, revalidateTag} from 'next/cache'
+import {NextRequest} from 'next/server'
 
 /**
  * On-demand revalidation.

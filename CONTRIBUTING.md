@@ -22,6 +22,7 @@ Found a bug you can fix? Fantastic! Patches are always welcome.
 ### Development Setup
 
 1. Clone your fork and install dependencies:
+
    ```bash
    git clone git@github.com:YOUR_USERNAME/nextjs-wordpress.git
    cd nextjs-wordpress
@@ -31,6 +32,7 @@ Found a bug you can fix? Fantastic! Patches are always welcome.
 2. Copy `.env.example` to `.env.local` and configure your WordPress URLs
 
 3. Start the development server:
+
    ```bash
    npm run dev
    ```

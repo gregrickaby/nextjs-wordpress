@@ -1,11 +1,11 @@
 import getAllBooks from '@/lib/queries/getAllBooks'
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
-import type { DynamicPageProps } from '@/lib/types'
-import { Page, Post } from '@/lib/types'
+import type {DynamicPageProps} from '@/lib/types'
+import {Page, Post} from '@/lib/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import {notFound} from 'next/navigation'
 
 /**
  * Fetches data from WordPress.

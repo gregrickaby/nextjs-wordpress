@@ -7,6 +7,7 @@ This is a bare-bones Next.js 16 app with React 19, which fetches data from WordP
 Please consider it a starting point for your next headless WordPress project.
 
 **Tech Stack:**
+
 - Next.js 16.0.4 (App Router)
 - React 19.2.0 (Server Components)
 - TypeScript 5.9.3
@@ -236,8 +237,8 @@ We can build our queries in GraphiQL (or your favorite REST client) and let `JSO
 Here is a query to fetch a single post (based on the slug), the featured image, author meta, categories, tags, SEO, and post comments:
 
 ```ts
-import { fetchGraphQL } from '@/lib/functions'
-import { Post } from '@/lib/types'
+import {fetchGraphQL} from '@/lib/functions'
+import {Post} from '@/lib/types'
 
 /**
  * Fetch a single post by slug.

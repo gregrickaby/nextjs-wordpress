@@ -1,5 +1,5 @@
-import { fetchGraphQL } from '@/lib/functions'
-import { Book } from '@/lib/types'
+import {fetchGraphQL} from '@/lib/functions'
+import {Book} from '@/lib/types'
 
 /**
  * Fetch a book by slug.

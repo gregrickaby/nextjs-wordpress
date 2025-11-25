@@ -1,10 +1,10 @@
 import config from '@/lib/config'
 import getTagBySlug from '@/lib/queries/getTagBySlug'
-import type { DynamicPageProps } from '@/lib/types'
-import { Metadata } from 'next'
+import type {DynamicPageProps} from '@/lib/types'
+import {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import {notFound} from 'next/navigation'
 
 /**
  * Generate the metadata for each static route at build time.
