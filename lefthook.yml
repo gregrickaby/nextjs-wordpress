@@ -7,5 +7,5 @@ pre-commit:
       glob: '*.{js,jsx,ts,tsx}'
       run: npx eslint {staged_files} --fix
     prettier:
-      glob: '*.{md,html,json,yml}'
-      run: npx prettier {staged_files} --write
+      glob: '*.{mjs,cjs,js,jsx,ts,tsx,md,css,json,yml,yaml}'
+      run: npx prettier {staged_files} --ignore-path .prettierignore --write
