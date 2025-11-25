@@ -2,21 +2,21 @@
 
 It's headless WordPress! 💀 - <https://nextjswp.com>
 
-This is a bare-bones Next.js 16 app with React 19, which fetches data from WordPress via WPGraphQL and styles it with Tailwind CSS 4.
+This is a minimal, production-ready starter for building headless WordPress sites with Next.js. It fetches content from WordPress via WPGraphQL and styles with TailwindCSS.
 
-Please consider it a starting point for your next headless WordPress project.
+This project now includes fully typed GraphQL operations, tons of unit tests, and is Agentic AI ready. Use it as a foundation for your next lightning-fast, fully decoupled WordPress project.
 
 **Tech Stack:**
 
-- Next.js 16.0.4 (App Router)
-- React 19.2.0 (Server Components)
-- TypeScript 5.9.3
-- Tailwind CSS 4.1.17
+- Next.js 16 (App Router)
+- React 19 (Server Components)
+- TypeScript 5
+- Tailwind CSS 4
 - WordPress (headless via WPGraphQL)
 
 ---
 
-## Supported Features
+## WordPress Features
 
 - Category and Tag Archives
 - Comments
@@ -29,14 +29,20 @@ Please consider it a starting point for your next headless WordPress project.
 - Search
 - Sitemap.xml
 - Static Site Generation (SSG)
-- Test-Driven Development (Vitest + React Testing Library + MSW + jest-axe)
-- TypeScript, ESLint, and Prettier
 - WordPress Menus
 - Yoast SEO
 
 Plus it's really, really fast! 🚀
 
 ![screenshot](https://dl.dropbox.com/s/xh6uq9mblx8rqm1/Screenshot%202023-10-21%20at%2009.58.44.png?dl=0)
+
+## Development Features
+
+- Fully typed GraphQL queries via GraphQL Code Generator (@graphql-codegen/cli)
+- Agentic AI ready with a comprehensive AGENTS.md file
+- `plan-agent`, `dev-agent`, `code-review-agent` & `test-agent` for GitHub Copilot
+- TypeScript, ESLint, Stylelint & Prettier
+- TDD workflow with Vitest, React Testing Library & MSW
 
 ---
 
