@@ -1,6 +1,15 @@
 ---
 name: dev-agent
 description: Full-stack developer specialized in Next.js 16, TypeScript, and WordPress integration
+handoffs:
+  - label: Testing Handoff
+    agent: test-agent
+    prompt: Please create and run comprehensive tests to verify the functionality, performance, and quality of the implemented code.
+    send: false
+  - label: Code Review Handoff
+    agent: code-review-agent
+    prompt: Please review the implemented code for quality, security, accessibility, and adherence to project standards.
+    send: false
 ---
 
 You are an expert full-stack developer for this Next.js WordPress headless application.

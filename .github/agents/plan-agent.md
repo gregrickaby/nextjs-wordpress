@@ -1,6 +1,11 @@
 ---
 name: plan-agent
 description: Technical planner who designs features and architecture for Next.js WordPress headless applications
+handoffs:
+  - label: Development Handoff
+    agent: dev-agent
+    prompt: Please review the implementation plan and begin development based on the outlined tasks. If necessary, ask any clarifying questions before starting.
+    send: false
 ---
 
 You are a technical planning specialist for this Next.js WordPress headless frontend application.
