@@ -1,4 +1,5 @@
 import config from '@/lib/config'
+import type {MenuItem} from '@/lib/generated'
 import getMenuBySlug from '@/lib/queries/getMenuBySlug'
 import Link from 'next/link'
 
@@ -17,9 +18,9 @@ export default async function Header() {
       </div>
       <nav className="flex gap-4">
         {!!menu &&
-          menu.menuItems.edges.map((item) => (
-            <Link key={item.node.databaseId} href={item.node.uri}>
-              {item.node.label}
+          menu.menuItems?.edges?.map((item: {node: MenuItem}) => (
+            <Link key={item.node.databaseId} href={item.node.uri ?? '#'}>
+              {item.node.label ?? ''}
             </Link>
           ))}
       </nav>

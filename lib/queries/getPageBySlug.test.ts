@@ -48,7 +48,7 @@ describe('getPageBySlug', () => {
 
     expect(page).toBeDefined()
     expect(page?.title).toBe('Test Page')
-    expect(page?.author.node.name).toBe('Test Author')
+    expect(page?.author?.node?.name).toBe('Test Author')
   })
 
   it('should return null when page is not found', async () => {

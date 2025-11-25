@@ -44,8 +44,8 @@ describe('getBookBySlug', () => {
 
     expect(book).toBeDefined()
     expect(book?.title).toBe('Test Book')
-    expect(book?.bookFields.isbn).toBe('978-1234567890')
-    expect(book?.bookFields.affiliateUrl).toBe('https://example.com/affiliate')
+    expect(book?.bookFields?.isbn).toBe('978-1234567890')
+    expect(book?.bookFields?.affiliateUrl).toBe('https://example.com/affiliate')
   })
 
   it('should return null when book is not found', async () => {

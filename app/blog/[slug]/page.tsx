@@ -1,4 +1,5 @@
 import CommentForm from '@/components/CommentForm'
+import type {Category, Tag} from '@/lib/generated'
 import getAllPosts from '@/lib/queries/getAllPosts'
 import getPostBySlug from '@/lib/queries/getPostBySlug'
 import type {DynamicPageProps} from '@/lib/types'
@@ -22,9 +23,11 @@ export async function generateStaticParams() {
   }
 
   // Return the slugs for each post.
-  return posts.map((post: {slug: string}) => ({
-    slug: post.slug
-  }))
+  return posts
+    .filter((post) => post.slug)
+    .map((post) => ({
+      slug: post.slug as string
+    }))
 }
 
 /**
@@ -47,8 +50,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.seo.title,
-    description: post.seo.metaDesc
+    title: post.seo?.title ?? '',
+    description: post.seo?.metaDesc ?? ''
   }
 }
 
@@ -72,17 +75,17 @@ export default async function Post({params}: Readonly<DynamicPageProps>) {
   return (
     <article>
       <header>
-        <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+        <h2 dangerouslySetInnerHTML={{__html: post.title ?? ''}} />
         <p className="italic">
-          By {post.author.node.name} on <time>{post.date}</time>
+          By {post.author?.node?.name ?? 'Unknown'} on <time>{post.date}</time>
         </p>
       </header>
-      <div dangerouslySetInnerHTML={{__html: post.content}} />
+      <div dangerouslySetInnerHTML={{__html: post.content ?? ''}} />
       <footer className="flex items-center justify-between gap-4 pb-4">
         <div>
           <h3>Categories</h3>
           <ul className="m-0 flex list-none gap-2 p-0">
-            {post.categories.nodes.map((category) => (
+            {post.categories?.nodes?.map((category: Category) => (
               <li className="m-0 p-0" key={category.databaseId}>
                 <Link href={`/blog/category/${category.name}`}>
                   {category.name}
@@ -95,7 +98,7 @@ export default async function Post({params}: Readonly<DynamicPageProps>) {
         <div>
           <h3>Tags</h3>
           <ul className="m-0 flex list-none gap-2 p-0">
-            {post.tags.nodes.map((tag) => (
+            {post.tags?.nodes?.map((tag: Tag) => (
               <li className="m-0 p-0" key={tag.databaseId}>
                 <Link href={`/blog/tag/${tag.name}`}>{tag.name}</Link>
               </li>
@@ -105,31 +108,33 @@ export default async function Post({params}: Readonly<DynamicPageProps>) {
       </footer>
       <section className="border-t-2">
         <h3>Comments</h3>
-        {post.comments.nodes.map((comment) => (
+        {post.comments?.nodes?.map((comment) => (
           <article key={comment.databaseId}>
             <header className="flex items-center gap-2">
               <Image
-                alt={comment.author.node.name}
+                alt={comment.author?.node?.name ?? 'Anonymous'}
                 className="m-0 rounded-full"
                 height={64}
                 loading="lazy"
-                src={comment.author.node.avatar.url}
+                src={comment.author?.node?.avatar?.url ?? ''}
                 width={64}
               />
               <div className="flex flex-col gap-2">
                 <h4
                   className="m-0 p-0 leading-none"
-                  dangerouslySetInnerHTML={{__html: comment.author.node.name}}
+                  dangerouslySetInnerHTML={{
+                    __html: comment.author?.node?.name ?? 'Anonymous'
+                  }}
                 />
                 <time className="italic">{comment.date}</time>
               </div>
             </header>
 
-            <div dangerouslySetInnerHTML={{__html: comment.content}} />
+            <div dangerouslySetInnerHTML={{__html: comment.content ?? ''}} />
           </article>
         ))}
       </section>
-      <CommentForm postID={post.databaseId} />
+      <CommentForm postID={post.databaseId.toString()} />
     </article>
   )
 }

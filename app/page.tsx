@@ -25,8 +25,8 @@ export default async function Home() {
   return (
     <main className="flex flex-col gap-8">
       <article>
-        <h1 dangerouslySetInnerHTML={{__html: homepage.title}} />
-        <div dangerouslySetInnerHTML={{__html: homepage.content}} />
+        <h1 dangerouslySetInnerHTML={{__html: homepage.title ?? ''}} />
+        <div dangerouslySetInnerHTML={{__html: homepage.content ?? ''}} />
       </article>
 
       <aside>
@@ -36,22 +36,22 @@ export default async function Home() {
             <article className="w-72" key={post.databaseId}>
               {post.featuredImage?.node && (
                 <Image
-                  alt={post.featuredImage.node.altText || post.title}
-                  height={post.featuredImage.node.mediaDetails?.height || 230}
-                  src={post.featuredImage.node.sourceUrl}
-                  width={post.featuredImage.node.mediaDetails?.width || 288}
+                  alt={post.featuredImage.node.altText ?? post.title ?? ''}
+                  height={post.featuredImage.node.mediaDetails?.height ?? 230}
+                  src={post.featuredImage.node.sourceUrl ?? ''}
+                  width={post.featuredImage.node.mediaDetails?.width ?? 288}
                   sizes="(max-width: 768px) 100vw, 288px"
                   className="h-auto w-full object-cover"
                   priority={index < 2}
                 />
               )}
               <Link href={`/blog/${post.slug}`}>
-                <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+                <h2 dangerouslySetInnerHTML={{__html: post.title ?? ''}} />
               </Link>
               <p className="text-sm text-gray-500">
                 {post.commentCount} Comments
               </p>
-              <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+              <div dangerouslySetInnerHTML={{__html: post.excerpt ?? ''}} />
               <Link className="button" href={`/blog/${post.slug}`}>
                 View Post
               </Link>

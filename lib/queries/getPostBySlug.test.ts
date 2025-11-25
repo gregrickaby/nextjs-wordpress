@@ -55,7 +55,7 @@ describe('getPostBySlug', () => {
     expect(post).toBeDefined()
     expect(post?.title).toBe('Test Post')
     expect(post?.slug).toBe('test-post')
-    expect(post?.author.node.name).toBe('Test Author')
+    expect(post?.author?.node?.name).toBe('Test Author')
   })
 
   it('should return null when post is not found', async () => {

@@ -1,4 +1,5 @@
 import config from '@/lib/config'
+import type {Category, Tag} from '@/lib/generated'
 import getPreview from '@/lib/queries/getPreview'
 import type {DynamicPageProps} from '@/lib/types'
 import {Metadata} from 'next'
@@ -28,12 +29,12 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} - ${config.siteName}`,
-    description: post.excerpt,
+    title: `${post.title ?? 'Preview'} - ${config.siteName}`,
+    description: post.excerpt ?? '',
     robots: 'noindex',
     openGraph: {
-      title: `${post.title} - ${config.siteName}`,
-      description: post.excerpt,
+      title: `${post.title ?? 'Preview'} - ${config.siteName}`,
+      description: post.excerpt ?? '',
       url: `${config.siteUrl}/blog/${slug}`,
       siteName: config.siteName,
       locale: 'en_US',
@@ -42,9 +43,9 @@ export async function generateMetadata({
         images: [
           {
             url: post.featuredImage.node.sourceUrl,
-            width: post.featuredImage.node.mediaDetails?.width,
-            height: post.featuredImage.node.mediaDetails?.height,
-            alt: post.featuredImage.node.altText || post.title
+            width: post.featuredImage.node.mediaDetails?.width ?? undefined,
+            height: post.featuredImage.node.mediaDetails?.height ?? undefined,
+            alt: post.featuredImage.node.altText ?? post.title ?? ''
           }
         ]
       })
@@ -106,17 +107,17 @@ export default async function Preview({
   return (
     <article>
       <header>
-        <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+        <h2 dangerouslySetInnerHTML={{__html: post.title ?? ''}} />
         <p className="italic">
-          By {post.author.node.name} on <time>{post.date}</time>
+          By {post.author?.node?.name ?? 'Unknown'} on <time>{post.date}</time>
         </p>
       </header>
-      <div dangerouslySetInnerHTML={{__html: post.content}} />
+      <div dangerouslySetInnerHTML={{__html: post.content ?? ''}} />
       <footer className="flex items-center justify-between gap-4 pb-4">
         <div>
           <h3>Categories</h3>
           <ul className="m-0 flex list-none gap-2 p-0">
-            {post.categories.nodes.map((category) => (
+            {post.categories?.nodes?.map((category: Category) => (
               <li className="m-0 p-0" key={category.databaseId}>
                 {category.name}
               </li>
@@ -127,7 +128,7 @@ export default async function Preview({
         <div>
           <h3>Tags</h3>
           <ul className="m-0 flex list-none gap-2 p-0">
-            {post.tags.nodes.map((tag) => (
+            {post.tags?.nodes?.map((tag: Tag) => (
               <li className="m-0 p-0" key={tag.databaseId}>
                 {tag.name}
               </li>

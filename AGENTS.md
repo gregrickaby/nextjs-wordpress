@@ -60,17 +60,20 @@ lib/
   ├── queries/    - GraphQL query functions
   ├── mutations/  - GraphQL mutation functions
   ├── functions.ts - Main fetchGraphQL with caching
-  ├── types.d.ts  - TypeScript definitions
+  ├── types.d.ts  - Non-WordPress TypeScript definitions
+  ├── generated.ts - Auto-generated WordPress GraphQL types
   └── config.ts   - Site configuration
 public/           - Static assets
 .github/agents/   - AI agent definitions
+codegen.ts        - GraphQL Code Generator configuration
 ```
 
 ### Essential Commands
 
 ```bash
-npm run dev          # Start dev server (auto-cleans .next)
+npm run dev          # Start dev server (runs codegen + cleans .next)
 npm run build        # Production build with TypeScript check
+npm run codegen      # Generate GraphQL types from WordPress schema
 npm run lint         # Run ESLint (not 'next lint')
 npm run format       # Format with Prettier
 npm run typecheck    # Run TypeScript compiler checks
@@ -100,14 +103,30 @@ export default async function Page({
 **Null Safety for Images:**
 
 ```typescript
-// ✅ Always check featuredImage
+// ✅ Always check featuredImage and use nullish coalescing
 {post.featuredImage?.node && (
   <Image
-    alt={post.featuredImage.node.altText || post.title}
-    src={post.featuredImage.node.sourceUrl}
+    alt={post.featuredImage.node.altText ?? post.title ?? ''}
+    src={post.featuredImage.node.sourceUrl ?? ''}
     // ...
   />
 )}
+```
+
+**GraphQL Types:**
+
+```typescript
+// ✅ Import WordPress types from generated.ts
+import type {Post, Category, Tag, MenuItem} from '@/lib/generated'
+import type {DynamicPageProps} from '@/lib/types'
+
+// ✅ Use nullish coalescing for Maybe<T> types
+const title = post.title ?? 'Untitled'
+
+// ✅ Cast specific types in map functions when needed
+post.categories?.nodes?.map((category: Category) => (
+  <li key={category.databaseId}>{category.name}</li>
+))
 ```
 
 **GraphQL Error Handling:**

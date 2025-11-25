@@ -15,7 +15,8 @@
   "homepage": "https://github.com/gregrickaby/nextjs-wordpress#readme",
   "scripts": {
     "build": "next build",
-    "dev": "rimraf .next && next dev",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "dev": "npm run codegen && rimraf .next && next dev",
     "format": "eslint --fix && prettier '**/*.{js,jsx,ts,tsx,md,html,css,json,yml}' --ignore-path .gitignore --cache --write",
     "lint": "eslint .",
     "start": "next start",
@@ -33,6 +34,9 @@
     "xml-escape": "^1.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.5",
+    "@graphql-codegen/typescript-operations": "^5.0.5",
     "@tailwindcss/postcss": "^4.1.17",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",

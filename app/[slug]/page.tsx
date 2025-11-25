@@ -40,8 +40,8 @@ function RenderPage({page}: {page: Page}) {
   return (
     <main className="flex flex-col gap-8">
       <article>
-        <h1 dangerouslySetInnerHTML={{__html: page.title}} />
-        <div dangerouslySetInnerHTML={{__html: page.content}} />
+        <h1 dangerouslySetInnerHTML={{__html: page.title ?? ''}} />
+        <div dangerouslySetInnerHTML={{__html: page.content ?? ''}} />
       </article>
     </main>
   )
@@ -59,22 +59,22 @@ function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
           <article className="w-72" key={post.databaseId}>
             {post.featuredImage?.node && (
               <Image
-                alt={post.featuredImage.node.altText || post.title}
-                height={post.featuredImage.node.mediaDetails?.height || 233}
-                src={post.featuredImage.node.sourceUrl}
-                width={post.featuredImage.node.mediaDetails?.width || 280}
+                alt={post.featuredImage.node.altText ?? post.title ?? ''}
+                height={post.featuredImage.node.mediaDetails?.height ?? 233}
+                src={post.featuredImage.node.sourceUrl ?? ''}
+                width={post.featuredImage.node.mediaDetails?.width ?? 280}
                 sizes="(max-width: 768px) 100vw, 280px"
                 className="h-auto w-full object-cover"
                 priority={index < 2}
               />
             )}
             <Link href={`/${context}/${post.slug}`}>
-              <h2 dangerouslySetInnerHTML={{__html: post.title}} />
+              <h2 dangerouslySetInnerHTML={{__html: post.title ?? ''}} />
             </Link>
             <p className="text-sm text-gray-500">
               {post.commentCount} Comments
             </p>
-            <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+            <div dangerouslySetInnerHTML={{__html: post.excerpt ?? ''}} />
             <Link className="button" href={`/${context}/${post.slug}`}>
               View Post
             </Link>

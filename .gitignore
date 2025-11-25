@@ -36,3 +36,4 @@ next-env.d.ts
 
 # local wordpress
 wordpress/
+/lib/generated.ts

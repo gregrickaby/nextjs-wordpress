@@ -37,16 +37,22 @@ Found a bug you can fix? Fantastic! Patches are always welcome.
    npm run dev
    ```
 
+   **Note:** The dev server automatically runs GraphQL Code Generator to sync WordPress types before starting.
+
 4. The app will be available at <http://localhost:3000>
 
 **Available Scripts:**
 
-- `npm run dev` - Start dev server (auto-cleans `.next` directory)
+- `npm run dev` - Start dev server (runs codegen + cleans `.next` directory)
 - `npm run build` - Production build with TypeScript checking
 - `npm run start` - Start production server
+- `npm run codegen` - Generate GraphQL types from WordPress schema
 - `npm run lint` - Run ESLint
 - `npm run format` - Format code with Prettier and auto-fix ESLint issues
-- `npm run clean` - Remove `.next` directory
+- `npm run typecheck` - Run TypeScript compiler checks
+- `npm test` - Run all tests once
+- `npm run test:watch` - Run tests in watch mode
+- `npm run validate` - Complete validation suite (format → lint → typecheck → test)
 
 ---
 
@@ -54,22 +60,32 @@ Found a bug you can fix? Fantastic! Patches are always welcome.
 
 1. Fork the repo and create a feature/patch branch off `main`
 2. Work locally adhering to coding standards
-3. Run `npm run format` to format code with Prettier and ESLint
-4. Run `npm run lint` to check for linting errors
-5. Make sure the app builds locally with `npm run build && npm run start`
-6. Push your code, open a PR, and fill out the PR template
-7. After peer review, the PR will be merged back into `main`
-8. Repeat ♻️
+3. Run `npm run validate` to ensure all checks pass
+4. Make sure the app builds locally with `npm run build && npm run start`
+5. Push your code, open a PR, and fill out the PR template
+6. After peer review, the PR will be merged back into `main`
+7. Repeat ♻️
 
 **Coding Standards:**
 
 - Follow Next.js 16 patterns (async params, Server Components)
-- Always check for null/undefined data (especially `featuredImage`)
+- Always check for null/undefined data with nullish coalescing (`??`)
+- Import WordPress types from `@/lib/generated` (auto-generated via GraphQL Code Generator)
+- Import non-WordPress types from `@/lib/types`
 - Use TypeScript - no `any` types
 - Add proper error handling - return `[]` or `null` instead of throwing
 - Write tests alongside code changes (test-driven development)
 - Target 80%+ test coverage on new features
 - See [AGENTS.md](./AGENTS.md) for detailed patterns and best practices
+
+**GraphQL Type Generation Workflow:**
+
+- Types are auto-generated from your WordPress GraphQL schema
+- `npm run dev` automatically runs `npm run codegen` before starting
+- To manually regenerate types: `npm run codegen`
+- Generated types use `Maybe<T>` - always use `??` for null safety
+- WordPress types in `lib/generated.ts` (auto-generated, don't edit)
+- Custom types in `lib/types.d.ts` (hand-written, edit as needed)
 
 > Your PR must pass automated assertions, deploy to Vercel successfully, and pass a peer review before it can be merged.
 

@@ -35,11 +35,11 @@ export async function GET() {
   allPosts.forEach((post) => {
     rss += `
     <item>
-      <title>${escape(post.title)}</title>
-      <description>${escape(post.excerpt)}</description>
+      <title>${escape(post.title ?? '')}</title>
+      <description>${escape(post.excerpt ?? '')}</description>
       <link>${config.siteUrl}/blog/${post.slug}</link>
       <guid>${config.siteUrl}/blog/${post.slug}</guid>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <pubDate>${new Date(post.date ?? '').toUTCString()}</pubDate>
     </item>`
   })
 

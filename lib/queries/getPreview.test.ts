@@ -64,9 +64,9 @@ describe('getPreview', () => {
 
     expect(post).toBeDefined()
     expect(post.title).toBe('Preview Post')
-    expect(post.author.node.name).toBe('Preview Author')
-    expect(post.tags.nodes).toHaveLength(1)
-    expect(post.categories.nodes).toHaveLength(1)
+    expect(post.author?.node?.name).toBe('Preview Author')
+    expect(post.tags?.nodes).toHaveLength(1)
+    expect(post.categories?.nodes).toHaveLength(1)
   })
 
   it('should handle API errors gracefully', async () => {

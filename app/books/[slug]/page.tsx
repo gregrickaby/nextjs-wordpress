@@ -20,9 +20,11 @@ export async function generateStaticParams() {
   }
 
   // Return the slugs for each book.
-  return books.map((book: {slug: string}) => ({
-    slug: book.slug
-  }))
+  return books
+    .filter((book) => book.slug)
+    .map((book) => ({
+      slug: book.slug as string
+    }))
 }
 
 /**
@@ -45,8 +47,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: book.seo.title,
-    description: book.seo.metaDesc
+    title: book.seo?.title ?? '',
+    description: book.seo?.metaDesc ?? ''
   }
 }
 
@@ -70,9 +72,9 @@ export default async function Book({params}: Readonly<DynamicPageProps>) {
   return (
     <main className="flex flex-col gap-8">
       <article className="w-full">
-        <h1 dangerouslySetInnerHTML={{__html: book.title}} />
-        <div dangerouslySetInnerHTML={{__html: book.content}} />
-        <Link className="button" href={book.bookFields.affiliateUrl}>
+        <h1 dangerouslySetInnerHTML={{__html: book.title ?? ''}} />
+        <div dangerouslySetInnerHTML={{__html: book.content ?? ''}} />
+        <Link className="button" href={book.bookFields?.affiliateUrl ?? '#'}>
           View on Amazon
         </Link>
       </article>
