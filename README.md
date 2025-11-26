@@ -8,7 +8,7 @@ This project now includes fully typed GraphQL operations, tons of unit tests, an
 
 **Tech Stack:**
 
-- Next.js 16 (App Router)
+- Next.js 16 (App Router, Cached Components, React Compiler, Turbo)
 - React 19 (Server Components)
 - TypeScript 5
 - Tailwind CSS 4
