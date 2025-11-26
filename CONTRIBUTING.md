@@ -26,7 +26,7 @@ Found a bug you can fix? Fantastic! Patches are always welcome.
    ```bash
    git clone git@github.com:YOUR_USERNAME/nextjs-wordpress.git
    cd nextjs-wordpress
-   npm install
+   nvm use && npm i
    ```
 
 2. Copy `.env.example` to `.env.local` and configure your WordPress URLs

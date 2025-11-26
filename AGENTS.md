@@ -12,7 +12,18 @@ This Next.js WordPress headless frontend uses specialized AI agents to help with
 
 ## Available Agents
 
-We have three specialized agents located in `.github/agents/`:
+We have four specialized agents located in `.github/agents/`:
+
+### [@plan-agent](.github/agents/plan-agent.md) - Technical Planner
+
+Designs features and architecture for Next.js WordPress applications. Creates implementation roadmaps with clear phases and dependencies.
+
+**Use for:**
+
+- Designing new features with technical specifications
+- Planning architecture decisions
+- Creating implementation roadmaps
+- Identifying technical risks and solutions
 
 ### [@dev-agent](.github/agents/dev-agent.md) - Full Stack Developer
 
@@ -36,16 +47,16 @@ Writes comprehensive tests for components and API routes. Understands WordPress 
 - Testing error handling
 - Validating null safety
 
-### [@docs-agent](.github/agents/docs-agent.md) - Technical Writer
+### [@code-review-agent](.github/agents/code-review-agent.md) - Senior Code Reviewer
 
-Creates clear developer documentation with practical examples. Keeps docs up-to-date with Next.js 16 patterns.
+Enforces quality, security, accessibility (WCAG 2.1 AA), and architectural standards. Acts as quality gatekeeper.
 
 **Use for:**
 
-- Writing API documentation
-- Creating developer guides
-- Documenting architecture decisions
-- Updating examples
+- Reviewing code for quality and standards
+- Verifying test coverage (80%+ target)
+- Checking security best practices
+- Ensuring WCAG 2.1 AA accessibility compliance
 
 ---
 
@@ -177,6 +188,23 @@ This single command runs all checks in sequence:
 3. **TypeCheck** - Verifies TypeScript compilation
 4. **Test** - Runs all unit tests
 
+### SonarQube Analysis (End of Feature Development)
+
+After completing feature development and passing all validation steps, run SonarQube analysis:
+
+```bash
+npm run sonar
+```
+
+This runs comprehensive code quality analysis including:
+
+- **Code Smells** - Maintainability issues and best practice violations
+- **Security Vulnerabilities** - Potential security risks
+- **Code Coverage** - Validates test coverage meets standards
+- **Technical Debt** - Identifies areas needing improvement
+
+View results at: http://localhost:9000/dashboard?id=Next.js-WordPress
+
 ### Manual Validation (Alternative)
 
 If needed, run steps individually:
@@ -186,7 +214,8 @@ If needed, run steps individually:
 3. **Type Check** - Run `npm run typecheck` to verify TypeScript
 4. **Run Tests** - Run `npm test` to ensure all tests pass
 5. **Verify Build** - Run `npm run build` to ensure production build succeeds
-6. **Review Changes** - Confirm all changes align with project patterns and standards
+6. **SonarQube Analysis** - Run `npm run sonar` for code quality analysis (at end of feature development)
+7. **Review Changes** - Confirm all changes align with project patterns and standards
 
 **Never skip validation steps.** These checks prevent bugs, maintain code quality, and ensure the project builds successfully.
 
@@ -202,6 +231,7 @@ If needed, run steps individually:
 4. Export with proper TypeScript return type
 5. Write unit tests in co-located `.test.ts` file
 6. **Run `npm run validate`** to ensure everything passes
+7. **Run `npm run sonar`** for code quality analysis (optional, recommended for major features)
 
 ### Creating a New Page
 
@@ -211,6 +241,7 @@ If needed, run steps individually:
 4. Add `generateMetadata` for SEO
 5. Handle null data with `notFound()`
 6. **Run `npm run validate`** to ensure everything passes
+7. **Run `npm run sonar`** for code quality analysis (optional, recommended for major features)
 
 ### Adding a Client Component
 
@@ -219,6 +250,7 @@ If needed, run steps individually:
 3. Keep Server Components as default
 4. Write unit tests in co-located `.test.tsx` file
 5. **Run `npm run validate`** to ensure everything passes
+6. **Run `npm run sonar`** for code quality analysis (optional, recommended for major features)
 
 ---
 

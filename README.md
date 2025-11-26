@@ -42,6 +42,7 @@ Plus it's really, really fast! 🚀
 - Agentic AI ready with a comprehensive AGENTS.md file
 - `plan-agent`, `dev-agent`, `code-review-agent` & `test-agent` for GitHub Copilot
 - TypeScript, ESLint, Stylelint & Prettier
+- SonarQube support
 - TDD workflow with Vitest, React Testing Library & MSW
 
 ---
@@ -57,16 +58,16 @@ git clone git@github.com:gregrickaby/nextjs-wordpress.git
 ### 2. Install dependencies
 
 ```bash
-npm i
+nvm use && npm i
 ```
 
-### 3. Create a `.env.local` file
+### 3. Create a `.env` file
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Customize the URLs in `.env.local` to match your WordPress setup:
+Customize the URLs in `.env` to match your WordPress setup:
 
 ```txt
 # WordPress GraphQL API URL. No trailing slash.
@@ -83,12 +84,9 @@ NEXTJS_PREVIEW_SECRET="preview"
 
 # Revalidation Secret. Must match the constant in wp-config.php.
 NEXTJS_REVALIDATION_SECRET="revalidate"
-
-# Optional. Allow self-signed SSL certificates for local development.
-# NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
-> **Note:** Only use `NODE_TLS_REJECT_UNAUTHORIZED=0` in local development with self-signed certificates. Never use this in production!
+> **Note:** Only use `NODE_TLS_REJECT_UNAUTHORIZED=0` in local development with self-signed certificates for older versions of Node. Never use this in production!
 
 ### 4. Configure `next.config.ts`
 
