@@ -4,7 +4,7 @@ This Next.js WordPress headless frontend uses specialized AI agents to help with
 
 ## Project Overview
 
-**Tech Stack:** Next.js 16.0.4 (App Router, Cached Components, React Compiler, Turbo), React 19, TypeScript 5.9, Tailwind CSS 4, WordPress (headless via WPGraphQL)
+**Tech Stack:** Next.js 16.0.4 (App Router, React Compiler, Turbopack), React 19, TypeScript 5.9, Tailwind CSS 4, WordPress (headless via WPGraphQL)
 
 **Architecture:** Server-side rendered React application that fetches content from WordPress via GraphQL, with on-demand revalidation and static generation.
 
