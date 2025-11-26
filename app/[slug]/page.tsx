@@ -36,7 +36,7 @@ async function fetchData(slug: string) {
 /**
  * Render a single page.
  */
-function RenderPage({page}: {page: Page}) {
+function RenderPage({page}: Readonly<{page: Page}>) {
   return (
     <main className="flex flex-col gap-8">
       <article>
@@ -50,7 +50,10 @@ function RenderPage({page}: {page: Page}) {
 /**
  * Render posts list.
  */
-function RenderPostsList({posts, context}: {posts: Post[]; context: string}) {
+function RenderPostsList({
+  posts,
+  context
+}: Readonly<{posts: Post[]; context: string}>) {
   return (
     <main className="flex flex-col gap-8">
       <h1 className="capitalize">Latest {context}</h1>

@@ -32,7 +32,7 @@ export async function GET() {
     <ttl>60</ttl>`
 
   // Add posts to RSS feed.
-  allPosts.forEach((post) => {
+  for (const post of allPosts) {
     rss += `
     <item>
       <title>${escape(post.title ?? '')}</title>
@@ -41,7 +41,7 @@ export async function GET() {
       <guid>${config.siteUrl}/blog/${post.slug}</guid>
       <pubDate>${new Date(post.date ?? '').toUTCString()}</pubDate>
     </item>`
-  })
+  }
 
   // Close channel and rss tag.
   rss += `

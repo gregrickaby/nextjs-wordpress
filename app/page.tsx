@@ -18,7 +18,7 @@ export default async function Home() {
   const posts = await getAllPosts()
 
   // No data? Bail...
-  if (!posts || !posts.length || !homepage) {
+  if (!posts?.length || !homepage) {
     notFound()
   }
 

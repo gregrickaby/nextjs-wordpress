@@ -64,38 +64,188 @@ describe('CommentForm', () => {
     // Fill in the form
     await user.type(screen.getByLabelText(/name/i), 'John Doe')
     await user.type(screen.getByLabelText(/email/i), 'john@example.com')
+    await user.type(screen.getByLabelText(/website/i), 'https://example.com')
     await user.type(screen.getByLabelText(/comment/i), 'This is a test comment')
 
     // Submit the form
     const submitButton = screen.getByRole('button', {name: /submit/i})
     await user.click(submitButton)
 
-    // Verify form submission (you may need to adjust based on your implementation)
-    // For example, checking for a success message
+    // Wait for success message
+    expect(
+      await screen.findByText(/thank you john doe/i, {}, {timeout: 3000})
+    ).toBeInTheDocument()
+
+    // Verify form is cleared
+    expect(screen.getByLabelText(/name/i)).toHaveValue('')
+    expect(screen.getByLabelText(/email/i)).toHaveValue('')
+    expect(screen.getByLabelText(/website/i)).toHaveValue('')
+    expect(screen.getByLabelText(/comment/i)).toHaveValue('')
   })
 
-  it('should handle API errors gracefully', async () => {
+  it('should display error message on submission failure', async () => {
     server.use(
-      http.post(`${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL}`, () => {
-        return HttpResponse.json(
-          {
-            errors: [{message: 'Comment submission failed'}]
-          },
-          {status: 500}
-        )
-      })
+      http.post(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL}`,
+        async ({request}) => {
+          const body = (await request.json()) as {query: string}
+
+          if (body.query.includes('createComment')) {
+            return HttpResponse.json({
+              data: {
+                createComment: {
+                  success: false,
+                  comment: null
+                }
+              }
+            })
+          }
+
+          return HttpResponse.json({data: {}})
+        }
+      )
     )
 
     render(<CommentForm {...mockProps} />)
 
     await user.type(screen.getByLabelText(/name/i), 'John Doe')
     await user.type(screen.getByLabelText(/email/i), 'john@example.com')
+    await user.type(screen.getByLabelText(/website/i), 'https://example.com')
     await user.type(screen.getByLabelText(/comment/i), 'This is a test comment')
 
     const submitButton = screen.getByRole('button', {name: /submit/i})
     await user.click(submitButton)
 
-    // Verify error handling (adjust based on your implementation)
+    // Wait for error message
+    expect(
+      await screen.findByText(/there was an error/i, {}, {timeout: 3000})
+    ).toBeInTheDocument()
+  })
+
+  it('should clear form after successful submission', async () => {
+    server.use(
+      http.post(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL}`,
+        async ({request}) => {
+          const body = (await request.json()) as {query: string}
+
+          if (body.query.includes('createComment')) {
+            return HttpResponse.json({
+              data: {
+                createComment: {
+                  success: true,
+                  comment: {
+                    id: 'cG9zdDox',
+                    content: 'Test'
+                  }
+                }
+              }
+            })
+          }
+
+          return HttpResponse.json({data: {}})
+        }
+      )
+    )
+
+    render(<CommentForm {...mockProps} />)
+
+    const nameInput = screen.getByLabelText(/name/i)
+    const emailInput = screen.getByLabelText(/email/i)
+    const websiteInput = screen.getByLabelText(/website/i)
+    const commentInput = screen.getByLabelText(/comment/i)
+
+    await user.type(nameInput, 'John Doe')
+    await user.type(emailInput, 'john@example.com')
+    await user.type(websiteInput, 'https://example.com')
+    await user.type(commentInput, 'This is a test comment')
+
+    // Verify fields have values before submission
+    expect(nameInput).toHaveValue('John Doe')
+    expect(emailInput).toHaveValue('john@example.com')
+    expect(websiteInput).toHaveValue('https://example.com')
+    expect(commentInput).toHaveValue('This is a test comment')
+
+    await user.click(screen.getByRole('button', {name: /submit/i}))
+
+    // Wait for form to clear
+    await screen.findByText(/thank you/i, {}, {timeout: 3000})
+
+    expect(nameInput).toHaveValue('')
+    expect(emailInput).toHaveValue('')
+    expect(websiteInput).toHaveValue('')
+    expect(commentInput).toHaveValue('')
+  })
+
+  it('should handle API errors gracefully', async () => {
+    server.use(
+      http.post(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL}`,
+        async ({request}) => {
+          const body = (await request.json()) as {query: string}
+
+          if (body.query.includes('createComment')) {
+            return HttpResponse.json({
+              data: {
+                createComment: null
+              },
+              errors: [{message: 'Comment submission failed'}]
+            })
+          }
+
+          return HttpResponse.json({data: {}})
+        }
+      )
+    )
+
+    render(<CommentForm {...mockProps} />)
+
+    await user.type(screen.getByLabelText(/name/i), 'John Doe')
+    await user.type(screen.getByLabelText(/email/i), 'john@example.com')
+    await user.type(screen.getByLabelText(/website/i), 'https://example.com')
+    await user.type(screen.getByLabelText(/comment/i), 'This is a test comment')
+
+    const submitButton = screen.getByRole('button', {name: /submit/i})
+    await user.click(submitButton)
+
+    // Should display error message when API returns null
+    expect(
+      await screen.findByText(/there was an error/i, {}, {timeout: 3000})
+    ).toBeInTheDocument()
+  })
+
+  it('should require all fields before submission', () => {
+    render(<CommentForm {...mockProps} />)
+
+    const nameInput = screen.getByLabelText(/name/i)
+    const emailInput = screen.getByLabelText(/email/i)
+    const websiteInput = screen.getByLabelText(/website/i)
+    const commentInput = screen.getByLabelText(/comment/i)
+
+    expect(nameInput).toBeRequired()
+    expect(emailInput).toBeRequired()
+    expect(websiteInput).toBeRequired()
+    expect(commentInput).toBeRequired()
+  })
+
+  it('should validate email format', () => {
+    render(<CommentForm {...mockProps} />)
+
+    const emailInput = screen.getByLabelText(/email/i)
+
+    expect(emailInput).toHaveAttribute('type', 'email')
+    expect(emailInput).toHaveAttribute(
+      'pattern',
+      String.raw`[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`
+    )
+  })
+
+  it('should validate website URL format', () => {
+    render(<CommentForm {...mockProps} />)
+
+    const websiteInput = screen.getByLabelText(/website/i)
+
+    expect(websiteInput).toHaveAttribute('type', 'url')
   })
 
   it('should have no accessibility violations', async () => {

@@ -1,7 +1,8 @@
 import type {CodegenConfig} from '@graphql-codegen/cli'
+import 'dotenv/config'
 
 const config: CodegenConfig = {
-  schema: 'https://blog.nextjswp.com/graphql',
+  schema: process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL!,
   documents: ['lib/queries/**/*.ts', 'lib/mutations/**/*.ts'],
   generates: {
     './lib/generated.ts': {

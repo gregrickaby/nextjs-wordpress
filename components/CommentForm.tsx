@@ -19,32 +19,41 @@ export default function CommentForm({postID}: Readonly<{postID: string}>) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    // Create the comment and await the status.
-    const status = await createComment({
-      name,
-      email,
-      website,
-      comment,
-      postID
-    })
+    try {
+      // Create the comment and await the status.
+      const status = await createComment({
+        name,
+        email,
+        website,
+        comment,
+        postID
+      })
 
-    // If the comment was created successfully...
-    if (status && status.success) {
-      // Clear the form.
-      setName('')
-      setEmail('')
-      setWebsite('')
-      setComment('')
+      // If the comment was created successfully...
+      if (status?.success) {
+        // Clear the form.
+        setName('')
+        setEmail('')
+        setWebsite('')
+        setComment('')
 
-      // Set the status message.
+        // Set the status message.
+        setStatus(
+          `Thank you ${name}! Your comment has been submitted and is awaiting moderation.`
+        )
+      }
+
+      // If there was an error...
+      if (status && !status.success) {
+        setStatus(
+          `There was an error submitting your comment: ${status.message}`
+        )
+      }
+    } catch (error) {
+      console.error('Comment submission error:', error)
       setStatus(
-        `Thank you ${name}! Your comment has been submitted and is awaiting moderation.`
+        `There was an error submitting your comment. Please try again later.`
       )
-    }
-
-    // If there was an error...
-    if (status && !status.success) {
-      setStatus(`There was an error submitting your comment: ${status.message}`)
     }
   }
 

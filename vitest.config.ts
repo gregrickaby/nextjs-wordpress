@@ -2,7 +2,11 @@ import react from '@vitejs/plugin-react-swc'
 import path from 'node:path'
 import {defineConfig} from 'vitest/config'
 
-// https://vitejs.dev/config/
+/**
+ * Vitest Configuration.
+ *
+ * @see https://vitejs.dev/config/
+ */
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -23,8 +27,6 @@ export default defineConfig({
       '**/.{idea,git,cache,output,temp}/**',
       '**/dist/**',
       '**/node_modules/**',
-      '**/e2e/**',
-      '**/vitest.config.*',
       '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*'
     ],
     coverage: {
@@ -33,12 +35,10 @@ export default defineConfig({
       include: ['**/*.{ts,tsx}'],
       exclude: [
         '**/*.config.*',
+        '**/*.d.ts',
         '**/*.{spec,test}.{ts,tsx}',
-        '**/app/**/{page,layout,manifest,robots,sitemap,global-not-found}.{ts,tsx}',
-        '**/scripts/**',
-        '**/test-utils/**',
-        '**/types/**',
-        '**/*.d.ts'
+        '**/{codegen,generated}.ts',
+        '**/{scripts,test-utils,types}/**'
       ],
       reporter: ['text', 'json', 'html', 'lcov']
     }

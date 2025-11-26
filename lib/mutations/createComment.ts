@@ -56,5 +56,9 @@ export async function createComment(comment: {
 
   const response = await fetchGraphQL(query, variables)
 
+  if (!response?.data?.createComment) {
+    throw new Error('Failed to create comment')
+  }
+
   return response.data.createComment
 }
