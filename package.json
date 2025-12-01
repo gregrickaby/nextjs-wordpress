@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^6.1.0",
-    "@graphql-codegen/typescript": "^5.0.5",
+    "@graphql-codegen/typescript": "^5.0.6",
     "@graphql-codegen/typescript-operations": "^5.0.5",
     "@tailwindcss/postcss": "^4.1.17",
     "@testing-library/jest-dom": "^6.9.1",
