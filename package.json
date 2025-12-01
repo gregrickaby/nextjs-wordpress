@@ -29,7 +29,7 @@
     "validate": "npm run format && npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {
-    "next": "^16.0.4",
+    "next": "^16.0.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "xml-escape": "^1.1.0"
