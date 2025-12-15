@@ -31,7 +31,7 @@
   "dependencies": {
     "next": "^16.0.7",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1",
+    "react-dom": "^19.2.3",
     "xml-escape": "^1.1.0"
   },
   "devDependencies": {
