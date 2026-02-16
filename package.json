@@ -52,7 +52,7 @@
     "@vitest/ui": "^4.0.18",
     "autoprefixer": "^10.4.24",
     "babel-plugin-react-compiler": "^1.0.0",
-    "dotenv": "^17.2.4",
+    "dotenv": "^17.3.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
     "eslint-config-prettier": "^10.1.8",
