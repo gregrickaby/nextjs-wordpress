@@ -48,7 +48,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/xml-escape": "^1.1.3",
     "@vitejs/plugin-react-swc": "^4.3.0",
-    "@vitest/coverage-v8": "^4.1.4",
+    "@vitest/coverage-v8": "^4.1.5",
     "@vitest/ui": "^4.1.4",
     "autoprefixer": "^10.5.0",
     "babel-plugin-react-compiler": "^1.0.0",
